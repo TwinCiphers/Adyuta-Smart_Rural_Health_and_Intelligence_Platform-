@@ -53,18 +53,14 @@ const otpRoutes: FastifyPluginAsync = async (server) => {
       await server.redis.del(redisKey);
 
       // Find or create user by phone number
-      // Note: We need a phone number on the User model for this to work natively.
-      // Since Phase 1 uses email, we'll create a stub user or require email in MVP.
-      // Let's create a stub user for demonstration of Phase 2
-      const fakeEmail = `${data.phoneNumber}@adyuta-placeholder.com`;
       let user = await server.prisma.user.findUnique({
-        where: { email: fakeEmail }
+        where: { phoneNumber: data.phoneNumber }
       });
 
       if (!user) {
         user = await server.prisma.user.create({
           data: {
-            email: fakeEmail,
+            phoneNumber: data.phoneNumber,
             name: `User ${data.phoneNumber}`,
             passwordHash: 'otp-login-no-password' 
           }
@@ -74,7 +70,7 @@ const otpRoutes: FastifyPluginAsync = async (server) => {
       // Generate Tokens
       const accessToken = server.jwt.sign({ 
         sub: user.id, 
-        email: user.email,
+        email: user.email || '',
         tokenVersion: user.tokenVersion
       }, { expiresIn: '15m' });
       

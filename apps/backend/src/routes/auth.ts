@@ -68,7 +68,7 @@ const authRoutes: FastifyPluginAsync = async (server) => {
       // Generate Tokens
       const accessToken = server.jwt.sign({ 
         sub: user.id, 
-        email: user.email,
+        email: user.email || '',
         tokenVersion: user.tokenVersion
       }, { expiresIn: '15m' });
       
@@ -173,7 +173,7 @@ const authRoutes: FastifyPluginAsync = async (server) => {
 
       const accessToken = server.jwt.sign({ 
         sub: user.id, 
-        email: user.email,
+        email: user.email || '',
         tokenVersion: user.tokenVersion
       }, { expiresIn: '15m' });
 
