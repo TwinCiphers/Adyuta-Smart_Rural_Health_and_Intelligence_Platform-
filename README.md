@@ -43,7 +43,7 @@ To run the authentication and core backend services locally:
 
 For more detailed information, please refer to our documentation:
 - [Initial Setup Status Report](./docs/releases/initial_setup_report.md)
-- [Architecture Details](./docs/architecture/README.md)
+- [Architecture Details](./docs/architecture/initial_architecture.jpeg)
 - [API Documentation](./docs/api/README.md)
 - [Roadmap](./ROADMAP.md)
 
