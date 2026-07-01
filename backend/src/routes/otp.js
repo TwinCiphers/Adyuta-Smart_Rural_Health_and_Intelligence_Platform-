@@ -1,0 +1,125 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const fastify_1 = require("fastify");
+const crypto_1 = __importDefault(require("crypto"));
+const argon2_1 = __importDefault(require("argon2"));
+const zod_1 = require("zod");
+const auth_1 = require("../schemas/auth");
+const otpRoutes = async (server) => {
+    server.post('/send', {
+        config: {
+            rateLimit: {
+                max: 3,
+                timeWindow: '5 minutes'
+            }
+        }
+    }, async (request, reply) => {
+        try {
+            const data = auth_1.SendOTPSchema.parse(request.body);
+            // Generate a 6-digit OTP
+            const otpCode = Math.floor(100000 + Math.random() * 900000).toString();
+            // Store OTP in Redis with a 5-minute TTL
+            const redisKey = `otp:${data.phoneNumber}`;
+            await server.redis.set(redisKey, otpCode, 'EX', 300);
+            // TODO: Integrate with real SMS provider (Twilio, Supabase, AWS SNS) here
+            // For now, we just log it
+            server.log.info(`[MOCK SMS] Sent OTP ${otpCode} to ${data.phoneNumber}`);
+            return reply.send({ message: 'OTP sent successfully' });
+        }
+        catch (err) {
+            if (err instanceof zod_1.z.ZodError) {
+                return reply.status(400).send({ error: 'Invalid input', details: err.errors });
+            }
+            server.log.error(err);
+            return reply.status(500).send({ error: 'Internal Server Error' });
+        }
+    });
+    server.post('/verify', async (request, reply) => {
+        try {
+            const data = auth_1.VerifyOTPSchema.parse(request.body);
+            const redisKey = `otp:${data.phoneNumber}`;
+            const storedOtp = await server.redis.get(redisKey);
+            if (!storedOtp || storedOtp !== data.otpCode) {
+                return reply.status(401).send({ error: 'Invalid or expired OTP' });
+            }
+            // OTP is valid, delete it from Redis
+            await server.redis.del(redisKey);
+            // Find or create user by phone number
+            // Note: We need a phone number on the User model for this to work natively.
+            // Since Phase 1 uses email, we'll create a stub user or require email in MVP.
+            // Let's create a stub user for demonstration of Phase 2
+            const fakeEmail = `${data.phoneNumber}@adyuta-placeholder.com`;
+            let user = await server.prisma.user.findUnique({
+                where: { email: fakeEmail }
+            });
+            if (!user) {
+                user = await server.prisma.user.create({
+                    data: {
+                        email: fakeEmail,
+                        name: `User ${data.phoneNumber}`,
+                        passwordHash: 'otp-login-no-password'
+                    }
+                });
+            }
+            // Generate Tokens
+            const accessToken = server.jwt.sign({
+                sub: user.id,
+                email: user.email,
+                tokenVersion: user.tokenVersion
+            }, { expiresIn: '15m' });
+            const refreshToken = crypto_1.default.randomBytes(40).toString('hex');
+            const refreshTokenHash = await argon2_1.default.hash(refreshToken);
+            const thirtyDays = 30 * 24 * 60 * 60 * 1000;
+            const expiresAt = new Date(Date.now() + thirtyDays);
+            // Create or update session
+            const existingSession = await server.prisma.session.findFirst({
+                where: { userId: user.id, deviceId: data.deviceId }
+            });
+            if (existingSession) {
+                await server.prisma.session.update({
+                    where: { id: existingSession.id },
+                    data: {
+                        refreshTokenHash,
+                        revoked: false,
+                        lastUsedAt: new Date(),
+                        expiresAt,
+                        lastIp: request.ip
+                    }
+                });
+            }
+            else {
+                await server.prisma.session.create({
+                    data: {
+                        userId: user.id,
+                        deviceId: data.deviceId,
+                        refreshTokenHash,
+                        expiresAt,
+                        lastIp: request.ip
+                    }
+                });
+            }
+            return reply.status(200).send({
+                accessToken,
+                refreshToken,
+                expiresIn: 900,
+                user: {
+                    id: user.id,
+                    email: user.email,
+                    name: user.name,
+                }
+            });
+        }
+        catch (err) {
+            if (err instanceof zod_1.z.ZodError) {
+                return reply.status(400).send({ error: 'Invalid input', details: err.errors });
+            }
+            server.log.error(err);
+            return reply.status(500).send({ error: 'Internal Server Error' });
+        }
+    });
+};
+exports.default = otpRoutes;
+//# sourceMappingURL=otp.js.map
