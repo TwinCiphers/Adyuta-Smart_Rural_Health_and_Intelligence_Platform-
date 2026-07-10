@@ -1,0 +1,23 @@
+# Python / Virtual Environment
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Temporary ML files
+# (Note: We DO want to commit the .tflite files and .csv files because they are small and critical for the mobile app, but we will ignore any massive raw image datasets if you add them later)
+*.zip
+*.tar.gz
+*.h5
+*.pb
+
+# Logs
+*.log
