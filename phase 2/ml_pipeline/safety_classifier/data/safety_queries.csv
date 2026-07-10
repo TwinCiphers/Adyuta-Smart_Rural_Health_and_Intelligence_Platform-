@@ -1,0 +1,1201 @@
+text,label
+Help me I am near village square there is a robbery,SOS
+Help me I am near farm field there is a robbery,SOS
+Help me I am near city mall there is a robbery,SOS
+Help me I am near metro station there is a robbery,SOS
+Help me I am near bus stand there is a robbery,SOS
+Help me I am near highway there is a robbery,SOS
+Help me I am near panchayat office there is a robbery,SOS
+Help me I am near my house there is a robbery,SOS
+Help me I am near the market there is a robbery,SOS
+Help me I am near school zone there is a robbery,SOS
+Help me I am near village square there is a fire,Medical
+Help me I am near farm field there is a fire,Medical
+Help me I am near city mall there is a fire,Medical
+Help me I am near metro station there is a fire,Medical
+Help me I am near bus stand there is a fire,Medical
+Help me I am near highway there is a fire,Medical
+Help me I am near panchayat office there is a fire,Medical
+Help me I am near my house there is a fire,Medical
+Help me I am near the market there is a fire,Medical
+Help me I am near school zone there is a fire,Medical
+Help me I am near village square there is a accident,Medical
+Help me I am near farm field there is a accident,Medical
+Help me I am near city mall there is a accident,Medical
+Help me I am near metro station there is a accident,Medical
+Help me I am near bus stand there is a accident,Medical
+Help me I am near highway there is a accident,Medical
+Help me I am near panchayat office there is a accident,Medical
+Help me I am near my house there is a accident,Medical
+Help me I am near the market there is a accident,Medical
+Help me I am near school zone there is a accident,Medical
+Help me I am near village square there is a wild animal attack,SOS
+Help me I am near farm field there is a wild animal attack,SOS
+Help me I am near city mall there is a wild animal attack,SOS
+Help me I am near metro station there is a wild animal attack,SOS
+Help me I am near bus stand there is a wild animal attack,SOS
+Help me I am near highway there is a wild animal attack,SOS
+Help me I am near panchayat office there is a wild animal attack,SOS
+Help me I am near my house there is a wild animal attack,SOS
+Help me I am near the market there is a wild animal attack,SOS
+Help me I am near school zone there is a wild animal attack,SOS
+Help me I am near village square there is a elephant attack,SOS
+Help me I am near farm field there is a elephant attack,SOS
+Help me I am near city mall there is a elephant attack,SOS
+Help me I am near metro station there is a elephant attack,SOS
+Help me I am near bus stand there is a elephant attack,SOS
+Help me I am near highway there is a elephant attack,SOS
+Help me I am near panchayat office there is a elephant attack,SOS
+Help me I am near my house there is a elephant attack,SOS
+Help me I am near the market there is a elephant attack,SOS
+Help me I am near school zone there is a elephant attack,SOS
+Help me I am near village square there is a stalker,SOS
+Help me I am near farm field there is a stalker,SOS
+Help me I am near city mall there is a stalker,SOS
+Help me I am near metro station there is a stalker,SOS
+Help me I am near bus stand there is a stalker,SOS
+Help me I am near highway there is a stalker,SOS
+Help me I am near panchayat office there is a stalker,SOS
+Help me I am near my house there is a stalker,SOS
+Help me I am near the market there is a stalker,SOS
+Help me I am near school zone there is a stalker,SOS
+Help me I am near village square there is a riot,SOS
+Help me I am near farm field there is a riot,SOS
+Help me I am near city mall there is a riot,SOS
+Help me I am near metro station there is a riot,SOS
+Help me I am near bus stand there is a riot,SOS
+Help me I am near highway there is a riot,SOS
+Help me I am near panchayat office there is a riot,SOS
+Help me I am near my house there is a riot,SOS
+Help me I am near the market there is a riot,SOS
+Help me I am near school zone there is a riot,SOS
+Help me I am near village square there is a medical emergency,Medical
+Help me I am near farm field there is a medical emergency,Medical
+Help me I am near city mall there is a medical emergency,Medical
+Help me I am near metro station there is a medical emergency,Medical
+Help me I am near bus stand there is a medical emergency,Medical
+Help me I am near highway there is a medical emergency,Medical
+Help me I am near panchayat office there is a medical emergency,Medical
+Help me I am near my house there is a medical emergency,Medical
+Help me I am near the market there is a medical emergency,Medical
+Help me I am near school zone there is a medical emergency,Medical
+Help me I am near village square there is a flood,Medical
+Help me I am near farm field there is a flood,Medical
+Help me I am near city mall there is a flood,Medical
+Help me I am near metro station there is a flood,Medical
+Help me I am near bus stand there is a flood,Medical
+Help me I am near highway there is a flood,Medical
+Help me I am near panchayat office there is a flood,Medical
+Help me I am near my house there is a flood,Medical
+Help me I am near the market there is a flood,Medical
+Help me I am near school zone there is a flood,Medical
+Help me I am near village square there is a earthquake,Medical
+Help me I am near farm field there is a earthquake,Medical
+Help me I am near city mall there is a earthquake,Medical
+Help me I am near metro station there is a earthquake,Medical
+Help me I am near bus stand there is a earthquake,Medical
+Help me I am near highway there is a earthquake,Medical
+Help me I am near panchayat office there is a earthquake,Medical
+Help me I am near my house there is a earthquake,Medical
+Help me I am near the market there is a earthquake,Medical
+Help me I am near school zone there is a earthquake,Medical
+Help me I am near village square there is a thief,SOS
+Help me I am near farm field there is a thief,SOS
+Help me I am near city mall there is a thief,SOS
+Help me I am near metro station there is a thief,SOS
+Help me I am near bus stand there is a thief,SOS
+Help me I am near highway there is a thief,SOS
+Help me I am near panchayat office there is a thief,SOS
+Help me I am near my house there is a thief,SOS
+Help me I am near the market there is a thief,SOS
+Help me I am near school zone there is a thief,SOS
+Help me I am near village square there is a murder,SOS
+Help me I am near farm field there is a murder,SOS
+Help me I am near city mall there is a murder,SOS
+Help me I am near metro station there is a murder,SOS
+Help me I am near bus stand there is a murder,SOS
+Help me I am near highway there is a murder,SOS
+Help me I am near panchayat office there is a murder,SOS
+Help me I am near my house there is a murder,SOS
+Help me I am near the market there is a murder,SOS
+Help me I am near school zone there is a murder,SOS
+Bachao village square ke paas robbery hai,SOS
+Bachao farm field ke paas robbery hai,SOS
+Bachao city mall ke paas robbery hai,SOS
+Bachao metro station ke paas robbery hai,SOS
+Bachao bus stand ke paas robbery hai,SOS
+Bachao highway ke paas robbery hai,SOS
+Bachao panchayat office ke paas robbery hai,SOS
+Bachao my house ke paas robbery hai,SOS
+Bachao the market ke paas robbery hai,SOS
+Bachao school zone ke paas robbery hai,SOS
+Bachao village square ke paas fire hai,Medical
+Bachao farm field ke paas fire hai,Medical
+Bachao city mall ke paas fire hai,Medical
+Bachao metro station ke paas fire hai,Medical
+Bachao bus stand ke paas fire hai,Medical
+Bachao highway ke paas fire hai,Medical
+Bachao panchayat office ke paas fire hai,Medical
+Bachao my house ke paas fire hai,Medical
+Bachao the market ke paas fire hai,Medical
+Bachao school zone ke paas fire hai,Medical
+Bachao village square ke paas accident hai,Medical
+Bachao farm field ke paas accident hai,Medical
+Bachao city mall ke paas accident hai,Medical
+Bachao metro station ke paas accident hai,Medical
+Bachao bus stand ke paas accident hai,Medical
+Bachao highway ke paas accident hai,Medical
+Bachao panchayat office ke paas accident hai,Medical
+Bachao my house ke paas accident hai,Medical
+Bachao the market ke paas accident hai,Medical
+Bachao school zone ke paas accident hai,Medical
+Bachao village square ke paas wild animal attack hai,SOS
+Bachao farm field ke paas wild animal attack hai,SOS
+Bachao city mall ke paas wild animal attack hai,SOS
+Bachao metro station ke paas wild animal attack hai,SOS
+Bachao bus stand ke paas wild animal attack hai,SOS
+Bachao highway ke paas wild animal attack hai,SOS
+Bachao panchayat office ke paas wild animal attack hai,SOS
+Bachao my house ke paas wild animal attack hai,SOS
+Bachao the market ke paas wild animal attack hai,SOS
+Bachao school zone ke paas wild animal attack hai,SOS
+Bachao village square ke paas elephant attack hai,SOS
+Bachao farm field ke paas elephant attack hai,SOS
+Bachao city mall ke paas elephant attack hai,SOS
+Bachao metro station ke paas elephant attack hai,SOS
+Bachao bus stand ke paas elephant attack hai,SOS
+Bachao highway ke paas elephant attack hai,SOS
+Bachao panchayat office ke paas elephant attack hai,SOS
+Bachao my house ke paas elephant attack hai,SOS
+Bachao the market ke paas elephant attack hai,SOS
+Bachao school zone ke paas elephant attack hai,SOS
+Bachao village square ke paas stalker hai,SOS
+Bachao farm field ke paas stalker hai,SOS
+Bachao city mall ke paas stalker hai,SOS
+Bachao metro station ke paas stalker hai,SOS
+Bachao bus stand ke paas stalker hai,SOS
+Bachao highway ke paas stalker hai,SOS
+Bachao panchayat office ke paas stalker hai,SOS
+Bachao my house ke paas stalker hai,SOS
+Bachao the market ke paas stalker hai,SOS
+Bachao school zone ke paas stalker hai,SOS
+Bachao village square ke paas riot hai,SOS
+Bachao farm field ke paas riot hai,SOS
+Bachao city mall ke paas riot hai,SOS
+Bachao metro station ke paas riot hai,SOS
+Bachao bus stand ke paas riot hai,SOS
+Bachao highway ke paas riot hai,SOS
+Bachao panchayat office ke paas riot hai,SOS
+Bachao my house ke paas riot hai,SOS
+Bachao the market ke paas riot hai,SOS
+Bachao school zone ke paas riot hai,SOS
+Bachao village square ke paas medical emergency hai,Medical
+Bachao farm field ke paas medical emergency hai,Medical
+Bachao city mall ke paas medical emergency hai,Medical
+Bachao metro station ke paas medical emergency hai,Medical
+Bachao bus stand ke paas medical emergency hai,Medical
+Bachao highway ke paas medical emergency hai,Medical
+Bachao panchayat office ke paas medical emergency hai,Medical
+Bachao my house ke paas medical emergency hai,Medical
+Bachao the market ke paas medical emergency hai,Medical
+Bachao school zone ke paas medical emergency hai,Medical
+Bachao village square ke paas flood hai,Medical
+Bachao farm field ke paas flood hai,Medical
+Bachao city mall ke paas flood hai,Medical
+Bachao metro station ke paas flood hai,Medical
+Bachao bus stand ke paas flood hai,Medical
+Bachao highway ke paas flood hai,Medical
+Bachao panchayat office ke paas flood hai,Medical
+Bachao my house ke paas flood hai,Medical
+Bachao the market ke paas flood hai,Medical
+Bachao school zone ke paas flood hai,Medical
+Bachao village square ke paas earthquake hai,Medical
+Bachao farm field ke paas earthquake hai,Medical
+Bachao city mall ke paas earthquake hai,Medical
+Bachao metro station ke paas earthquake hai,Medical
+Bachao bus stand ke paas earthquake hai,Medical
+Bachao highway ke paas earthquake hai,Medical
+Bachao panchayat office ke paas earthquake hai,Medical
+Bachao my house ke paas earthquake hai,Medical
+Bachao the market ke paas earthquake hai,Medical
+Bachao school zone ke paas earthquake hai,Medical
+Bachao village square ke paas thief hai,SOS
+Bachao farm field ke paas thief hai,SOS
+Bachao city mall ke paas thief hai,SOS
+Bachao metro station ke paas thief hai,SOS
+Bachao bus stand ke paas thief hai,SOS
+Bachao highway ke paas thief hai,SOS
+Bachao panchayat office ke paas thief hai,SOS
+Bachao my house ke paas thief hai,SOS
+Bachao the market ke paas thief hai,SOS
+Bachao school zone ke paas thief hai,SOS
+Bachao village square ke paas murder hai,SOS
+Bachao farm field ke paas murder hai,SOS
+Bachao city mall ke paas murder hai,SOS
+Bachao metro station ke paas murder hai,SOS
+Bachao bus stand ke paas murder hai,SOS
+Bachao highway ke paas murder hai,SOS
+Bachao panchayat office ke paas murder hai,SOS
+Bachao my house ke paas murder hai,SOS
+Bachao the market ke paas murder hai,SOS
+Bachao school zone ke paas murder hai,SOS
+"Kapadi, village square hatti robbery ide",SOS
+"Kapadi, farm field hatti robbery ide",SOS
+"Kapadi, city mall hatti robbery ide",SOS
+"Kapadi, metro station hatti robbery ide",SOS
+"Kapadi, bus stand hatti robbery ide",SOS
+"Kapadi, highway hatti robbery ide",SOS
+"Kapadi, panchayat office hatti robbery ide",SOS
+"Kapadi, my house hatti robbery ide",SOS
+"Kapadi, the market hatti robbery ide",SOS
+"Kapadi, school zone hatti robbery ide",SOS
+"Kapadi, village square hatti fire ide",Medical
+"Kapadi, farm field hatti fire ide",Medical
+"Kapadi, city mall hatti fire ide",Medical
+"Kapadi, metro station hatti fire ide",Medical
+"Kapadi, bus stand hatti fire ide",Medical
+"Kapadi, highway hatti fire ide",Medical
+"Kapadi, panchayat office hatti fire ide",Medical
+"Kapadi, my house hatti fire ide",Medical
+"Kapadi, the market hatti fire ide",Medical
+"Kapadi, school zone hatti fire ide",Medical
+"Kapadi, village square hatti accident ide",Medical
+"Kapadi, farm field hatti accident ide",Medical
+"Kapadi, city mall hatti accident ide",Medical
+"Kapadi, metro station hatti accident ide",Medical
+"Kapadi, bus stand hatti accident ide",Medical
+"Kapadi, highway hatti accident ide",Medical
+"Kapadi, panchayat office hatti accident ide",Medical
+"Kapadi, my house hatti accident ide",Medical
+"Kapadi, the market hatti accident ide",Medical
+"Kapadi, school zone hatti accident ide",Medical
+"Kapadi, village square hatti wild animal attack ide",SOS
+"Kapadi, farm field hatti wild animal attack ide",SOS
+"Kapadi, city mall hatti wild animal attack ide",SOS
+"Kapadi, metro station hatti wild animal attack ide",SOS
+"Kapadi, bus stand hatti wild animal attack ide",SOS
+"Kapadi, highway hatti wild animal attack ide",SOS
+"Kapadi, panchayat office hatti wild animal attack ide",SOS
+"Kapadi, my house hatti wild animal attack ide",SOS
+"Kapadi, the market hatti wild animal attack ide",SOS
+"Kapadi, school zone hatti wild animal attack ide",SOS
+"Kapadi, village square hatti elephant attack ide",SOS
+"Kapadi, farm field hatti elephant attack ide",SOS
+"Kapadi, city mall hatti elephant attack ide",SOS
+"Kapadi, metro station hatti elephant attack ide",SOS
+"Kapadi, bus stand hatti elephant attack ide",SOS
+"Kapadi, highway hatti elephant attack ide",SOS
+"Kapadi, panchayat office hatti elephant attack ide",SOS
+"Kapadi, my house hatti elephant attack ide",SOS
+"Kapadi, the market hatti elephant attack ide",SOS
+"Kapadi, school zone hatti elephant attack ide",SOS
+"Kapadi, village square hatti stalker ide",SOS
+"Kapadi, farm field hatti stalker ide",SOS
+"Kapadi, city mall hatti stalker ide",SOS
+"Kapadi, metro station hatti stalker ide",SOS
+"Kapadi, bus stand hatti stalker ide",SOS
+"Kapadi, highway hatti stalker ide",SOS
+"Kapadi, panchayat office hatti stalker ide",SOS
+"Kapadi, my house hatti stalker ide",SOS
+"Kapadi, the market hatti stalker ide",SOS
+"Kapadi, school zone hatti stalker ide",SOS
+"Kapadi, village square hatti riot ide",SOS
+"Kapadi, farm field hatti riot ide",SOS
+"Kapadi, city mall hatti riot ide",SOS
+"Kapadi, metro station hatti riot ide",SOS
+"Kapadi, bus stand hatti riot ide",SOS
+"Kapadi, highway hatti riot ide",SOS
+"Kapadi, panchayat office hatti riot ide",SOS
+"Kapadi, my house hatti riot ide",SOS
+"Kapadi, the market hatti riot ide",SOS
+"Kapadi, school zone hatti riot ide",SOS
+"Kapadi, village square hatti medical emergency ide",Medical
+"Kapadi, farm field hatti medical emergency ide",Medical
+"Kapadi, city mall hatti medical emergency ide",Medical
+"Kapadi, metro station hatti medical emergency ide",Medical
+"Kapadi, bus stand hatti medical emergency ide",Medical
+"Kapadi, highway hatti medical emergency ide",Medical
+"Kapadi, panchayat office hatti medical emergency ide",Medical
+"Kapadi, my house hatti medical emergency ide",Medical
+"Kapadi, the market hatti medical emergency ide",Medical
+"Kapadi, school zone hatti medical emergency ide",Medical
+"Kapadi, village square hatti flood ide",Medical
+"Kapadi, farm field hatti flood ide",Medical
+"Kapadi, city mall hatti flood ide",Medical
+"Kapadi, metro station hatti flood ide",Medical
+"Kapadi, bus stand hatti flood ide",Medical
+"Kapadi, highway hatti flood ide",Medical
+"Kapadi, panchayat office hatti flood ide",Medical
+"Kapadi, my house hatti flood ide",Medical
+"Kapadi, the market hatti flood ide",Medical
+"Kapadi, school zone hatti flood ide",Medical
+"Kapadi, village square hatti earthquake ide",Medical
+"Kapadi, farm field hatti earthquake ide",Medical
+"Kapadi, city mall hatti earthquake ide",Medical
+"Kapadi, metro station hatti earthquake ide",Medical
+"Kapadi, bus stand hatti earthquake ide",Medical
+"Kapadi, highway hatti earthquake ide",Medical
+"Kapadi, panchayat office hatti earthquake ide",Medical
+"Kapadi, my house hatti earthquake ide",Medical
+"Kapadi, the market hatti earthquake ide",Medical
+"Kapadi, school zone hatti earthquake ide",Medical
+"Kapadi, village square hatti thief ide",SOS
+"Kapadi, farm field hatti thief ide",SOS
+"Kapadi, city mall hatti thief ide",SOS
+"Kapadi, metro station hatti thief ide",SOS
+"Kapadi, bus stand hatti thief ide",SOS
+"Kapadi, highway hatti thief ide",SOS
+"Kapadi, panchayat office hatti thief ide",SOS
+"Kapadi, my house hatti thief ide",SOS
+"Kapadi, the market hatti thief ide",SOS
+"Kapadi, school zone hatti thief ide",SOS
+"Kapadi, village square hatti murder ide",SOS
+"Kapadi, farm field hatti murder ide",SOS
+"Kapadi, city mall hatti murder ide",SOS
+"Kapadi, metro station hatti murder ide",SOS
+"Kapadi, bus stand hatti murder ide",SOS
+"Kapadi, highway hatti murder ide",SOS
+"Kapadi, panchayat office hatti murder ide",SOS
+"Kapadi, my house hatti murder ide",SOS
+"Kapadi, the market hatti murder ide",SOS
+"Kapadi, school zone hatti murder ide",SOS
+"Kapadandi, village square daggara robbery undi",SOS
+"Kapadandi, farm field daggara robbery undi",SOS
+"Kapadandi, city mall daggara robbery undi",SOS
+"Kapadandi, metro station daggara robbery undi",SOS
+"Kapadandi, bus stand daggara robbery undi",SOS
+"Kapadandi, highway daggara robbery undi",SOS
+"Kapadandi, panchayat office daggara robbery undi",SOS
+"Kapadandi, my house daggara robbery undi",SOS
+"Kapadandi, the market daggara robbery undi",SOS
+"Kapadandi, school zone daggara robbery undi",SOS
+"Kapadandi, village square daggara fire undi",Medical
+"Kapadandi, farm field daggara fire undi",Medical
+"Kapadandi, city mall daggara fire undi",Medical
+"Kapadandi, metro station daggara fire undi",Medical
+"Kapadandi, bus stand daggara fire undi",Medical
+"Kapadandi, highway daggara fire undi",Medical
+"Kapadandi, panchayat office daggara fire undi",Medical
+"Kapadandi, my house daggara fire undi",Medical
+"Kapadandi, the market daggara fire undi",Medical
+"Kapadandi, school zone daggara fire undi",Medical
+"Kapadandi, village square daggara accident undi",Medical
+"Kapadandi, farm field daggara accident undi",Medical
+"Kapadandi, city mall daggara accident undi",Medical
+"Kapadandi, metro station daggara accident undi",Medical
+"Kapadandi, bus stand daggara accident undi",Medical
+"Kapadandi, highway daggara accident undi",Medical
+"Kapadandi, panchayat office daggara accident undi",Medical
+"Kapadandi, my house daggara accident undi",Medical
+"Kapadandi, the market daggara accident undi",Medical
+"Kapadandi, school zone daggara accident undi",Medical
+"Kapadandi, village square daggara wild animal attack undi",SOS
+"Kapadandi, farm field daggara wild animal attack undi",SOS
+"Kapadandi, city mall daggara wild animal attack undi",SOS
+"Kapadandi, metro station daggara wild animal attack undi",SOS
+"Kapadandi, bus stand daggara wild animal attack undi",SOS
+"Kapadandi, highway daggara wild animal attack undi",SOS
+"Kapadandi, panchayat office daggara wild animal attack undi",SOS
+"Kapadandi, my house daggara wild animal attack undi",SOS
+"Kapadandi, the market daggara wild animal attack undi",SOS
+"Kapadandi, school zone daggara wild animal attack undi",SOS
+"Kapadandi, village square daggara elephant attack undi",SOS
+"Kapadandi, farm field daggara elephant attack undi",SOS
+"Kapadandi, city mall daggara elephant attack undi",SOS
+"Kapadandi, metro station daggara elephant attack undi",SOS
+"Kapadandi, bus stand daggara elephant attack undi",SOS
+"Kapadandi, highway daggara elephant attack undi",SOS
+"Kapadandi, panchayat office daggara elephant attack undi",SOS
+"Kapadandi, my house daggara elephant attack undi",SOS
+"Kapadandi, the market daggara elephant attack undi",SOS
+"Kapadandi, school zone daggara elephant attack undi",SOS
+"Kapadandi, village square daggara stalker undi",SOS
+"Kapadandi, farm field daggara stalker undi",SOS
+"Kapadandi, city mall daggara stalker undi",SOS
+"Kapadandi, metro station daggara stalker undi",SOS
+"Kapadandi, bus stand daggara stalker undi",SOS
+"Kapadandi, highway daggara stalker undi",SOS
+"Kapadandi, panchayat office daggara stalker undi",SOS
+"Kapadandi, my house daggara stalker undi",SOS
+"Kapadandi, the market daggara stalker undi",SOS
+"Kapadandi, school zone daggara stalker undi",SOS
+"Kapadandi, village square daggara riot undi",SOS
+"Kapadandi, farm field daggara riot undi",SOS
+"Kapadandi, city mall daggara riot undi",SOS
+"Kapadandi, metro station daggara riot undi",SOS
+"Kapadandi, bus stand daggara riot undi",SOS
+"Kapadandi, highway daggara riot undi",SOS
+"Kapadandi, panchayat office daggara riot undi",SOS
+"Kapadandi, my house daggara riot undi",SOS
+"Kapadandi, the market daggara riot undi",SOS
+"Kapadandi, school zone daggara riot undi",SOS
+"Kapadandi, village square daggara medical emergency undi",Medical
+"Kapadandi, farm field daggara medical emergency undi",Medical
+"Kapadandi, city mall daggara medical emergency undi",Medical
+"Kapadandi, metro station daggara medical emergency undi",Medical
+"Kapadandi, bus stand daggara medical emergency undi",Medical
+"Kapadandi, highway daggara medical emergency undi",Medical
+"Kapadandi, panchayat office daggara medical emergency undi",Medical
+"Kapadandi, my house daggara medical emergency undi",Medical
+"Kapadandi, the market daggara medical emergency undi",Medical
+"Kapadandi, school zone daggara medical emergency undi",Medical
+"Kapadandi, village square daggara flood undi",Medical
+"Kapadandi, farm field daggara flood undi",Medical
+"Kapadandi, city mall daggara flood undi",Medical
+"Kapadandi, metro station daggara flood undi",Medical
+"Kapadandi, bus stand daggara flood undi",Medical
+"Kapadandi, highway daggara flood undi",Medical
+"Kapadandi, panchayat office daggara flood undi",Medical
+"Kapadandi, my house daggara flood undi",Medical
+"Kapadandi, the market daggara flood undi",Medical
+"Kapadandi, school zone daggara flood undi",Medical
+"Kapadandi, village square daggara earthquake undi",Medical
+"Kapadandi, farm field daggara earthquake undi",Medical
+"Kapadandi, city mall daggara earthquake undi",Medical
+"Kapadandi, metro station daggara earthquake undi",Medical
+"Kapadandi, bus stand daggara earthquake undi",Medical
+"Kapadandi, highway daggara earthquake undi",Medical
+"Kapadandi, panchayat office daggara earthquake undi",Medical
+"Kapadandi, my house daggara earthquake undi",Medical
+"Kapadandi, the market daggara earthquake undi",Medical
+"Kapadandi, school zone daggara earthquake undi",Medical
+"Kapadandi, village square daggara thief undi",SOS
+"Kapadandi, farm field daggara thief undi",SOS
+"Kapadandi, city mall daggara thief undi",SOS
+"Kapadandi, metro station daggara thief undi",SOS
+"Kapadandi, bus stand daggara thief undi",SOS
+"Kapadandi, highway daggara thief undi",SOS
+"Kapadandi, panchayat office daggara thief undi",SOS
+"Kapadandi, my house daggara thief undi",SOS
+"Kapadandi, the market daggara thief undi",SOS
+"Kapadandi, school zone daggara thief undi",SOS
+"Kapadandi, village square daggara murder undi",SOS
+"Kapadandi, farm field daggara murder undi",SOS
+"Kapadandi, city mall daggara murder undi",SOS
+"Kapadandi, metro station daggara murder undi",SOS
+"Kapadandi, bus stand daggara murder undi",SOS
+"Kapadandi, highway daggara murder undi",SOS
+"Kapadandi, panchayat office daggara murder undi",SOS
+"Kapadandi, my house daggara murder undi",SOS
+"Kapadandi, the market daggara murder undi",SOS
+"Kapadandi, school zone daggara murder undi",SOS
+Send police to village square for robbery,SOS
+Send police to farm field for robbery,SOS
+Send police to city mall for robbery,SOS
+Send police to metro station for robbery,SOS
+Send police to bus stand for robbery,SOS
+Send police to highway for robbery,SOS
+Send police to panchayat office for robbery,SOS
+Send police to my house for robbery,SOS
+Send police to the market for robbery,SOS
+Send police to school zone for robbery,SOS
+Send police to village square for fire,Medical
+Send police to farm field for fire,Medical
+Send police to city mall for fire,Medical
+Send police to metro station for fire,Medical
+Send police to bus stand for fire,Medical
+Send police to highway for fire,Medical
+Send police to panchayat office for fire,Medical
+Send police to my house for fire,Medical
+Send police to the market for fire,Medical
+Send police to school zone for fire,Medical
+Send police to village square for accident,Medical
+Send police to farm field for accident,Medical
+Send police to city mall for accident,Medical
+Send police to metro station for accident,Medical
+Send police to bus stand for accident,Medical
+Send police to highway for accident,Medical
+Send police to panchayat office for accident,Medical
+Send police to my house for accident,Medical
+Send police to the market for accident,Medical
+Send police to school zone for accident,Medical
+Send police to village square for wild animal attack,SOS
+Send police to farm field for wild animal attack,SOS
+Send police to city mall for wild animal attack,SOS
+Send police to metro station for wild animal attack,SOS
+Send police to bus stand for wild animal attack,SOS
+Send police to highway for wild animal attack,SOS
+Send police to panchayat office for wild animal attack,SOS
+Send police to my house for wild animal attack,SOS
+Send police to the market for wild animal attack,SOS
+Send police to school zone for wild animal attack,SOS
+Send police to village square for elephant attack,SOS
+Send police to farm field for elephant attack,SOS
+Send police to city mall for elephant attack,SOS
+Send police to metro station for elephant attack,SOS
+Send police to bus stand for elephant attack,SOS
+Send police to highway for elephant attack,SOS
+Send police to panchayat office for elephant attack,SOS
+Send police to my house for elephant attack,SOS
+Send police to the market for elephant attack,SOS
+Send police to school zone for elephant attack,SOS
+Send police to village square for stalker,SOS
+Send police to farm field for stalker,SOS
+Send police to city mall for stalker,SOS
+Send police to metro station for stalker,SOS
+Send police to bus stand for stalker,SOS
+Send police to highway for stalker,SOS
+Send police to panchayat office for stalker,SOS
+Send police to my house for stalker,SOS
+Send police to the market for stalker,SOS
+Send police to school zone for stalker,SOS
+Send police to village square for riot,SOS
+Send police to farm field for riot,SOS
+Send police to city mall for riot,SOS
+Send police to metro station for riot,SOS
+Send police to bus stand for riot,SOS
+Send police to highway for riot,SOS
+Send police to panchayat office for riot,SOS
+Send police to my house for riot,SOS
+Send police to the market for riot,SOS
+Send police to school zone for riot,SOS
+Send police to village square for medical emergency,Medical
+Send police to farm field for medical emergency,Medical
+Send police to city mall for medical emergency,Medical
+Send police to metro station for medical emergency,Medical
+Send police to bus stand for medical emergency,Medical
+Send police to highway for medical emergency,Medical
+Send police to panchayat office for medical emergency,Medical
+Send police to my house for medical emergency,Medical
+Send police to the market for medical emergency,Medical
+Send police to school zone for medical emergency,Medical
+Send police to village square for flood,Medical
+Send police to farm field for flood,Medical
+Send police to city mall for flood,Medical
+Send police to metro station for flood,Medical
+Send police to bus stand for flood,Medical
+Send police to highway for flood,Medical
+Send police to panchayat office for flood,Medical
+Send police to my house for flood,Medical
+Send police to the market for flood,Medical
+Send police to school zone for flood,Medical
+Send police to village square for earthquake,Medical
+Send police to farm field for earthquake,Medical
+Send police to city mall for earthquake,Medical
+Send police to metro station for earthquake,Medical
+Send police to bus stand for earthquake,Medical
+Send police to highway for earthquake,Medical
+Send police to panchayat office for earthquake,Medical
+Send police to my house for earthquake,Medical
+Send police to the market for earthquake,Medical
+Send police to school zone for earthquake,Medical
+Send police to village square for thief,SOS
+Send police to farm field for thief,SOS
+Send police to city mall for thief,SOS
+Send police to metro station for thief,SOS
+Send police to bus stand for thief,SOS
+Send police to highway for thief,SOS
+Send police to panchayat office for thief,SOS
+Send police to my house for thief,SOS
+Send police to the market for thief,SOS
+Send police to school zone for thief,SOS
+Send police to village square for murder,SOS
+Send police to farm field for murder,SOS
+Send police to city mall for murder,SOS
+Send police to metro station for murder,SOS
+Send police to bus stand for murder,SOS
+Send police to highway for murder,SOS
+Send police to panchayat office for murder,SOS
+Send police to my house for murder,SOS
+Send police to the market for murder,SOS
+Send police to school zone for murder,SOS
+village square par robbery ho raha hai,SOS
+farm field par robbery ho raha hai,SOS
+city mall par robbery ho raha hai,SOS
+metro station par robbery ho raha hai,SOS
+bus stand par robbery ho raha hai,SOS
+highway par robbery ho raha hai,SOS
+panchayat office par robbery ho raha hai,SOS
+my house par robbery ho raha hai,SOS
+the market par robbery ho raha hai,SOS
+school zone par robbery ho raha hai,SOS
+village square par fire ho raha hai,Medical
+farm field par fire ho raha hai,Medical
+city mall par fire ho raha hai,Medical
+metro station par fire ho raha hai,Medical
+bus stand par fire ho raha hai,Medical
+highway par fire ho raha hai,Medical
+panchayat office par fire ho raha hai,Medical
+my house par fire ho raha hai,Medical
+the market par fire ho raha hai,Medical
+school zone par fire ho raha hai,Medical
+village square par accident ho raha hai,Medical
+farm field par accident ho raha hai,Medical
+city mall par accident ho raha hai,Medical
+metro station par accident ho raha hai,Medical
+bus stand par accident ho raha hai,Medical
+highway par accident ho raha hai,Medical
+panchayat office par accident ho raha hai,Medical
+my house par accident ho raha hai,Medical
+the market par accident ho raha hai,Medical
+school zone par accident ho raha hai,Medical
+village square par wild animal attack ho raha hai,SOS
+farm field par wild animal attack ho raha hai,SOS
+city mall par wild animal attack ho raha hai,SOS
+metro station par wild animal attack ho raha hai,SOS
+bus stand par wild animal attack ho raha hai,SOS
+highway par wild animal attack ho raha hai,SOS
+panchayat office par wild animal attack ho raha hai,SOS
+my house par wild animal attack ho raha hai,SOS
+the market par wild animal attack ho raha hai,SOS
+school zone par wild animal attack ho raha hai,SOS
+village square par elephant attack ho raha hai,SOS
+farm field par elephant attack ho raha hai,SOS
+city mall par elephant attack ho raha hai,SOS
+metro station par elephant attack ho raha hai,SOS
+bus stand par elephant attack ho raha hai,SOS
+highway par elephant attack ho raha hai,SOS
+panchayat office par elephant attack ho raha hai,SOS
+my house par elephant attack ho raha hai,SOS
+the market par elephant attack ho raha hai,SOS
+school zone par elephant attack ho raha hai,SOS
+village square par stalker ho raha hai,SOS
+farm field par stalker ho raha hai,SOS
+city mall par stalker ho raha hai,SOS
+metro station par stalker ho raha hai,SOS
+bus stand par stalker ho raha hai,SOS
+highway par stalker ho raha hai,SOS
+panchayat office par stalker ho raha hai,SOS
+my house par stalker ho raha hai,SOS
+the market par stalker ho raha hai,SOS
+school zone par stalker ho raha hai,SOS
+village square par riot ho raha hai,SOS
+farm field par riot ho raha hai,SOS
+city mall par riot ho raha hai,SOS
+metro station par riot ho raha hai,SOS
+bus stand par riot ho raha hai,SOS
+highway par riot ho raha hai,SOS
+panchayat office par riot ho raha hai,SOS
+my house par riot ho raha hai,SOS
+the market par riot ho raha hai,SOS
+school zone par riot ho raha hai,SOS
+village square par medical emergency ho raha hai,Medical
+farm field par medical emergency ho raha hai,Medical
+city mall par medical emergency ho raha hai,Medical
+metro station par medical emergency ho raha hai,Medical
+bus stand par medical emergency ho raha hai,Medical
+highway par medical emergency ho raha hai,Medical
+panchayat office par medical emergency ho raha hai,Medical
+my house par medical emergency ho raha hai,Medical
+the market par medical emergency ho raha hai,Medical
+school zone par medical emergency ho raha hai,Medical
+village square par flood ho raha hai,Medical
+farm field par flood ho raha hai,Medical
+city mall par flood ho raha hai,Medical
+metro station par flood ho raha hai,Medical
+bus stand par flood ho raha hai,Medical
+highway par flood ho raha hai,Medical
+panchayat office par flood ho raha hai,Medical
+my house par flood ho raha hai,Medical
+the market par flood ho raha hai,Medical
+school zone par flood ho raha hai,Medical
+village square par earthquake ho raha hai,Medical
+farm field par earthquake ho raha hai,Medical
+city mall par earthquake ho raha hai,Medical
+metro station par earthquake ho raha hai,Medical
+bus stand par earthquake ho raha hai,Medical
+highway par earthquake ho raha hai,Medical
+panchayat office par earthquake ho raha hai,Medical
+my house par earthquake ho raha hai,Medical
+the market par earthquake ho raha hai,Medical
+school zone par earthquake ho raha hai,Medical
+village square par thief ho raha hai,SOS
+farm field par thief ho raha hai,SOS
+city mall par thief ho raha hai,SOS
+metro station par thief ho raha hai,SOS
+bus stand par thief ho raha hai,SOS
+highway par thief ho raha hai,SOS
+panchayat office par thief ho raha hai,SOS
+my house par thief ho raha hai,SOS
+the market par thief ho raha hai,SOS
+school zone par thief ho raha hai,SOS
+village square par murder ho raha hai,SOS
+farm field par murder ho raha hai,SOS
+city mall par murder ho raha hai,SOS
+metro station par murder ho raha hai,SOS
+bus stand par murder ho raha hai,SOS
+highway par murder ho raha hai,SOS
+panchayat office par murder ho raha hai,SOS
+my house par murder ho raha hai,SOS
+the market par murder ho raha hai,SOS
+school zone par murder ho raha hai,SOS
+I am trapped at village square due to robbery,SOS
+I am trapped at farm field due to robbery,SOS
+I am trapped at city mall due to robbery,SOS
+I am trapped at metro station due to robbery,SOS
+I am trapped at bus stand due to robbery,SOS
+I am trapped at highway due to robbery,SOS
+I am trapped at panchayat office due to robbery,SOS
+I am trapped at my house due to robbery,SOS
+I am trapped at the market due to robbery,SOS
+I am trapped at school zone due to robbery,SOS
+I am trapped at village square due to fire,Medical
+I am trapped at farm field due to fire,Medical
+I am trapped at city mall due to fire,Medical
+I am trapped at metro station due to fire,Medical
+I am trapped at bus stand due to fire,Medical
+I am trapped at highway due to fire,Medical
+I am trapped at panchayat office due to fire,Medical
+I am trapped at my house due to fire,Medical
+I am trapped at the market due to fire,Medical
+I am trapped at school zone due to fire,Medical
+I am trapped at village square due to accident,Medical
+I am trapped at farm field due to accident,Medical
+I am trapped at city mall due to accident,Medical
+I am trapped at metro station due to accident,Medical
+I am trapped at bus stand due to accident,Medical
+I am trapped at highway due to accident,Medical
+I am trapped at panchayat office due to accident,Medical
+I am trapped at my house due to accident,Medical
+I am trapped at the market due to accident,Medical
+I am trapped at school zone due to accident,Medical
+I am trapped at village square due to wild animal attack,SOS
+I am trapped at farm field due to wild animal attack,SOS
+I am trapped at city mall due to wild animal attack,SOS
+I am trapped at metro station due to wild animal attack,SOS
+I am trapped at bus stand due to wild animal attack,SOS
+I am trapped at highway due to wild animal attack,SOS
+I am trapped at panchayat office due to wild animal attack,SOS
+I am trapped at my house due to wild animal attack,SOS
+I am trapped at the market due to wild animal attack,SOS
+I am trapped at school zone due to wild animal attack,SOS
+I am trapped at village square due to elephant attack,SOS
+I am trapped at farm field due to elephant attack,SOS
+I am trapped at city mall due to elephant attack,SOS
+I am trapped at metro station due to elephant attack,SOS
+I am trapped at bus stand due to elephant attack,SOS
+I am trapped at highway due to elephant attack,SOS
+I am trapped at panchayat office due to elephant attack,SOS
+I am trapped at my house due to elephant attack,SOS
+I am trapped at the market due to elephant attack,SOS
+I am trapped at school zone due to elephant attack,SOS
+I am trapped at village square due to stalker,SOS
+I am trapped at farm field due to stalker,SOS
+I am trapped at city mall due to stalker,SOS
+I am trapped at metro station due to stalker,SOS
+I am trapped at bus stand due to stalker,SOS
+I am trapped at highway due to stalker,SOS
+I am trapped at panchayat office due to stalker,SOS
+I am trapped at my house due to stalker,SOS
+I am trapped at the market due to stalker,SOS
+I am trapped at school zone due to stalker,SOS
+I am trapped at village square due to riot,SOS
+I am trapped at farm field due to riot,SOS
+I am trapped at city mall due to riot,SOS
+I am trapped at metro station due to riot,SOS
+I am trapped at bus stand due to riot,SOS
+I am trapped at highway due to riot,SOS
+I am trapped at panchayat office due to riot,SOS
+I am trapped at my house due to riot,SOS
+I am trapped at the market due to riot,SOS
+I am trapped at school zone due to riot,SOS
+I am trapped at village square due to medical emergency,Medical
+I am trapped at farm field due to medical emergency,Medical
+I am trapped at city mall due to medical emergency,Medical
+I am trapped at metro station due to medical emergency,Medical
+I am trapped at bus stand due to medical emergency,Medical
+I am trapped at highway due to medical emergency,Medical
+I am trapped at panchayat office due to medical emergency,Medical
+I am trapped at my house due to medical emergency,Medical
+I am trapped at the market due to medical emergency,Medical
+I am trapped at school zone due to medical emergency,Medical
+I am trapped at village square due to flood,Medical
+I am trapped at farm field due to flood,Medical
+I am trapped at city mall due to flood,Medical
+I am trapped at metro station due to flood,Medical
+I am trapped at bus stand due to flood,Medical
+I am trapped at highway due to flood,Medical
+I am trapped at panchayat office due to flood,Medical
+I am trapped at my house due to flood,Medical
+I am trapped at the market due to flood,Medical
+I am trapped at school zone due to flood,Medical
+I am trapped at village square due to earthquake,Medical
+I am trapped at farm field due to earthquake,Medical
+I am trapped at city mall due to earthquake,Medical
+I am trapped at metro station due to earthquake,Medical
+I am trapped at bus stand due to earthquake,Medical
+I am trapped at highway due to earthquake,Medical
+I am trapped at panchayat office due to earthquake,Medical
+I am trapped at my house due to earthquake,Medical
+I am trapped at the market due to earthquake,Medical
+I am trapped at school zone due to earthquake,Medical
+I am trapped at village square due to thief,SOS
+I am trapped at farm field due to thief,SOS
+I am trapped at city mall due to thief,SOS
+I am trapped at metro station due to thief,SOS
+I am trapped at bus stand due to thief,SOS
+I am trapped at highway due to thief,SOS
+I am trapped at panchayat office due to thief,SOS
+I am trapped at my house due to thief,SOS
+I am trapped at the market due to thief,SOS
+I am trapped at school zone due to thief,SOS
+I am trapped at village square due to murder,SOS
+I am trapped at farm field due to murder,SOS
+I am trapped at city mall due to murder,SOS
+I am trapped at metro station due to murder,SOS
+I am trapped at bus stand due to murder,SOS
+I am trapped at highway due to murder,SOS
+I am trapped at panchayat office due to murder,SOS
+I am trapped at my house due to murder,SOS
+I am trapped at the market due to murder,SOS
+I am trapped at school zone due to murder,SOS
+Emergency at village square because of robbery,SOS
+Emergency at farm field because of robbery,SOS
+Emergency at city mall because of robbery,SOS
+Emergency at metro station because of robbery,SOS
+Emergency at bus stand because of robbery,SOS
+Emergency at highway because of robbery,SOS
+Emergency at panchayat office because of robbery,SOS
+Emergency at my house because of robbery,SOS
+Emergency at the market because of robbery,SOS
+Emergency at school zone because of robbery,SOS
+Emergency at village square because of fire,Medical
+Emergency at farm field because of fire,Medical
+Emergency at city mall because of fire,Medical
+Emergency at metro station because of fire,Medical
+Emergency at bus stand because of fire,Medical
+Emergency at highway because of fire,Medical
+Emergency at panchayat office because of fire,Medical
+Emergency at my house because of fire,Medical
+Emergency at the market because of fire,Medical
+Emergency at school zone because of fire,Medical
+Emergency at village square because of accident,Medical
+Emergency at farm field because of accident,Medical
+Emergency at city mall because of accident,Medical
+Emergency at metro station because of accident,Medical
+Emergency at bus stand because of accident,Medical
+Emergency at highway because of accident,Medical
+Emergency at panchayat office because of accident,Medical
+Emergency at my house because of accident,Medical
+Emergency at the market because of accident,Medical
+Emergency at school zone because of accident,Medical
+Emergency at village square because of wild animal attack,SOS
+Emergency at farm field because of wild animal attack,SOS
+Emergency at city mall because of wild animal attack,SOS
+Emergency at metro station because of wild animal attack,SOS
+Emergency at bus stand because of wild animal attack,SOS
+Emergency at highway because of wild animal attack,SOS
+Emergency at panchayat office because of wild animal attack,SOS
+Emergency at my house because of wild animal attack,SOS
+Emergency at the market because of wild animal attack,SOS
+Emergency at school zone because of wild animal attack,SOS
+Emergency at village square because of elephant attack,SOS
+Emergency at farm field because of elephant attack,SOS
+Emergency at city mall because of elephant attack,SOS
+Emergency at metro station because of elephant attack,SOS
+Emergency at bus stand because of elephant attack,SOS
+Emergency at highway because of elephant attack,SOS
+Emergency at panchayat office because of elephant attack,SOS
+Emergency at my house because of elephant attack,SOS
+Emergency at the market because of elephant attack,SOS
+Emergency at school zone because of elephant attack,SOS
+Emergency at village square because of stalker,SOS
+Emergency at farm field because of stalker,SOS
+Emergency at city mall because of stalker,SOS
+Emergency at metro station because of stalker,SOS
+Emergency at bus stand because of stalker,SOS
+Emergency at highway because of stalker,SOS
+Emergency at panchayat office because of stalker,SOS
+Emergency at my house because of stalker,SOS
+Emergency at the market because of stalker,SOS
+Emergency at school zone because of stalker,SOS
+Emergency at village square because of riot,SOS
+Emergency at farm field because of riot,SOS
+Emergency at city mall because of riot,SOS
+Emergency at metro station because of riot,SOS
+Emergency at bus stand because of riot,SOS
+Emergency at highway because of riot,SOS
+Emergency at panchayat office because of riot,SOS
+Emergency at my house because of riot,SOS
+Emergency at the market because of riot,SOS
+Emergency at school zone because of riot,SOS
+Emergency at village square because of medical emergency,Medical
+Emergency at farm field because of medical emergency,Medical
+Emergency at city mall because of medical emergency,Medical
+Emergency at metro station because of medical emergency,Medical
+Emergency at bus stand because of medical emergency,Medical
+Emergency at highway because of medical emergency,Medical
+Emergency at panchayat office because of medical emergency,Medical
+Emergency at my house because of medical emergency,Medical
+Emergency at the market because of medical emergency,Medical
+Emergency at school zone because of medical emergency,Medical
+Emergency at village square because of flood,Medical
+Emergency at farm field because of flood,Medical
+Emergency at city mall because of flood,Medical
+Emergency at metro station because of flood,Medical
+Emergency at bus stand because of flood,Medical
+Emergency at highway because of flood,Medical
+Emergency at panchayat office because of flood,Medical
+Emergency at my house because of flood,Medical
+Emergency at the market because of flood,Medical
+Emergency at school zone because of flood,Medical
+Emergency at village square because of earthquake,Medical
+Emergency at farm field because of earthquake,Medical
+Emergency at city mall because of earthquake,Medical
+Emergency at metro station because of earthquake,Medical
+Emergency at bus stand because of earthquake,Medical
+Emergency at highway because of earthquake,Medical
+Emergency at panchayat office because of earthquake,Medical
+Emergency at my house because of earthquake,Medical
+Emergency at the market because of earthquake,Medical
+Emergency at school zone because of earthquake,Medical
+Emergency at village square because of thief,SOS
+Emergency at farm field because of thief,SOS
+Emergency at city mall because of thief,SOS
+Emergency at metro station because of thief,SOS
+Emergency at bus stand because of thief,SOS
+Emergency at highway because of thief,SOS
+Emergency at panchayat office because of thief,SOS
+Emergency at my house because of thief,SOS
+Emergency at the market because of thief,SOS
+Emergency at school zone because of thief,SOS
+Emergency at village square because of murder,SOS
+Emergency at farm field because of murder,SOS
+Emergency at city mall because of murder,SOS
+Emergency at metro station because of murder,SOS
+Emergency at bus stand because of murder,SOS
+Emergency at highway because of murder,SOS
+Emergency at panchayat office because of murder,SOS
+Emergency at my house because of murder,SOS
+Emergency at the market because of murder,SOS
+Emergency at school zone because of murder,SOS
+Need rescue team at village square for robbery,SOS
+Need rescue team at farm field for robbery,SOS
+Need rescue team at city mall for robbery,SOS
+Need rescue team at metro station for robbery,SOS
+Need rescue team at bus stand for robbery,SOS
+Need rescue team at highway for robbery,SOS
+Need rescue team at panchayat office for robbery,SOS
+Need rescue team at my house for robbery,SOS
+Need rescue team at the market for robbery,SOS
+Need rescue team at school zone for robbery,SOS
+Need rescue team at village square for fire,Medical
+Need rescue team at farm field for fire,Medical
+Need rescue team at city mall for fire,Medical
+Need rescue team at metro station for fire,Medical
+Need rescue team at bus stand for fire,Medical
+Need rescue team at highway for fire,Medical
+Need rescue team at panchayat office for fire,Medical
+Need rescue team at my house for fire,Medical
+Need rescue team at the market for fire,Medical
+Need rescue team at school zone for fire,Medical
+Need rescue team at village square for accident,Medical
+Need rescue team at farm field for accident,Medical
+Need rescue team at city mall for accident,Medical
+Need rescue team at metro station for accident,Medical
+Need rescue team at bus stand for accident,Medical
+Need rescue team at highway for accident,Medical
+Need rescue team at panchayat office for accident,Medical
+Need rescue team at my house for accident,Medical
+Need rescue team at the market for accident,Medical
+Need rescue team at school zone for accident,Medical
+Need rescue team at village square for wild animal attack,SOS
+Need rescue team at farm field for wild animal attack,SOS
+Need rescue team at city mall for wild animal attack,SOS
+Need rescue team at metro station for wild animal attack,SOS
+Need rescue team at bus stand for wild animal attack,SOS
+Need rescue team at highway for wild animal attack,SOS
+Need rescue team at panchayat office for wild animal attack,SOS
+Need rescue team at my house for wild animal attack,SOS
+Need rescue team at the market for wild animal attack,SOS
+Need rescue team at school zone for wild animal attack,SOS
+Need rescue team at village square for elephant attack,SOS
+Need rescue team at farm field for elephant attack,SOS
+Need rescue team at city mall for elephant attack,SOS
+Need rescue team at metro station for elephant attack,SOS
+Need rescue team at bus stand for elephant attack,SOS
+Need rescue team at highway for elephant attack,SOS
+Need rescue team at panchayat office for elephant attack,SOS
+Need rescue team at my house for elephant attack,SOS
+Need rescue team at the market for elephant attack,SOS
+Need rescue team at school zone for elephant attack,SOS
+Need rescue team at village square for stalker,SOS
+Need rescue team at farm field for stalker,SOS
+Need rescue team at city mall for stalker,SOS
+Need rescue team at metro station for stalker,SOS
+Need rescue team at bus stand for stalker,SOS
+Need rescue team at highway for stalker,SOS
+Need rescue team at panchayat office for stalker,SOS
+Need rescue team at my house for stalker,SOS
+Need rescue team at the market for stalker,SOS
+Need rescue team at school zone for stalker,SOS
+Need rescue team at village square for riot,SOS
+Need rescue team at farm field for riot,SOS
+Need rescue team at city mall for riot,SOS
+Need rescue team at metro station for riot,SOS
+Need rescue team at bus stand for riot,SOS
+Need rescue team at highway for riot,SOS
+Need rescue team at panchayat office for riot,SOS
+Need rescue team at my house for riot,SOS
+Need rescue team at the market for riot,SOS
+Need rescue team at school zone for riot,SOS
+Need rescue team at village square for medical emergency,Medical
+Need rescue team at farm field for medical emergency,Medical
+Need rescue team at city mall for medical emergency,Medical
+Need rescue team at metro station for medical emergency,Medical
+Need rescue team at bus stand for medical emergency,Medical
+Need rescue team at highway for medical emergency,Medical
+Need rescue team at panchayat office for medical emergency,Medical
+Need rescue team at my house for medical emergency,Medical
+Need rescue team at the market for medical emergency,Medical
+Need rescue team at school zone for medical emergency,Medical
+Need rescue team at village square for flood,Medical
+Need rescue team at farm field for flood,Medical
+Need rescue team at city mall for flood,Medical
+Need rescue team at metro station for flood,Medical
+Need rescue team at bus stand for flood,Medical
+Need rescue team at highway for flood,Medical
+Need rescue team at panchayat office for flood,Medical
+Need rescue team at my house for flood,Medical
+Need rescue team at the market for flood,Medical
+Need rescue team at school zone for flood,Medical
+Need rescue team at village square for earthquake,Medical
+Need rescue team at farm field for earthquake,Medical
+Need rescue team at city mall for earthquake,Medical
+Need rescue team at metro station for earthquake,Medical
+Need rescue team at bus stand for earthquake,Medical
+Need rescue team at highway for earthquake,Medical
+Need rescue team at panchayat office for earthquake,Medical
+Need rescue team at my house for earthquake,Medical
+Need rescue team at the market for earthquake,Medical
+Need rescue team at school zone for earthquake,Medical
+Need rescue team at village square for thief,SOS
+Need rescue team at farm field for thief,SOS
+Need rescue team at city mall for thief,SOS
+Need rescue team at metro station for thief,SOS
+Need rescue team at bus stand for thief,SOS
+Need rescue team at highway for thief,SOS
+Need rescue team at panchayat office for thief,SOS
+Need rescue team at my house for thief,SOS
+Need rescue team at the market for thief,SOS
+Need rescue team at school zone for thief,SOS
+Need rescue team at village square for murder,SOS
+Need rescue team at farm field for murder,SOS
+Need rescue team at city mall for murder,SOS
+Need rescue team at metro station for murder,SOS
+Need rescue team at bus stand for murder,SOS
+Need rescue team at highway for murder,SOS
+Need rescue team at panchayat office for murder,SOS
+Need rescue team at my house for murder,SOS
+Need rescue team at the market for murder,SOS
+Need rescue team at school zone for murder,SOS
+Alert everyone about robbery at village square,SOS
+Alert everyone about robbery at farm field,SOS
+Alert everyone about robbery at city mall,SOS
+Alert everyone about robbery at metro station,SOS
+Alert everyone about robbery at bus stand,SOS
+Alert everyone about robbery at highway,SOS
+Alert everyone about robbery at panchayat office,SOS
+Alert everyone about robbery at my house,SOS
+Alert everyone about robbery at the market,SOS
+Alert everyone about robbery at school zone,SOS
+Alert everyone about fire at village square,Medical
+Alert everyone about fire at farm field,Medical
+Alert everyone about fire at city mall,Medical
+Alert everyone about fire at metro station,Medical
+Alert everyone about fire at bus stand,Medical
+Alert everyone about fire at highway,Medical
+Alert everyone about fire at panchayat office,Medical
+Alert everyone about fire at my house,Medical
+Alert everyone about fire at the market,Medical
+Alert everyone about fire at school zone,Medical
+Alert everyone about accident at village square,Medical
+Alert everyone about accident at farm field,Medical
+Alert everyone about accident at city mall,Medical
+Alert everyone about accident at metro station,Medical
+Alert everyone about accident at bus stand,Medical
+Alert everyone about accident at highway,Medical
+Alert everyone about accident at panchayat office,Medical
+Alert everyone about accident at my house,Medical
+Alert everyone about accident at the market,Medical
+Alert everyone about accident at school zone,Medical
+Alert everyone about wild animal attack at village square,SOS
+Alert everyone about wild animal attack at farm field,SOS
+Alert everyone about wild animal attack at city mall,SOS
+Alert everyone about wild animal attack at metro station,SOS
+Alert everyone about wild animal attack at bus stand,SOS
+Alert everyone about wild animal attack at highway,SOS
+Alert everyone about wild animal attack at panchayat office,SOS
+Alert everyone about wild animal attack at my house,SOS
+Alert everyone about wild animal attack at the market,SOS
+Alert everyone about wild animal attack at school zone,SOS
+Alert everyone about elephant attack at village square,SOS
+Alert everyone about elephant attack at farm field,SOS
+Alert everyone about elephant attack at city mall,SOS
+Alert everyone about elephant attack at metro station,SOS
+Alert everyone about elephant attack at bus stand,SOS
+Alert everyone about elephant attack at highway,SOS
+Alert everyone about elephant attack at panchayat office,SOS
+Alert everyone about elephant attack at my house,SOS
+Alert everyone about elephant attack at the market,SOS
+Alert everyone about elephant attack at school zone,SOS
+Alert everyone about stalker at village square,SOS
+Alert everyone about stalker at farm field,SOS
+Alert everyone about stalker at city mall,SOS
+Alert everyone about stalker at metro station,SOS
+Alert everyone about stalker at bus stand,SOS
+Alert everyone about stalker at highway,SOS
+Alert everyone about stalker at panchayat office,SOS
+Alert everyone about stalker at my house,SOS
+Alert everyone about stalker at the market,SOS
+Alert everyone about stalker at school zone,SOS
+Alert everyone about riot at village square,SOS
+Alert everyone about riot at farm field,SOS
+Alert everyone about riot at city mall,SOS
+Alert everyone about riot at metro station,SOS
+Alert everyone about riot at bus stand,SOS
+Alert everyone about riot at highway,SOS
+Alert everyone about riot at panchayat office,SOS
+Alert everyone about riot at my house,SOS
+Alert everyone about riot at the market,SOS
+Alert everyone about riot at school zone,SOS
+Alert everyone about medical emergency at village square,Medical
+Alert everyone about medical emergency at farm field,Medical
+Alert everyone about medical emergency at city mall,Medical
+Alert everyone about medical emergency at metro station,Medical
+Alert everyone about medical emergency at bus stand,Medical
+Alert everyone about medical emergency at highway,Medical
+Alert everyone about medical emergency at panchayat office,Medical
+Alert everyone about medical emergency at my house,Medical
+Alert everyone about medical emergency at the market,Medical
+Alert everyone about medical emergency at school zone,Medical
+Alert everyone about flood at village square,Medical
+Alert everyone about flood at farm field,Medical
+Alert everyone about flood at city mall,Medical
+Alert everyone about flood at metro station,Medical
+Alert everyone about flood at bus stand,Medical
+Alert everyone about flood at highway,Medical
+Alert everyone about flood at panchayat office,Medical
+Alert everyone about flood at my house,Medical
+Alert everyone about flood at the market,Medical
+Alert everyone about flood at school zone,Medical
+Alert everyone about earthquake at village square,Medical
+Alert everyone about earthquake at farm field,Medical
+Alert everyone about earthquake at city mall,Medical
+Alert everyone about earthquake at metro station,Medical
+Alert everyone about earthquake at bus stand,Medical
+Alert everyone about earthquake at highway,Medical
+Alert everyone about earthquake at panchayat office,Medical
+Alert everyone about earthquake at my house,Medical
+Alert everyone about earthquake at the market,Medical
+Alert everyone about earthquake at school zone,Medical
+Alert everyone about thief at village square,SOS
+Alert everyone about thief at farm field,SOS
+Alert everyone about thief at city mall,SOS
+Alert everyone about thief at metro station,SOS
+Alert everyone about thief at bus stand,SOS
+Alert everyone about thief at highway,SOS
+Alert everyone about thief at panchayat office,SOS
+Alert everyone about thief at my house,SOS
+Alert everyone about thief at the market,SOS
+Alert everyone about thief at school zone,SOS
+Alert everyone about murder at village square,SOS
+Alert everyone about murder at farm field,SOS
+Alert everyone about murder at city mall,SOS
+Alert everyone about murder at metro station,SOS
+Alert everyone about murder at bus stand,SOS
+Alert everyone about murder at highway,SOS
+Alert everyone about murder at panchayat office,SOS
+Alert everyone about murder at my house,SOS
+Alert everyone about murder at the market,SOS
+Alert everyone about murder at school zone,SOS
