@@ -1,0 +1,52 @@
+name: health_module
+description: A new Flutter project.
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+  shared_preferences: any   # local cache for offline advisory history
+  http: any                 # backend API calls when online
+  hive: any
+  hive_flutter: any
+  fl_chart: ^0.62.0
+  flutter_svg: any
+  animations: any
+  pdf: ^3.8.3
+  printing: ^5.9.3
+  flutter_riverpod: any
+  material_symbols_icons: ^4.2796.4
+  url_launcher: ^6.1.14
+  geolocator: ^11.1.0
+  sqflite: ^2.3.0
+  sqflite_common_ffi: any
+  path: ^1.8.0
+  connectivity_plus: any
+
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+  build_runner: any
+  hive_generator: any
+
+
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/
+    - assets/icons/
+    - assets/offline/safety/
+    - assets/offline/agriculture/
+    - assets/offline/health/

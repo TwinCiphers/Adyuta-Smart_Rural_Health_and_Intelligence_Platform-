@@ -1,0 +1,28 @@
+name: safety_module
+description: SheGuard Women's Safety and Emergency SOS Module for Adyuta MP.
+version: 0.0.1
+homepage:
+
+environment:
+  sdk: '>=3.0.6 <4.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  google_fonts: ^5.0.0
+  cupertino_icons: ^1.0.2
+  url_launcher: any
+  geolocator: any
+  shared_preferences: any
+  sensors_plus: any
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
