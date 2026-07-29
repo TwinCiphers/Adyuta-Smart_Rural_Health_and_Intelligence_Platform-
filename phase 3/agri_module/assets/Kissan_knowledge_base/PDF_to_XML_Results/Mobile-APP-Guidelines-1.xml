@@ -1,0 +1,3974 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document name="Mobile-APP-Guidelines-1.pdf">
+  <page number="1">
+    <text>Information &amp; Communication Technology, ICAR Hqrs</text>
+    <text></text>
+    <text>Policy and</text>
+    <text> </text>
+    <text>G</text>
+    <text>uidelines for</text>
+    <text> </text>
+    <text>Mobile Apps</text>
+    <text> </text>
+    <text>Development</text>
+    <text></text>
+    <text>INDIAN COUNCIL OF AG</text>
+    <text>R</text>
+    <text>ICULTURAL RESEARCH (</text>
+    <text>ICAR)</text>
+    <text></text>
+    <text>NEW DELHI</text>
+  </page>
+  <page number="2">
+    <text>MAY</text>
+    <text>,</text>
+    <text> </text>
+    <text>2022</text>
+    <text></text>
+    <text>© 2021 All rights reserved</text>
+    <text></text>
+    <text>Indian Council of Agricultural Research (ICAR)</text>
+    <text></text>
+    <text>New Delhi</text>
+    <text></text>
+    <text>Compiled and Designed by</text>
+    <text></text>
+    <text>Information Technology (IT) Unit, ICAR</text>
+    <text>-</text>
+    <text>IASRI, Pusa New Delhi</text>
+    <text></text>
+    <text>Information &amp; Communication Technology (ICT) Unit,</text>
+    <text> </text>
+    <text>ICAR, New Delhi</text>
+    <text></text>
+    <text>Guidance</text>
+    <text></text>
+    <text>ICT Steering Committee</text>
+    <text></text>
+    <text>ICAR</text>
+    <text> </text>
+    <text>–</text>
+    <text> </text>
+    <text>ICT Implementation &amp; Operational Management Committee</text>
+  </page>
+  <page number="3">
+    <text>Contents</text>
+    <text></text>
+    <text>Introduction</text>
+    <text> </text>
+    <text>................................</text>
+    <text>................................</text>
+    <text>.................</text>
+    <text> 1</text>
+    <text></text>
+    <text>One app for one commodity/produce</text>
+    <text> </text>
+    <text>................................</text>
+    <text>...........</text>
+    <text> 3</text>
+    <text></text>
+    <text>Guideline for development of new mobile apps in ICAR</text>
+    <text> </text>
+    <text>................</text>
+    <text> 3</text>
+    <text></text>
+    <text>Technology stacks for development</text>
+    <text> </text>
+    <text>................................</text>
+    <text>..............</text>
+    <text> 5</text>
+    <text></text>
+    <text>Guidelines and Standards</text>
+    <text> </text>
+    <text>................................</text>
+    <text>.............................</text>
+    <text> 5</text>
+    <text></text>
+    <text>Mobile Accessibility Guidelines</text>
+    <text> ................................</text>
+    <text>.....................</text>
+    <text> 6</text>
+    <text></text>
+    <text>Ge</text>
+    <text>neral Guidelines</text>
+    <text> </text>
+    <text>................................</text>
+    <text>................................</text>
+    <text>.......</text>
+    <text> 7</text>
+    <text></text>
+    <text>Hosting of Apps and APIs</text>
+    <text> </text>
+    <text>................................</text>
+    <text>..............................</text>
+    <text> 8</text>
+    <text></text>
+    <text>Privacy Policy</text>
+    <text> </text>
+    <text>................................</text>
+    <text>................................</text>
+    <text>...............</text>
+    <text> 8</text>
+    <text></text>
+    <text>IPR and Copyrights</text>
+    <text>................................</text>
+    <text>................................</text>
+    <text>........</text>
+    <text> 9</text>
+    <text></text>
+    <text>Terms and Conditions</text>
+    <text> </text>
+    <text>................................</text>
+    <text>................................</text>
+    <text>...</text>
+    <text> 9</text>
+    <text></text>
+    <text>Feedback and Evaluation</text>
+    <text> </text>
+    <text>................................</text>
+    <text>............................</text>
+    <text> 10</text>
+    <text></text>
+    <text>Security Guidelines for Mobile Applications</text>
+    <text> </text>
+    <text>................................</text>
+    <text> 11</text>
+  </page>
+  <page number="4">
+    <text>1</text>
+    <text></text>
+    <text>1.</text>
+    <text> </text>
+    <text>Int</text>
+    <text>ro</text>
+    <text>duction</text>
+    <text></text>
+    <text>M</text>
+    <text>obile</text>
+    <text> </text>
+    <text>phones are now</text>
+    <text> </text>
+    <text>essential</text>
+    <text> </text>
+    <text>for our daily</text>
+    <text> </text>
+    <text>activities due</text>
+    <text> </text>
+    <text>to</text>
+    <text> </text>
+    <text>development of</text>
+    <text></text>
+    <text>extensive network connectivity even at</text>
+    <text> </text>
+    <text>remote location of the country.</text>
+    <text> </text>
+    <text>Consequently,</text>
+    <text></text>
+    <text>l</text>
+    <text>arge number of mobile</text>
+    <text> </text>
+    <text>applications (</text>
+    <text>apps</text>
+    <text>)</text>
+    <text> </text>
+    <text>h</text>
+    <text>ave</text>
+    <text> </text>
+    <text>been developed</text>
+    <text> </text>
+    <text>by</text>
+    <text> </text>
+    <text>different ICAR</text>
+    <text></text>
+    <text>institutes</text>
+    <text> </text>
+    <text>/</text>
+    <text> </text>
+    <text>organizations covering</text>
+    <text> </text>
+    <text>different</text>
+    <text> </text>
+    <text>domains</text>
+    <text> </text>
+    <text>/</text>
+    <text> </text>
+    <text>thematic areas</text>
+    <text> </text>
+    <text>/</text>
+    <text> </text>
+    <text>applications.</text>
+    <text></text>
+    <text>The development of these mobile apps could</text>
+    <text> </text>
+    <text>not be appropriately planned and</text>
+    <text></text>
+    <text>coordinated due to sudden digital information explosion and diversity of agricultural</text>
+    <text></text>
+    <text>produce</text>
+    <text> </text>
+    <text>/</text>
+    <text> </text>
+    <text>commodity. T</text>
+    <text>hese mobile apps</text>
+    <text> </text>
+    <text>are</text>
+    <text> </text>
+    <text>to be</text>
+    <text> </text>
+    <text>evaluated in terms of their usage,</text>
+    <text></text>
+    <text>uniqueness, content</text>
+    <text> </text>
+    <text>management</text>
+    <text>,</text>
+    <text> </text>
+    <text>technology</text>
+    <text> </text>
+    <text>standard</text>
+    <text> </text>
+    <text>compliance, navigation</text>
+    <text>al</text>
+    <text></text>
+    <text>features</text>
+    <text>,</text>
+    <text> </text>
+    <text>etc.</text>
+    <text> </text>
+    <text>Further,</text>
+    <text> </text>
+    <text>many apps</text>
+    <text> </text>
+    <text>developed by ICAR</text>
+    <text> </text>
+    <text>Institutes</text>
+    <text> </text>
+    <text>are available in play</text>
+    <text></text>
+    <text>store for one commodity or crop</text>
+    <text> </text>
+    <text>that</text>
+    <text> </text>
+    <text>creates confusion to the users.</text>
+    <text> </text>
+    <text>For example, say</text>
+    <text></text>
+    <text>Rice, there are 15 links</text>
+    <text> </text>
+    <text>retrieved</text>
+    <text> </text>
+    <text>by KRISHI Mobile Apps sto</text>
+    <text>re and these are Rice</text>
+    <text> </text>
+    <text>Xpert,</text>
+    <text></text>
+    <text>Paddy</text>
+    <text> </text>
+    <text>Seed</text>
+    <text> </text>
+    <text>Xpert,</text>
+    <text> </text>
+    <text>Mobile Rice</text>
+    <text> </text>
+    <text>IPM, Weather Light</text>
+    <text> </text>
+    <text>/</text>
+    <text> </text>
+    <text>Trap Catch, Rice IPM, Pest</text>
+    <text></text>
+    <text>Predict</text>
+    <text>–</text>
+    <text>EMS, RKMP</text>
+    <text> </text>
+    <text>-</text>
+    <text> </text>
+    <text>Rice Innovations, RKMP Rice Crop FAQs,</text>
+    <text> </text>
+    <text>RKMP</text>
+    <text>-</text>
+    <text>M</text>
+    <text> </text>
+    <text>Learning</text>
+    <text>,</text>
+    <text></text>
+    <text>RKMP</text>
+    <text>-</text>
+    <text>Rice VOCS and many more such examples exists in various play stores.</text>
+    <text> </text>
+    <text>In this</text>
+    <text></text>
+    <text>regard, a</text>
+    <text>n effort was made by ICAR to develop an integrated mobile app</text>
+    <text> </text>
+    <text>named as</text>
+    <text></text>
+    <text>KISAAN</text>
+    <text> </text>
+    <text>(Krishi Integrated Solution for Agri</text>
+    <text>-</text>
+    <text>Apps Navigation)</text>
+    <text> </text>
+    <text>app</text>
+    <text> </text>
+    <text>which is a</text>
+    <text> </text>
+    <text>centralized</text>
+    <text></text>
+    <text>gateway and</text>
+    <text> </text>
+    <text>provide</text>
+    <text>s</text>
+    <text> </text>
+    <text>access to</text>
+    <text> </text>
+    <text>different</text>
+    <text> </text>
+    <text>mobile</text>
+    <text> </text>
+    <text>apps by ICAR</text>
+    <text> </text>
+    <text>/</text>
+    <text> </text>
+    <text>KVKs</text>
+    <text> </text>
+    <text>under initi</text>
+    <text>ative</text>
+    <text></text>
+    <text>of ICAR Research Data Repository for Knowledge Management (KRISHI Portal)</text>
+    <text>.</text>
+    <text> </text>
+    <text>This</text>
+    <text></text>
+    <text>KISAAN app provides a single interface in multiple Indian languages for Indian Farmers</text>
+    <text></text>
+    <text>to access agricultural knowledge ranging from cereal crops, horticulture,</text>
+    <text> </text>
+    <text>livestock,</text>
+    <text></text>
+    <text>poultry, fisheries, dairy, natural resources, agricultural engineering, agricultural</text>
+    <text></text>
+    <text>education and agricultural extension</text>
+    <text> </text>
+    <text>based on various categories</text>
+    <text>.</text>
+    <text> </text>
+    <text>This mobile app has</text>
+    <text></text>
+    <text>also</text>
+    <text> </text>
+    <text>been developed in twelve Indian Languages</text>
+    <text>.</text>
+    <text> </text>
+    <text>This is being further upg</text>
+    <text>raded to newer</text>
+    <text></text>
+    <text>version with more features.</text>
+    <text></text>
+    <text>In addition to the KISAAN, ICAR also made an effort to create “Mobile App Gallery” in</text>
+    <text></text>
+    <text>KRISHI</text>
+    <text> </text>
+    <text>(Agricultural</text>
+    <text> </text>
+    <text>Knowledge</text>
+    <text> </text>
+    <text>Resources</text>
+    <text> </text>
+    <text>and</text>
+    <text> </text>
+    <text>Information</text>
+    <text> </text>
+    <text>System</text>
+    <text> </text>
+    <text>Hub</text>
+    <text> </text>
+    <text>for</text>
+    <text></text>
+    <text>Innovations)</text>
+    <text> </text>
+    <text>portal developed by ICAR</text>
+    <text>-</text>
+    <text>IASRI, New Delh</text>
+    <text>i</text>
+    <text>. The team</text>
+    <text> </text>
+    <text>has made an effort</text>
+    <text></text>
+    <text>to collate all the apps developed by</text>
+    <text> </text>
+    <text>National Agricultural Research &amp; Education</text>
+    <text></text>
+    <text>System (</text>
+    <text>NARES</text>
+    <text>)</text>
+    <text> </text>
+    <text>including KVKs</text>
+    <text> </text>
+    <text>and other organizations as well</text>
+    <text>. The</text>
+    <text> </text>
+    <text>basic</text>
+    <text> </text>
+    <text>information</text>
+    <text></text>
+    <text>related to these</text>
+    <text> </text>
+    <text>apps</text>
+    <text> </text>
+    <text>are operating system, language, subjec</text>
+    <text>t matter division, name</text>
+    <text></text>
+    <text>of the institute and its type (</text>
+    <text> </text>
+    <text>ICAR</text>
+    <text> </text>
+    <text>/</text>
+    <text> </text>
+    <text>SAU</text>
+    <text> </text>
+    <text>/</text>
+    <text> </text>
+    <text>KVK</text>
+    <text> </text>
+    <text>/</text>
+    <text> </text>
+    <text>Others</text>
+    <text> </text>
+    <text>), rating, number of downloads</text>
+    <text></text>
+    <text>/</text>
+    <text> </text>
+    <text>Installs, version, date of creation</text>
+    <text> </text>
+    <text>/</text>
+    <text> </text>
+    <text>publication including brief description of the app,</text>
+    <text></text>
+    <text>URLs</text>
+    <text> </text>
+    <text>etc</text>
+    <text>.</text>
+    <text> </text>
+    <text>Archival of</text>
+    <text> </text>
+    <text>APK</text>
+    <text> </text>
+    <text>files is also being done on KRISHI Portal Mobile App Gallery.</text>
+    <text></text>
+    <text>The search facility has been provided based on keywords,</text>
+    <text> </text>
+    <text>SMD, Institute, Language,</text>
+    <text></text>
+    <text>Organization Type (</text>
+    <text> </text>
+    <text>ICAR</text>
+    <text> </text>
+    <text>/</text>
+    <text> </text>
+    <text>SAUs</text>
+    <text> </text>
+    <text>/</text>
+    <text> </text>
+    <text>KVK</text>
+    <text> </text>
+    <text>/</text>
+    <text> </text>
+    <text>Others</text>
+    <text> </text>
+    <text>)</text>
+    <text>.</text>
+    <text> </text>
+    <text>Currently, there are 338 mobile apps</text>
+  </page>
+  <page number="5">
+    <text>2</text>
+    <text></text>
+    <text>uploaded in the mobile</text>
+    <text> </text>
+    <text>app gallery</text>
+    <text> </text>
+    <text>which includes mobile apps from ICA</text>
+    <text>R</text>
+    <text> </text>
+    <text>Institutes,</text>
+    <text></text>
+    <text>SAUs, KVKs and Other Government Agencies.</text>
+    <text> </text>
+    <text>The KISAAN App is being developed on</text>
+    <text></text>
+    <text>this database of Mobile App Gallery through web</text>
+    <text> </text>
+    <text>services.</text>
+    <text></text>
+    <text>Five basic problems are being noted in mobile apps</text>
+    <text> </text>
+    <text>developed by different ICAR</text>
+    <text></text>
+    <text>institute i.e., (i) multiple apps for same commodity</text>
+    <text> </text>
+    <text>/</text>
+    <text> </text>
+    <text>produce, (ii) static nature of</text>
+    <text></text>
+    <text>contents in many apps, (iii) older technologies, (iv)</text>
+    <text> </text>
+    <text>need for further enriching</text>
+    <text> </text>
+    <text>content</text>
+    <text></text>
+    <text>quality and (v)</text>
+    <text> </text>
+    <text>require of including</text>
+    <text> </text>
+    <text>feedback mechani</text>
+    <text>sm.</text>
+    <text> </text>
+    <text>Thus, there is an urgent</text>
+    <text></text>
+    <text>need to make an integrated and coordinated effort while developing these apps so</text>
+    <text></text>
+    <text>that one app for one crop or commodity may be developed by these organizations</text>
+    <text></text>
+    <text>making integrated efforts. This will also help in providing precis</text>
+    <text>e, accurate and timely</text>
+    <text></text>
+    <text>information to the users especially farmers to increase production, productivity and</text>
+    <text></text>
+    <text>profitability. The appropriate mechanism needs to be put in place for addressing</text>
+    <text></text>
+    <text>feedback and resolving issues submitted by the end users.</text>
+    <text> </text>
+    <text>The mobil</text>
+    <text>e apps will</text>
+    <text></text>
+    <text>revolutionize the way an Indian farmer avails information on advanced agricultural</text>
+    <text></text>
+    <text>technologies, seeds, varieties, and livestock as per their requirement leveraging the</text>
+    <text></text>
+    <text>current accelerated Internet and smart phone penetration in our country.</text>
+    <text></text>
+    <text>The</text>
+    <text> </text>
+    <text>main</text>
+    <text> </text>
+    <text>purpose of this document is to</text>
+    <text> </text>
+    <text>create a</text>
+    <text> </text>
+    <text>technical guideline</text>
+    <text> </text>
+    <text>and made</text>
+    <text></text>
+    <text>accessible</text>
+    <text> </text>
+    <text>the required information</text>
+    <text> </text>
+    <text>related to standards, security</text>
+    <text>, guidelines and</text>
+    <text></text>
+    <text>policy for development of mobile apps and its implementation in the specified crop</text>
+    <text></text>
+    <text>or commodi</text>
+    <text>ties</text>
+    <text> </text>
+    <text>including release procedure</text>
+    <text>.</text>
+    <text></text>
+    <text>8</text>
+    <text>,</text>
+    <text> </text>
+    <text>3%</text>
+    <text> </text>
+    <text>7</text>
+    <text>,</text>
+    <text> </text>
+    <text>3%</text>
+    <text></text>
+    <text>1</text>
+    <text>,</text>
+    <text> </text>
+    <text>1%</text>
+    <text></text>
+    <text>39</text>
+    <text>,</text>
+    <text> </text>
+    <text>16%</text>
+    <text></text>
+    <text>76</text>
+    <text>,</text>
+    <text> </text>
+    <text>32%</text>
+    <text></text>
+    <text>14</text>
+    <text>,</text>
+    <text></text>
+    <text>6%</text>
+    <text></text>
+    <text>75</text>
+    <text>,</text>
+    <text> </text>
+    <text>32%</text>
+    <text></text>
+    <text>17</text>
+    <text>,</text>
+    <text> </text>
+    <text>7%</text>
+    <text></text>
+    <text>1</text>
+    <text>,</text>
+    <text> </text>
+    <text>0%</text>
+    <text></text>
+    <text>Mobile Apps (KRISHI)</text>
+    <text></text>
+    <text>Agricultural Education</text>
+    <text></text>
+    <text>Agricultural Engineering</text>
+    <text></text>
+    <text>Agricultural Extension</text>
+    <text></text>
+    <text>Animal Science</text>
+    <text></text>
+    <text>Crop Science</text>
+    <text></text>
+    <text>Fisheries Science</text>
+    <text></text>
+    <text>Horticultural Science</text>
+    <text></text>
+    <text>Natural Resource Management</text>
+    <text></text>
+    <text>Others (ICAR Hqrs, Directorate of Knowledge</text>
+    <text></text>
+    <text>Management in Agriculture, etc.)</text>
+  </page>
+  <page number="6">
+    <text>3</text>
+    <text></text>
+    <text>2.</text>
+    <text> </text>
+    <text>One app for one commodity</text>
+    <text> </text>
+    <text>/</text>
+    <text> </text>
+    <text>produce</text>
+    <text></text>
+    <text>To</text>
+    <text> </text>
+    <text>avoid confusion</text>
+    <text> </text>
+    <text>among the stakeholders, there is need to</text>
+    <text> </text>
+    <text>develop</text>
+    <text> </text>
+    <text>one app for one</text>
+    <text></text>
+    <text>commodity</text>
+    <text> </text>
+    <text>/</text>
+    <text> </text>
+    <text>produce</text>
+    <text> </text>
+    <text>and the contents should be fetched from the centralized</text>
+    <text></text>
+    <text>database or repository</text>
+    <text> </text>
+    <text>or content management system</text>
+    <text>. This will help the developer</text>
+    <text></text>
+    <text>in updating the contents in apps. This integrated app is</text>
+    <text> </text>
+    <text>the</text>
+    <text> </text>
+    <text>need of the hour as all</text>
+    <text></text>
+    <text>required information will be fet</text>
+    <text>ched from the single platform or window. This</text>
+    <text></text>
+    <text>approach will also help in installing and testing different mobile apps</text>
+    <text> </text>
+    <text>based on desired</text>
+    <text></text>
+    <text>purpose of the app.</text>
+    <text> </text>
+    <text>Later, these single commodity apps can be further integrated as</text>
+    <text></text>
+    <text>a larger window framework similar to</text>
+    <text> </text>
+    <text>unified mobile app as UMANG (Unified Mobile</text>
+    <text></text>
+    <text>App for New</text>
+    <text>-</text>
+    <text>age Governance) developed by</text>
+    <text> </text>
+    <text>Ministry of Electronics and Information</text>
+    <text></text>
+    <text>Technology (</text>
+    <text>MeitY</text>
+    <text>)</text>
+    <text>, Gov</text>
+    <text>ernmen</text>
+    <text>t of India.</text>
+    <text> </text>
+    <text>Therefore, coordinated effort is required</text>
+    <text></text>
+    <text>from the</text>
+    <text> </text>
+    <text>Subject Matter Division (SMD)</text>
+    <text> </text>
+    <text>level wi</text>
+    <text>th respect to unified contents,</text>
+    <text></text>
+    <text>features and services.</text>
+    <text></text>
+    <text>The app should also send time to time advisory and alerts to the registered users and</text>
+    <text></text>
+    <text>capable of doing and providing various required services</text>
+    <text> </text>
+    <text>based on crop</text>
+    <text> </text>
+    <text>/</text>
+    <text> </text>
+    <text>commodity</text>
+    <text></text>
+    <text>/</text>
+    <text> </text>
+    <text>produce</text>
+    <text>. Payment gateway</text>
+    <text> </text>
+    <text>option may also be included in case of purchase of any</text>
+    <text></text>
+    <text>material from the concern</text>
+    <text>ed</text>
+    <text> </text>
+    <text>institute or government agency.</text>
+    <text></text>
+    <text>The exchange of information should be an integral part of the system which will help</text>
+    <text></text>
+    <text>in developing the new module and its integration with t</text>
+    <text>he existing app in the following</text>
+    <text></text>
+    <text>manner</text>
+    <text></text>
+    <text>•</text>
+    <text> </text>
+    <text>Information extracted from existing apps, if stored in database otherwise need</text>
+    <text></text>
+    <text>to be</text>
+    <text> </text>
+    <text>stored in easy to use format</text>
+    <text>.</text>
+    <text></text>
+    <text>•</text>
+    <text> </text>
+    <text>Exchanging</text>
+    <text> </text>
+    <text>the information through</text>
+    <text> </text>
+    <text>the use of</text>
+    <text> </text>
+    <text>APIs</text>
+    <text> </text>
+    <text>/</text>
+    <text> </text>
+    <text>Web services in JSON</text>
+    <text> </text>
+    <text>/</text>
+    <text></text>
+    <text>XML format</text>
+    <text></text>
+    <text>•</text>
+    <text> </text>
+    <text>Filter, refine</text>
+    <text> </text>
+    <text>and display the useful and important information</text>
+    <text> </text>
+    <text>/</text>
+    <text> </text>
+    <text>knowledge</text>
+    <text> </text>
+    <text>in</text>
+    <text></text>
+    <text>an easy to visualize manner.</text>
+    <text></text>
+    <text>•</text>
+    <text> </text>
+    <text>Validation of content</text>
+    <text> </text>
+    <text>/</text>
+    <text> </text>
+    <text>information from subject matter institutions</text>
+    <text></text>
+    <text>•</text>
+    <text> </text>
+    <text>Integration of validated information in app</text>
+    <text> </text>
+    <text>and its upgra</text>
+    <text>da</text>
+    <text>tion.</text>
+    <text></text>
+    <text>3.</text>
+    <text> </text>
+    <text>Guideline for d</text>
+    <text>evelopment</text>
+    <text> </text>
+    <text>of</text>
+    <text> </text>
+    <text>new</text>
+    <text> </text>
+    <text>mobile apps</text>
+    <text></text>
+    <text>in</text>
+    <text> </text>
+    <text>ICAR</text>
+    <text></text>
+    <text>i.</text>
+    <text> </text>
+    <text>Proposal to develop</text>
+    <text> </text>
+    <text>a</text>
+    <text> </text>
+    <text>mobile app need to be submitted to respective SMD of</text>
+    <text></text>
+    <text>the</text>
+    <text> </text>
+    <text>I</text>
+    <text>nstitute. The proposal must carry objective, purpose, need, data source,</text>
+  </page>
+  <page number="7">
+    <text>4</text>
+    <text></text>
+    <text>feature</text>
+    <text> </text>
+    <text>/</text>
+    <text> </text>
+    <text>services included, related</text>
+    <text> </text>
+    <text>available</text>
+    <text> </text>
+    <text>apps or web resource</text>
+    <text>s</text>
+    <text>,</text>
+    <text> </text>
+    <text>provision</text>
+    <text></text>
+    <text>for future update</text>
+    <text> </text>
+    <text>/</text>
+    <text> </text>
+    <text>upgrade</text>
+    <text> </text>
+    <text>/</text>
+    <text> </text>
+    <text>user feedback</text>
+    <text> </text>
+    <text>and technology platform. After</text>
+    <text></text>
+    <text>assessing the requirements of the app, the same can be forwarded to ADG</text>
+    <text></text>
+    <text>(ICT)</text>
+    <text> </text>
+    <text>for</text>
+    <text> </text>
+    <text>technical</text>
+    <text> </text>
+    <text>approval</text>
+    <text> </text>
+    <text>of</text>
+    <text> </text>
+    <text>the</text>
+    <text> </text>
+    <text>Council</text>
+    <text> </text>
+    <text>related</text>
+    <text> </text>
+    <text>to</text>
+    <text> </text>
+    <text>development</text>
+    <text></text>
+    <text>environment, data exchange, APIs</text>
+    <text> </text>
+    <text>development and usages, web services</text>
+    <text>,</text>
+    <text> </text>
+    <text>etc.</text>
+    <text></text>
+    <text>Required technical guidance and support will be provided by ICT Unit, ICAR for</text>
+    <text></text>
+    <text>its development and implementation.</text>
+    <text></text>
+    <text>ii.</text>
+    <text> </text>
+    <text>Integration and compilation of contents</text>
+    <text> </text>
+    <text>may be c</text>
+    <text>oordinated at SMD level</text>
+    <text> </text>
+    <text>by</text>
+    <text></text>
+    <text>mentioning</text>
+    <text> </text>
+    <text>verified</text>
+    <text> </text>
+    <text>an</text>
+    <text>d</text>
+    <text> </text>
+    <text>structured</text>
+    <text> </text>
+    <text>contents</text>
+    <text> </text>
+    <text>as</text>
+    <text> </text>
+    <text>followed</text>
+    <text> </text>
+    <text>by</text>
+    <text> </text>
+    <text>POUR</text>
+    <text></text>
+    <text>(Perceivable, Operable, Understandable and Robust) Principle</text>
+    <text>.</text>
+    <text></text>
+    <text>iii.</text>
+    <text> </text>
+    <text>All the required s</text>
+    <text>ervices</text>
+    <text> </text>
+    <text>must be accessible</text>
+    <text> </text>
+    <text>from single</text>
+    <text> </text>
+    <text>and unified</text>
+    <text> </text>
+    <text>interface</text>
+    <text></text>
+    <text>and</text>
+    <text> </text>
+    <text>should be able to integrate with the KISAAN app and relevant informat</text>
+    <text>ion</text>
+    <text></text>
+    <text>may also be added to KRISHI portal for improved access and search for</text>
+    <text></text>
+    <text>popularization and wider accessibility.</text>
+    <text></text>
+    <text>iv.</text>
+    <text> </text>
+    <text>It is expected that</text>
+    <text> </text>
+    <text>a</text>
+    <text> </text>
+    <text>mobile</text>
+    <text> </text>
+    <text>app will f</text>
+    <text>ollow the</text>
+    <text> </text>
+    <text>standard</text>
+    <text> </text>
+    <text>template, format</text>
+    <text>,</text>
+    <text></text>
+    <text>responsive user interface for display of contents,</text>
+    <text> </text>
+    <text>guidelines</text>
+    <text>,</text>
+    <text> </text>
+    <text>industry standard</text>
+    <text></text>
+    <text>user interface</text>
+    <text> </text>
+    <text>guidelines</text>
+    <text> </text>
+    <text>and</text>
+    <text> </text>
+    <text>other</text>
+    <text> </text>
+    <text>regulations</text>
+    <text> </text>
+    <text>including all the security</text>
+    <text></text>
+    <text>compliance.</text>
+    <text></text>
+    <text>v.</text>
+    <text> </text>
+    <text>Facility of alerts and advisory need to be included in the mobile apps and</text>
+    <text></text>
+    <text>feedback</text>
+    <text> </text>
+    <text>mechanism</text>
+    <text> </text>
+    <text>will</text>
+    <text> </text>
+    <text>also</text>
+    <text> </text>
+    <text>be</text>
+    <text> </text>
+    <text>incorporated</text>
+    <text> </text>
+    <text>including</text>
+    <text> </text>
+    <text>its</text>
+    <text> </text>
+    <text>redressal</text>
+    <text></text>
+    <text>mechani</text>
+    <text>sm.</text>
+    <text></text>
+    <text>vi.</text>
+    <text> </text>
+    <text>Search option need to be incorporated to provide shortcuts or alternate way</text>
+    <text>s</text>
+    <text></text>
+    <text>to access the desired modules</text>
+    <text> </text>
+    <text>using</text>
+    <text> </text>
+    <text>suitable keywords. This feature will</text>
+    <text></text>
+    <text>enhance the usefulness, visibility and accessibility of the developed app.</text>
+    <text></text>
+    <text>vii.</text>
+    <text> </text>
+    <text>Demonstration of technology</text>
+    <text>, planting material, showcasing of technology,</text>
+    <text></text>
+    <text>payment gateway etc. may be incorporated through small multimedia enabled</text>
+    <text></text>
+    <text>audio and video clips for easy to understand and self</text>
+    <text>-</text>
+    <text>explanatory manner. AR</text>
+    <text></text>
+    <text>/</text>
+    <text> </text>
+    <text>VR technologies</text>
+    <text>, wherever required</text>
+    <text> </text>
+    <text>may also be incorpora</text>
+    <text>ted for this</text>
+    <text></text>
+    <text>purpose.</text>
+    <text></text>
+    <text>viii.</text>
+    <text> </text>
+    <text>Developed app should provide the feature related to exchange of contents or</text>
+    <text></text>
+    <text>service from other mobile apps which will be helpful and useful in developing</text>
+    <text></text>
+    <text>unified</text>
+    <text> </text>
+    <text>mobile apps</text>
+    <text>.</text>
+    <text></text>
+    <text>ix.</text>
+    <text> </text>
+    <text>After the development of app, the developed APK will be</text>
+    <text> </text>
+    <text>submitted to ICT</text>
+    <text></text>
+    <text>Unit, ICAR for its evaluation</text>
+    <text> </text>
+    <text>and archival</text>
+    <text>. The e</text>
+    <text>valuat</text>
+    <text>ion will be done</text>
+    <text> </text>
+    <text>by</text>
+    <text> </text>
+    <text>the</text>
+    <text></text>
+    <text>respective subject</text>
+    <text> </text>
+    <text>matter</text>
+    <text> </text>
+    <text>experts (</text>
+    <text>three to five</text>
+    <text>)</text>
+    <text> </text>
+    <text>for contents and</text>
+    <text> </text>
+    <text>user</text>
+    <text></text>
+    <text>interface</text>
+    <text> </text>
+    <text>including</text>
+    <text> </text>
+    <text>expected</text>
+    <text> </text>
+    <text>user</text>
+    <text> </text>
+    <text>experience</text>
+    <text> </text>
+    <text>based</text>
+    <text> </text>
+    <text>on</text>
+    <text> </text>
+    <text>the</text>
+    <text> </text>
+    <text>developed</text>
+  </page>
+  <page number="8">
+    <text>5</text>
+    <text></text>
+    <text>proforma</text>
+    <text>. The subjec</text>
+    <text>t matter experts and other stakeholders may be taken</text>
+    <text></text>
+    <text>from the ICAR institutes or KVKs</text>
+    <text> </text>
+    <text>or any other relevant officials.</text>
+    <text> </text>
+    <text>This activity</text>
+    <text></text>
+    <text>will be carried out by the ICT Unit of ICAR</text>
+    <text> </text>
+    <text>in coordination with SMDs of ICAR</text>
+    <text>.</text>
+    <text></text>
+    <text>x.</text>
+    <text> </text>
+    <text>Plans</text>
+    <text> </text>
+    <text>and guidelines for updates and upgra</text>
+    <text>des need to be incorporated in the</text>
+    <text></text>
+    <text>document.</text>
+    <text></text>
+    <text>xi.</text>
+    <text> </text>
+    <text>The</text>
+    <text> </text>
+    <text>APK</text>
+    <text> </text>
+    <text>file of developed mobile apps is need to be submitted to</text>
+    <text> </text>
+    <text>Mobile App</text>
+    <text></text>
+    <text>Gallery for archival before its final release including related documents.</text>
+    <text></text>
+    <text>4.</text>
+    <text> </text>
+    <text>Technology stacks for development</text>
+    <text></text>
+    <text>In order to develop</text>
+    <text> </text>
+    <text>mobile apps, open source technology</text>
+    <text> </text>
+    <text>is</text>
+    <text> </text>
+    <text>to the use</text>
+    <text>d until and</text>
+    <text></text>
+    <text>unless commercial products are absolutely required with</text>
+    <text> </text>
+    <text>suitable justification. Some</text>
+    <text></text>
+    <text>of the useful technical</text>
+    <text> </text>
+    <text>open source</text>
+    <text> </text>
+    <text>tools are as follows</text>
+    <text></text>
+    <text>•</text>
+    <text> </text>
+    <text>Operating System: Linux distribution</text>
+    <text></text>
+    <text>•</text>
+    <text> </text>
+    <text>API manager: WS2</text>
+    <text></text>
+    <text>•</text>
+    <text> </text>
+    <text>Load Balancer: NGINX</text>
+    <text></text>
+    <text>•</text>
+    <text> </text>
+    <text>Web server: Apache</text>
+    <text></text>
+    <text>•</text>
+    <text> </text>
+    <text>Database: SQLite / Postgres and Redis for cache and session management</text>
+    <text></text>
+    <text>•</text>
+    <text> </text>
+    <text>Message Borker: Kafka</text>
+    <text></text>
+    <text>•</text>
+    <text> </text>
+    <text>Log management: Graylog</text>
+    <text></text>
+    <text>•</text>
+    <text> </text>
+    <text>Notifications: Firebase</text>
+    <text></text>
+    <text>•</text>
+    <text> </text>
+    <text>Analytics: Tomcat, AngularJS, Postgres</text>
+    <text></text>
+    <text>5.</text>
+    <text> </text>
+    <text>Guidelines</text>
+    <text> </text>
+    <text>and Stand</text>
+    <text>a</text>
+    <text>r</text>
+    <text>ds</text>
+    <text></text>
+    <text>Mobile has become an integral part of everyone’s daily life. The ease of access and</text>
+    <text></text>
+    <text>right information at right time can be accessible at any point of time. With the</text>
+    <text></text>
+    <text>introduction</text>
+    <text> </text>
+    <text>of</text>
+    <text> </text>
+    <text>4G</text>
+    <text> </text>
+    <text>technology</text>
+    <text> </text>
+    <text>and</text>
+    <text> </text>
+    <text>upcoming</text>
+    <text> </text>
+    <text>5G</text>
+    <text> </text>
+    <text>technology</text>
+    <text> </text>
+    <text>provides</text>
+    <text> </text>
+    <text>ample</text>
+    <text></text>
+    <text>opportunity to</text>
+    <text> </text>
+    <text>make</text>
+    <text> </text>
+    <text>use of mobiles</text>
+    <text>. This is likely to</text>
+    <text> </text>
+    <text>lead explosion of mobile app</text>
+    <text></text>
+    <text>developments along with its technological advancements. Therefore, it is expected</text>
+    <text></text>
+    <text>from the developers</text>
+    <text> </text>
+    <text>/</text>
+    <text> </text>
+    <text>organizations to follow the standard</text>
+    <text>s</text>
+    <text> </text>
+    <text>and guidelines issued by</text>
+    <text></text>
+    <text>the industry and Gov</text>
+    <text>ernme</text>
+    <text>nt</text>
+    <text> </text>
+    <text>of India</text>
+    <text> </text>
+    <text>from</text>
+    <text> </text>
+    <text>time to time to avoid the failure and</text>
+    <text></text>
+    <text>unexpected crash of application. The input required for various</text>
+    <text> </text>
+    <text>agricultural activities</text>
+    <text></text>
+    <text>/</text>
+    <text> </text>
+    <text>operations including</text>
+    <text> </text>
+    <text>placement of orders for machinery,</text>
+    <text> </text>
+    <text>purchase of</text>
+    <text> </text>
+    <text>seed</text>
+    <text> </text>
+    <text>/</text>
+    <text></text>
+    <text>fertilizers</text>
+    <text>, controlling the operati</text>
+    <text>ons for</text>
+    <text> </text>
+    <text>fertilizers and other chemicals</text>
+    <text>,</text>
+    <text> </text>
+    <text>etc.</text>
+    <text> </text>
+    <text>The</text>
+    <text></text>
+    <text>mobile</text>
+    <text> </text>
+    <text>app development must consider the incorporation of platform specific</text>
+    <text></text>
+    <text>features</text>
+    <text> </text>
+    <text>with assistive technologies</text>
+    <text>,</text>
+    <text> </text>
+    <text>which has been a boon for</text>
+    <text> </text>
+    <text>a</text>
+    <text> </text>
+    <text>person with</text>
+    <text></text>
+    <text>disabilities</text>
+    <text> </text>
+    <text>to</text>
+    <text> </text>
+    <text>provide</text>
+    <text> </text>
+    <text>the</text>
+    <text> </text>
+    <text>rich</text>
+    <text> </text>
+    <text>and</text>
+    <text> </text>
+    <text>useful</text>
+    <text> </text>
+    <text>experie</text>
+    <text>nce</text>
+    <text> </text>
+    <text>to</text>
+    <text> </text>
+    <text>farmers</text>
+    <text> </text>
+    <text>and</text>
+    <text> </text>
+    <text>other</text>
+  </page>
+  <page number="9">
+    <text>6</text>
+    <text></text>
+    <text>stakeholders</text>
+    <text>.</text>
+    <text> </text>
+    <text>The developed apps must follow the</text>
+    <text> </text>
+    <text>below mentioned</text>
+    <text> </text>
+    <text>guidelines</text>
+    <text></text>
+    <text>provided</text>
+    <text> </text>
+    <text>by</text>
+    <text> </text>
+    <text>Gov</text>
+    <text>ernment</text>
+    <text> </text>
+    <text>of India</text>
+    <text></text>
+    <text>•</text>
+    <text> </text>
+    <text>Guidelines for Indian Government Websites (GIGW 2009),</text>
+    <text></text>
+    <text>•</text>
+    <text> </text>
+    <text>National Policy on Universal Electronics Accessibility (2013) and</text>
+    <text></text>
+    <text>•</text>
+    <text> </text>
+    <text>Rights of Persons with Disabilities Act 2016.</text>
+    <text></text>
+    <text>The standards for development of mobile apps has been put into place by World Wide</text>
+    <text></text>
+    <text>Web Consortium (W3C) and is being also modified time to time with respect to update</text>
+    <text></text>
+    <text>of technology and platform</text>
+    <text> </text>
+    <text>(</text>
+    <text>https://www.w3.org/standards/</text>
+    <text>)</text>
+    <text>. Right</text>
+    <text> </text>
+    <text>now,</text>
+    <text> </text>
+    <text>Web</text>
+    <text></text>
+    <text>Content Accessibility Guidelines (WCAG) 2.0 are available</text>
+    <text> </text>
+    <text>for</text>
+    <text> </text>
+    <text>Android, iOS, and BBC</text>
+    <text></text>
+    <text>(</text>
+    <text>https://www.w3.org/</text>
+    <text>WAI/standards</text>
+    <text>-</text>
+    <text>guidelines/</text>
+    <text>)</text>
+    <text>.</text>
+    <text></text>
+    <text>6.</text>
+    <text> </text>
+    <text>Mobile</text>
+    <text> </text>
+    <text>Accessibility Guidelines</text>
+    <text></text>
+    <text>Mobile</text>
+    <text> </text>
+    <text>apps are not platform specific as many operating systems exists for mobile</text>
+    <text></text>
+    <text>devices such as Google’s And</text>
+    <text>r</text>
+    <text>oid, Apple iOS, Windows mobile</text>
+    <text>,</text>
+    <text> </text>
+    <text>etc. This requires</text>
+    <text></text>
+    <text>specific use of technology or features to enable in a particular or specific devices.</text>
+    <text> </text>
+    <text>Both</text>
+    <text></text>
+    <text>the</text>
+    <text> </text>
+    <text>popular mobile OS i.e.,</text>
+    <text> </text>
+    <text>Android and iOS operating systems provide standardized</text>
+    <text></text>
+    <text>mechanisms to communicate various attributes of a</text>
+    <text> </text>
+    <text>User Interfa</text>
+    <text>ce</text>
+    <text> </text>
+    <text>element (UI</text>
+    <text></text>
+    <text>Element) such as the label associated with a UI element, role of a UI element (</text>
+    <text> </text>
+    <text>such</text>
+    <text></text>
+    <text>as whether it is a button or an edit control</text>
+    <text> </text>
+    <text>) and state information (</text>
+    <text> </text>
+    <text>such as whether</text>
+    <text></text>
+    <text>it is disabled, checked or pressed</text>
+    <text> </text>
+    <text>) This mechanism is called Accessi</text>
+    <text>bility Application</text>
+    <text></text>
+    <text>Programming Interface (API).</text>
+    <text> </text>
+    <text>Some of these accessibility settings are as follows</text>
+    <text></text>
+    <text>•</text>
+    <text> </text>
+    <text>Colours</text>
+    <text>: C</text>
+    <text>ontrast between background and foreground text, invert</text>
+    <text> </text>
+    <text>colours</text>
+    <text>,</text>
+    <text></text>
+    <text>large text, grayscale, mono audio</text>
+    <text>,</text>
+    <text> </text>
+    <text>etc.</text>
+    <text> </text>
+    <text>and it should be eyes friendly which are</text>
+    <text></text>
+    <text>e</text>
+    <text>asy and smooth for working with long hours on phone. Thus, it is expected</text>
+    <text></text>
+    <text>that</text>
+    <text> </text>
+    <text>specific</text>
+    <text> </text>
+    <text>design</text>
+    <text> </text>
+    <text>guidelines</text>
+    <text> </text>
+    <text>need</text>
+    <text> </text>
+    <text>to</text>
+    <text> </text>
+    <text>follow</text>
+    <text> </text>
+    <text>by</text>
+    <text> </text>
+    <text>the</text>
+    <text> </text>
+    <text>designers</text>
+    <text></text>
+    <text>(</text>
+    <text>https://www.w3.org/WAI/WCAG21/quickref/#use</text>
+    <text>-</text>
+    <text>of</text>
+    <text>-</text>
+    <text>color</text>
+    <text>)</text>
+    <text>.</text>
+    <text></text>
+    <text>•</text>
+    <text> </text>
+    <text>UI Labels</text>
+    <text>:</text>
+    <text> </text>
+    <text>Each element must have an accessible label</text>
+    <text> </text>
+    <text>as</text>
+    <text> </text>
+    <text>content</text>
+    <text>s i.e., text,</text>
+    <text></text>
+    <text>image</text>
+    <text>, button and</text>
+    <text> </text>
+    <text>any</text>
+    <text> </text>
+    <text>other controls.</text>
+    <text> </text>
+    <text>The</text>
+    <text> </text>
+    <text>embedding of text into images as</text>
+    <text></text>
+    <text>labels need to be avoided as it will be difficult for the screen readers.</text>
+    <text> </text>
+    <text>Following</text>
+    <text></text>
+    <text>points should be considered</text>
+    <text> </text>
+    <text>in</text>
+    <text> </text>
+    <text>creating</text>
+    <text> </text>
+    <text>label</text>
+    <text>s</text>
+    <text>:</text>
+    <text></text>
+    <text>o</text>
+    <text> </text>
+    <text>Precise and clear</text>
+    <text></text>
+    <text>o</text>
+    <text> </text>
+    <text>Update</text>
+    <text>d labels with additional feature</text>
+    <text></text>
+    <text>o</text>
+    <text> </text>
+    <text>Role and state information</text>
+    <text></text>
+    <text>o</text>
+    <text> </text>
+    <text>Label strings should be localised</text>
+    <text> </text>
+    <text>as per languages</text>
+  </page>
+  <page number="10">
+    <text>7</text>
+    <text></text>
+    <text>•</text>
+    <text> </text>
+    <text>Role information</text>
+    <text>:</text>
+    <text> </text>
+    <text>The</text>
+    <text> </text>
+    <text>e</text>
+    <text>lement</text>
+    <text>s should be clearly defined and i</text>
+    <text>dentified with</text>
+    <text></text>
+    <text>its look and feel which will also be helpful for persons with disability</text>
+    <text>.</text>
+    <text></text>
+    <text>•</text>
+    <text> </text>
+    <text>Grouping of related labels:</text>
+    <text> </text>
+    <text>The related elements may be grouped together for</text>
+    <text></text>
+    <text>eas</text>
+    <text>e of</text>
+    <text> </text>
+    <text>understanding</text>
+    <text> </text>
+    <text>and interpretation. This will avoid unnecessary stress</text>
+    <text></text>
+    <text>on fingers an</text>
+    <text>d eyes.</text>
+    <text></text>
+    <text>•</text>
+    <text> </text>
+    <text>Scrolling:</text>
+    <text> </text>
+    <text>The vertical and horizontal scrolling may be avoided and the design</text>
+    <text></text>
+    <text>should be responsive.</text>
+    <text></text>
+    <text>•</text>
+    <text> </text>
+    <text>Caption</text>
+    <text>: Text c</text>
+    <text>aption</text>
+    <text>s</text>
+    <text> </text>
+    <text>for audio and video contents or alternate text may be</text>
+    <text></text>
+    <text>mentioned</text>
+    <text> </text>
+    <text>in case of low bandwidth.</text>
+    <text></text>
+    <text>•</text>
+    <text> </text>
+    <text>Flashing content</text>
+    <text>:</text>
+    <text> </text>
+    <text>The</text>
+    <text> </text>
+    <text>contents should not</text>
+    <text> </text>
+    <text>have flashed</text>
+    <text> </text>
+    <text>more than three times</text>
+    <text></text>
+    <text>per second.</text>
+    <text></text>
+    <text>•</text>
+    <text> </text>
+    <text>Notifications and Error Messages</text>
+    <text>:</text>
+    <text> </text>
+    <text>The messages and notifications should be</text>
+    <text></text>
+    <text>precise and clear with self</text>
+    <text>-</text>
+    <text>contained meaning to the users and also ensured</text>
+    <text></text>
+    <text>that these notifications and messages</text>
+    <text> </text>
+    <text>are audible as well as can be read by</text>
+    <text></text>
+    <text>screen readers.</text>
+    <text></text>
+    <text>7.</text>
+    <text> </text>
+    <text>General Guidelines</text>
+    <text></text>
+    <text>i.</text>
+    <text> </text>
+    <text>Testing</text>
+    <text>:</text>
+    <text> </text>
+    <text>The app must be tested with various types of devices for its responses</text>
+    <text></text>
+    <text>with respect to different screen sizes and versions.</text>
+    <text></text>
+    <text>ii.</text>
+    <text> </text>
+    <text>Performance:</text>
+    <text> </text>
+    <text>Features should be avoided which takes longer time to respond</text>
+    <text></text>
+    <text>and download and also consumes lot of power.</text>
+    <text></text>
+    <text>iii.</text>
+    <text> </text>
+    <text>App Icons and other images</text>
+    <text>:</text>
+    <text> </text>
+    <text>F</text>
+    <text>ollowing links</text>
+    <text> </text>
+    <text>may be used for images and icons</text>
+    <text></text>
+    <text>specific</text>
+    <text> </text>
+    <text>to</text>
+    <text> </text>
+    <text>important</text>
+    <text> </text>
+    <text>mobile</text>
+    <text> </text>
+    <text>operating</text>
+    <text> </text>
+    <text>systems</text>
+    <text> </text>
+    <text>i.e.,</text>
+    <text> </text>
+    <text>Android</text>
+    <text></text>
+    <text>(</text>
+    <text>https://developer.android.com/distribute/best</text>
+    <text>-</text>
+    <text>practices/launch/store</text>
+    <text>-</text>
+    <text></text>
+    <text>listing.html</text>
+    <text>)</text>
+    <text> </text>
+    <text>and</text>
+    <text> </text>
+    <text>iOS</text>
+    <text> </text>
+    <text>(</text>
+    <text>https://d</text>
+    <text>eveloper.apple.com/app</text>
+    <text>-</text>
+    <text>store/insights/</text>
+    <text>).</text>
+    <text></text>
+    <text>iv.</text>
+    <text> </text>
+    <text>Specific c</text>
+    <text>ontent</text>
+    <text>s:</text>
+    <text> </text>
+    <text>The limited information with clear meaning need to be</text>
+    <text></text>
+    <text>mentioned in the apps to avoid cluttering of contents on the screen</text>
+    <text></text>
+    <text>a.</text>
+    <text> </text>
+    <text>N</text>
+    <text>ame of app, logo and Ministry</text>
+    <text> </text>
+    <text>/ Department Name and address</text>
+    <text></text>
+    <text>should be on first screen and the same may be avoided in other</text>
+    <text></text>
+    <text>subsequent screens</text>
+    <text>.</text>
+    <text></text>
+    <text>b.</text>
+    <text> </text>
+    <text>A link on first page clearly mention for “About the App” that specify</text>
+    <text></text>
+    <text>brief description,</text>
+    <text> </text>
+    <text>version</text>
+    <text> </text>
+    <text>/</text>
+    <text> </text>
+    <text>build of</text>
+    <text> </text>
+    <text>the app and various other</text>
+    <text></text>
+    <text>information such as contact informatio</text>
+    <text>n, ownership details, copyright</text>
+    <text></text>
+    <text>notice, terms of use, privacy statement etc.</text>
+    <text> </text>
+    <text>and ICAR Data Use License.</text>
+  </page>
+  <page number="11">
+    <text>8</text>
+    <text></text>
+    <text>v.</text>
+    <text> </text>
+    <text>Security</text>
+    <text>:</text>
+    <text> </text>
+    <text>The apps should be undergone with</text>
+    <text> </text>
+    <text>security audit and the backend</text>
+    <text></text>
+    <text>APIs</text>
+    <text> </text>
+    <text>through Cert</text>
+    <text>-</text>
+    <text>in empanelled vendors</text>
+    <text>.</text>
+    <text> </text>
+    <text>Following points may be considered</text>
+    <text></text>
+    <text>a.</text>
+    <text> </text>
+    <text>W</text>
+    <text>herever possible sensitive information must not</text>
+    <text> </text>
+    <text>be</text>
+    <text> </text>
+    <text>stored be on the</text>
+    <text></text>
+    <text>mobile.</text>
+    <text></text>
+    <text>b.</text>
+    <text> </text>
+    <text>Follow</text>
+    <text> </text>
+    <text>specific</text>
+    <text> </text>
+    <text>Security</text>
+    <text> </text>
+    <text>practices</text>
+    <text> </text>
+    <text>for</text>
+    <text> </text>
+    <text>Android</text>
+    <text></text>
+    <text>(</text>
+    <text>https://developer.android.com/training/articles/security</text>
+    <text>-</text>
+    <text>tips.html</text>
+    <text>)</text>
+    <text></text>
+    <text>and</text>
+    <text> </text>
+    <text>IOS</text>
+    <text> </text>
+    <text>(</text>
+    <text>https://developer.apple.com/security/</text>
+    <text>)</text>
+    <text>.</text>
+    <text></text>
+    <text>c.</text>
+    <text> </text>
+    <text>Only HTTPS</text>
+    <text> </text>
+    <text>settings will</text>
+    <text> </text>
+    <text>be</text>
+    <text> </text>
+    <text>permissible</text>
+    <text> </text>
+    <text>for</text>
+    <text> </text>
+    <text>APIs</text>
+    <text> </text>
+    <text>access.</text>
+    <text></text>
+    <text>vi.</text>
+    <text> </text>
+    <text>Data Capture for key eleme</text>
+    <text>nts</text>
+    <text>:</text>
+    <text> </text>
+    <text>The data capture for</text>
+    <text> </text>
+    <text>sensitive information</text>
+    <text></text>
+    <text>related</text>
+    <text> </text>
+    <text>to</text>
+    <text> </text>
+    <text>Aadhar, Voter</text>
+    <text>-</text>
+    <text>ID, PAN, Vehicle numbers, employee</text>
+    <text>-</text>
+    <text>id, beneficiary</text>
+    <text>-</text>
+    <text></text>
+    <text>id</text>
+    <text>,</text>
+    <text> </text>
+    <text>etc. may be read as QR CODE (2D Barcode) to</text>
+    <text> </text>
+    <text>avoid</text>
+    <text> </text>
+    <text>errors</text>
+    <text> </text>
+    <text>in typing and</text>
+    <text></text>
+    <text>extra precaution</text>
+    <text> </text>
+    <text>should be taken</text>
+    <text> </text>
+    <text>in making use of e</text>
+    <text>-</text>
+    <text>KYC</text>
+    <text> </text>
+    <text>details</text>
+    <text>.</text>
+    <text></text>
+    <text>vii.</text>
+    <text> </text>
+    <text>Application</text>
+    <text> </text>
+    <text>Development</text>
+    <text> </text>
+    <text>&amp;</text>
+    <text> </text>
+    <text>Re</text>
+    <text>-</text>
+    <text>Engineering</text>
+    <text> </text>
+    <text>Guidelines</text>
+    <text></text>
+    <text>(</text>
+    <text>https://www.meity.gov.in/writereaddata/files/Application_Development_R</text>
+    <text></text>
+    <text>e</text>
+    <text>-</text>
+    <text>Engin</text>
+    <text>eering_Guidelines_0.pdf</text>
+    <text>) may also be referred</text>
+    <text> </text>
+    <text>to ensure development</text>
+    <text></text>
+    <text>of Common Application Software (CAS) and to obviate duplication of efforts</text>
+    <text></text>
+    <text>8.</text>
+    <text> </text>
+    <text>Hosting of</text>
+    <text> </text>
+    <text>A</text>
+    <text>pps and APIs</text>
+    <text></text>
+    <text>i.</text>
+    <text> </text>
+    <text>Preferably, mobile apps and APIs should be hosted at ICAR Data Centre for</text>
+    <text></text>
+    <text>providing</text>
+    <text> </text>
+    <text>24*7 accessibility and availability.</text>
+    <text></text>
+    <text>ii.</text>
+    <text> </text>
+    <text>Security Audited APIs MUST be hosted in highly secure data</text>
+    <text> </text>
+    <text>centres</text>
+    <text> </text>
+    <text>equipped</text>
+    <text></text>
+    <text>with firewalls and other security features.</text>
+    <text></text>
+    <text>iii.</text>
+    <text> </text>
+    <text>Hosting service provider MUST provide 24</text>
+    <text>*</text>
+    <text>7 accesses to APIs and backend</text>
+    <text></text>
+    <text>databases.</text>
+    <text></text>
+    <text>iv.</text>
+    <text> </text>
+    <text>Appropriate</text>
+    <text> </text>
+    <text>disaster</text>
+    <text> </text>
+    <text>recovery</text>
+    <text> </text>
+    <text>site</text>
+    <text> </text>
+    <text>should</text>
+    <text> </text>
+    <text>be</text>
+    <text> </text>
+    <text>configured</text>
+    <text> </text>
+    <text>at</text>
+    <text> </text>
+    <text>different</text>
+    <text></text>
+    <text>geographical location to avoid disruption of service in case of natural or</text>
+    <text></text>
+    <text>manmade disasters.</text>
+    <text></text>
+    <text>v.</text>
+    <text> </text>
+    <text>API hosting service provider should also provide technical support and help to</text>
+    <text></text>
+    <text>the owner of the applicati</text>
+    <text>on.</text>
+    <text></text>
+    <text>vi.</text>
+    <text> </text>
+    <text>Adequate security measures must be built in the API to detect and discourage</text>
+    <text></text>
+    <text>unauthorized use of the APIs.</text>
+    <text></text>
+    <text>9.</text>
+    <text> </text>
+    <text>Privacy Policy</text>
+    <text></text>
+    <text>Privacy policy should be a carefully written</text>
+    <text> </text>
+    <text>with clear</text>
+    <text> </text>
+    <text>message with respect to</text>
+    <text></text>
+    <text>information collection,</text>
+    <text> </text>
+    <text>if any through the app.</text>
+    <text> </text>
+    <text>It should also clearly state the mobile</text>
+    <text></text>
+    <text>resources app</text>
+    <text> </text>
+    <text>which</text>
+    <text> </text>
+    <text>is</text>
+    <text> </text>
+    <text>being used during the usage of various services being provided</text>
+    <text></text>
+    <text>by the apps.</text>
+  </page>
+  <page number="12">
+    <text>9</text>
+    <text></text>
+    <text>•</text>
+    <text> </text>
+    <text>Consent:</text>
+    <text> </text>
+    <text>The consent of the users must be taken prior to use any information</text>
+    <text></text>
+    <text>related to specific users in any form. Generally, the personal information</text>
+    <text></text>
+    <text>should</text>
+    <text> </text>
+    <text>not to</text>
+    <text> </text>
+    <text>be disclosed to the third party to avoid any conflict.</text>
+    <text></text>
+    <text>•</text>
+    <text> </text>
+    <text>Changes:</text>
+    <text> </text>
+    <text>The</text>
+    <text> </text>
+    <text>Privacy Policy</text>
+    <text> </text>
+    <text>must</text>
+    <text> </text>
+    <text>be updated</text>
+    <text> </text>
+    <text>from time to time</text>
+    <text> </text>
+    <text>with recorded</text>
+    <text></text>
+    <text>reasons whatever it may be. It should also be placed somewhere in the app</text>
+    <text></text>
+    <text>preferable links on first page itself. The same can also be provided on website</text>
+    <text></text>
+    <text>associated with the apps with corresponding hyperlink.</text>
+    <text></text>
+    <text>•</text>
+    <text> </text>
+    <text>Contact us:</text>
+    <text> </text>
+    <text>The</text>
+    <text> </text>
+    <text>end user can contact the team through specific dedicated</text>
+    <text></text>
+    <text>email</text>
+    <text> </text>
+    <text>address for any query or clarification. This hosting organization should</text>
+    <text></text>
+    <text>keep</text>
+    <text> </text>
+    <text>track</text>
+    <text> </text>
+    <text>/</text>
+    <text> </text>
+    <text>check on this email address and addresses the concern raised by</text>
+    <text></text>
+    <text>the users.</text>
+    <text></text>
+    <text>•</text>
+    <text> </text>
+    <text>Any other:</text>
+    <text> </text>
+    <text>The details of the o</text>
+    <text>ther information or concern</text>
+    <text>s</text>
+    <text> </text>
+    <text>related to Privacy</text>
+    <text></text>
+    <text>Policy can be accessed from MeitY, Govt</text>
+    <text>.</text>
+    <text> </text>
+    <text>of India guidelines.</text>
+    <text></text>
+    <text>10.</text>
+    <text> </text>
+    <text>IPR and Copyright</text>
+    <text>s</text>
+    <text></text>
+    <text>The developed m</text>
+    <text>obile applications</text>
+    <text> </text>
+    <text>hosted</text>
+    <text> </text>
+    <text>on</text>
+    <text> </text>
+    <text>any</text>
+    <text> </text>
+    <text>Play stores</text>
+    <text> </text>
+    <text>should essentially follow</text>
+    <text></text>
+    <text>the IPR and Copyrights</text>
+    <text> </text>
+    <text>guidelines.</text>
+    <text> </text>
+    <text>An appropriate copyright notice</text>
+    <text> </text>
+    <text>will</text>
+    <text> </text>
+    <text>help</text>
+    <text> </text>
+    <text>to avoid</text>
+    <text></text>
+    <text>infringement</text>
+    <text> </text>
+    <text>/</text>
+    <text> </text>
+    <text>plagiarism of the app as well as</text>
+    <text> </text>
+    <text>its</text>
+    <text> </text>
+    <text>associated APIs.</text>
+    <text> </text>
+    <text>The statements can</text>
+    <text></text>
+    <text>be uploaded on respective play stores and b</text>
+    <text>efore launching an app</text>
+    <text>,</text>
+    <text> </text>
+    <text>get the app Name</text>
+    <text></text>
+    <text>and</text>
+    <text> </text>
+    <text>logo</text>
+    <text> </text>
+    <text>protected</text>
+    <text> </text>
+    <text>through</text>
+    <text> </text>
+    <text>IPR</text>
+    <text> </text>
+    <text>(</text>
+    <text>http://ipindia.gov.in/index.htm</text>
+    <text>).</text>
+    <text> </text>
+    <text>The</text>
+    <text> </text>
+    <text>support</text>
+    <text></text>
+    <text>specific</text>
+    <text> </text>
+    <text>to</text>
+    <text> </text>
+    <text>various</text>
+    <text> </text>
+    <text>platform</text>
+    <text> </text>
+    <text>can</text>
+    <text> </text>
+    <text>be</text>
+    <text> </text>
+    <text>further</text>
+    <text> </text>
+    <text>accessible</text>
+    <text> </text>
+    <text>from</text>
+    <text></text>
+    <text>https://support.google.com//le</text>
+    <text>gal/troubleshooter/1114905</text>
+    <text> </text>
+    <text>for Android and Apple</text>
+    <text></text>
+    <text>from</text>
+    <text> </text>
+    <text>https://www.apple.com/legal/internet</text>
+    <text>-</text>
+    <text>services/itunes/appstorenotices/#?</text>
+    <text></text>
+    <text>lang=en</text>
+    <text>.</text>
+    <text> </text>
+    <text>The sample</text>
+    <text> </text>
+    <text>Copyrigh</text>
+    <text>t</text>
+    <text> </text>
+    <text>P</text>
+    <text>olicy</text>
+    <text> </text>
+    <text>Statement can be prepared as follows:</text>
+    <text></text>
+    <text>“</text>
+    <text>Name Logo and design of the app is subject to copyright protection. The content may</text>
+    <text></text>
+    <text>be viewed</text>
+    <text> </text>
+    <text>/</text>
+    <text> </text>
+    <text>downloaded without requiring any specific prior permission. Any other</text>
+    <text></text>
+    <text>proposed use of the material is subject to</text>
+    <text> </text>
+    <text>the approval of (Name of Department).</text>
+    <text></text>
+    <text>Application for obtaining permission should be made to (email address of the</text>
+    <text></text>
+    <text>concerned Department).</text>
+    <text>”</text>
+    <text></text>
+    <text>The ICAR Guidelines for Intellectual Property Management &amp; Technology Transfer /</text>
+    <text></text>
+    <text>Commercialization (Revised 2018) ma</text>
+    <text>y be taken in account</text>
+    <text> </text>
+    <text>wherever required.</text>
+    <text></text>
+    <text>11.</text>
+    <text> </text>
+    <text>Terms and</text>
+    <text> </text>
+    <text>C</text>
+    <text>onditions</text>
+    <text></text>
+    <text>Terms &amp; Conditions shall address the Ownership Details, Usage Po</text>
+    <text>licy of Content,</text>
+    <text></text>
+    <text>Legal Aspects.</text>
+    <text> </text>
+    <text>The user must not use the app for any</text>
+    <text> </text>
+    <text>of</text>
+    <text> </text>
+    <text>the following</text>
+    <text> </text>
+    <text>activities:</text>
+    <text></text>
+    <text>•</text>
+    <text> </text>
+    <text>Unlawful, malicious or</text>
+    <text> </text>
+    <text>criminal activity;</text>
+  </page>
+  <page number="13">
+    <text>10</text>
+    <text></text>
+    <text>•</text>
+    <text> </text>
+    <text>Defamatory, harassing or threatening activity.</text>
+    <text></text>
+    <text>•</text>
+    <text> </text>
+    <text>Create disruption in service for other users of the app;</text>
+    <text></text>
+    <text>•</text>
+    <text> </text>
+    <text>Do</text>
+    <text> </text>
+    <text>not use the App in a way that may damage the App, the Service or the</text>
+    <text></text>
+    <text>systems and security.</text>
+    <text></text>
+    <text>Sample Terms and Conditions</text>
+    <text> </text>
+    <text>can be prepared as follows and it can be changed or</text>
+    <text></text>
+    <text>modified as per institute mandate and policy.</text>
+    <text></text>
+    <text>“</text>
+    <text>The App is designed, developed and maintained by (Name of the</text>
+    <text> </text>
+    <text>institute prefixed</text>
+    <text></text>
+    <text>with ICAR</text>
+    <text>)</text>
+    <text>, Ministry of Agriculture and Framer’s Welfare,</text>
+    <text> </text>
+    <text>Government of In</text>
+    <text>dia.</text>
+    <text></text>
+    <text>Though all efforts have been made to ensure the accuracy and currency of the content</text>
+    <text></text>
+    <text>on this app, the same should not be construed as a statement of law or used for any</text>
+    <text></text>
+    <text>legal purposes. In case of any ambiguity or doubts, users are advised to verify/ch</text>
+    <text>eck</text>
+    <text></text>
+    <text>with</text>
+    <text> </text>
+    <text>the</text>
+    <text> </text>
+    <text>Department(s)</text>
+    <text> </text>
+    <text>and/or</text>
+    <text> </text>
+    <text>other</text>
+    <text> </text>
+    <text>source(s),</text>
+    <text> </text>
+    <text>and</text>
+    <text> </text>
+    <text>to</text>
+    <text> </text>
+    <text>obtain</text>
+    <text> </text>
+    <text>appropriate</text>
+    <text></text>
+    <text>professional advice.</text>
+    <text></text>
+    <text>Under no circumstances will this</text>
+    <text> </text>
+    <text>institute</text>
+    <text>/organization</text>
+    <text> </text>
+    <text>be liable for any expense, loss</text>
+    <text></text>
+    <text>or damage including, without limitation, indirect or consequential los</text>
+    <text>s or damage, or</text>
+    <text></text>
+    <text>any expense, loss or damage whatsoever arising from use, or loss of use, of data,</text>
+    <text></text>
+    <text>arising out of or in connection with the use of this app. These terms and conditions</text>
+    <text></text>
+    <text>shall be governed by and construed in accordance with the Indian Laws. An</text>
+    <text>y dispute</text>
+    <text></text>
+    <text>arising under these terms and conditions shall be subject to the jurisdiction of the</text>
+    <text></text>
+    <text>courts of India.</text>
+    <text></text>
+    <text>You must not attempt to extract any source code from the App, disassemble it or</text>
+    <text></text>
+    <text>make any derivative versions, or attempt to interrupt or deciphe</text>
+    <text>r the transmissions</text>
+    <text></text>
+    <text>between the App and our systems.</text>
+    <text></text>
+    <text>The App and all copyright, database rights, and other intellectual property rights</text>
+    <text></text>
+    <text>related to it belong to us.</text>
+    <text>”</text>
+    <text></text>
+    <text>12.</text>
+    <text> </text>
+    <text>Feedback and Evaluation</text>
+    <text></text>
+    <text>P</text>
+    <text>OUR principle is being widely used to determine the functional</text>
+    <text> </text>
+    <text>accessibility of any IT</text>
+    <text></text>
+    <text>based application</text>
+    <text></text>
+    <text>•</text>
+    <text> </text>
+    <text>Perceivable:</text>
+    <text> </text>
+    <text>A user can identify content and interface elements through</text>
+    <text></text>
+    <text>senses such as visual, touch and sound etc. Some of these examples are</text>
+    <text></text>
+    <text>naming of labels in the form, color combination of text and backgroun</text>
+    <text>d, chart</text>
+    <text></text>
+    <text>without caption of data, unclear scanned PDF/images</text>
+    <text>,</text>
+    <text> </text>
+    <text>etc.</text>
+    <text></text>
+    <text>•</text>
+    <text> </text>
+    <text>Operable:</text>
+    <text> </text>
+    <text>A user is able to easily use various mouse/ touch screen controls for</text>
+    <text></text>
+    <text>easy navigation in selecting various menus/sub</text>
+    <text>-</text>
+    <text>menus options including</text>
+    <text></text>
+    <text>different keyboard short</text>
+    <text>-</text>
+    <text>cuts.</text>
+  </page>
+  <page number="14">
+    <text>11</text>
+    <text></text>
+    <text>•</text>
+    <text> </text>
+    <text>Understandable:</text>
+    <text> </text>
+    <text>The developed application must clearly follow design and</text>
+    <text></text>
+    <text>usage patterns including formatting. Some of the examples are uniformity in</text>
+    <text></text>
+    <text>terms of menus/sub</text>
+    <text>-</text>
+    <text>menus options in an easy to navigate manner, mouse an</text>
+    <text></text>
+    <text>over may specify the meaning of di</text>
+    <text>fficult terms/acronyms, form validation</text>
+    <text></text>
+    <text>with suitable message as pop</text>
+    <text>-</text>
+    <text>up or inline help etc.</text>
+    <text></text>
+    <text>•</text>
+    <text> </text>
+    <text>Robust:</text>
+    <text> </text>
+    <text>It means that application should follow compliant standards. The</text>
+    <text></text>
+    <text>compliance will provide the application to work in appropriate technologies,</text>
+    <text></text>
+    <text>platform, ope</text>
+    <text>rating systems, browsers</text>
+    <text>,</text>
+    <text> </text>
+    <text>etc. Some of these example</text>
+    <text>s</text>
+    <text> </text>
+    <text>are cross</text>
+    <text></text>
+    <text>browsers working, screen reader access, plug</text>
+    <text>-</text>
+    <text>in to play support, auto</text>
+    <text>-</text>
+    <text>fill</text>
+    <text></text>
+    <text>options, ways to interact with different type of inputs</text>
+    <text>,</text>
+    <text> </text>
+    <text>etc.</text>
+    <text></text>
+    <text>In this regard, these Mobile Apps needs to be independe</text>
+    <text>ntly evaluated with respect</text>
+    <text></text>
+    <text>to their developmental objective, contents, features and target stakeholder(s). This</text>
+    <text></text>
+    <text>will also help the users to receive the feedback in terms of relevance, quality, user</text>
+    <text></text>
+    <text>friendliness, content adequacy, usefulness</text>
+    <text>,</text>
+    <text> </text>
+    <text>etc. for furt</text>
+    <text>her improvements. The apps</text>
+    <text></text>
+    <text>will be evaluated by receiving the feedback from at least five subject matter experts</text>
+    <text></text>
+    <text>and possibly some stakeholders</text>
+    <text> </text>
+    <text>for contents and usefulness, relevance, quality and</text>
+    <text></text>
+    <text>user friendliness. The feedback will be compiled and shared</text>
+    <text> </text>
+    <text>with the developing</text>
+    <text></text>
+    <text>organization for its improvement so that it can be effectively and adequately used by</text>
+    <text></text>
+    <text>the designated stakeholders. The feedback and evaluation form is enclosed in</text>
+    <text></text>
+    <text>Annexure</text>
+    <text> </text>
+    <text>I</text>
+    <text> </text>
+    <text>&amp; II respectively</text>
+    <text>.</text>
+    <text></text>
+    <text>13.</text>
+    <text> </text>
+    <text>Security Guidelines for Mobile Applicat</text>
+    <text>ions</text>
+    <text></text>
+    <text>i.</text>
+    <text> </text>
+    <text>Mobile applications must be security audited</text>
+    <text> </text>
+    <text>through CERT</text>
+    <text>-</text>
+    <text>in empanelled</text>
+    <text></text>
+    <text>vendors</text>
+    <text> </text>
+    <text>initially and after every updates</text>
+    <text>,</text>
+    <text> </text>
+    <text>whenever</text>
+    <text>,</text>
+    <text> </text>
+    <text>new module/page is</text>
+    <text></text>
+    <text>added or modified or even with update in any functionality.</text>
+    <text> </text>
+    <text>Mobile Security</text>
+    <text></text>
+    <text>Testing Guide (MSTG) is also accessible from</text>
+    <text> </text>
+    <text>https://owasp.org/www</text>
+    <text>-</text>
+    <text>project</text>
+    <text>-</text>
+    <text></text>
+    <text>mobile</text>
+    <text>-</text>
+    <text>security</text>
+    <text>-</text>
+    <text>testing</text>
+    <text>-</text>
+    <text>guide/</text>
+    <text>.</text>
+    <text></text>
+    <text>ii.</text>
+    <text> </text>
+    <text>Incorporate</text>
+    <text> </text>
+    <text>security</text>
+    <text> </text>
+    <text>requirements</text>
+    <text> </text>
+    <text>at</text>
+    <text> </text>
+    <text>the</text>
+    <text> </text>
+    <text>design,</text>
+    <text> </text>
+    <text>develo</text>
+    <text>pment</text>
+    <text> </text>
+    <text>and</text>
+    <text></text>
+    <text>implementation phases.</text>
+    <text></text>
+    <text>iii.</text>
+    <text> </text>
+    <text>The custom database must be placed in hardened server and patches may be</text>
+    <text></text>
+    <text>updated time to time. These patches may be related to operating system or</text>
+    <text></text>
+    <text>database itself.</text>
+    <text></text>
+    <text>iv.</text>
+    <text> </text>
+    <text>Whenever any new release with respect to development kits,</text>
+    <text> </text>
+    <text>all components</text>
+    <text></text>
+    <text>should be hardened and recompile the app with latest stable (non</text>
+    <text>-</text>
+    <text>vulnerable)</text>
+    <text></text>
+    <text>release.</text>
+  </page>
+  <page number="15">
+    <text>12</text>
+    <text></text>
+    <text>v.</text>
+    <text> </text>
+    <text>Effectively monitor the performance related to transaction and logs to keep</text>
+    <text></text>
+    <text>check on any intrusion or attack by configuring system logs on server, e.g.</text>
+    <text></text>
+    <text>We</text>
+    <text>b</text>
+    <text>-</text>
+    <text>Access logs, Application Logs, Security Logs</text>
+    <text>,</text>
+    <text> </text>
+    <text>etc.</text>
+    <text></text>
+    <text>vi.</text>
+    <text> </text>
+    <text>Ensure proper backups of application, database, logs on a segregated server</text>
+    <text></text>
+    <text>(preferable on disconnected server or physical storage devices)</text>
+    <text></text>
+    <text>vii.</text>
+    <text> </text>
+    <text>Whenever any suspicious/intrusion incident is detected, kindly</text>
+    <text> </text>
+    <text>block the site</text>
+    <text></text>
+    <text>for financial transaction and report incident to Incident handling agency.</text>
+    <text></text>
+    <text>viii.</text>
+    <text> </text>
+    <text>The detailed guideline and checklist issued by NIC mentioned in annexure.</text>
+    <text></text>
+    <text>The detailed guidelines can be accessed from</text>
+    <text> </text>
+    <text>https://web.guidelines.gov.in/</text>
+    <text>.</text>
+    <text></text>
+    <text>14.</text>
+    <text> </text>
+    <text>Important Resources and Validation Tools</text>
+    <text></text>
+    <text>•</text>
+    <text> </text>
+    <text>Validation tools are used to check the code for standards compliance. HTML</text>
+    <text></text>
+    <text>validators, CSS validators and broken link (or dead links) checkers are few such</text>
+    <text></text>
+    <text>tools. Some</text>
+    <text> </text>
+    <text>validation tools are</text>
+    <text>;</text>
+    <text></text>
+    <text>o</text>
+    <text> </text>
+    <text>http://validator.w3.org</text>
+    <text> </text>
+    <text>(HTML)</text>
+    <text></text>
+    <text>o</text>
+    <text> </text>
+    <text>http://jigsaw.w3.org/css</text>
+    <text>-</text>
+    <text>validator</text>
+    <text> </text>
+    <text>(CSS)</text>
+    <text></text>
+    <text>o</text>
+    <text> </text>
+    <text>http://www.cssportal.com/css</text>
+    <text>-</text>
+    <text>validator</text>
+    <text> </text>
+    <text>(CSS)</text>
+    <text>,</text>
+    <text></text>
+    <text>http://validator.w3.org/checklink</text>
+    <text> </text>
+    <text>(Broken Links)</text>
+    <text></text>
+    <text>•</text>
+    <text> </text>
+    <text>Accessibility compliance of the Website may be checked from</text>
+    <text>;</text>
+    <text></text>
+    <text>o</text>
+    <text> </text>
+    <text>http://wave.webaim.org/</text>
+    <text></text>
+    <text>o</text>
+    <text> </text>
+    <text>http://www.etre.com/tools/accessibilitycheck/</text>
+    <text></text>
+    <text>o</text>
+    <text> </text>
+    <text>http://www.stanford.edu/group/accessibility/cgi</text>
+    <text>-</text>
+    <text></text>
+    <text>bin/accessibilitychecker/checker/index.php</text>
+    <text></text>
+    <text>•</text>
+    <text> </text>
+    <text>The Guidelines for Indian Government Websites website complies with World</text>
+    <text></text>
+    <text>Wide Web Consortium (W3C) Web Content Accessibility Guid</text>
+    <text>elines (WCAG)</text>
+    <text></text>
+    <text>2.0 level AA.</text>
+    <text></text>
+    <text>•</text>
+    <text> </text>
+    <text>The following links may be visited for assistive technologies and screen readers</text>
+    <text></text>
+    <text>to address various impairments like Visual, Hearing, Mobility, and Learning</text>
+    <text></text>
+    <text>impairment</text>
+    <text></text>
+    <text>o</text>
+    <text> </text>
+    <text>www.freed</text>
+    <text>omscientific.com</text>
+    <text></text>
+    <text>o</text>
+    <text> </text>
+    <text>www.spectronicsinoz.com</text>
+    <text></text>
+    <text>o</text>
+    <text> </text>
+    <text>www.gwmicro.com</text>
+  </page>
+  <page number="16">
+    <text>13</text>
+    <text></text>
+    <text>•</text>
+    <text> </text>
+    <text>The information related to different screen readers, such as JAWS, NVDA,</text>
+    <text></text>
+    <text>SAFA, Supernova and Window</text>
+    <text>-</text>
+    <text>Eyes can</text>
+    <text> </text>
+    <text>be accessible from:</text>
+    <text></text>
+    <text>o</text>
+    <text> </text>
+    <text>Non Visual Desktop Access (NVDA) fro</text>
+    <text>m</text>
+    <text> </text>
+    <text>http://www.nvda</text>
+    <text>-</text>
+    <text>project.org/</text>
+    <text></text>
+    <text>(free)</text>
+    <text></text>
+    <text>o</text>
+    <text> </text>
+    <text>System Access To Go from</text>
+    <text> </text>
+    <text>http://www.satogo.com/</text>
+    <text> </text>
+    <text>(</text>
+    <text>Free)</text>
+    <text></text>
+    <text>o</text>
+    <text> </text>
+    <text>Hal</text>
+    <text> </text>
+    <text>http://www.yourdolphin.co.uk/productdetail.asp?id=5</text>
+    <text></text>
+    <text>(Commercial)</text>
+    <text></text>
+    <text>o</text>
+    <text> </text>
+    <text>JAWS</text>
+    <text> </text>
+    <text>http://www.freedomscientific.com/jaws</text>
+    <text>-</text>
+    <text>hq.asp</text>
+    <text> </text>
+    <text>(Commercial)</text>
+    <text></text>
+    <text>o</text>
+    <text> </text>
+    <text>Supernova</text>
+    <text> </text>
+    <text>http://www.yourdolphin.co.uk/productdetail.asp?id=1</text>
+    <text></text>
+    <text>(Commercial)</text>
+    <text></text>
+    <text>o</text>
+    <text> </text>
+    <text>Window</text>
+    <text>-</text>
+    <text>Eyes</text>
+    <text> </text>
+    <text>http://www.gwmicro.com/Window</text>
+    <text>-</text>
+    <text>Eyes/</text>
+    <text> </text>
+    <text>(Commercial)</text>
+    <text></text>
+    <text>15.</text>
+    <text> </text>
+    <text>Template for</text>
+    <text> </text>
+    <text>M</text>
+    <text>obile apps</text>
+    <text></text>
+    <text>i.</text>
+    <text> </text>
+    <text>The mobile app should be developed by fo</text>
+    <text>llowing responsive design and</text>
+    <text></text>
+    <text>scrolling option need to be avoided as far as possible.</text>
+    <text></text>
+    <text>ii.</text>
+    <text> </text>
+    <text>Front page must have</text>
+    <text> </text>
+    <text>at least</text>
+    <text> </text>
+    <text>three panels and these panels should mention</text>
+    <text></text>
+    <text>the following</text>
+    <text></text>
+    <text>a.</text>
+    <text> </text>
+    <text>Top panel will contain the logo of ICAR, Indian Council of Agricultural</text>
+    <text></text>
+    <text>Research,</text>
+    <text> </text>
+    <text>Name of the App in bilingual (Hindi and English)</text>
+    <text></text>
+    <text>b.</text>
+    <text> </text>
+    <text>Centre panel will contain the description by showing the background</text>
+    <text></text>
+    <text>image of related operations/field/farm/promising technology etc. This</text>
+    <text></text>
+    <text>section may also contain brief options for further browsing of the a</text>
+    <text>pp.</text>
+    <text></text>
+    <text>Option for language will also be put into this panel, if the mobile apps</text>
+    <text></text>
+    <text>support multiple languages.</text>
+    <text></text>
+    <text>c.</text>
+    <text> </text>
+    <text>Bottom panel need to specify the name of the department and</text>
+    <text> </text>
+    <text>the</text>
+    <text></text>
+    <text>I</text>
+    <text>nstitute including its complete address. The links for social media URLs</text>
+    <text></text>
+    <text>may also be provided in this section including copyrights, terms &amp;</text>
+    <text></text>
+    <text>conditions,</text>
+    <text> </text>
+    <text>disclaimer, contact us</text>
+    <text>,</text>
+    <text> </text>
+    <text>etc.</text>
+    <text></text>
+    <text>iii.</text>
+    <text> </text>
+    <text>All figures, images, pics, line diagrams should be original to avoid any</text>
+    <text></text>
+    <text>co</text>
+    <text>pyrights issue. The pictures should be light in size by applying suitable image</text>
+    <text></text>
+    <text>and video compression mechanism.</text>
+    <text></text>
+    <text>iv.</text>
+    <text> </text>
+    <text>All contents need to be verified and relevant source of the information may</text>
+    <text></text>
+    <text>also be indicated wherever required.</text>
+  </page>
+  <page number="17">
+    <text>14</text>
+    <text></text>
+    <text>Annexure I</text>
+    <text></text>
+    <text>Feedback</text>
+    <text> </text>
+    <text>and Evaluation</text>
+    <text> </text>
+    <text>Form</text>
+    <text></text>
+    <text>The feedback form has been designed in the form of sma</text>
+    <text>ll questionnaire. It is</text>
+    <text></text>
+    <text>expected that the evaluators will download the app and use the app. Based on</text>
+    <text> </text>
+    <text>ones</text>
+    <text></text>
+    <text>experience, the rating on five point scale ( 5=Excellent, 4=Very Good, 3=Good, 2=Fair,</text>
+    <text></text>
+    <text>1=Poor, 0=Not useful or NA) can be given</text>
+    <text> </text>
+    <text>based on its Relevance, Quality, User</text>
+    <text></text>
+    <text>friendliness, Content adequacy and Usefulness on five point scale.</text>
+    <text> </text>
+    <text>The information of</text>
+    <text></text>
+    <text>the</text>
+    <text> </text>
+    <text>evaluators will be kept confidential and not shared with anyone.</text>
+    <text> </text>
+    <text>The form has</text>
+    <text></text>
+    <text>been divided in five sections excluding basic information.</text>
+    <text></text>
+    <text>Basic Information:</text>
+    <text></text>
+    <text>1.</text>
+    <text> </text>
+    <text>Name of the Mobile App:</text>
+    <text></text>
+    <text>2.</text>
+    <text> </text>
+    <text>Name(s) of the developer(s):</text>
+    <text></text>
+    <text>3.</text>
+    <text> </text>
+    <text>Name and address of the developer Institution/organization:</text>
+    <text></text>
+    <text>4.</text>
+    <text> </text>
+    <text>Name of the evaluator(s):</text>
+    <text></text>
+    <text>5.</text>
+    <text> </text>
+    <text>Name and address of the evaluator</text>
+    <text>’s</text>
+    <text> </text>
+    <text>Institution/organization:</text>
+    <text></text>
+    <text>6.</text>
+    <text> </text>
+    <text>Designation of respondent:</text>
+    <text></text>
+    <text>7.</text>
+    <text> </text>
+    <text>Subject Discipline of respondent:</text>
+    <text></text>
+    <text>8.</text>
+    <text> </text>
+    <text>Gender:</text>
+    <text></text>
+    <text>9.</text>
+    <text> </text>
+    <text>Age:</text>
+    <text></text>
+    <text>10.</text>
+    <text> </text>
+    <text>Frequency of usage</text>
+    <text>:</text>
+    <text></text>
+    <text>11.</text>
+    <text> </text>
+    <text>Period of</text>
+    <text> </text>
+    <text>evaluation (In terms of usage):</text>
+    <text></text>
+    <text>12.</text>
+    <text> </text>
+    <text>Target User(s)</text>
+    <text> </text>
+    <text>of the app</text>
+    <text>:</text>
+    <text></text>
+    <text>a.</text>
+    <text> </text>
+    <text>Farmers</text>
+    <text></text>
+    <text>b.</text>
+    <text> </text>
+    <text>Students</text>
+    <text></text>
+    <text>c.</text>
+    <text> </text>
+    <text>Extension professionals</text>
+    <text></text>
+    <text>d.</text>
+    <text> </text>
+    <text>Vendors/Retailers</text>
+    <text></text>
+    <text>e.</text>
+    <text> </text>
+    <text>Researchers</text>
+    <text></text>
+    <text>f.</text>
+    <text> </text>
+    <text>Research Organizations</text>
+    <text></text>
+    <text>g.</text>
+    <text> </text>
+    <text>Research mangers</text>
+    <text></text>
+    <text>h.</text>
+    <text> </text>
+    <text>Policy makers</text>
+    <text></text>
+    <text>i.</text>
+    <text> </text>
+    <text>Others (Specify)</text>
+  </page>
+  <page number="18">
+    <text>15</text>
+    <text></text>
+    <text>The app can be assessed based on its</text>
+    <text> </text>
+    <text>Relevance, Quali</text>
+    <text>ty, User friendliness, Content</text>
+    <text></text>
+    <text>adequacy</text>
+    <text> </text>
+    <text>and</text>
+    <text> </text>
+    <text>Usefulness</text>
+    <text> </text>
+    <text>on five point scale ( 5=Excellent, 4=Very Good, 3=Good,</text>
+    <text></text>
+    <text>2=Fair, 1=Poor, 0=Not useful or NA). This will determine the rating of mobile apps with</text>
+    <text></text>
+    <text>respect to different attributes/functionalities and</text>
+    <text> </text>
+    <text>expected usage.</text>
+    <text></text>
+    <text>S.</text>
+    <text> </text>
+    <text>No.</text>
+    <text> </text>
+    <text>Attribute/Functionality</text>
+    <text> </text>
+    <text>Rating</text>
+    <text></text>
+    <text>A.</text>
+    <text> </text>
+    <text>User friendliness</text>
+    <text></text>
+    <text>1.</text>
+    <text> </text>
+    <text>Easy to use/operate</text>
+    <text></text>
+    <text>Easy</text>
+    <text> </text>
+    <text>to learn or understand.</text>
+    <text></text>
+    <text>2.</text>
+    <text> </text>
+    <text>User interface</text>
+    <text></text>
+    <text>App design</text>
+    <text> </text>
+    <text>makes the</text>
+    <text> </text>
+    <text>user&apos;s</text>
+    <text> </text>
+    <text>interaction as simple and</text>
+    <text></text>
+    <text>efficient .</text>
+    <text></text>
+    <text>3.</text>
+    <text> </text>
+    <text>Presentation and design</text>
+    <text></text>
+    <text>The</text>
+    <text> </text>
+    <text>content in</text>
+    <text> </text>
+    <text>the mobile app is presented beautifully</text>
+    <text></text>
+    <text>4.</text>
+    <text> </text>
+    <text>User Navigation and controls</text>
+    <text></text>
+    <text>D</text>
+    <text>ifferent choices of input are available for selecting or</text>
+    <text></text>
+    <text>choosing the desired options</text>
+    <text>.</text>
+    <text></text>
+    <text>B.</text>
+    <text> </text>
+    <text>Contents</text>
+    <text></text>
+    <text>5.</text>
+    <text> </text>
+    <text>Flow of information</text>
+    <text></text>
+    <text>Mobile app is</text>
+    <text> </text>
+    <text>easy to navigate allows users to find the</text>
+    <text></text>
+    <text>content they&apos;re looking for much faster.</text>
+    <text></text>
+    <text>6.</text>
+    <text> </text>
+    <text>Adequacy of content</text>
+    <text>s</text>
+    <text></text>
+    <text>M</text>
+    <text>obile app has sufficient content that is needed for</text>
+    <text></text>
+    <text>purpose</text>
+    <text> </text>
+    <text>desired</text>
+    <text> </text>
+    <text>knowledge</text>
+    <text></text>
+    <text>7.</text>
+    <text> </text>
+    <text>Uniqueness of contents with respect to other sources</text>
+    <text></text>
+    <text>M</text>
+    <text>obile app</text>
+    <text> </text>
+    <text>has unique features that other app don’t have</text>
+    <text>.</text>
+    <text></text>
+    <text>8.</text>
+    <text> </text>
+    <text>Updation of</text>
+    <text> </text>
+    <text>contents</text>
+    <text></text>
+    <text>Apps</text>
+    <text> </text>
+    <text>is</text>
+    <text> </text>
+    <text>updated on a regular basis to keep them fresh and</text>
+    <text></text>
+    <text>functioning.</text>
+    <text></text>
+    <text>9.</text>
+    <text> </text>
+    <text>Redundant and duplicate contents</text>
+    <text></text>
+    <text>There is</text>
+    <text> </text>
+    <text>repetitive ness</text>
+    <text> </text>
+    <text>and duplication of</text>
+    <text> </text>
+    <text>content in the</text>
+    <text></text>
+    <text>mobile app</text>
+    <text>.</text>
+    <text></text>
+    <text>C.</text>
+    <text> </text>
+    <text>Usefulness</text>
+    <text></text>
+    <text>10.</text>
+    <text> </text>
+    <text>Useful</text>
+    <text> </text>
+    <text>to</text>
+    <text> </text>
+    <text>designated</text>
+    <text> </text>
+    <text>stakeholders</text>
+    <text></text>
+    <text>M</text>
+    <text>obile app is useful to stakeholders</text>
+    <text> </text>
+    <text>for all</text>
+    <text> </text>
+    <text>practical</text>
+    <text></text>
+    <text>purpose.</text>
+    <text></text>
+    <text>11.</text>
+    <text> </text>
+    <text>Ability to communicate</text>
+    <text> </text>
+    <text>and convey</text>
+    <text> </text>
+    <text>information</text>
+    <text></text>
+    <text>M</text>
+    <text>obile app is successful to communicate information to</text>
+    <text></text>
+    <text>users</text>
+    <text>.</text>
+    <text></text>
+    <text>12.</text>
+    <text> </text>
+    <text>Extent of two way</text>
+    <text> </text>
+    <text>communication</text>
+    <text></text>
+    <text>M</text>
+    <text>obile app is successful</text>
+    <text>ly</text>
+    <text> </text>
+    <text>to</text>
+    <text> </text>
+    <text>transmit information</text>
+    <text> </text>
+    <text>both</text>
+    <text></text>
+    <text>ways.</text>
+  </page>
+  <page number="19">
+    <text>16</text>
+    <text></text>
+    <text>This will determine the rating of mobile apps with respect to different</text>
+    <text> </text>
+    <text>a</text>
+    <text>ttributes/</text>
+    <text></text>
+    <text>functionalities and expected usage.</text>
+    <text></text>
+    <text>13.</text>
+    <text> </text>
+    <text>Purposefulness for target users</text>
+    <text></text>
+    <text>The mobile app is able to address desired purpose of the</text>
+    <text></text>
+    <text>user</text>
+    <text></text>
+    <text>D.</text>
+    <text> </text>
+    <text>Relevance</text>
+    <text></text>
+    <text>14.</text>
+    <text> </text>
+    <text>Relevancy with respect to developers</text>
+    <text></text>
+    <text>The</text>
+    <text> </text>
+    <text>mobile app has Relevancy</text>
+    <text> </text>
+    <text>with respect to developers</text>
+    <text>.</text>
+    <text></text>
+    <text>15.</text>
+    <text> </text>
+    <text>Relevance with respect to stakeholders</text>
+    <text></text>
+    <text>The</text>
+    <text> </text>
+    <text>mobile app</text>
+    <text> </text>
+    <text>has relevance with respect to</text>
+    <text> </text>
+    <text>stakeholders</text>
+    <text>.</text>
+    <text></text>
+    <text>16.</text>
+    <text> </text>
+    <text>Updates Frequency</text>
+    <text></text>
+    <text>It has</text>
+    <text> </text>
+    <text>provision of making updates</text>
+    <text></text>
+    <text>17.</text>
+    <text> </text>
+    <text>Too much or insufficient information</text>
+    <text></text>
+    <text>I</text>
+    <text>nformation</text>
+    <text> </text>
+    <text>content in this app is</text>
+    <text> </text>
+    <text>crisp and easy to</text>
+    <text></text>
+    <text>understand</text>
+    <text>.</text>
+    <text></text>
+    <text>E.</text>
+    <text> </text>
+    <text>Quality</text>
+    <text></text>
+    <text>18.</text>
+    <text> </text>
+    <text>Searching facility</text>
+    <text></text>
+    <text>S</text>
+    <text>earch option available for desired contents</text>
+    <text>.</text>
+    <text></text>
+    <text>19.</text>
+    <text> </text>
+    <text>Responsive</text>
+    <text>ness</text>
+    <text></text>
+    <text>The goal of responsive design is to detect the visitor&apos;s screen</text>
+    <text></text>
+    <text>size and orientation and change the layout</text>
+    <text> </text>
+    <text>accordingly.</text>
+    <text></text>
+    <text>20.</text>
+    <text> </text>
+    <text>Response time</text>
+    <text></text>
+    <text>Response time is the time taken by the mobile app to</text>
+    <text></text>
+    <text>respond to the server.</text>
+    <text></text>
+    <text>21.</text>
+    <text> </text>
+    <text>Feedback Mechanism</text>
+    <text></text>
+    <text>T</text>
+    <text>he mobile app has feedback mechanism for</text>
+    <text> </text>
+    <text>encouraging</text>
+    <text></text>
+    <text>users to directly state what they think about the app</text>
+    <text>.</text>
+    <text></text>
+    <text>22.</text>
+    <text> </text>
+    <text>Sending aler</text>
+    <text>ts on updates</text>
+    <text></text>
+    <text>23.</text>
+    <text> </text>
+    <text>Frequently ask questions (FAQs)</text>
+    <text></text>
+    <text>24.</text>
+    <text> </text>
+    <text>Q</text>
+    <text>uery/feedback redressal time</text>
+    <text></text>
+    <text>F.</text>
+    <text> </text>
+    <text>Others</text>
+    <text> </text>
+    <text>(Pl. provide your suggestions for its improvement)</text>
+    <text></text>
+    <text>25.</text>
+    <text> </text>
+    <text>Suggest additional features/information which needs to be</text>
+    <text></text>
+    <text>incorporated</text>
+    <text></text>
+    <text>26.</text>
+    <text> </text>
+    <text>Suggest features/information which are</text>
+    <text> </text>
+    <text>not relevant and is</text>
+    <text></text>
+    <text>to be discarded</text>
+    <text></text>
+    <text>27.</text>
+    <text> </text>
+    <text>Any other relevant observation</text>
+    <text></text>
+    <text>28.</text>
+    <text> </text>
+    <text>Overall observation about the Mobile App</text>
+    <text></text>
+    <text>29.</text>
+    <text> </text>
+    <text>Will recommend to designated stakeholders/users</text>
+  </page>
+  <page number="20">
+    <text>17</text>
+    <text></text>
+    <text>Annexure</text>
+    <text>-</text>
+    <text>II</text>
+    <text></text>
+    <text>Users Feedback Questionnaire for ICAR Mobile Apps</text>
+    <text></text>
+    <text>The feedback Questionnaire has been designed in the form of small questionnaires.</text>
+    <text></text>
+    <text>This questionnaire is to be filled by the surveyor based on the response from the user.</text>
+    <text></text>
+    <text>Based on users experience, the rating on five point scale ( 5=Excellent, 4=Very Good,</text>
+    <text></text>
+    <text>3=Good, 2=Fair, 1=Poor, 0=Not useful or NA) can be given at the end. User can be</text>
+    <text></text>
+    <text>farmer, researcher, policy maker or any other stakeholder of the Mobile App.</text>
+    <text></text>
+    <text>Separate form will be filled for each of the mobile apps of ICAR used by the user.</text>
+    <text></text>
+    <text>Basic Informa</text>
+    <text>tion of User:</text>
+    <text></text>
+    <text>1.</text>
+    <text> </text>
+    <text>Name:</text>
+    <text></text>
+    <text>2.</text>
+    <text> </text>
+    <text>Fathers Name:</text>
+    <text></text>
+    <text>3.</text>
+    <text> </text>
+    <text>Address:</text>
+    <text></text>
+    <text>4.</text>
+    <text> </text>
+    <text>Gender:</text>
+    <text></text>
+    <text>5.</text>
+    <text> </text>
+    <text>Age:</text>
+    <text></text>
+    <text>6.</text>
+    <text> </text>
+    <text>Primary occupation:</text>
+    <text></text>
+    <text>Basic Information of surveyor:</text>
+    <text></text>
+    <text>1.</text>
+    <text> </text>
+    <text>Name:</text>
+    <text></text>
+    <text>2.</text>
+    <text> </text>
+    <text>Address:</text>
+    <text></text>
+    <text>3.</text>
+    <text> </text>
+    <text>Designation:</text>
+    <text></text>
+    <text>S.No.</text>
+    <text> </text>
+    <text>Question</text>
+    <text> </text>
+    <text>Response</text>
+    <text></text>
+    <text>1.</text>
+    <text> </text>
+    <text>Are you using any mobile app developed by ICAR?</text>
+    <text> </text>
+    <text>Yes/No</text>
+    <text></text>
+    <text>2.</text>
+    <text></text>
+    <text>If answer for question 1 is</text>
+    <text> </text>
+    <text>YES</text>
+    <text>, then please list the</text>
+    <text></text>
+    <text>name(s) of mobile app(s). If answer is</text>
+    <text> </text>
+    <text>NO</text>
+    <text> </text>
+    <text>then no</text>
+    <text></text>
+    <text>need fill the following sections</text>
+    <text></text>
+    <text>3.</text>
+    <text> </text>
+    <text>Name of the Mobile App</text>
+    <text></text>
+    <text>4.</text>
+    <text> </text>
+    <text>Average per week frequency of access the above</text>
+    <text></text>
+    <text>mobile app.</text>
+  </page>
+  <page number="21">
+    <text>18</text>
+    <text></text>
+    <text>S.No.</text>
+    <text> </text>
+    <text>Question</text>
+    <text> </text>
+    <text>Response</text>
+    <text></text>
+    <text>Please rate the above Mobile</text>
+    <text> </text>
+    <text>App on scale of 1 to 5 with respect to following</text>
+    <text></text>
+    <text>attributes</text>
+    <text></text>
+    <text>User friendliness</text>
+    <text></text>
+    <text>1.</text>
+    <text> </text>
+    <text>Easy to use/operate</text>
+    <text></text>
+    <text>Easy</text>
+    <text> </text>
+    <text>to learn or understand.</text>
+    <text></text>
+    <text>2.</text>
+    <text> </text>
+    <text>User interface</text>
+    <text></text>
+    <text>App design</text>
+    <text> </text>
+    <text>makes the</text>
+    <text> </text>
+    <text>user&apos;s</text>
+    <text> </text>
+    <text>interaction as simple</text>
+    <text></text>
+    <text>and efficient .</text>
+    <text></text>
+    <text>3.</text>
+    <text> </text>
+    <text>Presentation and design</text>
+    <text></text>
+    <text>Content in</text>
+    <text> </text>
+    <text>the mobile app is presented beautifully.</text>
+    <text></text>
+    <text>4.</text>
+    <text> </text>
+    <text>User Navigation and controls</text>
+    <text></text>
+    <text>Different choices of input are available for selecting</text>
+    <text></text>
+    <text>or choosing the desired options.</text>
+    <text></text>
+    <text>Contents</text>
+    <text></text>
+    <text>5.</text>
+    <text> </text>
+    <text>Flow of information</text>
+    <text></text>
+    <text>Mobile app is</text>
+    <text> </text>
+    <text>easy to navigate allows users to find</text>
+    <text></text>
+    <text>the content they&apos;re looking for much faster.</text>
+    <text></text>
+    <text>6.</text>
+    <text> </text>
+    <text>Adequacy of contents</text>
+    <text></text>
+    <text>Mobile app has sufficient content that is needed for</text>
+    <text></text>
+    <text>purpose concerned</text>
+    <text> </text>
+    <text>knowledge.</text>
+    <text></text>
+    <text>7.</text>
+    <text> </text>
+    <text>Redundant and duplicate contents</text>
+    <text></text>
+    <text>Repetitiveness in the</text>
+    <text> </text>
+    <text>content in the mobile app.</text>
+    <text></text>
+    <text>Usefulness</text>
+    <text></text>
+    <text>8.</text>
+    <text> </text>
+    <text>Useful to designated stakeholders</text>
+    <text></text>
+    <text>Mobile app is useful</text>
+    <text></text>
+    <text>9.</text>
+    <text> </text>
+    <text>Purposefulness for users</text>
+    <text></text>
+    <text>Solve the purpose of the user</text>
+    <text></text>
+    <text>Quality</text>
+    <text></text>
+    <text>10.</text>
+    <text> </text>
+    <text>Searching facility</text>
+    <text></text>
+    <text>Search option available for desired contents</text>
+    <text></text>
+    <text>11.</text>
+    <text> </text>
+    <text>Response time</text>
+    <text></text>
+    <text>Response time is the time taken by the mobile app</text>
+    <text></text>
+    <text>12.</text>
+    <text> </text>
+    <text>Feedback Mechanism</text>
+    <text></text>
+    <text>Mobile app has feedback mechanism</text>
+    <text></text>
+    <text>13.</text>
+    <text> </text>
+    <text>Sending alerts on updates</text>
+    <text></text>
+    <text>14.</text>
+    <text> </text>
+    <text>Frequently ask questions (FAQs)</text>
+    <text></text>
+    <text>15.</text>
+    <text> </text>
+    <text>Overall observation about the Mobile App</text>
+    <text></text>
+    <text>Others</text>
+    <text> </text>
+    <text>(Pl. provide your</text>
+    <text> </text>
+    <text>suggestions for its improvement)</text>
+    <text></text>
+    <text>16.</text>
+    <text> </text>
+    <text>Suggest additional features/information which</text>
+    <text></text>
+    <text>needs to be incorporated</text>
+    <text></text>
+    <text>17.</text>
+    <text> </text>
+    <text>Suggest features/information which are not</text>
+    <text></text>
+    <text>relevant and is to be discarded</text>
+    <text></text>
+    <text>18.</text>
+    <text> </text>
+    <text>Any other relevant observation</text>
+  </page>
+  <page number="22">
+    <text>19</text>
+    <text></text>
+    <text>Annexure III</text>
+    <text></text>
+    <text>INDIAN COUNCIL OF</text>
+    <text> </text>
+    <text>AGRICULTURAL RESEARCH</text>
+    <text></text>
+    <text>NEW DELHI</text>
+    <text></text>
+    <text>Format for approval of developed mobile apps/ Web application from Council.</text>
+    <text></text>
+    <text>Please provide information in the given format for approval of</text>
+    <text> </text>
+    <text>mobile app/ web</text>
+    <text></text>
+    <text>application by the Council.</text>
+    <text></text>
+    <text>Basic Information:</text>
+    <text></text>
+    <text>1.</text>
+    <text> </text>
+    <text>Name of the</text>
+    <text> </text>
+    <text>Mobile App/ Web Application:</text>
+    <text></text>
+    <text>2.</text>
+    <text> </text>
+    <text>Name(s) of the developer(s):</text>
+    <text></text>
+    <text>3.</text>
+    <text> </text>
+    <text>Universal Resource Locator (Url) address:</text>
+    <text></text>
+    <text>4.</text>
+    <text> </text>
+    <text>Name and address of the developer Institution (s)/organization(s):</text>
+    <text></text>
+    <text>5.</text>
+    <text> </text>
+    <text>Target User(s) of the Mobile app/ Web application (Please circle relevant</text>
+    <text></text>
+    <text>option(s):</text>
+    <text></text>
+    <text>a.</text>
+    <text> </text>
+    <text>Farmers</text>
+    <text></text>
+    <text>b.</text>
+    <text> </text>
+    <text>Students</text>
+    <text></text>
+    <text>c.</text>
+    <text> </text>
+    <text>Extension professionals</text>
+    <text></text>
+    <text>d.</text>
+    <text> </text>
+    <text>Vendors/Retailers</text>
+    <text></text>
+    <text>e.</text>
+    <text> </text>
+    <text>Researchers</text>
+    <text></text>
+    <text>f.</text>
+    <text> </text>
+    <text>Research Organizations</text>
+    <text></text>
+    <text>g.</text>
+    <text> </text>
+    <text>Research mangers</text>
+    <text></text>
+    <text>h.</text>
+    <text> </text>
+    <text>Policy makers</text>
+    <text></text>
+    <text>i.</text>
+    <text> </text>
+    <text>Others (Specify)</text>
+  </page>
+  <page number="23">
+    <text>20</text>
+    <text></text>
+    <text>S.No.</text>
+    <text> </text>
+    <text>Items</text>
+    <text> </text>
+    <text>Description</text>
+    <text> </text>
+    <text>Comments of</text>
+    <text></text>
+    <text>SMD</text>
+    <text></text>
+    <text>1.</text>
+    <text> </text>
+    <text>Objective(s) for development of the</text>
+    <text></text>
+    <text>application</text>
+    <text></text>
+    <text>2.</text>
+    <text> </text>
+    <text>Specific</text>
+    <text> </text>
+    <text>need / services supported /</text>
+    <text></text>
+    <text>provided by the application</text>
+    <text></text>
+    <text>3.</text>
+    <text> </text>
+    <text>Brief content details (not more than 50</text>
+    <text></text>
+    <text>words)</text>
+    <text></text>
+    <text>4.</text>
+    <text> </text>
+    <text>ICT/IT technology used as front end with</text>
+    <text></text>
+    <text>justification</text>
+    <text></text>
+    <text>5.</text>
+    <text> </text>
+    <text>ICT/IT technology used as back end with</text>
+    <text></text>
+    <text>justification</text>
+    <text></text>
+    <text>6.</text>
+    <text> </text>
+    <text>The proposed hosting platform.</text>
+    <text></text>
+    <text>7.</text>
+    <text> </text>
+    <text>Availability of other digital resources</text>
+    <text></text>
+    <text>available for this purpose, if any.</text>
+    <text></text>
+    <text>8.</text>
+    <text> </text>
+    <text>Availability of additional and unique</text>
+    <text></text>
+    <text>information in the developed application</text>
+    <text></text>
+    <text>9.</text>
+    <text></text>
+    <text>Other available digital resources/applications</text>
+    <text></text>
+    <text>of ICAR</text>
+    <text> </text>
+    <text>which may be integrated with this</text>
+    <text></text>
+    <text>application to make it complete from users</text>
+    <text></text>
+    <text>perspective.</text>
+    <text></text>
+    <text>10.</text>
+    <text> </text>
+    <text>Expected number of users of</text>
+    <text> </text>
+    <text>developed</text>
+    <text></text>
+    <text>application</text>
+    <text></text>
+    <text>Please rate your app/ application on five point scale (5=Excellent, 4=Very Good,</text>
+    <text></text>
+    <text>3=Good, 2=Fair, 1=Poor,</text>
+    <text> </text>
+    <text>0=Not useful or NA) with respect to following attribute</text>
+  </page>
+  <page number="24">
+    <text>21</text>
+    <text></text>
+    <text>S.No.</text>
+    <text> </text>
+    <text>Items</text>
+    <text> </text>
+    <text>Description</text>
+    <text> </text>
+    <text>Comments</text>
+    <text></text>
+    <text>of SMD</text>
+    <text></text>
+    <text>User friendliness</text>
+    <text></text>
+    <text>1.</text>
+    <text> </text>
+    <text>Easy to use/operate</text>
+    <text></text>
+    <text>Easy</text>
+    <text> </text>
+    <text>to learn or understand.</text>
+    <text></text>
+    <text>2.</text>
+    <text> </text>
+    <text>User interface</text>
+    <text></text>
+    <text>App/ application design</text>
+    <text> </text>
+    <text>makes the</text>
+    <text> </text>
+    <text>user&apos;s</text>
+    <text></text>
+    <text>interaction as simple and</text>
+    <text> </text>
+    <text>efficient .</text>
+    <text></text>
+    <text>3.</text>
+    <text> </text>
+    <text>Presentation and design</text>
+    <text></text>
+    <text>The content in the mobile app/ application is</text>
+    <text></text>
+    <text>presented beautifully</text>
+    <text></text>
+    <text>4.</text>
+    <text> </text>
+    <text>User Navigation and controls</text>
+    <text></text>
+    <text>Different choices of input are available for</text>
+    <text></text>
+    <text>selecting or choosing the desired options.</text>
+    <text></text>
+    <text>Contents</text>
+    <text></text>
+    <text>5.</text>
+    <text> </text>
+    <text>Flow of</text>
+    <text> </text>
+    <text>information</text>
+    <text></text>
+    <text>It is</text>
+    <text> </text>
+    <text>easy to navigate allows users to find the</text>
+    <text></text>
+    <text>content they&apos;re looking for much faster.</text>
+    <text></text>
+    <text>6.</text>
+    <text> </text>
+    <text>Adequacy of contents</text>
+    <text></text>
+    <text>It has sufficient content that is needed for</text>
+    <text></text>
+    <text>purpose desired</text>
+    <text> </text>
+    <text>knowledge</text>
+    <text></text>
+    <text>7.</text>
+    <text> </text>
+    <text>Uniqueness of contents with respect to</text>
+    <text></text>
+    <text>other</text>
+    <text> </text>
+    <text>sources</text>
+    <text></text>
+    <text>It has unique features that other app don’t</text>
+    <text></text>
+    <text>have.</text>
+    <text></text>
+    <text>8.</text>
+    <text> </text>
+    <text>Up</text>
+    <text>-</text>
+    <text>dation of contents</text>
+    <text></text>
+    <text>It needs updating on a regular basis to keep</text>
+    <text></text>
+    <text>them fresh and functioning.</text>
+    <text></text>
+    <text>9.</text>
+    <text> </text>
+    <text>Redundant and duplicate contents</text>
+    <text></text>
+    <text>There is repetitive ness and duplication of</text>
+    <text></text>
+    <text>content in the</text>
+    <text> </text>
+    <text>mobile app.</text>
+    <text></text>
+    <text>Usefulness</text>
+    <text></text>
+    <text>10.</text>
+    <text> </text>
+    <text>Useful to designated stakeholders</text>
+    <text></text>
+    <text>It is useful to stakeholders for all practical</text>
+    <text></text>
+    <text>purpose.</text>
+    <text></text>
+    <text>11.</text>
+    <text> </text>
+    <text>Ability to communicate and convey</text>
+    <text></text>
+    <text>information</text>
+    <text></text>
+    <text>It is successful to communicate information</text>
+    <text></text>
+    <text>to users.</text>
+    <text></text>
+    <text>12.</text>
+    <text> </text>
+    <text>Extent of two</text>
+    <text>-</text>
+    <text> </text>
+    <text>way</text>
+    <text> </text>
+    <text>communication</text>
+    <text></text>
+    <text>It is successfully to</text>
+    <text> </text>
+    <text>transmit information</text>
+    <text></text>
+    <text>both ways.</text>
+    <text></text>
+    <text>13.</text>
+    <text> </text>
+    <text>Purposefulness for target users</text>
+    <text></text>
+    <text>The mobile app is able to address desired</text>
+    <text></text>
+    <text>purpose of the user</text>
+  </page>
+  <page number="25">
+    <text>22</text>
+    <text></text>
+    <text>Name and signature of the developer</text>
+    <text></text>
+    <text>Name and signature of the Director</text>
+    <text></text>
+    <text>Comments of SMD:</text>
+    <text></text>
+    <text>Name and signature of Head of SMD</text>
+    <text></text>
+    <text>Relevance</text>
+    <text></text>
+    <text>14.</text>
+    <text> </text>
+    <text>Relevancy with respect to developers</text>
+    <text></text>
+    <text>It has</text>
+    <text> </text>
+    <text>Relevancy with respect to developers.</text>
+    <text></text>
+    <text>15.</text>
+    <text> </text>
+    <text>Relevance with respect to stakeholders</text>
+    <text></text>
+    <text>It has relevance with respect to</text>
+    <text></text>
+    <text>stakeholders.</text>
+    <text></text>
+    <text>16.</text>
+    <text> </text>
+    <text>Updates Frequency</text>
+    <text></text>
+    <text>It has provision of making updates</text>
+    <text></text>
+    <text>17.</text>
+    <text> </text>
+    <text>Too much or insufficient information</text>
+    <text></text>
+    <text>Information content in this</text>
+    <text> </text>
+    <text>is crisp and easy</text>
+    <text></text>
+    <text>to understand.</text>
+    <text></text>
+    <text>Quality</text>
+    <text></text>
+    <text>18.</text>
+    <text> </text>
+    <text>Searching facility</text>
+    <text></text>
+    <text>Search option available for desired contents.</text>
+    <text></text>
+    <text>19.</text>
+    <text> </text>
+    <text>Responsiveness</text>
+    <text></text>
+    <text>The goal of responsive design is to detect the</text>
+    <text></text>
+    <text>visitor&apos;s screen size and orientation and</text>
+    <text></text>
+    <text>change the layout accordingly.</text>
+    <text></text>
+    <text>20.</text>
+    <text> </text>
+    <text>Response time</text>
+    <text></text>
+    <text>Response time is the time taken by the</text>
+    <text></text>
+    <text>mobile app to respond to the server.</text>
+    <text></text>
+    <text>21.</text>
+    <text> </text>
+    <text>Feedback Mechanism</text>
+    <text></text>
+    <text>The mobile app has feedback mechanism for</text>
+    <text></text>
+    <text>encouraging users to directly state what they</text>
+    <text></text>
+    <text>think about the app</text>
+    <text>.</text>
+    <text></text>
+    <text>22.</text>
+    <text> </text>
+    <text>Sending alerts on updates</text>
+    <text> </text>
+    <text>Yes/No</text>
+    <text></text>
+    <text>23.</text>
+    <text> </text>
+    <text>Frequently ask questions (FAQs)</text>
+    <text> </text>
+    <text>Yes/No</text>
+    <text></text>
+    <text>24.</text>
+    <text> </text>
+    <text>Query/feedback redressed time</text>
+    <text> </text>
+    <text>Yes/No</text>
+  </page>
+</document>
