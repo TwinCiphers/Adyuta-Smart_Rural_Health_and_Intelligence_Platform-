@@ -17,43 +17,7 @@ class HealthHubScreen extends StatelessWidget {
             const SizedBox(height: 60), // Status bar padding
             
             // Header
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    RichText(
-                      text: TextSpan(
-                        style: Theme.of(context).textTheme.displaySmall?.copyWith(fontSize: 28),
-                        children: [
-                          const TextSpan(text: 'Hello, '),
-                          TextSpan(
-                            text: 'Sarah',
-                            style: TextStyle(color: AppTheme.primaryColor),
-                          ),
-                          const TextSpan(text: ' 👋'),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      'Take charge of your health 💚',
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
-                ),
-                CircleAvatar(
-                  radius: 28,
-                  backgroundColor: Colors.grey[200],
-                  // Placeholder for user avatar
-                  child: const Icon(Icons.person, color: Colors.grey, size: 30),
-                ),
-              ],
-            ),
-            
+
             const SizedBox(height: 30),
             
             // Search

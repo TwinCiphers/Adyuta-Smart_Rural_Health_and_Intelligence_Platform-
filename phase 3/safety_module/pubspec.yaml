@@ -16,10 +16,25 @@ dependencies:
   geolocator: any
   shared_preferences: any
   sensors_plus: any
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  percent_indicator: any
+  flutter_background_service: ^5.0.0
+  flutter_local_notifications: ^17.0.0
+  flutter_phone_direct_caller: ^2.1.1
+  background_sms: any
+  permission_handler: any
+
+  drift: any
+  sqlite3_flutter_libs: any
+  path_provider: any
+  path: any
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  build_runner: any
+  drift_dev: any
   flutter_lints: ^2.0.0
 
 flutter:

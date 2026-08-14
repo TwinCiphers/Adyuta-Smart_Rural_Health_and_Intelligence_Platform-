@@ -4,8 +4,15 @@ import 'core/theme/safety_theme.dart';
 import 'features/sos/sos_screen.dart';
 import 'features/helpline/helpline_screen.dart';
 import 'features/tips/safety_tips_screen.dart';
+import 'features/timer/safety_timer_screen.dart';
+import 'features/reporting/incident_report_screen.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  await Hive.openBox('broadcasts_db');
+  await Hive.openBox('offline_reports');
   runApp(const AdyutaSafetyApp());
 }
 
@@ -57,6 +64,8 @@ class _SafetyHomeNavState extends State<SafetyHomeNav> {
 
   final List<Widget> _pages = const [
     SosScreen(),
+    SafetyTimerScreen(),
+    IncidentReportScreen(),
     HelplineScreen(),
     SafetyTipsScreen(),
   ];
@@ -85,9 +94,11 @@ class _SafetyHomeNavState extends State<SafetyHomeNav> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                _buildNavItem(0, Icons.sos, 'SOS Shield', const Color(0xFFDC2626)),
-                _buildNavItem(1, Icons.phone_in_talk, 'Helplines', const Color(0xFF2563EB)),
-                _buildNavItem(2, Icons.menu_book, 'Safety Tips', const Color(0xFF9333EA)),
+                _buildNavItem(0, Icons.sos, 'SOS', const Color(0xFFDC2626)),
+                _buildNavItem(1, Icons.timer, 'Timer', const Color(0xFFEA580C)),
+                _buildNavItem(2, Icons.report_problem, 'Report', const Color(0xFF4F46E5)),
+                _buildNavItem(3, Icons.phone_in_talk, 'Helplines', const Color(0xFF2563EB)),
+                _buildNavItem(4, Icons.menu_book, 'Tips', const Color(0xFF9333EA)),
               ],
             ),
           ),
@@ -103,7 +114,7 @@ class _SafetyHomeNavState extends State<SafetyHomeNav> {
       behavior: HitTestBehavior.opaque,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         decoration: BoxDecoration(
           color: isSelected ? activeColor.withOpacity(0.12) : Colors.transparent,
           borderRadius: BorderRadius.circular(20),
@@ -117,7 +128,7 @@ class _SafetyHomeNavState extends State<SafetyHomeNav> {
                 label,
                 style: GoogleFonts.inter(
                   fontWeight: FontWeight.bold,
-                  fontSize: 13,
+                  fontSize: 12,
                   color: activeColor,
                 ),
               ),

@@ -7,14 +7,23 @@ import 'package:education_module/education_module.dart'; // Import the Education
 import 'package:governance_module/governance_module.dart'; // Import the Governance module's entry point
 import 'package:adyuta_main/services/bhashini_service.dart';
 
-class AdyutaMainHome extends StatefulWidget {
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:adyuta_main/features/authentication/providers/auth_provider.dart';
+import 'package:adyuta_main/features/profile/providers/profile_provider.dart';
+import 'package:adyuta_main/features/dashboard/providers/dashboard_provider.dart';
+import 'package:intl/intl.dart';
+import 'package:adyuta_main/core/widgets/skeleton_loader.dart';
+import 'package:adyuta_main/core/widgets/error_state_widget.dart';
+
+class AdyutaMainHome extends ConsumerStatefulWidget {
   const AdyutaMainHome({super.key});
 
   @override
-  State<AdyutaMainHome> createState() => _AdyutaMainHomeState();
+  ConsumerState<AdyutaMainHome> createState() => _AdyutaMainHomeState();
 }
 
-class _AdyutaMainHomeState extends State<AdyutaMainHome> {
+class _AdyutaMainHomeState extends ConsumerState<AdyutaMainHome> {
   BhashiniService get b => BhashiniService.instance;
   final ScrollController _scrollController = ScrollController();
   final GlobalKey _servicesKey = GlobalKey();
@@ -61,11 +70,46 @@ class _AdyutaMainHomeState extends State<AdyutaMainHome> {
               child: Column(
                 children: [
                   const SizedBox(height: 16),
+                  Consumer(
+                    builder: (context, ref, child) {
+                      final user = ref.watch(userProvider);
+                      // Security setup pending check can be implemented later
+                      if (user != null && false) {
+                        return Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            color: Colors.amber.shade100,
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(color: Colors.amber.shade400),
+                          ),
+                          child: Row(
+                            children: [
+                              const Icon(Icons.warning_amber_rounded, color: Colors.orange),
+                              const SizedBox(width: 12),
+                              const Expanded(
+                                child: Text('Complete security setup to enable fast MPIN login.'),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  context.push('/setup_mpin');
+                                },
+                                child: const Text('Setup now'),
+                              )
+                            ],
+                          ),
+                        );
+                      }
+                      return const SizedBox.shrink();
+                    },
+                  ),
+                  _buildSyncStatus(context),
+                  const SizedBox(height: 16),
                   _buildHeroBanner(),
                   const SizedBox(height: 24),
-                  _buildOurServices(context),
+                  _buildServiceGrid(context),
                   const SizedBox(height: 24),
-                  _buildKnowledgeAndInsightsSection(context),
+                  _buildActivityFeed(context),
                   const SizedBox(height: 24),
                   _buildAboutBanner(),
                   const SizedBox(height: 24),
@@ -95,42 +139,54 @@ class _AdyutaMainHomeState extends State<AdyutaMainHome> {
       child: SafeArea(
         child: Column(
           children: [
-            Container(
-              padding: const EdgeInsets.all(20),
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [Color(0xFF19326A), Color(0xFF3366FF)],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
+            GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+                context.push('/settings');
+              },
+              child: Container(
+                padding: const EdgeInsets.all(20),
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [Color(0xFF19326A), Color(0xFF3366FF)],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
                 ),
-              ),
-              child: Row(
-                children: [
-                  CircleAvatar(
-                    radius: 28,
-                    backgroundColor: Colors.white,
-                    child: Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Image.asset('assets/images/adyuta_logo.png', fit: BoxFit.contain),
+                child: Row(
+                  children: [
+                    CircleAvatar(
+                      radius: 28,
+                      backgroundColor: Colors.white,
+                      child: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Image.asset('assets/images/adyuta_logo.png', fit: BoxFit.contain),
+                      ),
                     ),
-                  ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Citizen User',
-                          style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.white),
-                        ),
-                        Text(
-                          '+91 ••••• ••808',
-                          style: GoogleFonts.inter(fontSize: 13, color: Colors.white70),
-                        ),
-                      ],
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: Consumer(
+                        builder: (context, ref, child) {
+                          final user = ref.watch(userProvider);
+                          final name = user?.userMetadata?['full_name'] ?? user?.userMetadata?['name'];
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                name?.isNotEmpty == true ? name : 'Citizen User',
+                                style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.white),
+                              ),
+                              Text(
+                                user?.phone ?? '+91 \u2022\u2022\u2022\u2022\u2022 \u2022\u2022808',
+                                style: GoogleFonts.inter(fontSize: 13, color: Colors.white70),
+                              ),
+                            ],
+                          );
+                        }
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             const SizedBox(height: 10),
@@ -171,7 +227,7 @@ class _AdyutaMainHomeState extends State<AdyutaMainHome> {
               title: Text(b.t('Settings & Preferences'), style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
               onTap: () {
                 Navigator.pop(context);
-                _showSettingsSheet(context);
+                context.push('/settings');
               },
             ),
             const Divider(),
@@ -272,11 +328,21 @@ class _AdyutaMainHomeState extends State<AdyutaMainHome> {
         Padding(
           padding: const EdgeInsets.only(right: 16.0, left: 6.0),
           child: GestureDetector(
-            onTap: () => _showProfileSheet(context),
-            child: CircleAvatar(
-              backgroundColor: const Color(0xFF19326A),
-              radius: 16,
-              child: const Icon(Icons.person, color: Colors.white, size: 20),
+            onTap: () => context.push('/profile'),
+            child: Consumer(
+              builder: (context, ref, _) {
+                final profileAsync = ref.watch(profileProvider);
+                final avatarUrl = profileAsync.valueOrNull?.avatarUrl;
+
+                return CircleAvatar(
+                  backgroundColor: const Color(0xFF19326A),
+                  radius: 16,
+                  backgroundImage: avatarUrl != null ? NetworkImage(avatarUrl) : null,
+                  child: avatarUrl == null
+                      ? const Icon(Icons.person, color: Colors.white, size: 20)
+                      : null,
+                );
+              }
             ),
           ),
         )
@@ -345,71 +411,20 @@ class _AdyutaMainHomeState extends State<AdyutaMainHome> {
     );
   }
 
-  Widget _buildOurServices(BuildContext context) {
+  Widget _buildSyncStatus(BuildContext context) {
     return Padding(
-      key: _servicesKey,
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: Column(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(b.t('Our Services'), style: GoogleFonts.inter(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black87)),
-          ),
-          const SizedBox(height: 16),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            clipBehavior: Clip.none,
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+            decoration: BoxDecoration(color: Colors.green.shade50, borderRadius: BorderRadius.circular(12)),
             child: Row(
               children: [
-                _ServiceCard(
-                  title: b.t('Health'),
-                  subtitle: b.t('Healthcare &\nWellness for all'),
-                  color: const Color(0xFFE8F5E9),
-                  iconBgColor: const Color(0xFFC8E6C9),
-                  iconColor: const Color(0xFF2E7D32),
-                  icon: Icons.favorite,
-                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const AdyutaHealthApp())),
-                ),
-                const SizedBox(width: 12),
-                _ServiceCard(
-                  title: b.t('Agriculture'),
-                  subtitle: b.t('Smart Solutions\nfor Farmers'),
-                  color: const Color(0xFFF9FBE7),
-                  iconBgColor: const Color(0xFFF0F4C3),
-                  iconColor: const Color(0xFF827717),
-                  icon: Icons.eco,
-                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const AdyutaAgriApp())),
-                ),
-                const SizedBox(width: 12),
-                _ServiceCard(
-                  title: b.t('Safety'),
-                  subtitle: b.t('Your Safety,\nOur Priority'),
-                  color: const Color(0xFFFFF3E0),
-                  iconBgColor: const Color(0xFFFFE0B2),
-                  iconColor: const Color(0xFFE65100),
-                  icon: Icons.shield,
-                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const AdyutaSafetyApp())),
-                ),
-                const SizedBox(width: 12),
-                _ServiceCard(
-                  title: b.t('Education'),
-                  subtitle: b.t('Learn, Grow\nand Succeed'),
-                  color: const Color(0xFFF3E5F5),
-                  iconBgColor: const Color(0xFFE1BEE7),
-                  iconColor: const Color(0xFF4A148C),
-                  icon: Icons.school,
-                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const AdyutaEducationApp())),
-                ),
-                const SizedBox(width: 12),
-                _ServiceCard(
-                  title: b.t('Governance'),
-                  subtitle: b.t('Transparent\n& Efficient'),
-                  color: const Color(0xFFE3F2FD),
-                  iconBgColor: const Color(0xFFBBDEFB),
-                  iconColor: const Color(0xFF0D47A1),
-                  icon: Icons.account_balance,
-                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const AdyutaGovernanceApp())),
-                ),
+                const Icon(Icons.cloud_done, size: 14, color: Colors.green),
+                const SizedBox(width: 4),
+                Text('Online & Synced', style: GoogleFonts.inter(fontSize: 11, color: Colors.green, fontWeight: FontWeight.bold)),
               ],
             ),
           )
@@ -418,81 +433,205 @@ class _AdyutaMainHomeState extends State<AdyutaMainHome> {
     );
   }
 
-  Widget _buildKnowledgeAndInsightsSection(BuildContext context) {
-    return Padding(
-      key: _updatesKey,
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  Widget _buildServiceGrid(BuildContext context) {
+    return Consumer(
+      builder: (context, ref, child) {
+        final dashboardAsync = ref.watch(dashboardProvider);
+        
+        return Padding(
+          key: _servicesKey,
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Column(
             children: [
-              Text(b.t('Platform Knowledge & Updates'), style: GoogleFonts.inter(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black87)),
-              Icon(Icons.insights, color: Colors.grey.shade600, size: 20),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(b.t('Our Services'), style: GoogleFonts.inter(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black87)),
+              ),
+              const SizedBox(height: 16),
+              dashboardAsync.when(
+                loading: () => Column(
+                  children: List.generate(5, (index) => const Padding(
+                    padding: EdgeInsets.only(bottom: 12.0),
+                    child: SkeletonLoader(width: double.infinity, height: 140, borderRadius: 20),
+                  )),
+                ),
+                error: (err, stack) => ErrorStateWidget(
+                  message: 'Failed to load services. Please check your connection.',
+                  onRetry: () => ref.read(dashboardProvider.notifier).refresh(),
+                ),
+                data: (data) {
+                  final domains = data?.domains ?? [];
+                  
+                  // Helper to extract status for a domain
+                  String getStatus(String domainName, String defaultText) {
+                    final d = domains.firstWhere((e) => e['domain'] == domainName, orElse: () => {});
+                    if (d.isEmpty) return defaultText;
+                    
+                    final dData = d['data'] as Map<String, dynamic>? ?? {};
+                    if (domainName == 'agriculture') {
+                      final crops = (dData['cropTypes'] as List<dynamic>? ?? []).length;
+                      return crops > 0 ? '$crops crops tracked' : defaultText;
+                    } else if (domainName == 'health') {
+                      return dData['nearestFacility'] != null ? 'PHC Linked' : defaultText;
+                    } else if (domainName == 'safety') {
+                      final contacts = (dData['emergencyContacts'] as List<dynamic>? ?? []).length;
+                      return contacts > 0 ? '$contacts emergency contacts' : defaultText;
+                    } else if (domainName == 'education') {
+                      return 'Learning active';
+                    } else if (domainName == 'governance') {
+                      return 'Schemes unlocked';
+                    }
+                    return defaultText;
+                  }
+
+                  return SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    clipBehavior: Clip.none,
+                    child: Row(
+                      children: [
+                        _ServiceCard(
+                          title: b.t('Health'),
+                          subtitle: getStatus('health', 'Setup Profile'),
+                          color: const Color(0xFFE8F5E9),
+                          iconBgColor: const Color(0xFFC8E6C9),
+                          iconColor: const Color(0xFF2E7D32),
+                          icon: Icons.favorite,
+                          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const AdyutaHealthApp())),
+                        ),
+                        const SizedBox(width: 12),
+                        _ServiceCard(
+                          title: b.t('Agriculture'),
+                          subtitle: getStatus('agriculture', 'Setup Profile'),
+                          color: const Color(0xFFF9FBE7),
+                          iconBgColor: const Color(0xFFF0F4C3),
+                          iconColor: const Color(0xFF827717),
+                          icon: Icons.eco,
+                          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const AdyutaAgriApp())),
+                        ),
+                        const SizedBox(width: 12),
+                        _ServiceCard(
+                          title: b.t('Safety'),
+                          subtitle: getStatus('safety', 'Setup Contacts'),
+                          color: const Color(0xFFFFF3E0),
+                          iconBgColor: const Color(0xFFFFE0B2),
+                          iconColor: const Color(0xFFE65100),
+                          icon: Icons.shield,
+                          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const AdyutaSafetyApp())),
+                        ),
+                        const SizedBox(width: 12),
+                        _ServiceCard(
+                          title: b.t('Education'),
+                          subtitle: getStatus('education', 'Explore Courses'),
+                          color: const Color(0xFFF3E5F5),
+                          iconBgColor: const Color(0xFFE1BEE7),
+                          iconColor: const Color(0xFF4A148C),
+                          icon: Icons.school,
+                          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const AdyutaEducationApp())),
+                        ),
+                        const SizedBox(width: 12),
+                        _ServiceCard(
+                          title: b.t('Governance'),
+                          subtitle: getStatus('governance', 'Check Eligibility'),
+                          color: const Color(0xFFE3F2FD),
+                          iconBgColor: const Color(0xFFBBDEFB),
+                          iconColor: const Color(0xFF0D47A1),
+                          icon: Icons.account_balance,
+                          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const AdyutaGovernanceApp())),
+                        ),
+                      ],
+                    ),
+                  );
+                }
+              )
             ],
           ),
-          const SizedBox(height: 16),
-          GridView.count(
-            crossAxisCount: 2,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            mainAxisSpacing: 12,
-            crossAxisSpacing: 12,
-            childAspectRatio: 1.25,
+        );
+      }
+    );
+  }
+
+  Widget _buildActivityFeed(BuildContext context) {
+    return Consumer(
+      builder: (context, ref, child) {
+        final feedAsync = ref.watch(activityFeedProvider);
+        
+        return Padding(
+          key: _updatesKey,
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _KnowledgeCard(
-                title: b.t('Updates'),
-                subtitle: b.t('Latest Releases & Schemes'),
-                icon: Icons.system_update_alt,
-                color: const Color(0xFFE3F2FD),
-                iconColor: const Color(0xFF0D47A1),
-                onTap: () => _showDetailSheet(
-                  context,
-                  '⚡ Platform Updates',
-                  '• Governance Module v1.0 connected with 100% authentic Indian statutes & schemes.\n• Kisan Credit Card (KCC) 2% interest subvention calculator live.\n• Zero FIR & BNSS Section 154 legal awareness integrated.\n• Pure Dart offline storage active across all 5 modules.',
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(b.t('Recent Activity'), style: GoogleFonts.inter(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black87)),
+                  Icon(Icons.history, color: Colors.grey.shade600, size: 20),
+                ],
               ),
-              _KnowledgeCard(
-                title: b.t('App Insights'),
-                subtitle: b.t('Live Impact Metrics'),
-                icon: Icons.analytics_outlined,
-                color: const Color(0xFFE8F5E9),
-                iconColor: const Color(0xFF2E7D32),
-                onTap: () => _showDetailSheet(
-                  context,
-                  '📊 App Insights & Impact',
-                  '• 5 Modules Integrated: Health, Agri, Safety, Education, Governance.\n• 100% Authentic Statutory Data: Zero mock or fake laws.\n• Offline First: Local SharedPreferences database ensures seamless access in low-connectivity rural zones.\n• Optimized for Android / Moto G35 5G.',
-                ),
-              ),
-              _KnowledgeCard(
-                title: b.t('Why It Is Made'),
-                subtitle: b.t('Our Core Mission'),
-                icon: Icons.lightbulb_outline,
-                color: const Color(0xFFFFF3E0),
-                iconColor: const Color(0xFFE65100),
-                onTap: () => _showDetailSheet(
-                  context,
-                  '💡 Why Adyuta Is Made',
-                  'In rural Bharat, citizens face significant barriers: language complexity, lack of awareness about government entitlements, and fragmented digital tools.\n\nAdyuta was crafted as a unified, dignified bridge to empower farmers, students, women, and families with instant, offline-ready technology that simplifies rights, schemes, and healthcare.',
-                ),
-              ),
-              _KnowledgeCard(
-                title: b.t('Founders Note'),
-                subtitle: b.t('Message from Team'),
-                icon: Icons.history_edu,
-                color: const Color(0xFFF3E5F5),
-                iconColor: const Color(0xFF4A148C),
-                onTap: () => _showDetailSheet(
-                  context,
-                  '✍️ Founders Note',
-                  '"We believe that technology reaches its true potential only when it reaches the last mile. Building Adyuta has been a journey of listening to rural communities, simplifying legal jargon, and ensuring that every Indian citizen has their constitutional rights and welfare schemes in their pocket."\n\n— The Adyuta Team',
-                ),
+              const SizedBox(height: 16),
+              feedAsync.when(
+                loading: () => const Center(child: CircularProgressIndicator()),
+                error: (err, stack) => const Text('Unable to load activity.'),
+                data: (logs) {
+                  if (logs.isEmpty) {
+                    return Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(color: Colors.grey.shade200),
+                      ),
+                      child: Text('No recent activity. Start exploring the modules above!', 
+                        style: GoogleFonts.inter(color: Colors.grey.shade600),
+                        textAlign: TextAlign.center,
+                      ),
+                    );
+                  }
+                  
+                  return Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(color: Colors.grey.shade200),
+                    ),
+                    child: ListView.separated(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: logs.length,
+                      separatorBuilder: (_, __) => Divider(color: Colors.grey.shade100, height: 1),
+                      itemBuilder: (context, index) {
+                        final log = logs[index];
+                        IconData icon;
+                        Color color;
+                        switch (log.domain) {
+                          case 'agriculture': icon = Icons.eco; color = const Color(0xFF2E7D32); break;
+                          case 'health': icon = Icons.favorite; color = const Color(0xFFD32F2F); break;
+                          case 'safety': icon = Icons.shield; color = const Color(0xFFE65100); break;
+                          case 'education': icon = Icons.school; color = const Color(0xFF4A148C); break;
+                          case 'governance': icon = Icons.account_balance; color = const Color(0xFF0D47A1); break;
+                          default: icon = Icons.check_circle; color = Colors.blue; break;
+                        }
+                        
+                        return ListTile(
+                          contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                          leading: Container(
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(color: color.withOpacity(0.1), shape: BoxShape.circle),
+                            child: Icon(icon, color: color, size: 20),
+                          ),
+                          title: Text(log.message, style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w600)),
+                          subtitle: Text(DateFormat.yMMMd().add_jm().format(log.createdAt), style: GoogleFonts.inter(fontSize: 11, color: Colors.grey.shade500)),
+                        );
+                      },
+                    ),
+                  );
+                },
               ),
             ],
           ),
-        ],
-      ),
+        );
+      }
     );
   }
 
@@ -694,7 +833,7 @@ class _AdyutaMainHomeState extends State<AdyutaMainHome> {
               isActive: _currentNavIndex == 3,
               onTap: () {
                 setState(() => _currentNavIndex = 3);
-                _showSettingsSheet(context);
+                context.push('/settings');
               },
             ),
           ],
@@ -799,127 +938,11 @@ class _AdyutaMainHomeState extends State<AdyutaMainHome> {
   }
 
   void _showProfileSheet(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.transparent,
-      builder: (context) => Container(
-        padding: const EdgeInsets.all(24),
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(width: 40, height: 4, decoration: BoxDecoration(color: Colors.grey.shade300, borderRadius: BorderRadius.circular(2))),
-            const SizedBox(height: 20),
-            CircleAvatar(
-              radius: 40,
-              backgroundColor: const Color(0xFF19326A),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Image.asset('assets/images/adyuta_logo.png', fit: BoxFit.contain),
-              ),
-            ),
-            const SizedBox(height: 16),
-            Text('Citizen Profile', style: GoogleFonts.inter(fontSize: 20, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 4),
-            Text('Adyuta Verified Citizen Account', style: GoogleFonts.inter(fontSize: 13, color: Colors.green.shade700, fontWeight: FontWeight.w600)),
-            const SizedBox(height: 16),
-            Text(
-              'Profile customization and Aadhaar/Document Vault sync are currently active in the Governance module. Detailed profile editor will be added later.',
-              textAlign: TextAlign.center,
-              style: GoogleFonts.inter(fontSize: 12, color: Colors.grey.shade600, height: 1.4),
-            ),
-            const SizedBox(height: 24),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () => Navigator.pop(context),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF19326A),
-                  foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(vertical: 14),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                ),
-                child: Text('Close Profile', style: GoogleFonts.inter(fontWeight: FontWeight.bold)),
-              ),
-            ),
-            const SizedBox(height: 10),
-          ],
-        ),
-      ),
-    );
+    context.push('/profile');
   }
 
   void _showSettingsSheet(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.transparent,
-      builder: (context) => Container(
-        padding: const EdgeInsets.all(24),
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(width: 40, height: 4, decoration: BoxDecoration(color: Colors.grey.shade300, borderRadius: BorderRadius.circular(2))),
-            const SizedBox(height: 20),
-            Text(b.t('Settings & Preferences'), style: GoogleFonts.inter(fontSize: 20, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 16),
-            ListTile(
-              leading: const Icon(Icons.language_rounded, color: Color(0xFF19326A)),
-              title: Text(b.t('Language / भाषा'), style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
-              trailing: Text(
-                b.currentLanguageCode == 'en' ? 'English (Default)' : BhashiniService.supportedLanguages.firstWhere((l) => l['code'] == b.currentLanguageCode)['native']!,
-                style: GoogleFonts.inter(color: const Color(0xFFC67D00), fontSize: 12, fontWeight: FontWeight.bold),
-              ),
-              onTap: () {
-                Navigator.pop(context);
-                b.showLanguageSelector(context);
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.dark_mode_outlined, color: Color(0xFF19326A)),
-              title: Text(b.t('Theme Mode'), style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
-              trailing: Text(b.t('Light (Default)'), style: GoogleFonts.inter(color: Colors.grey.shade600, fontSize: 12)),
-              onTap: () {},
-            ),
-            ListTile(
-              leading: const Icon(Icons.sync_outlined, color: Color(0xFF2E7D32)),
-              title: Text('Offline SharedPreferences Sync', style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
-              trailing: const Icon(Icons.check_circle, color: Color(0xFF2E7D32)),
-              onTap: () {},
-            ),
-            ListTile(
-              leading: const Icon(Icons.delete_outline, color: Colors.red),
-              title: Text('Clear Cache & Saved Bookmarks', style: GoogleFonts.inter(fontWeight: FontWeight.w600, color: Colors.red)),
-              onTap: () {
-                Navigator.pop(context);
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Local cache cleared.')));
-              },
-            ),
-            const SizedBox(height: 16),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () => Navigator.pop(context),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF3366FF),
-                  foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(vertical: 14),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                ),
-                child: Text('Done', style: GoogleFonts.inter(fontWeight: FontWeight.bold)),
-              ),
-            ),
-            const SizedBox(height: 10),
-          ],
-        ),
-      ),
-    );
+    context.push('/settings');
   }
 
   void _showDetailSheet(BuildContext context, String title, String content) {

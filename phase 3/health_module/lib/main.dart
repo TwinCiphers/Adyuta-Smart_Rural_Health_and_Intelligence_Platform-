@@ -94,18 +94,8 @@ class MainNavigationScaffold extends ConsumerWidget {
           // The selected screen
           _buildBody(currentIndex),
           
-          // Floating custom bottom nav bar
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: 0,
-            child: AdyutaBottomNav(
-              currentIndex: currentIndex,
-              onTap: (index) {
-                ref.read(bottomNavIndexProvider.notifier).state = index;
-              },
-            ),
-          ),
+          // Floating custom bottom nav bar removed as per user request
+
         ],
       ),
     );

@@ -29,6 +29,8 @@ dependencies:
   sqflite_common_ffi: any
   path: ^1.8.0
   connectivity_plus: any
+  drift: any
+  sqlite3_flutter_libs: any
 
 
 
@@ -38,6 +40,7 @@ dev_dependencies:
   flutter_lints: ^3.0.0
   build_runner: any
   hive_generator: any
+  drift_dev: any
 
 
 

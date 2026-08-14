@@ -1,6 +1,16 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Security
+from fastapi.security.api_key import APIKeyHeader
 from pydantic import BaseModel
 import random
+import os
+
+API_KEY = os.getenv("ADYUTA_AI_API_KEY", "dev_ai_key_123")
+api_key_header = APIKeyHeader(name="X-API-Key", auto_error=True)
+
+def get_api_key(api_key_header: str = Security(api_key_header)):
+    if api_key_header != API_KEY:
+        raise HTTPException(status_code=403, detail="Could not validate credentials")
+    return api_key_header
 
 app = FastAPI(
     title="Adyuta Cloud AI Service",
@@ -19,7 +29,7 @@ class QueryResponse(BaseModel):
     detailed_guidance: str
 
 @app.post("/api/v1/predict", response_model=QueryResponse)
-async def predict_intent(request: QueryRequest):
+async def predict_intent(request: QueryRequest, api_key: str = Security(get_api_key)):
     """
     This endpoint simulates a heavy NLP model (like a large transformer or LLM)
     that provides highly detailed context which the offline TFLite model cannot.
@@ -55,22 +65,24 @@ import os
 from datetime import datetime
 
 @app.post("/api/v1/feedback")
-async def receive_feedback(request: FeedbackRequest):
+async def receive_feedback(request: FeedbackRequest, api_key: str = Security(get_api_key)):
     """
     Ingests continuous learning feedback from Android devices when online.
     Appends the corrected experience to the local CSV datasets for future auto-retraining.
     """
+    base_dir = os.getenv("ML_PIPELINE_DIR", os.path.abspath(os.path.join(os.path.dirname(__file__), "../ml_pipeline")))
     module_folders = {
-        "health": "../ml_pipeline/health_classifier/data/symptoms.csv",
-        "safety": "../ml_pipeline/safety_classifier/data/safety_queries.csv",
-        "governance": "../ml_pipeline/governance_classifier/data/governance_queries.csv",
-        "education": "../ml_pipeline/education_classifier/data/education_queries.csv"
+        "health": os.path.join(base_dir, "health_classifier/data/symptoms.csv"),
+        "safety": os.path.join(base_dir, "safety_classifier/data/safety_queries.csv"),
+        "governance": os.path.join(base_dir, "governance_classifier/data/governance_queries.csv"),
+        "education": os.path.join(base_dir, "education_classifier/data/education_queries.csv")
     }
 
     if request.module not in module_folders:
         raise HTTPException(status_code=400, detail="Invalid module")
 
     csv_path = module_folders[request.module]
+    os.makedirs(os.path.dirname(csv_path), exist_ok=True)
     
     # Append to CSV
     try:
