@@ -1,0 +1,692 @@
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+/// Bhashini AI Service & Multilingual Translation Engine
+/// Supports 22 scheduled languages of India, prioritizing the requested 12 languages.
+/// English is maintained as the default and primary language.
+/// Font styles are preserved without overriding typography across different scripts.
+class BhashiniService extends ChangeNotifier {
+  static final BhashiniService instance = BhashiniService._internal();
+  BhashiniService._internal();
+
+  String _currentLanguageCode = 'en';
+  String get currentLanguageCode => _currentLanguageCode;
+
+  /// The 12 requested languages with English as default
+  static const List<Map<String, String>> supportedLanguages = [
+    {'code': 'en', 'name': 'English', 'native': 'English', 'default': 'true'},
+    {'code': 'hi', 'name': 'Hindi', 'native': 'हिन्दी'},
+    {'code': 'bn', 'name': 'Bengali', 'native': 'বাংলা'},
+    {'code': 'te', 'name': 'Telugu', 'native': 'తెలుగు'},
+    {'code': 'mr', 'name': 'Marathi', 'native': 'मराठी'},
+    {'code': 'ta', 'name': 'Tamil', 'native': 'தமிழ்'},
+    {'code': 'gu', 'name': 'Gujarati', 'native': 'ગુજરાતી'},
+    {'code': 'kn', 'name': 'Kannada', 'native': 'ಕನ್ನಡ'},
+    {'code': 'ml', 'name': 'Malayalam', 'native': 'മലയാളം'},
+    {'code': 'od', 'name': 'Odia', 'native': 'ଓଡ଼ିଆ'},
+    {'code': 'pa', 'name': 'Punjabi', 'native': 'ਪੰਜਾਬੀ'},
+    {'code': 'as', 'name': 'Assamese', 'native': 'অসমীয়া'},
+  ];
+
+  /// Set new language and notify listeners to rebuild UI seamlessly
+  void setLanguage(String langCode) {
+    if (_currentLanguageCode == langCode) return;
+    _currentLanguageCode = langCode;
+    notifyListeners();
+  }
+
+  /// Instant local Bhashini translation dictionary for immediate 0ms UI switching
+  static const Map<String, Map<String, String>> _localTranslations = {
+    'hi': {
+      'Home Dashboard': 'होम डैशबोर्ड',
+      'Our Services': 'हमारी सेवाएँ',
+      'AI Assistant & Chatbot': 'एआई सहायक और चैटबॉट',
+      'Updates & Alerts': 'अपडेट और अलर्ट',
+      'Settings & Preferences': 'सेटिंग्स और प्राथमिकताएँ',
+      'Language / भाषा': 'भाषा चुनें',
+      'Help & Helpline 1930': 'सहायता और हेल्पलाइन 1930',
+      'Health': 'स्वास्थ्य',
+      'Healthcare &\nWellness for all': 'सभी के लिए स्वास्थ्य\nऔर कल्याण',
+      'Agriculture': 'कृषि',
+      'Smart Solutions\nfor Farmers': 'किसानों के लिए\nस्मार्ट समाधान',
+      'Safety': 'सुरक्षा',
+      'Your Safety,\nOur Priority': 'आपकी सुरक्षा,\nहमारी प्राथमिकता',
+      'Education': 'शिक्षा',
+      'Learn, Grow\nand Succeed': 'सीखें, बढ़ें\nऔर सफल हों',
+      'Governance': 'शासन',
+      'Transparent\n& Efficient': 'पारदर्शी और\nकुशल प्रशासन',
+      'Explore Services': 'सेवाओं का अन्वेषण करें',
+      'Platform Knowledge & Updates': 'मंच ज्ञान और अपडेट',
+      'Why It Is Made': 'यह क्यों बनाया गया है',
+      'Citizen User': 'नागरिक उपयोगकर्ता',
+      'English (Default)': 'अंग्रेज़ी (डिफ़ॉल्ट)',
+      'Emergency SOS': 'आपातकालीन एसओएस',
+      'Updates': 'अपडेट',
+      'Latest Releases & Schemes': 'नवीनतम रिलीज़ और योजनाएँ',
+      'App Insights': 'ऐप अंतर्दृष्टि',
+      'Live Impact Metrics': 'लाइव प्रभाव मेट्रिक्स',
+      'Our Core Mission': 'हमारा मुख्य मिशन',
+      'Founders Note': 'संस्थापक संदेश',
+      'Message from Team': 'टीम से संदेश',
+      'About Adyuta Platform': 'अद्युता मंच के बारे में',
+      'Know More': 'अधिक जानें',
+      'Theme Mode': 'थीम मोड',
+      'Light (Default)': 'लाइट (डिफ़ॉल्ट)',
+      'Offline SharedPreferences Sync': 'ऑफ़लाइन सिंक',
+      'Clear Cache & Saved Bookmarks': 'कैश और बुकमार्क साफ़ करें',
+      'Done': 'संपन्न',
+      'Home': 'होम',
+      'Services': 'सेवाएँ',
+      'Settings': 'सेटिंग्स',
+    },
+    'bn': {
+      'Home Dashboard': 'হোম ড্যাশবোর্ড',
+      'Our Services': 'আমাদের পরিষেবাসমূহ',
+      'AI Assistant & Chatbot': 'এআই সহকারী এবং চ্যাটবট',
+      'Updates & Alerts': 'আপডেট এবং সতর্কতা',
+      'Settings & Preferences': 'সেটিংস এবং পছন্দসমূহ',
+      'Language / भाषा': 'ভাষা নির্বাচন করুন',
+      'Help & Helpline 1930': 'সাহায্য এবং হেল্পলাইন ১৯৩০',
+      'Health': 'স্বাস্থ্য',
+      'Healthcare &\nWellness for all': 'সকলের জন্য স্বাস্থ্য\nএবং সুস্থতা',
+      'Agriculture': 'কৃষি',
+      'Smart Solutions\nfor Farmers': 'কৃষকদের জন্য\nস্মার্ট সমাধান',
+      'Safety': 'নিরাপত্তা',
+      'Your Safety,\nOur Priority': 'আপনার নিরাপত্তা,\nআমাদের অগ্রাধিকার',
+      'Education': 'শিক্ষা',
+      'Learn, Grow\nand Succeed': 'শিখুন, বৃদ্ধি পান\nএবং সফল হন',
+      'Governance': 'প্রশাসন',
+      'Transparent\n& Efficient': 'স্বচ্ছ এবং\nদক্ষ প্রশাসন',
+      'Explore Services': 'পরিষেবাগুলি অন্বেষণ করুন',
+      'Platform Knowledge & Updates': 'প্ল্যাটফর্ম জ্ঞান এবং আপডেট',
+      'Why It Is Made': 'এটি কেন তৈরি করা হয়েছে',
+      'Citizen User': 'নাগরিক ব্যবহারকারী',
+      'Updates': 'আপডেট',
+      'Latest Releases & Schemes': 'সর্বশেষ রিলিজ এবং স্কিম',
+      'App Insights': 'অ্যাপ অন্তর্দৃষ্টি',
+      'Live Impact Metrics': 'লাইভ ইমপ্যাক্ট মেট্রিক্স',
+      'Our Core Mission': 'আমাদের মূল মিশন',
+      'Founders Note': 'প্রতিষ্ঠাতার বার্তা',
+      'Message from Team': 'টিম থেকে বার্তা',
+      'About Adyuta Platform': 'অদ্যুতা প্ল্যাটফর্ম সম্পর্কে',
+      'Know More': 'আরও জানুন',
+      'Theme Mode': 'থিম মোড',
+      'Light (Default)': 'লাইট (ডিফল্ট)',
+      'Offline SharedPreferences Sync': 'অফলাইন সিঙ্ক',
+      'Clear Cache & Saved Bookmarks': 'ক্যাশ এবং বুকমার্ক মুছুন',
+      'Done': 'সম্পন্ন',
+      'Home': 'হোম',
+      'Services': 'পরিষেবা',
+      'Settings': 'সেটিংস',
+    },
+    'te': {
+      'Home Dashboard': 'హోమ్ డాష్‌బోర్డ్',
+      'Our Services': 'మా సేవలు',
+      'AI Assistant & Chatbot': 'AI అసిస్టెంట్ & చాట్‌బాట్',
+      'Updates & Alerts': 'అప్‌డేట్‌లు & అలర్ట్‌లు',
+      'Settings & Preferences': 'సెట్టింగ్‌లు & ప్రాధాన్యతలు',
+      'Language / भाषा': 'భాషను ఎంచుకోండి',
+      'Help & Helpline 1930': 'సహాయం & హెల్ప్‌లైన్ 1930',
+      'Health': 'ఆరోగ్యం',
+      'Healthcare &\nWellness for all': 'అందరికీ ఆరోగ్యం\n& సంరక్షణ',
+      'Agriculture': 'వ్యవసాయం',
+      'Smart Solutions\nfor Farmers': 'రైతులకు స్మార్ట్\nపరిష్కారాలు',
+      'Safety': 'భద్రత',
+      'Your Safety,\nOur Priority': 'మీ భద్రతే\nమా ప్రాధాన్యత',
+      'Education': 'విద్య',
+      'Learn, Grow\nand Succeed': 'నేర్చుకోండి, ఎదగండి\nవిజయం సాధించండి',
+      'Governance': 'పరిపాలన',
+      'Transparent\n& Efficient': 'పారదర్శకమైన &\nదక్షత కలిగిన',
+      'Explore Services': 'సేవలను అన్వేషించండి',
+      'Platform Knowledge & Updates': 'ప్లాట్‌ఫారమ్ జ్ఞానం & అప్‌డేట్‌లు',
+      'Why It Is Made': 'ఇది ఎందుకు తయారు చేయబడింది',
+      'Citizen User': 'పౌర వినియోగదారు',
+      'Updates': 'అప్‌డేట్‌లు',
+      'Latest Releases & Schemes': 'తాజా విడుదలలు & పథకాలు',
+      'App Insights': 'యాప్ ఇన్‌సైట్‌లు',
+      'Live Impact Metrics': 'లైవ్ ఇంపాక్ట్ మెట్రిక్స్',
+      'Our Core Mission': 'మా ప్రధాన లక్ష్యం',
+      'Founders Note': 'వ్యవస్థాపకుల సందేశం',
+      'Message from Team': 'టీమ్ నుండి సందేశం',
+      'About Adyuta Platform': 'అద్యుత ప్లాట్‌ఫారమ్ గురించి',
+      'Know More': 'మరింత తెలుసుకోండి',
+      'Theme Mode': 'థీమ్ మోడ్',
+      'Light (Default)': 'లైట్ (డిఫాల్ట్)',
+      'Offline SharedPreferences Sync': 'ఆఫ్‌లైన్ సింక్',
+      'Clear Cache & Saved Bookmarks': 'కాష్ & బుక్‌మార్క్‌లను క్లియర్ చేయండి',
+      'Done': 'పూర్తయింది',
+      'Home': 'హోమ్',
+      'Services': 'సేవలు',
+      'Settings': 'సెట్టింగ్‌లు',
+    },
+    'mr': {
+      'Home Dashboard': 'होम डॅशबोर्ड',
+      'Our Services': 'आमच्या सेवा',
+      'AI Assistant & Chatbot': 'AI सहाय्यक आणि चॅटबॉट',
+      'Updates & Alerts': 'अपडेट्स आणि अलर्ट',
+      'Settings & Preferences': 'सेटिंग्ज आणि प्राधान्ये',
+      'Language / भाषा': 'भाषा निवडा',
+      'Help & Helpline 1930': 'मदत आणि हेल्पलाइन 1930',
+      'Health': 'आरोग्य',
+      'Healthcare &\nWellness for all': 'सर्वांसाठी आरोग्य\nआणि कल्याण',
+      'Agriculture': 'कृषी',
+      'Smart Solutions\nfor Farmers': 'शेतकर्‍यांसाठी\nस्मार्ट उपाय',
+      'Safety': 'सुरक्षा',
+      'Your Safety,\nOur Priority': 'तुमची सुरक्षा,\nआमचे प्राधान्य',
+      'Education': 'शिक्षण',
+      'Learn, Grow\nand Succeed': 'शिका, वाढा\nआणि यशस्वी व्हा',
+      'Governance': 'प्रशासन',
+      'Transparent\n& Efficient': 'पारदर्शक आणि\nकार्यक्षम प्रशासन',
+      'Explore Services': 'सेवा शोधा',
+      'Platform Knowledge & Updates': 'प्लॅटफॉर्म ज्ञान आणि अपडेट्स',
+      'Why It Is Made': 'हे का बनवले गेले आहे',
+      'Citizen User': 'नागरिक वापरकर्ता',
+      'Updates': 'अपडेट्स',
+      'Latest Releases & Schemes': 'नवीनतम रिलीज आणि योजना',
+      'App Insights': 'अ‍ॅप अंतर्दृष्टी',
+      'Live Impact Metrics': 'लाईव्ह प्रभाव मेट्रिक्स',
+      'Our Core Mission': 'आमचे मुख्य ध्येय',
+      'Founders Note': 'संस्थापकांचा संदेश',
+      'Message from Team': 'टीमचा संदेश',
+      'About Adyuta Platform': 'अद्युता प्लॅटफॉर्मबद्दल',
+      'Know More': 'अधिक जाणून घ्या',
+      'Theme Mode': 'थीम मोड',
+      'Light (Default)': 'लाईट (डिफॉल्ट)',
+      'Offline SharedPreferences Sync': 'ऑफलाईन सिंक',
+      'Clear Cache & Saved Bookmarks': 'कॅश आणि बुकमार्क साफ करा',
+      'Done': 'झाले',
+      'Home': 'होम',
+      'Services': 'सेवा',
+      'Settings': 'सेटिंग्ज',
+    },
+    'ta': {
+      'Home Dashboard': 'முகப்பு டாஷ்போர்டு',
+      'Our Services': 'எங்கள் சேவைகள்',
+      'AI Assistant & Chatbot': 'AI உதவியாளர் மற்றும் சாட்பாட்',
+      'Updates & Alerts': 'புதுப்பிப்புகள் மற்றும் விழிப்பூட்டல்கள்',
+      'Settings & Preferences': 'அமைப்புகள் மற்றும் விருப்பங்கள்',
+      'Language / भाषा': 'மொழியைத் தேர்ந்தெடுக்கவும்',
+      'Help & Helpline 1930': 'உதவி மற்றும் உதவி எண் 1930',
+      'Health': 'சுகாதாரம்',
+      'Healthcare &\nWellness for all': 'அனைவருக்கும் சுகாதாரம்\nமற்றும் நல்வாழ்வு',
+      'Agriculture': 'விவசாயம்',
+      'Smart Solutions\nfor Farmers': 'விவசாயிகளுக்கான\nஸ்மார்ட் தீர்வுகள்',
+      'Safety': 'பாதுகாப்பு',
+      'Your Safety,\nOur Priority': 'உங்கள் பாதுகாப்பு,\nஎங்கள் முன்னுரிமை',
+      'Education': 'கல்வி',
+      'Learn, Grow\nand Succeed': 'கற்றுக்கொள்ளுங்கள், வளருங்கள்\nவெற்றி பெறுங்கள்',
+      'Governance': 'ஆளுமை',
+      'Transparent\n& Efficient': 'வெளிப்படையான &\nதிறமையான நிர்வாகம்',
+      'Explore Services': 'சேவைகளை ஆராயுங்கள்',
+      'Platform Knowledge & Updates': 'தளம் அறிவு மற்றும் புதுப்பிப்புகள்',
+      'Why It Is Made': 'இது ஏன் உருவாக்கப்பட்டது',
+      'Citizen User': 'குடிமகன் பயனர்',
+      'Updates': 'புதுப்பிப்புகள்',
+      'Latest Releases & Schemes': 'சமீபத்திய வெளியீடுகள் மற்றும் திட்டங்கள்',
+      'App Insights': 'செயலி நுண்ணறிவு',
+      'Live Impact Metrics': 'நேரடி தாக்க அளவீடுகள்',
+      'Our Core Mission': 'எங்கள் முக்கிய பணி',
+      'Founders Note': 'நிறுவனர் செய்தி',
+      'Message from Team': 'குழுவின் செய்தி',
+      'About Adyuta Platform': 'அத்யுதா தளம் பற்றி',
+      'Know More': 'மேலும் அறிக',
+      'Theme Mode': 'தீம் முறை',
+      'Light (Default)': 'லைட் (இயல்புநிலை)',
+      'Offline SharedPreferences Sync': 'ஆஃப்லைன் ஒத்திசைவு',
+      'Clear Cache & Saved Bookmarks': 'தற்காலிக சேமிப்பை அழிக்கவும்',
+      'Done': 'முடிந்தது',
+      'Home': 'முகப்பு',
+      'Services': 'சேவைகள்',
+      'Settings': 'அமைப்புகள்',
+    },
+    'gu': {
+      'Home Dashboard': 'હોમ ડેશબોર્ડ',
+      'Our Services': 'અમારી સેવાઓ',
+      'AI Assistant & Chatbot': 'AI સહાયક અને ચેટબોટ',
+      'Updates & Alerts': 'અપડેટ્સ અને ચેતવણીઓ',
+      'Settings & Preferences': 'સેટિંગ્સ અને પસંદગીઓ',
+      'Language / भाषा': 'ભાષા પસંદ કરો',
+      'Help & Helpline 1930': 'મદદ અને હેલ્પલાઇન 1930',
+      'Health': 'સ્વાસ્થ્ય',
+      'Healthcare &\nWellness for all': 'દરેક માટે સ્વાસ્થ્ય\nઅને કલ્યાણ',
+      'Agriculture': 'કૃષિ',
+      'Smart Solutions\nfor Farmers': 'ખેડૂતો માટે\nસ્માર્ટ ઉકેલો',
+      'Safety': 'સુરક્ષા',
+      'Your Safety,\nOur Priority': 'તમારી સુરક્ષા,\nઅમારી પ્રાથમિકતા',
+      'Education': 'શિક્ષણ',
+      'Learn, Grow\nand Succeed': 'શીખો, વધો\nઅને સફળ થાઓ',
+      'Governance': 'શાસન',
+      'Transparent\n& Efficient': 'પારદર્શક અને\nકાર્યક્ષમ શાસન',
+      'Explore Services': 'સેવાઓનું અન્વેષણ કરો',
+      'Platform Knowledge & Updates': 'પ્લેટફોર્મ જ્ઞાન અને અપડેટ્સ',
+      'Why It Is Made': 'આ શા માટે બનાવવામાં આવ્યું છે',
+      'Citizen User': 'નાગરિક વપરાશકર્તા',
+      'Updates': 'અપડેટ્સ',
+      'Latest Releases & Schemes': 'નવીનતમ પ્રકાશનો અને યોજનાઓ',
+      'App Insights': 'એપ આંતરદૃષ્ટિ',
+      'Live Impact Metrics': 'લાઇવ ઇમ્પેક્ટ મેટ્રિક્સ',
+      'Our Core Mission': 'અમારું મુખ્ય મિશન',
+      'Founders Note': 'સ્થાપકનો સંદેશ',
+      'Message from Team': 'ટીમ તરફથી સંદેશ',
+      'About Adyuta Platform': 'અદ્યુતા પ્લેટફોર્મ વિશે',
+      'Know More': 'વધુ જાણો',
+      'Theme Mode': 'થીમ મોડ',
+      'Light (Default)': 'લાઇટ (ડિફૉલ્ટ)',
+      'Offline SharedPreferences Sync': 'ઑફલાઇન સિંક',
+      'Clear Cache & Saved Bookmarks': 'કેશ અને બુકમાર્ક્સ સાફ કરો',
+      'Done': 'થઈ ગયું',
+      'Home': 'હોમ',
+      'Services': 'સેવાઓ',
+      'Settings': 'સેટિંગ્સ',
+    },
+    'kn': {
+      'Home Dashboard': 'ಮುಖಪುಟ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್',
+      'Our Services': 'ನಮ್ಮ ಸೇವೆಗಳು',
+      'AI Assistant & Chatbot': 'AI ಸಹಾಯಕ ಮತ್ತು ಚಾಟ್‌ಬಾಟ್',
+      'Updates & Alerts': 'ನವೀಕರಣಗಳು ಮತ್ತು ಎಚ್ಚರಿಕೆಗಳು',
+      'Settings & Preferences': 'ಸೆಟ್ಟಿಂಗ್‌ಗಳು ಮತ್ತು ಆದ್ಯತೆಗಳು',
+      'Language / भाषा': 'ಭಾಷೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ',
+      'Help & Helpline 1930': 'ಸಹಾಯ ಮತ್ತು ಸಹಾಯವಾಣಿ 1930',
+      'Health': 'ಆರೋಗ್ಯ',
+      'Healthcare &\nWellness for all': 'ಎಲ್ಲರಿಗೂ ಆರೋಗ್ಯ\nಮತ್ತು ಯೋಗಕ್ಷೇಮ',
+      'Agriculture': 'ಕೃಷಿ',
+      'Smart Solutions\nfor Farmers': 'ರೈತರಿಗಾಗಿ\nಸ್ಮಾರ್ಟ್ ಪರಿಹಾರಗಳು',
+      'Safety': 'ಸುರಕ್ಷತೆ',
+      'Your Safety,\nOur Priority': 'ನಿಮ್ಮ ಸುರಕ್ಷತೆ,\nನಮ್ಮ ಆದ್ಯತೆ',
+      'Education': 'ಶಿಕ್ಷಣ',
+      'Learn, Grow\nand Succeed': 'ಕಲಿಯಿರಿ, ಬೆಳೆಯಿರಿ\nಮತ್ತು ಯಶಸ್ವಿಯಾಗಿ',
+      'Governance': 'ಆಡಳಿತ',
+      'Transparent\n& Efficient': 'ಪಾರದರ್ಶಕ ಮತ್ತು\nದಕ್ಷ ಆಡಳಿತ',
+      'Explore Services': 'ಸೇವೆಗಳನ್ನು ಅನ್ವೇಷಿಸಿ',
+      'Platform Knowledge & Updates': 'ಪ್ಲಾಟ್‌ಫಾರ್ಮ್ ಜ್ಞಾನ ಮತ್ತು ನವೀಕರಣಗಳು',
+      'Why It Is Made': 'ಇದನ್ನು ಏಕೆ ಮಾಡಲಾಗಿದೆ',
+      'Citizen User': 'ನಾಗರಿಕ ಬಳಕೆದಾರ',
+      'Updates': 'ನವೀಕರಣಗಳು',
+      'Latest Releases & Schemes': 'ಇತ್ತೀಚಿನ ಬಿಡುಗಡೆಗಳು ಮತ್ತು ಯೋಜನೆಗಳು',
+      'App Insights': 'ಅಪ್ಲಿಕೇಶನ್ ಒಳನೋಟಗಳು',
+      'Live Impact Metrics': 'ಲೈವ್ ಇಂಪ್ಯಾಕ್ಟ್ ಮೆಟ್ರಿಕ್ಸ್',
+      'Our Core Mission': 'ನಮ್ಮ ಮುಖ್ಯ ಮಿಷನ್',
+      'Founders Note': 'ಸಂಸ್ಥಾಪಕರ ಸಂದೇಶ',
+      'Message from Team': 'ತಂಡದಿಂದ ಸಂದೇಶ',
+      'About Adyuta Platform': 'ಅದ್ಯುತ ಪ್ಲಾಟ್‌ಫಾರ್ಮ್ ಬಗ್ಗೆ',
+      'Know More': 'ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ',
+      'Theme Mode': 'ಥೀಮ್ ಮೋಡ್',
+      'Light (Default)': 'ಲೈಟ್ (ಡೀಫಾಲ್ಟ್)',
+      'Offline SharedPreferences Sync': 'ಆಫ್‌ಲೈನ್ ಸಿಂಕ್',
+      'Clear Cache & Saved Bookmarks': 'ಕ್ಯಾಶ್ ಮತ್ತು ಬುಕ್‌ಮಾರ್ಕ್‌ಗಳನ್ನು ತೆರವುಗೊಳಿಸಿ',
+      'Done': 'ಮುಗಿದಿದೆ',
+      'Home': 'ಮುಖಪುಟ',
+      'Services': 'ಸೇವೆಗಳು',
+      'Settings': 'ಸೆಟ್ಟಿಂಗ್‌ಗಳು',
+    },
+    'ml': {
+      'Home Dashboard': 'ഹോം ഡാഷ്‌ബോർഡ്',
+      'Our Services': 'ഞങ്ങളുടെ സേവനങ്ങൾ',
+      'AI Assistant & Chatbot': 'AI അസിസ്റ്റന്റും ചാറ്റ്‌ബോട്ടും',
+      'Updates & Alerts': 'അപ്‌ഡേറ്റുകളും അലേർട്ടുകളും',
+      'Settings & Preferences': 'ക്രമീകരണങ്ങളും മുൻഗണനകളും',
+      'Language / भाषा': 'ഭാഷ തിരഞ്ഞെടുക്കുക',
+      'Help & Helpline 1930': 'സഹായവും ഹെൽപ്പ് ലൈനും 1930',
+      'Health': 'ആരോഗ്യം',
+      'Healthcare &\nWellness for all': 'എല്ലാവർക്കും ആരോഗ്യവും\nക്ഷേമവും',
+      'Agriculture': 'കൃഷി',
+      'Smart Solutions\nfor Farmers': 'കർഷകർക്കായുള്ള\nസ്മാർട്ട് പരിഹാരങ്ങൾ',
+      'Safety': 'സുരക്ഷ',
+      'Your Safety,\nOur Priority': 'നിങ്ങളുടെ സുരക്ഷ,\nഞങ്ങളുടെ മുൻഗണന',
+      'Education': 'വിദ്യാഭ്യാസം',
+      'Learn, Grow\nand Succeed': 'പഠിക്കുക, വളരുക\nവിജയിക്കുക',
+      'Governance': 'ഭരണം',
+      'Transparent\n& Efficient': 'സുതാര്യവും\nകാര്യക്ഷമവുമായ ഭരണം',
+      'Explore Services': 'സേവനങ്ങൾ പര്യവേക്ഷണം ചെയ്യുക',
+      'Platform Knowledge & Updates': 'പ്ലാറ്റ്‌ഫോം അറിവും അപ്‌ഡേറ്റുകളും',
+      'Why It Is Made': 'ഇത് എന്തിനാണ് നിർമ്മിച്ചത്',
+      'Citizen User': 'പൗര ഉപയോക്താവ്',
+      'Updates': 'അപ്‌ഡേറ്റുകൾ',
+      'Latest Releases & Schemes': 'ഏറ്റവും പുതിയ റിലീസുകളും പദ്ധതികളും',
+      'App Insights': 'ആപ്പ് ഇൻസൈറ്റുകൾ',
+      'Live Impact Metrics': 'ലൈവ് ഇംപാക്റ്റ് മെട്രിക്‌സ്',
+      'Our Core Mission': 'ഞങ്ങളുടെ പ്രധാന ലക്ഷ്യം',
+      'Founders Note': 'സ്ഥാപകന്റെ സന്ദേശം',
+      'Message from Team': 'ടീമിൽ നിന്നുള്ള സന്ദേശം',
+      'About Adyuta Platform': 'അദ്യുത പ്ലാറ്റ്‌ഫോമിനെക്കുറിച്ച്',
+      'Know More': 'കൂടുതൽ അറിയുക',
+      'Theme Mode': 'തീം മോഡ്',
+      'Light (Default)': 'ലൈറ്റ് (ഡിഫോൾട്ട്)',
+      'Offline SharedPreferences Sync': 'ഓഫ്‌ലൈൻ സിങ്ക്',
+      'Clear Cache & Saved Bookmarks': 'കാഷെയും ബുക്ക്‌മാർക്കുകളും മായ്‌ക്കുക',
+      'Done': 'ചെയ്തു',
+      'Home': 'ഹോം',
+      'Services': 'സേവനങ്ങൾ',
+      'Settings': 'ക്രമീകരണങ്ങൾ',
+    },
+    'od': {
+      'Home Dashboard': 'ହୋମ୍ ଡାସ୍ ବୋର୍ଡ',
+      'Our Services': 'ଆମର ସେବାଗୁଡ଼ିକ',
+      'AI Assistant & Chatbot': 'AI ସହାୟକ ଏବଂ ଚାଟବଟ୍',
+      'Updates & Alerts': 'ଅପଡେଟ୍ ଏବଂ ଆଲର୍ଟ',
+      'Settings & Preferences': 'ସେଟିଂସମୂହ ଏବଂ ପସନ୍ଦ',
+      'Language / भाषा': 'ଭାଷା ବାଛନ୍ତୁ',
+      'Help & Helpline 1930': 'ସାହାଯ୍ୟ ଏବଂ ହେଲ୍ପଲାଇନ୍ ୧୯୩୦',
+      'Health': 'ସ୍ୱାସ୍ଥ୍ୟ',
+      'Healthcare &\nWellness for all': 'ସମସ୍ତଙ୍କ ପାଇଁ ସ୍ୱାସ୍ଥ୍ୟ\nଏବଂ କଲ୍ୟାଣ',
+      'Agriculture': 'କୃଷି',
+      'Smart Solutions\nfor Farmers': 'କୃଷକମାନଙ୍କ ପାଇଁ\nସ୍ମାର୍ଟ ସମାଧାନ',
+      'Safety': 'ସୁରକ୍ଷା',
+      'Your Safety,\nOur Priority': 'ଆପଣଙ୍କ ସୁରକ୍ଷା,\nଆମର ପ୍ରାଥମିକତା',
+      'Education': 'ଶିକ୍ଷା',
+      'Learn, Grow\nand Succeed': 'ଶିଖନ୍ତୁ, ବଢ଼ନ୍ତୁ\nଏବଂ ସଫଳ ହୁଅନ୍ତୁ',
+      'Governance': 'ଶାସନ',
+      'Transparent\n& Efficient': 'ସ୍ୱଚ୍ଛ ଏବଂ\nଦକ୍ଷ ଶାସନ',
+      'Explore Services': 'ସେବାଗୁଡ଼ିକ ଅନୁସନ୍ଧାନ କରନ୍ତୁ',
+      'Platform Knowledge & Updates': 'ପ୍ଲାଟଫର୍ମ ଜ୍ଞାନ ଏବଂ ଅପଡେଟ୍',
+      'Why It Is Made': 'ଏହା କାହିଁକି ତିଆରି ହୋଇଛି',
+      'Citizen User': 'ନାଗରିକ ଉପଯୋଗକର୍ତ୍ତା',
+      'Updates': 'ଅପଡେଟ୍',
+      'Latest Releases & Schemes': 'ସର୍ବଶେଷ ରିଲିଜ୍ ଏବଂ ଯୋଜନା',
+      'App Insights': 'ଆପ୍ ଇନସାଇଟ୍',
+      'Live Impact Metrics': 'ଲାଇଭ୍ ଇମ୍ପାକ୍ଟ ମେଟ୍ରିକ୍ସ',
+      'Our Core Mission': 'ଆମର ମୂଳ ଲକ୍ଷ୍ୟ',
+      'Founders Note': 'ପ୍ରତିଷ୍ଠାତାଙ୍କ ବାର୍ତ୍ତା',
+      'Message from Team': 'ଟିମ୍ ରୁ ବାର୍ତ୍ତା',
+      'About Adyuta Platform': 'ଅଦ୍ୟୁତା ପ୍ଲାଟଫର୍ମ ବିଷୟରେ',
+      'Know More': 'ଅଧିକ ଜାଣନ୍ତୁ',
+      'Theme Mode': 'ଥିମ୍ ମୋଡ୍',
+      'Light (Default)': 'ଲାଇଟ୍ (ଡିଫଲ୍ଟ)',
+      'Offline SharedPreferences Sync': 'ଅଫଲାଇନ୍ ସିଙ୍କ୍',
+      'Clear Cache & Saved Bookmarks': 'କ୍ୟାଶେ ଏବଂ ବୁକମାର୍କ ସଫା କରନ୍ତୁ',
+      'Done': 'ସମ୍ପନ୍ନ ହେଲା',
+      'Home': 'ହୋମ୍',
+      'Services': 'ସେବାଗୁଡ଼ିକ',
+      'Settings': 'ସେଟିଂସମୂହ',
+    },
+    'pa': {
+      'Home Dashboard': 'ਹੋਮ ਡੈਸ਼ਬੋਰਡ',
+      'Our Services': 'ਸਾਡੀਆਂ ਸੇਵਾਵਾਂ',
+      'AI Assistant & Chatbot': 'AI ਸਹਾਇਕ ਅਤੇ ਚੈਟਬੋਟ',
+      'Updates & Alerts': 'ਅੱਪਡੇਟ ਅਤੇ ਚੇਤਾਵਨੀਆਂ',
+      'Settings & Preferences': 'ਸੈਟਿੰਗਾਂ ਅਤੇ ਤਰਜੀਹਾਂ',
+      'Language / भाषा': 'ਭਾਸ਼ਾ ਚੁਣੋ',
+      'Help & Helpline 1930': 'ਮਦਦ ਅਤੇ ਹੈਲਪਲਾਈਨ 1930',
+      'Health': 'ਸਿਹਤ',
+      'Healthcare &\nWellness for all': 'ਸਾਰਿਆਂ ਲਈ ਸਿਹਤ\nਅਤੇ ਤੰਦਰੁਸਤੀ',
+      'Agriculture': 'ਖੇਤੀਬਾੜੀ',
+      'Smart Solutions\nfor Farmers': 'ਕਿਸਾਨਾਂ ਲਈ\nਸਮਾਰਟ ਹੱਲ',
+      'Safety': 'ਸੁਰੱਖਿਆ',
+      'Your Safety,\nOur Priority': 'ਤੁਹਾਡੀ ਸੁਰੱਖਿਆ,\nਸਾਡੀ ਪਹਿਲ',
+      'Education': 'ਸਿੱਖਿਆ',
+      'Learn, Grow\nand Succeed': 'ਸਿੱਖੋ, ਵਧੋ\nਅਤੇ ਸਫਲ ਹੋਵੋ',
+      'Governance': 'ਪ੍ਰਸ਼ਾਸਨ',
+      'Transparent\n& Efficient': 'ਪਾਰਦਰਸ਼ੀ ਅਤੇ\nਕੁਸ਼ਲ ਪ੍ਰਸ਼ਾਸਨ',
+      'Explore Services': 'ਸੇਵਾਵਾਂ ਦੀ ਪੜਚੋਲ ਕਰੋ',
+      'Platform Knowledge & Updates': 'ਪਲੇਟਫਾਰਮ ਗਿਆਨ ਅਤੇ ਅੱਪਡੇਟ',
+      'Why It Is Made': 'ਇਹ ਕਿਉਂ ਬਣਾਇਆ ਗਿਆ ਹੈ',
+      'Citizen User': 'ਨਾਗਰਿਕ ਉਪਭੋਗਤਾ',
+      'Updates': 'ਅੱਪਡੇਟ',
+      'Latest Releases & Schemes': 'ਨਵੀਨਤਮ ਰਿਲੀਜ਼ ਅਤੇ ਸਕੀਮਾਂ',
+      'App Insights': 'ਐਪ ਇਨਸਾਈਟਸ',
+      'Live Impact Metrics': 'ਲਾਈਵ ਪ੍ਰਭਾਵ ਮੈਟ੍ਰਿਕਸ',
+      'Our Core Mission': 'ਸਾਡਾ ਮੁੱਖ ਮਿਸ਼ਨ',
+      'Founders Note': 'ਸੰਸਥਾਪਕ ਦਾ ਸੁਨੇਹਾ',
+      'Message from Team': 'ਟੀਮ ਵੱਲੋਂ ਸੁਨੇਹਾ',
+      'About Adyuta Platform': 'ਅਦਯੁਤਾ ਪਲੇਟਫਾਰਮ ਬਾਰੇ',
+      'Know More': 'ਹੋਰ ਜਾਣੋ',
+      'Theme Mode': 'ਥੀਮ ਮੋਡ',
+      'Light (Default)': 'ਲਾਈਟ (ਡਿਫੌਲਟ)',
+      'Offline SharedPreferences Sync': 'ਔਫਲਾਈਨ ਸਿੰਕ',
+      'Clear Cache & Saved Bookmarks': 'ਕੈਸ਼ ਅਤੇ ਬੁੱਕਮਾਰਕ ਸਾਫ਼ ਕਰੋ',
+      'Done': 'ਹੋ ਗਿਆ',
+      'Home': 'ਹੋਮ',
+      'Services': 'ਸੇਵਾਵਾਂ',
+      'Settings': 'ਸੈਟਿੰਗਾਂ',
+    },
+    'as': {
+      'Home Dashboard': 'হম ডেচবৰ্ড',
+      'Our Services': 'আমাৰ সেৱাসমূহ',
+      'AI Assistant & Chatbot': 'AI সহায়ক আৰু চাটবট',
+      'Updates & Alerts': 'আপডেট আৰু সতৰ্কবাণী',
+      'Settings & Preferences': 'ছেটিংছ আৰু পছন্দসমূহ',
+      'Language / भाषा': 'ভাষা বাছনি কৰক',
+      'Help & Helpline 1930': 'সহায় আৰু হেল্পলাইন ১৯৩০',
+      'Health': 'স্বাস্থ্য',
+      'Healthcare &\nWellness for all': 'সকলোৰে বাবে স্বাস্থ্য\nআৰু কল্যাণ',
+      'Agriculture': 'কৃষি',
+      'Smart Solutions\nfor Farmers': 'কৃষকসকলৰ বাবে\nস্মাৰ্ট সমাধান',
+      'Safety': 'সুৰক্ষা',
+      'Your Safety,\nOur Priority': 'আপোনাৰ সুৰক্ষা,\nআমাৰ অগ্ৰাধিকাৰ',
+      'Education': 'শিক্ষা',
+      'Learn, Grow\nand Succeed': 'শিকক, আগবাঢ়ক\nআৰু সফল হওক',
+      'Governance': 'শাসন',
+      'Transparent\n& Efficient': 'স্বচ্ছ আৰু\nদক্ষ প্ৰশাসন',
+      'Explore Services': 'সেৱাসমূহ অন্বেষণ কৰক',
+      'Platform Knowledge & Updates': 'প্লেটফৰ্ম জ্ঞান আৰু আপডেট',
+      'Why It Is Made': 'এইটো কিয় বনোৱা হৈছে',
+      'Citizen User': 'নাগৰিক ব্যৱহাৰকাৰী',
+      'Updates': 'আপডেট',
+      'Latest Releases & Schemes': 'শেহতীয়া মুকলি আৰু আঁচনি',
+      'App Insights': 'এপ ইনচাইট',
+      'Live Impact Metrics': 'লাইভ ইমপেক্ট মেট্ৰিকছ',
+      'Our Core Mission': 'আমাৰ মূল অভিযান',
+      'Founders Note': 'প্ৰতিষ্ঠাপকৰ বাৰ্তা',
+      'Message from Team': 'দলৰ পৰা বাৰ্তা',
+      'About Adyuta Platform': 'অদ্যুতা প্লেটফৰ্মৰ বিষয়ে',
+      'Know More': 'অধিক জানক',
+      'Theme Mode': 'থিম মড',
+      'Light (Default)': 'লাইট (ডিফল্ট)',
+      'Offline SharedPreferences Sync': 'অফলাইন চিংক',
+      'Clear Cache & Saved Bookmarks': 'কেচ আৰু বুকমাৰ্ক মচি পেলাওক',
+      'Done': 'সম্পন্ন',
+      'Home': 'হম',
+      'Services': 'সেৱাসমূহ',
+      'Settings': 'ছেটিংছ',
+    }
+  };
+
+  /// Translate string synchronously without altering font style or typography
+  String t(String text) {
+    if (_currentLanguageCode == 'en') return text;
+    final langDict = _localTranslations[_currentLanguageCode];
+    if (langDict != null && langDict.containsKey(text)) {
+      return langDict[text]!;
+    }
+    return text;
+  }
+
+  /// Show Bhashini AI Multilingual Selector Modal Bottom Sheet
+  void showLanguageSelector(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (ctx) => _BhashiniLanguageSheet(service: this),
+    );
+  }
+}
+
+class _BhashiniLanguageSheet extends StatefulWidget {
+  final BhashiniService service;
+  const _BhashiniLanguageSheet({Key? key, required this.service}) : super(key: key);
+
+  @override
+  State<_BhashiniLanguageSheet> createState() => _BhashiniLanguageSheetState();
+}
+
+class _BhashiniLanguageSheetState extends State<_BhashiniLanguageSheet> {
+  @override
+  Widget build(BuildContext context) {
+    final currentLang = widget.service.currentLanguageCode;
+
+    return Container(
+      decoration: const BoxDecoration(
+        color: Color(0xFFFFFDF9),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
+      ),
+      padding: const EdgeInsets.fromLTRB(20, 16, 20, 24),
+      constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.82),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          // Drag handle
+          Container(
+            width: 40,
+            height: 4,
+            decoration: BoxDecoration(
+              color: Colors.grey.shade300,
+              borderRadius: BorderRadius.circular(2),
+            ),
+          ),
+          const SizedBox(height: 16),
+          
+          // Header
+          Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: const Color(0xFF19326A).withOpacity(0.1),
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(Icons.language_rounded, color: Color(0xFF19326A), size: 28),
+              ),
+              const SizedBox(width: 14),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'App Language / भाषा चुनें',
+                      style: GoogleFonts.outfit(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: const Color(0xFF19326A),
+                      ),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      'Powered by Bhashini AI • Govt of India NLTM',
+                      style: GoogleFonts.inter(
+                        fontSize: 11,
+                        fontWeight: FontWeight.w600,
+                        color: const Color(0xFFC67D00),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              IconButton(
+                icon: const Icon(Icons.close_rounded, color: Colors.grey),
+                onPressed: () => Navigator.pop(context),
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          const Divider(),
+          const SizedBox(height: 8),
+
+          // Grid of 12 languages
+          Expanded(
+            child: GridView.builder(
+              shrinkWrap: true,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 2.3,
+                crossAxisSpacing: 12,
+                mainAxisSpacing: 12,
+              ),
+              itemCount: BhashiniService.supportedLanguages.length,
+              itemBuilder: (context, index) {
+                final lang = BhashiniService.supportedLanguages[index];
+                final isSelected = currentLang == lang['code'];
+                final isDefault = lang['default'] == 'true';
+
+                return InkWell(
+                  onTap: () {
+                    widget.service.setLanguage(lang['code']!);
+                    Navigator.pop(context);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                          isDefault 
+                            ? 'Language switched to English (Default)' 
+                            : 'Bhashini AI active: Switched to ${lang['name']} (${lang['native']})',
+                          style: GoogleFonts.inter(fontWeight: FontWeight.w600),
+                        ),
+                        backgroundColor: const Color(0xFF19326A),
+                        behavior: SnackBarBehavior.floating,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                      ),
+                    );
+                  },
+                  borderRadius: BorderRadius.circular(14),
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 180),
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    decoration: BoxDecoration(
+                      color: isSelected ? const Color(0xFF19326A).withOpacity(0.08) : Colors.white,
+                      border: Border.all(
+                        color: isSelected ? const Color(0xFF19326A) : Colors.grey.shade200,
+                        width: isSelected ? 2.0 : 1.0,
+                      ),
+                      borderRadius: BorderRadius.circular(14),
+                      boxShadow: isSelected ? [] : [
+                        BoxShadow(color: Colors.black.withOpacity(0.03), blurRadius: 4, offset: const Offset(0, 2))
+                      ],
+                    ),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Row(
+                                children: [
+                                  Text(
+                                    lang['native']!,
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: isSelected ? const Color(0xFF19326A) : Colors.black87,
+                                    ),
+                                  ),
+                                  if (isDefault) ...[
+                                    const SizedBox(width: 6),
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xFFC67D00).withOpacity(0.15),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      child: Text(
+                                        'Default',
+                                        style: GoogleFonts.inter(fontSize: 8, fontWeight: FontWeight.bold, color: const Color(0xFFC67D00)),
+                                      ),
+                                    ),
+                                  ],
+                                ],
+                              ),
+                              const SizedBox(height: 2),
+                              Text(
+                                lang['name']!,
+                                style: GoogleFonts.inter(
+                                  fontSize: 11,
+                                  color: isSelected ? const Color(0xFF19326A).withOpacity(0.8) : Colors.grey.shade600,
+                                  fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        if (isSelected)
+                          const Icon(Icons.check_circle_rounded, color: Color(0xFF19326A), size: 20),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

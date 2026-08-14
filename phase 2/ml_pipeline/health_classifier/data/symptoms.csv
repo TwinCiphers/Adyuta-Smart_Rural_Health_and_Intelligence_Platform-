@@ -1,0 +1,1201 @@
+text,label
+I have severe chest pain and need to go to primary health centre,Emergency
+I have severe chest pain and need to go to village clinic,Emergency
+I have severe chest pain and need to go to city hospital,Emergency
+I have severe chest pain and need to go to pharmacy,Emergency
+I have severe chest pain and need to go to medical store,Emergency
+I have severe chest pain and need to go to doctor's clinic,Emergency
+I have severe chest pain and need to go to Apollo hospital,Emergency
+I have severe chest pain and need to go to Asha worker,Emergency
+I have severe chest pain and need to go to dispensary,Emergency
+I have severe chest pain and need to go to first aid center,Emergency
+I have high fever and need to go to primary health centre,Consultation
+I have high fever and need to go to village clinic,Consultation
+I have high fever and need to go to city hospital,Consultation
+I have high fever and need to go to pharmacy,Consultation
+I have high fever and need to go to medical store,Consultation
+I have high fever and need to go to doctor's clinic,Consultation
+I have high fever and need to go to Apollo hospital,Consultation
+I have high fever and need to go to Asha worker,Consultation
+I have high fever and need to go to dispensary,Consultation
+I have high fever and need to go to first aid center,Consultation
+I have snake bite and need to go to primary health centre,Emergency
+I have snake bite and need to go to village clinic,Emergency
+I have snake bite and need to go to city hospital,Emergency
+I have snake bite and need to go to pharmacy,Emergency
+I have snake bite and need to go to medical store,Emergency
+I have snake bite and need to go to doctor's clinic,Emergency
+I have snake bite and need to go to Apollo hospital,Emergency
+I have snake bite and need to go to Asha worker,Emergency
+I have snake bite and need to go to dispensary,Emergency
+I have snake bite and need to go to first aid center,Emergency
+I have dengue and need to go to primary health centre,Consultation
+I have dengue and need to go to village clinic,Consultation
+I have dengue and need to go to city hospital,Consultation
+I have dengue and need to go to pharmacy,Consultation
+I have dengue and need to go to medical store,Consultation
+I have dengue and need to go to doctor's clinic,Consultation
+I have dengue and need to go to Apollo hospital,Consultation
+I have dengue and need to go to Asha worker,Consultation
+I have dengue and need to go to dispensary,Consultation
+I have dengue and need to go to first aid center,Consultation
+I have malaria and need to go to primary health centre,Consultation
+I have malaria and need to go to village clinic,Consultation
+I have malaria and need to go to city hospital,Consultation
+I have malaria and need to go to pharmacy,Consultation
+I have malaria and need to go to medical store,Consultation
+I have malaria and need to go to doctor's clinic,Consultation
+I have malaria and need to go to Apollo hospital,Consultation
+I have malaria and need to go to Asha worker,Consultation
+I have malaria and need to go to dispensary,Consultation
+I have malaria and need to go to first aid center,Consultation
+I have cough and need to go to primary health centre,Consultation
+I have cough and need to go to village clinic,Consultation
+I have cough and need to go to city hospital,Consultation
+I have cough and need to go to pharmacy,Consultation
+I have cough and need to go to medical store,Consultation
+I have cough and need to go to doctor's clinic,Consultation
+I have cough and need to go to Apollo hospital,Consultation
+I have cough and need to go to Asha worker,Consultation
+I have cough and need to go to dispensary,Consultation
+I have cough and need to go to first aid center,Consultation
+I have headache and need to go to primary health centre,Consultation
+I have headache and need to go to village clinic,Consultation
+I have headache and need to go to city hospital,Consultation
+I have headache and need to go to pharmacy,Consultation
+I have headache and need to go to medical store,Consultation
+I have headache and need to go to doctor's clinic,Consultation
+I have headache and need to go to Apollo hospital,Consultation
+I have headache and need to go to Asha worker,Consultation
+I have headache and need to go to dispensary,Consultation
+I have headache and need to go to first aid center,Consultation
+I have asthma attack and need to go to primary health centre,Emergency
+I have asthma attack and need to go to village clinic,Emergency
+I have asthma attack and need to go to city hospital,Emergency
+I have asthma attack and need to go to pharmacy,Emergency
+I have asthma attack and need to go to medical store,Emergency
+I have asthma attack and need to go to doctor's clinic,Emergency
+I have asthma attack and need to go to Apollo hospital,Emergency
+I have asthma attack and need to go to Asha worker,Emergency
+I have asthma attack and need to go to dispensary,Emergency
+I have asthma attack and need to go to first aid center,Emergency
+I have pregnancy complications and need to go to primary health centre,Emergency
+I have pregnancy complications and need to go to village clinic,Emergency
+I have pregnancy complications and need to go to city hospital,Emergency
+I have pregnancy complications and need to go to pharmacy,Emergency
+I have pregnancy complications and need to go to medical store,Emergency
+I have pregnancy complications and need to go to doctor's clinic,Emergency
+I have pregnancy complications and need to go to Apollo hospital,Emergency
+I have pregnancy complications and need to go to Asha worker,Emergency
+I have pregnancy complications and need to go to dispensary,Emergency
+I have pregnancy complications and need to go to first aid center,Emergency
+I have stomach ache and need to go to primary health centre,Consultation
+I have stomach ache and need to go to village clinic,Consultation
+I have stomach ache and need to go to city hospital,Consultation
+I have stomach ache and need to go to pharmacy,Consultation
+I have stomach ache and need to go to medical store,Consultation
+I have stomach ache and need to go to doctor's clinic,Consultation
+I have stomach ache and need to go to Apollo hospital,Consultation
+I have stomach ache and need to go to Asha worker,Consultation
+I have stomach ache and need to go to dispensary,Consultation
+I have stomach ache and need to go to first aid center,Consultation
+I have broken leg and need to go to primary health centre,Emergency
+I have broken leg and need to go to village clinic,Emergency
+I have broken leg and need to go to city hospital,Emergency
+I have broken leg and need to go to pharmacy,Emergency
+I have broken leg and need to go to medical store,Emergency
+I have broken leg and need to go to doctor's clinic,Emergency
+I have broken leg and need to go to Apollo hospital,Emergency
+I have broken leg and need to go to Asha worker,Emergency
+I have broken leg and need to go to dispensary,Emergency
+I have broken leg and need to go to first aid center,Emergency
+I have bleeding and need to go to primary health centre,Emergency
+I have bleeding and need to go to village clinic,Emergency
+I have bleeding and need to go to city hospital,Emergency
+I have bleeding and need to go to pharmacy,Emergency
+I have bleeding and need to go to medical store,Emergency
+I have bleeding and need to go to doctor's clinic,Emergency
+I have bleeding and need to go to Apollo hospital,Emergency
+I have bleeding and need to go to Asha worker,Emergency
+I have bleeding and need to go to dispensary,Emergency
+I have bleeding and need to go to first aid center,Emergency
+"Mujhe severe chest pain hai, primary health centre kahan hai?",Emergency
+"Mujhe severe chest pain hai, village clinic kahan hai?",Emergency
+"Mujhe severe chest pain hai, city hospital kahan hai?",Emergency
+"Mujhe severe chest pain hai, pharmacy kahan hai?",Emergency
+"Mujhe severe chest pain hai, medical store kahan hai?",Emergency
+"Mujhe severe chest pain hai, doctor's clinic kahan hai?",Emergency
+"Mujhe severe chest pain hai, Apollo hospital kahan hai?",Emergency
+"Mujhe severe chest pain hai, Asha worker kahan hai?",Emergency
+"Mujhe severe chest pain hai, dispensary kahan hai?",Emergency
+"Mujhe severe chest pain hai, first aid center kahan hai?",Emergency
+"Mujhe high fever hai, primary health centre kahan hai?",Consultation
+"Mujhe high fever hai, village clinic kahan hai?",Consultation
+"Mujhe high fever hai, city hospital kahan hai?",Consultation
+"Mujhe high fever hai, pharmacy kahan hai?",Consultation
+"Mujhe high fever hai, medical store kahan hai?",Consultation
+"Mujhe high fever hai, doctor's clinic kahan hai?",Consultation
+"Mujhe high fever hai, Apollo hospital kahan hai?",Consultation
+"Mujhe high fever hai, Asha worker kahan hai?",Consultation
+"Mujhe high fever hai, dispensary kahan hai?",Consultation
+"Mujhe high fever hai, first aid center kahan hai?",Consultation
+"Mujhe snake bite hai, primary health centre kahan hai?",Emergency
+"Mujhe snake bite hai, village clinic kahan hai?",Emergency
+"Mujhe snake bite hai, city hospital kahan hai?",Emergency
+"Mujhe snake bite hai, pharmacy kahan hai?",Emergency
+"Mujhe snake bite hai, medical store kahan hai?",Emergency
+"Mujhe snake bite hai, doctor's clinic kahan hai?",Emergency
+"Mujhe snake bite hai, Apollo hospital kahan hai?",Emergency
+"Mujhe snake bite hai, Asha worker kahan hai?",Emergency
+"Mujhe snake bite hai, dispensary kahan hai?",Emergency
+"Mujhe snake bite hai, first aid center kahan hai?",Emergency
+"Mujhe dengue hai, primary health centre kahan hai?",Consultation
+"Mujhe dengue hai, village clinic kahan hai?",Consultation
+"Mujhe dengue hai, city hospital kahan hai?",Consultation
+"Mujhe dengue hai, pharmacy kahan hai?",Consultation
+"Mujhe dengue hai, medical store kahan hai?",Consultation
+"Mujhe dengue hai, doctor's clinic kahan hai?",Consultation
+"Mujhe dengue hai, Apollo hospital kahan hai?",Consultation
+"Mujhe dengue hai, Asha worker kahan hai?",Consultation
+"Mujhe dengue hai, dispensary kahan hai?",Consultation
+"Mujhe dengue hai, first aid center kahan hai?",Consultation
+"Mujhe malaria hai, primary health centre kahan hai?",Consultation
+"Mujhe malaria hai, village clinic kahan hai?",Consultation
+"Mujhe malaria hai, city hospital kahan hai?",Consultation
+"Mujhe malaria hai, pharmacy kahan hai?",Consultation
+"Mujhe malaria hai, medical store kahan hai?",Consultation
+"Mujhe malaria hai, doctor's clinic kahan hai?",Consultation
+"Mujhe malaria hai, Apollo hospital kahan hai?",Consultation
+"Mujhe malaria hai, Asha worker kahan hai?",Consultation
+"Mujhe malaria hai, dispensary kahan hai?",Consultation
+"Mujhe malaria hai, first aid center kahan hai?",Consultation
+"Mujhe cough hai, primary health centre kahan hai?",Consultation
+"Mujhe cough hai, village clinic kahan hai?",Consultation
+"Mujhe cough hai, city hospital kahan hai?",Consultation
+"Mujhe cough hai, pharmacy kahan hai?",Consultation
+"Mujhe cough hai, medical store kahan hai?",Consultation
+"Mujhe cough hai, doctor's clinic kahan hai?",Consultation
+"Mujhe cough hai, Apollo hospital kahan hai?",Consultation
+"Mujhe cough hai, Asha worker kahan hai?",Consultation
+"Mujhe cough hai, dispensary kahan hai?",Consultation
+"Mujhe cough hai, first aid center kahan hai?",Consultation
+"Mujhe headache hai, primary health centre kahan hai?",Consultation
+"Mujhe headache hai, village clinic kahan hai?",Consultation
+"Mujhe headache hai, city hospital kahan hai?",Consultation
+"Mujhe headache hai, pharmacy kahan hai?",Consultation
+"Mujhe headache hai, medical store kahan hai?",Consultation
+"Mujhe headache hai, doctor's clinic kahan hai?",Consultation
+"Mujhe headache hai, Apollo hospital kahan hai?",Consultation
+"Mujhe headache hai, Asha worker kahan hai?",Consultation
+"Mujhe headache hai, dispensary kahan hai?",Consultation
+"Mujhe headache hai, first aid center kahan hai?",Consultation
+"Mujhe asthma attack hai, primary health centre kahan hai?",Emergency
+"Mujhe asthma attack hai, village clinic kahan hai?",Emergency
+"Mujhe asthma attack hai, city hospital kahan hai?",Emergency
+"Mujhe asthma attack hai, pharmacy kahan hai?",Emergency
+"Mujhe asthma attack hai, medical store kahan hai?",Emergency
+"Mujhe asthma attack hai, doctor's clinic kahan hai?",Emergency
+"Mujhe asthma attack hai, Apollo hospital kahan hai?",Emergency
+"Mujhe asthma attack hai, Asha worker kahan hai?",Emergency
+"Mujhe asthma attack hai, dispensary kahan hai?",Emergency
+"Mujhe asthma attack hai, first aid center kahan hai?",Emergency
+"Mujhe pregnancy complications hai, primary health centre kahan hai?",Emergency
+"Mujhe pregnancy complications hai, village clinic kahan hai?",Emergency
+"Mujhe pregnancy complications hai, city hospital kahan hai?",Emergency
+"Mujhe pregnancy complications hai, pharmacy kahan hai?",Emergency
+"Mujhe pregnancy complications hai, medical store kahan hai?",Emergency
+"Mujhe pregnancy complications hai, doctor's clinic kahan hai?",Emergency
+"Mujhe pregnancy complications hai, Apollo hospital kahan hai?",Emergency
+"Mujhe pregnancy complications hai, Asha worker kahan hai?",Emergency
+"Mujhe pregnancy complications hai, dispensary kahan hai?",Emergency
+"Mujhe pregnancy complications hai, first aid center kahan hai?",Emergency
+"Mujhe stomach ache hai, primary health centre kahan hai?",Consultation
+"Mujhe stomach ache hai, village clinic kahan hai?",Consultation
+"Mujhe stomach ache hai, city hospital kahan hai?",Consultation
+"Mujhe stomach ache hai, pharmacy kahan hai?",Consultation
+"Mujhe stomach ache hai, medical store kahan hai?",Consultation
+"Mujhe stomach ache hai, doctor's clinic kahan hai?",Consultation
+"Mujhe stomach ache hai, Apollo hospital kahan hai?",Consultation
+"Mujhe stomach ache hai, Asha worker kahan hai?",Consultation
+"Mujhe stomach ache hai, dispensary kahan hai?",Consultation
+"Mujhe stomach ache hai, first aid center kahan hai?",Consultation
+"Mujhe broken leg hai, primary health centre kahan hai?",Emergency
+"Mujhe broken leg hai, village clinic kahan hai?",Emergency
+"Mujhe broken leg hai, city hospital kahan hai?",Emergency
+"Mujhe broken leg hai, pharmacy kahan hai?",Emergency
+"Mujhe broken leg hai, medical store kahan hai?",Emergency
+"Mujhe broken leg hai, doctor's clinic kahan hai?",Emergency
+"Mujhe broken leg hai, Apollo hospital kahan hai?",Emergency
+"Mujhe broken leg hai, Asha worker kahan hai?",Emergency
+"Mujhe broken leg hai, dispensary kahan hai?",Emergency
+"Mujhe broken leg hai, first aid center kahan hai?",Emergency
+"Mujhe bleeding hai, primary health centre kahan hai?",Emergency
+"Mujhe bleeding hai, village clinic kahan hai?",Emergency
+"Mujhe bleeding hai, city hospital kahan hai?",Emergency
+"Mujhe bleeding hai, pharmacy kahan hai?",Emergency
+"Mujhe bleeding hai, medical store kahan hai?",Emergency
+"Mujhe bleeding hai, doctor's clinic kahan hai?",Emergency
+"Mujhe bleeding hai, Apollo hospital kahan hai?",Emergency
+"Mujhe bleeding hai, Asha worker kahan hai?",Emergency
+"Mujhe bleeding hai, dispensary kahan hai?",Emergency
+"Mujhe bleeding hai, first aid center kahan hai?",Emergency
+"Nannage severe chest pain ide, primary health centre ge hogabeku",Emergency
+"Nannage severe chest pain ide, village clinic ge hogabeku",Emergency
+"Nannage severe chest pain ide, city hospital ge hogabeku",Emergency
+"Nannage severe chest pain ide, pharmacy ge hogabeku",Emergency
+"Nannage severe chest pain ide, medical store ge hogabeku",Emergency
+"Nannage severe chest pain ide, doctor's clinic ge hogabeku",Emergency
+"Nannage severe chest pain ide, Apollo hospital ge hogabeku",Emergency
+"Nannage severe chest pain ide, Asha worker ge hogabeku",Emergency
+"Nannage severe chest pain ide, dispensary ge hogabeku",Emergency
+"Nannage severe chest pain ide, first aid center ge hogabeku",Emergency
+"Nannage high fever ide, primary health centre ge hogabeku",Consultation
+"Nannage high fever ide, village clinic ge hogabeku",Consultation
+"Nannage high fever ide, city hospital ge hogabeku",Consultation
+"Nannage high fever ide, pharmacy ge hogabeku",Consultation
+"Nannage high fever ide, medical store ge hogabeku",Consultation
+"Nannage high fever ide, doctor's clinic ge hogabeku",Consultation
+"Nannage high fever ide, Apollo hospital ge hogabeku",Consultation
+"Nannage high fever ide, Asha worker ge hogabeku",Consultation
+"Nannage high fever ide, dispensary ge hogabeku",Consultation
+"Nannage high fever ide, first aid center ge hogabeku",Consultation
+"Nannage snake bite ide, primary health centre ge hogabeku",Emergency
+"Nannage snake bite ide, village clinic ge hogabeku",Emergency
+"Nannage snake bite ide, city hospital ge hogabeku",Emergency
+"Nannage snake bite ide, pharmacy ge hogabeku",Emergency
+"Nannage snake bite ide, medical store ge hogabeku",Emergency
+"Nannage snake bite ide, doctor's clinic ge hogabeku",Emergency
+"Nannage snake bite ide, Apollo hospital ge hogabeku",Emergency
+"Nannage snake bite ide, Asha worker ge hogabeku",Emergency
+"Nannage snake bite ide, dispensary ge hogabeku",Emergency
+"Nannage snake bite ide, first aid center ge hogabeku",Emergency
+"Nannage dengue ide, primary health centre ge hogabeku",Consultation
+"Nannage dengue ide, village clinic ge hogabeku",Consultation
+"Nannage dengue ide, city hospital ge hogabeku",Consultation
+"Nannage dengue ide, pharmacy ge hogabeku",Consultation
+"Nannage dengue ide, medical store ge hogabeku",Consultation
+"Nannage dengue ide, doctor's clinic ge hogabeku",Consultation
+"Nannage dengue ide, Apollo hospital ge hogabeku",Consultation
+"Nannage dengue ide, Asha worker ge hogabeku",Consultation
+"Nannage dengue ide, dispensary ge hogabeku",Consultation
+"Nannage dengue ide, first aid center ge hogabeku",Consultation
+"Nannage malaria ide, primary health centre ge hogabeku",Consultation
+"Nannage malaria ide, village clinic ge hogabeku",Consultation
+"Nannage malaria ide, city hospital ge hogabeku",Consultation
+"Nannage malaria ide, pharmacy ge hogabeku",Consultation
+"Nannage malaria ide, medical store ge hogabeku",Consultation
+"Nannage malaria ide, doctor's clinic ge hogabeku",Consultation
+"Nannage malaria ide, Apollo hospital ge hogabeku",Consultation
+"Nannage malaria ide, Asha worker ge hogabeku",Consultation
+"Nannage malaria ide, dispensary ge hogabeku",Consultation
+"Nannage malaria ide, first aid center ge hogabeku",Consultation
+"Nannage cough ide, primary health centre ge hogabeku",Consultation
+"Nannage cough ide, village clinic ge hogabeku",Consultation
+"Nannage cough ide, city hospital ge hogabeku",Consultation
+"Nannage cough ide, pharmacy ge hogabeku",Consultation
+"Nannage cough ide, medical store ge hogabeku",Consultation
+"Nannage cough ide, doctor's clinic ge hogabeku",Consultation
+"Nannage cough ide, Apollo hospital ge hogabeku",Consultation
+"Nannage cough ide, Asha worker ge hogabeku",Consultation
+"Nannage cough ide, dispensary ge hogabeku",Consultation
+"Nannage cough ide, first aid center ge hogabeku",Consultation
+"Nannage headache ide, primary health centre ge hogabeku",Consultation
+"Nannage headache ide, village clinic ge hogabeku",Consultation
+"Nannage headache ide, city hospital ge hogabeku",Consultation
+"Nannage headache ide, pharmacy ge hogabeku",Consultation
+"Nannage headache ide, medical store ge hogabeku",Consultation
+"Nannage headache ide, doctor's clinic ge hogabeku",Consultation
+"Nannage headache ide, Apollo hospital ge hogabeku",Consultation
+"Nannage headache ide, Asha worker ge hogabeku",Consultation
+"Nannage headache ide, dispensary ge hogabeku",Consultation
+"Nannage headache ide, first aid center ge hogabeku",Consultation
+"Nannage asthma attack ide, primary health centre ge hogabeku",Emergency
+"Nannage asthma attack ide, village clinic ge hogabeku",Emergency
+"Nannage asthma attack ide, city hospital ge hogabeku",Emergency
+"Nannage asthma attack ide, pharmacy ge hogabeku",Emergency
+"Nannage asthma attack ide, medical store ge hogabeku",Emergency
+"Nannage asthma attack ide, doctor's clinic ge hogabeku",Emergency
+"Nannage asthma attack ide, Apollo hospital ge hogabeku",Emergency
+"Nannage asthma attack ide, Asha worker ge hogabeku",Emergency
+"Nannage asthma attack ide, dispensary ge hogabeku",Emergency
+"Nannage asthma attack ide, first aid center ge hogabeku",Emergency
+"Nannage pregnancy complications ide, primary health centre ge hogabeku",Emergency
+"Nannage pregnancy complications ide, village clinic ge hogabeku",Emergency
+"Nannage pregnancy complications ide, city hospital ge hogabeku",Emergency
+"Nannage pregnancy complications ide, pharmacy ge hogabeku",Emergency
+"Nannage pregnancy complications ide, medical store ge hogabeku",Emergency
+"Nannage pregnancy complications ide, doctor's clinic ge hogabeku",Emergency
+"Nannage pregnancy complications ide, Apollo hospital ge hogabeku",Emergency
+"Nannage pregnancy complications ide, Asha worker ge hogabeku",Emergency
+"Nannage pregnancy complications ide, dispensary ge hogabeku",Emergency
+"Nannage pregnancy complications ide, first aid center ge hogabeku",Emergency
+"Nannage stomach ache ide, primary health centre ge hogabeku",Consultation
+"Nannage stomach ache ide, village clinic ge hogabeku",Consultation
+"Nannage stomach ache ide, city hospital ge hogabeku",Consultation
+"Nannage stomach ache ide, pharmacy ge hogabeku",Consultation
+"Nannage stomach ache ide, medical store ge hogabeku",Consultation
+"Nannage stomach ache ide, doctor's clinic ge hogabeku",Consultation
+"Nannage stomach ache ide, Apollo hospital ge hogabeku",Consultation
+"Nannage stomach ache ide, Asha worker ge hogabeku",Consultation
+"Nannage stomach ache ide, dispensary ge hogabeku",Consultation
+"Nannage stomach ache ide, first aid center ge hogabeku",Consultation
+"Nannage broken leg ide, primary health centre ge hogabeku",Emergency
+"Nannage broken leg ide, village clinic ge hogabeku",Emergency
+"Nannage broken leg ide, city hospital ge hogabeku",Emergency
+"Nannage broken leg ide, pharmacy ge hogabeku",Emergency
+"Nannage broken leg ide, medical store ge hogabeku",Emergency
+"Nannage broken leg ide, doctor's clinic ge hogabeku",Emergency
+"Nannage broken leg ide, Apollo hospital ge hogabeku",Emergency
+"Nannage broken leg ide, Asha worker ge hogabeku",Emergency
+"Nannage broken leg ide, dispensary ge hogabeku",Emergency
+"Nannage broken leg ide, first aid center ge hogabeku",Emergency
+"Nannage bleeding ide, primary health centre ge hogabeku",Emergency
+"Nannage bleeding ide, village clinic ge hogabeku",Emergency
+"Nannage bleeding ide, city hospital ge hogabeku",Emergency
+"Nannage bleeding ide, pharmacy ge hogabeku",Emergency
+"Nannage bleeding ide, medical store ge hogabeku",Emergency
+"Nannage bleeding ide, doctor's clinic ge hogabeku",Emergency
+"Nannage bleeding ide, Apollo hospital ge hogabeku",Emergency
+"Nannage bleeding ide, Asha worker ge hogabeku",Emergency
+"Nannage bleeding ide, dispensary ge hogabeku",Emergency
+"Nannage bleeding ide, first aid center ge hogabeku",Emergency
+"Naaku severe chest pain undi, primary health centre ki vellali",Emergency
+"Naaku severe chest pain undi, village clinic ki vellali",Emergency
+"Naaku severe chest pain undi, city hospital ki vellali",Emergency
+"Naaku severe chest pain undi, pharmacy ki vellali",Emergency
+"Naaku severe chest pain undi, medical store ki vellali",Emergency
+"Naaku severe chest pain undi, doctor's clinic ki vellali",Emergency
+"Naaku severe chest pain undi, Apollo hospital ki vellali",Emergency
+"Naaku severe chest pain undi, Asha worker ki vellali",Emergency
+"Naaku severe chest pain undi, dispensary ki vellali",Emergency
+"Naaku severe chest pain undi, first aid center ki vellali",Emergency
+"Naaku high fever undi, primary health centre ki vellali",Consultation
+"Naaku high fever undi, village clinic ki vellali",Consultation
+"Naaku high fever undi, city hospital ki vellali",Consultation
+"Naaku high fever undi, pharmacy ki vellali",Consultation
+"Naaku high fever undi, medical store ki vellali",Consultation
+"Naaku high fever undi, doctor's clinic ki vellali",Consultation
+"Naaku high fever undi, Apollo hospital ki vellali",Consultation
+"Naaku high fever undi, Asha worker ki vellali",Consultation
+"Naaku high fever undi, dispensary ki vellali",Consultation
+"Naaku high fever undi, first aid center ki vellali",Consultation
+"Naaku snake bite undi, primary health centre ki vellali",Emergency
+"Naaku snake bite undi, village clinic ki vellali",Emergency
+"Naaku snake bite undi, city hospital ki vellali",Emergency
+"Naaku snake bite undi, pharmacy ki vellali",Emergency
+"Naaku snake bite undi, medical store ki vellali",Emergency
+"Naaku snake bite undi, doctor's clinic ki vellali",Emergency
+"Naaku snake bite undi, Apollo hospital ki vellali",Emergency
+"Naaku snake bite undi, Asha worker ki vellali",Emergency
+"Naaku snake bite undi, dispensary ki vellali",Emergency
+"Naaku snake bite undi, first aid center ki vellali",Emergency
+"Naaku dengue undi, primary health centre ki vellali",Consultation
+"Naaku dengue undi, village clinic ki vellali",Consultation
+"Naaku dengue undi, city hospital ki vellali",Consultation
+"Naaku dengue undi, pharmacy ki vellali",Consultation
+"Naaku dengue undi, medical store ki vellali",Consultation
+"Naaku dengue undi, doctor's clinic ki vellali",Consultation
+"Naaku dengue undi, Apollo hospital ki vellali",Consultation
+"Naaku dengue undi, Asha worker ki vellali",Consultation
+"Naaku dengue undi, dispensary ki vellali",Consultation
+"Naaku dengue undi, first aid center ki vellali",Consultation
+"Naaku malaria undi, primary health centre ki vellali",Consultation
+"Naaku malaria undi, village clinic ki vellali",Consultation
+"Naaku malaria undi, city hospital ki vellali",Consultation
+"Naaku malaria undi, pharmacy ki vellali",Consultation
+"Naaku malaria undi, medical store ki vellali",Consultation
+"Naaku malaria undi, doctor's clinic ki vellali",Consultation
+"Naaku malaria undi, Apollo hospital ki vellali",Consultation
+"Naaku malaria undi, Asha worker ki vellali",Consultation
+"Naaku malaria undi, dispensary ki vellali",Consultation
+"Naaku malaria undi, first aid center ki vellali",Consultation
+"Naaku cough undi, primary health centre ki vellali",Consultation
+"Naaku cough undi, village clinic ki vellali",Consultation
+"Naaku cough undi, city hospital ki vellali",Consultation
+"Naaku cough undi, pharmacy ki vellali",Consultation
+"Naaku cough undi, medical store ki vellali",Consultation
+"Naaku cough undi, doctor's clinic ki vellali",Consultation
+"Naaku cough undi, Apollo hospital ki vellali",Consultation
+"Naaku cough undi, Asha worker ki vellali",Consultation
+"Naaku cough undi, dispensary ki vellali",Consultation
+"Naaku cough undi, first aid center ki vellali",Consultation
+"Naaku headache undi, primary health centre ki vellali",Consultation
+"Naaku headache undi, village clinic ki vellali",Consultation
+"Naaku headache undi, city hospital ki vellali",Consultation
+"Naaku headache undi, pharmacy ki vellali",Consultation
+"Naaku headache undi, medical store ki vellali",Consultation
+"Naaku headache undi, doctor's clinic ki vellali",Consultation
+"Naaku headache undi, Apollo hospital ki vellali",Consultation
+"Naaku headache undi, Asha worker ki vellali",Consultation
+"Naaku headache undi, dispensary ki vellali",Consultation
+"Naaku headache undi, first aid center ki vellali",Consultation
+"Naaku asthma attack undi, primary health centre ki vellali",Emergency
+"Naaku asthma attack undi, village clinic ki vellali",Emergency
+"Naaku asthma attack undi, city hospital ki vellali",Emergency
+"Naaku asthma attack undi, pharmacy ki vellali",Emergency
+"Naaku asthma attack undi, medical store ki vellali",Emergency
+"Naaku asthma attack undi, doctor's clinic ki vellali",Emergency
+"Naaku asthma attack undi, Apollo hospital ki vellali",Emergency
+"Naaku asthma attack undi, Asha worker ki vellali",Emergency
+"Naaku asthma attack undi, dispensary ki vellali",Emergency
+"Naaku asthma attack undi, first aid center ki vellali",Emergency
+"Naaku pregnancy complications undi, primary health centre ki vellali",Emergency
+"Naaku pregnancy complications undi, village clinic ki vellali",Emergency
+"Naaku pregnancy complications undi, city hospital ki vellali",Emergency
+"Naaku pregnancy complications undi, pharmacy ki vellali",Emergency
+"Naaku pregnancy complications undi, medical store ki vellali",Emergency
+"Naaku pregnancy complications undi, doctor's clinic ki vellali",Emergency
+"Naaku pregnancy complications undi, Apollo hospital ki vellali",Emergency
+"Naaku pregnancy complications undi, Asha worker ki vellali",Emergency
+"Naaku pregnancy complications undi, dispensary ki vellali",Emergency
+"Naaku pregnancy complications undi, first aid center ki vellali",Emergency
+"Naaku stomach ache undi, primary health centre ki vellali",Consultation
+"Naaku stomach ache undi, village clinic ki vellali",Consultation
+"Naaku stomach ache undi, city hospital ki vellali",Consultation
+"Naaku stomach ache undi, pharmacy ki vellali",Consultation
+"Naaku stomach ache undi, medical store ki vellali",Consultation
+"Naaku stomach ache undi, doctor's clinic ki vellali",Consultation
+"Naaku stomach ache undi, Apollo hospital ki vellali",Consultation
+"Naaku stomach ache undi, Asha worker ki vellali",Consultation
+"Naaku stomach ache undi, dispensary ki vellali",Consultation
+"Naaku stomach ache undi, first aid center ki vellali",Consultation
+"Naaku broken leg undi, primary health centre ki vellali",Emergency
+"Naaku broken leg undi, village clinic ki vellali",Emergency
+"Naaku broken leg undi, city hospital ki vellali",Emergency
+"Naaku broken leg undi, pharmacy ki vellali",Emergency
+"Naaku broken leg undi, medical store ki vellali",Emergency
+"Naaku broken leg undi, doctor's clinic ki vellali",Emergency
+"Naaku broken leg undi, Apollo hospital ki vellali",Emergency
+"Naaku broken leg undi, Asha worker ki vellali",Emergency
+"Naaku broken leg undi, dispensary ki vellali",Emergency
+"Naaku broken leg undi, first aid center ki vellali",Emergency
+"Naaku bleeding undi, primary health centre ki vellali",Emergency
+"Naaku bleeding undi, village clinic ki vellali",Emergency
+"Naaku bleeding undi, city hospital ki vellali",Emergency
+"Naaku bleeding undi, pharmacy ki vellali",Emergency
+"Naaku bleeding undi, medical store ki vellali",Emergency
+"Naaku bleeding undi, doctor's clinic ki vellali",Emergency
+"Naaku bleeding undi, Apollo hospital ki vellali",Emergency
+"Naaku bleeding undi, Asha worker ki vellali",Emergency
+"Naaku bleeding undi, dispensary ki vellali",Emergency
+"Naaku bleeding undi, first aid center ki vellali",Emergency
+Is there a cure for severe chest pain at primary health centre?,Emergency
+Is there a cure for severe chest pain at village clinic?,Emergency
+Is there a cure for severe chest pain at city hospital?,Emergency
+Is there a cure for severe chest pain at pharmacy?,Emergency
+Is there a cure for severe chest pain at medical store?,Emergency
+Is there a cure for severe chest pain at doctor's clinic?,Emergency
+Is there a cure for severe chest pain at Apollo hospital?,Emergency
+Is there a cure for severe chest pain at Asha worker?,Emergency
+Is there a cure for severe chest pain at dispensary?,Emergency
+Is there a cure for severe chest pain at first aid center?,Emergency
+Is there a cure for high fever at primary health centre?,Consultation
+Is there a cure for high fever at village clinic?,Consultation
+Is there a cure for high fever at city hospital?,Consultation
+Is there a cure for high fever at pharmacy?,Consultation
+Is there a cure for high fever at medical store?,Consultation
+Is there a cure for high fever at doctor's clinic?,Consultation
+Is there a cure for high fever at Apollo hospital?,Consultation
+Is there a cure for high fever at Asha worker?,Consultation
+Is there a cure for high fever at dispensary?,Consultation
+Is there a cure for high fever at first aid center?,Consultation
+Is there a cure for snake bite at primary health centre?,Emergency
+Is there a cure for snake bite at village clinic?,Emergency
+Is there a cure for snake bite at city hospital?,Emergency
+Is there a cure for snake bite at pharmacy?,Emergency
+Is there a cure for snake bite at medical store?,Emergency
+Is there a cure for snake bite at doctor's clinic?,Emergency
+Is there a cure for snake bite at Apollo hospital?,Emergency
+Is there a cure for snake bite at Asha worker?,Emergency
+Is there a cure for snake bite at dispensary?,Emergency
+Is there a cure for snake bite at first aid center?,Emergency
+Is there a cure for dengue at primary health centre?,Consultation
+Is there a cure for dengue at village clinic?,Consultation
+Is there a cure for dengue at city hospital?,Consultation
+Is there a cure for dengue at pharmacy?,Consultation
+Is there a cure for dengue at medical store?,Consultation
+Is there a cure for dengue at doctor's clinic?,Consultation
+Is there a cure for dengue at Apollo hospital?,Consultation
+Is there a cure for dengue at Asha worker?,Consultation
+Is there a cure for dengue at dispensary?,Consultation
+Is there a cure for dengue at first aid center?,Consultation
+Is there a cure for malaria at primary health centre?,Consultation
+Is there a cure for malaria at village clinic?,Consultation
+Is there a cure for malaria at city hospital?,Consultation
+Is there a cure for malaria at pharmacy?,Consultation
+Is there a cure for malaria at medical store?,Consultation
+Is there a cure for malaria at doctor's clinic?,Consultation
+Is there a cure for malaria at Apollo hospital?,Consultation
+Is there a cure for malaria at Asha worker?,Consultation
+Is there a cure for malaria at dispensary?,Consultation
+Is there a cure for malaria at first aid center?,Consultation
+Is there a cure for cough at primary health centre?,Consultation
+Is there a cure for cough at village clinic?,Consultation
+Is there a cure for cough at city hospital?,Consultation
+Is there a cure for cough at pharmacy?,Consultation
+Is there a cure for cough at medical store?,Consultation
+Is there a cure for cough at doctor's clinic?,Consultation
+Is there a cure for cough at Apollo hospital?,Consultation
+Is there a cure for cough at Asha worker?,Consultation
+Is there a cure for cough at dispensary?,Consultation
+Is there a cure for cough at first aid center?,Consultation
+Is there a cure for headache at primary health centre?,Consultation
+Is there a cure for headache at village clinic?,Consultation
+Is there a cure for headache at city hospital?,Consultation
+Is there a cure for headache at pharmacy?,Consultation
+Is there a cure for headache at medical store?,Consultation
+Is there a cure for headache at doctor's clinic?,Consultation
+Is there a cure for headache at Apollo hospital?,Consultation
+Is there a cure for headache at Asha worker?,Consultation
+Is there a cure for headache at dispensary?,Consultation
+Is there a cure for headache at first aid center?,Consultation
+Is there a cure for asthma attack at primary health centre?,Emergency
+Is there a cure for asthma attack at village clinic?,Emergency
+Is there a cure for asthma attack at city hospital?,Emergency
+Is there a cure for asthma attack at pharmacy?,Emergency
+Is there a cure for asthma attack at medical store?,Emergency
+Is there a cure for asthma attack at doctor's clinic?,Emergency
+Is there a cure for asthma attack at Apollo hospital?,Emergency
+Is there a cure for asthma attack at Asha worker?,Emergency
+Is there a cure for asthma attack at dispensary?,Emergency
+Is there a cure for asthma attack at first aid center?,Emergency
+Is there a cure for pregnancy complications at primary health centre?,Emergency
+Is there a cure for pregnancy complications at village clinic?,Emergency
+Is there a cure for pregnancy complications at city hospital?,Emergency
+Is there a cure for pregnancy complications at pharmacy?,Emergency
+Is there a cure for pregnancy complications at medical store?,Emergency
+Is there a cure for pregnancy complications at doctor's clinic?,Emergency
+Is there a cure for pregnancy complications at Apollo hospital?,Emergency
+Is there a cure for pregnancy complications at Asha worker?,Emergency
+Is there a cure for pregnancy complications at dispensary?,Emergency
+Is there a cure for pregnancy complications at first aid center?,Emergency
+Is there a cure for stomach ache at primary health centre?,Consultation
+Is there a cure for stomach ache at village clinic?,Consultation
+Is there a cure for stomach ache at city hospital?,Consultation
+Is there a cure for stomach ache at pharmacy?,Consultation
+Is there a cure for stomach ache at medical store?,Consultation
+Is there a cure for stomach ache at doctor's clinic?,Consultation
+Is there a cure for stomach ache at Apollo hospital?,Consultation
+Is there a cure for stomach ache at Asha worker?,Consultation
+Is there a cure for stomach ache at dispensary?,Consultation
+Is there a cure for stomach ache at first aid center?,Consultation
+Is there a cure for broken leg at primary health centre?,Emergency
+Is there a cure for broken leg at village clinic?,Emergency
+Is there a cure for broken leg at city hospital?,Emergency
+Is there a cure for broken leg at pharmacy?,Emergency
+Is there a cure for broken leg at medical store?,Emergency
+Is there a cure for broken leg at doctor's clinic?,Emergency
+Is there a cure for broken leg at Apollo hospital?,Emergency
+Is there a cure for broken leg at Asha worker?,Emergency
+Is there a cure for broken leg at dispensary?,Emergency
+Is there a cure for broken leg at first aid center?,Emergency
+Is there a cure for bleeding at primary health centre?,Emergency
+Is there a cure for bleeding at village clinic?,Emergency
+Is there a cure for bleeding at city hospital?,Emergency
+Is there a cure for bleeding at pharmacy?,Emergency
+Is there a cure for bleeding at medical store?,Emergency
+Is there a cure for bleeding at doctor's clinic?,Emergency
+Is there a cure for bleeding at Apollo hospital?,Emergency
+Is there a cure for bleeding at Asha worker?,Emergency
+Is there a cure for bleeding at dispensary?,Emergency
+Is there a cure for bleeding at first aid center?,Emergency
+primary health centre mein severe chest pain ka ilaj hai?,Emergency
+village clinic mein severe chest pain ka ilaj hai?,Emergency
+city hospital mein severe chest pain ka ilaj hai?,Emergency
+pharmacy mein severe chest pain ka ilaj hai?,Emergency
+medical store mein severe chest pain ka ilaj hai?,Emergency
+doctor's clinic mein severe chest pain ka ilaj hai?,Emergency
+Apollo hospital mein severe chest pain ka ilaj hai?,Emergency
+Asha worker mein severe chest pain ka ilaj hai?,Emergency
+dispensary mein severe chest pain ka ilaj hai?,Emergency
+first aid center mein severe chest pain ka ilaj hai?,Emergency
+primary health centre mein high fever ka ilaj hai?,Consultation
+village clinic mein high fever ka ilaj hai?,Consultation
+city hospital mein high fever ka ilaj hai?,Consultation
+pharmacy mein high fever ka ilaj hai?,Consultation
+medical store mein high fever ka ilaj hai?,Consultation
+doctor's clinic mein high fever ka ilaj hai?,Consultation
+Apollo hospital mein high fever ka ilaj hai?,Consultation
+Asha worker mein high fever ka ilaj hai?,Consultation
+dispensary mein high fever ka ilaj hai?,Consultation
+first aid center mein high fever ka ilaj hai?,Consultation
+primary health centre mein snake bite ka ilaj hai?,Emergency
+village clinic mein snake bite ka ilaj hai?,Emergency
+city hospital mein snake bite ka ilaj hai?,Emergency
+pharmacy mein snake bite ka ilaj hai?,Emergency
+medical store mein snake bite ka ilaj hai?,Emergency
+doctor's clinic mein snake bite ka ilaj hai?,Emergency
+Apollo hospital mein snake bite ka ilaj hai?,Emergency
+Asha worker mein snake bite ka ilaj hai?,Emergency
+dispensary mein snake bite ka ilaj hai?,Emergency
+first aid center mein snake bite ka ilaj hai?,Emergency
+primary health centre mein dengue ka ilaj hai?,Consultation
+village clinic mein dengue ka ilaj hai?,Consultation
+city hospital mein dengue ka ilaj hai?,Consultation
+pharmacy mein dengue ka ilaj hai?,Consultation
+medical store mein dengue ka ilaj hai?,Consultation
+doctor's clinic mein dengue ka ilaj hai?,Consultation
+Apollo hospital mein dengue ka ilaj hai?,Consultation
+Asha worker mein dengue ka ilaj hai?,Consultation
+dispensary mein dengue ka ilaj hai?,Consultation
+first aid center mein dengue ka ilaj hai?,Consultation
+primary health centre mein malaria ka ilaj hai?,Consultation
+village clinic mein malaria ka ilaj hai?,Consultation
+city hospital mein malaria ka ilaj hai?,Consultation
+pharmacy mein malaria ka ilaj hai?,Consultation
+medical store mein malaria ka ilaj hai?,Consultation
+doctor's clinic mein malaria ka ilaj hai?,Consultation
+Apollo hospital mein malaria ka ilaj hai?,Consultation
+Asha worker mein malaria ka ilaj hai?,Consultation
+dispensary mein malaria ka ilaj hai?,Consultation
+first aid center mein malaria ka ilaj hai?,Consultation
+primary health centre mein cough ka ilaj hai?,Consultation
+village clinic mein cough ka ilaj hai?,Consultation
+city hospital mein cough ka ilaj hai?,Consultation
+pharmacy mein cough ka ilaj hai?,Consultation
+medical store mein cough ka ilaj hai?,Consultation
+doctor's clinic mein cough ka ilaj hai?,Consultation
+Apollo hospital mein cough ka ilaj hai?,Consultation
+Asha worker mein cough ka ilaj hai?,Consultation
+dispensary mein cough ka ilaj hai?,Consultation
+first aid center mein cough ka ilaj hai?,Consultation
+primary health centre mein headache ka ilaj hai?,Consultation
+village clinic mein headache ka ilaj hai?,Consultation
+city hospital mein headache ka ilaj hai?,Consultation
+pharmacy mein headache ka ilaj hai?,Consultation
+medical store mein headache ka ilaj hai?,Consultation
+doctor's clinic mein headache ka ilaj hai?,Consultation
+Apollo hospital mein headache ka ilaj hai?,Consultation
+Asha worker mein headache ka ilaj hai?,Consultation
+dispensary mein headache ka ilaj hai?,Consultation
+first aid center mein headache ka ilaj hai?,Consultation
+primary health centre mein asthma attack ka ilaj hai?,Emergency
+village clinic mein asthma attack ka ilaj hai?,Emergency
+city hospital mein asthma attack ka ilaj hai?,Emergency
+pharmacy mein asthma attack ka ilaj hai?,Emergency
+medical store mein asthma attack ka ilaj hai?,Emergency
+doctor's clinic mein asthma attack ka ilaj hai?,Emergency
+Apollo hospital mein asthma attack ka ilaj hai?,Emergency
+Asha worker mein asthma attack ka ilaj hai?,Emergency
+dispensary mein asthma attack ka ilaj hai?,Emergency
+first aid center mein asthma attack ka ilaj hai?,Emergency
+primary health centre mein pregnancy complications ka ilaj hai?,Emergency
+village clinic mein pregnancy complications ka ilaj hai?,Emergency
+city hospital mein pregnancy complications ka ilaj hai?,Emergency
+pharmacy mein pregnancy complications ka ilaj hai?,Emergency
+medical store mein pregnancy complications ka ilaj hai?,Emergency
+doctor's clinic mein pregnancy complications ka ilaj hai?,Emergency
+Apollo hospital mein pregnancy complications ka ilaj hai?,Emergency
+Asha worker mein pregnancy complications ka ilaj hai?,Emergency
+dispensary mein pregnancy complications ka ilaj hai?,Emergency
+first aid center mein pregnancy complications ka ilaj hai?,Emergency
+primary health centre mein stomach ache ka ilaj hai?,Consultation
+village clinic mein stomach ache ka ilaj hai?,Consultation
+city hospital mein stomach ache ka ilaj hai?,Consultation
+pharmacy mein stomach ache ka ilaj hai?,Consultation
+medical store mein stomach ache ka ilaj hai?,Consultation
+doctor's clinic mein stomach ache ka ilaj hai?,Consultation
+Apollo hospital mein stomach ache ka ilaj hai?,Consultation
+Asha worker mein stomach ache ka ilaj hai?,Consultation
+dispensary mein stomach ache ka ilaj hai?,Consultation
+first aid center mein stomach ache ka ilaj hai?,Consultation
+primary health centre mein broken leg ka ilaj hai?,Emergency
+village clinic mein broken leg ka ilaj hai?,Emergency
+city hospital mein broken leg ka ilaj hai?,Emergency
+pharmacy mein broken leg ka ilaj hai?,Emergency
+medical store mein broken leg ka ilaj hai?,Emergency
+doctor's clinic mein broken leg ka ilaj hai?,Emergency
+Apollo hospital mein broken leg ka ilaj hai?,Emergency
+Asha worker mein broken leg ka ilaj hai?,Emergency
+dispensary mein broken leg ka ilaj hai?,Emergency
+first aid center mein broken leg ka ilaj hai?,Emergency
+primary health centre mein bleeding ka ilaj hai?,Emergency
+village clinic mein bleeding ka ilaj hai?,Emergency
+city hospital mein bleeding ka ilaj hai?,Emergency
+pharmacy mein bleeding ka ilaj hai?,Emergency
+medical store mein bleeding ka ilaj hai?,Emergency
+doctor's clinic mein bleeding ka ilaj hai?,Emergency
+Apollo hospital mein bleeding ka ilaj hai?,Emergency
+Asha worker mein bleeding ka ilaj hai?,Emergency
+dispensary mein bleeding ka ilaj hai?,Emergency
+first aid center mein bleeding ka ilaj hai?,Emergency
+Please help me with severe chest pain near primary health centre,Emergency
+Please help me with severe chest pain near village clinic,Emergency
+Please help me with severe chest pain near city hospital,Emergency
+Please help me with severe chest pain near pharmacy,Emergency
+Please help me with severe chest pain near medical store,Emergency
+Please help me with severe chest pain near doctor's clinic,Emergency
+Please help me with severe chest pain near Apollo hospital,Emergency
+Please help me with severe chest pain near Asha worker,Emergency
+Please help me with severe chest pain near dispensary,Emergency
+Please help me with severe chest pain near first aid center,Emergency
+Please help me with high fever near primary health centre,Consultation
+Please help me with high fever near village clinic,Consultation
+Please help me with high fever near city hospital,Consultation
+Please help me with high fever near pharmacy,Consultation
+Please help me with high fever near medical store,Consultation
+Please help me with high fever near doctor's clinic,Consultation
+Please help me with high fever near Apollo hospital,Consultation
+Please help me with high fever near Asha worker,Consultation
+Please help me with high fever near dispensary,Consultation
+Please help me with high fever near first aid center,Consultation
+Please help me with snake bite near primary health centre,Emergency
+Please help me with snake bite near village clinic,Emergency
+Please help me with snake bite near city hospital,Emergency
+Please help me with snake bite near pharmacy,Emergency
+Please help me with snake bite near medical store,Emergency
+Please help me with snake bite near doctor's clinic,Emergency
+Please help me with snake bite near Apollo hospital,Emergency
+Please help me with snake bite near Asha worker,Emergency
+Please help me with snake bite near dispensary,Emergency
+Please help me with snake bite near first aid center,Emergency
+Please help me with dengue near primary health centre,Consultation
+Please help me with dengue near village clinic,Consultation
+Please help me with dengue near city hospital,Consultation
+Please help me with dengue near pharmacy,Consultation
+Please help me with dengue near medical store,Consultation
+Please help me with dengue near doctor's clinic,Consultation
+Please help me with dengue near Apollo hospital,Consultation
+Please help me with dengue near Asha worker,Consultation
+Please help me with dengue near dispensary,Consultation
+Please help me with dengue near first aid center,Consultation
+Please help me with malaria near primary health centre,Consultation
+Please help me with malaria near village clinic,Consultation
+Please help me with malaria near city hospital,Consultation
+Please help me with malaria near pharmacy,Consultation
+Please help me with malaria near medical store,Consultation
+Please help me with malaria near doctor's clinic,Consultation
+Please help me with malaria near Apollo hospital,Consultation
+Please help me with malaria near Asha worker,Consultation
+Please help me with malaria near dispensary,Consultation
+Please help me with malaria near first aid center,Consultation
+Please help me with cough near primary health centre,Consultation
+Please help me with cough near village clinic,Consultation
+Please help me with cough near city hospital,Consultation
+Please help me with cough near pharmacy,Consultation
+Please help me with cough near medical store,Consultation
+Please help me with cough near doctor's clinic,Consultation
+Please help me with cough near Apollo hospital,Consultation
+Please help me with cough near Asha worker,Consultation
+Please help me with cough near dispensary,Consultation
+Please help me with cough near first aid center,Consultation
+Please help me with headache near primary health centre,Consultation
+Please help me with headache near village clinic,Consultation
+Please help me with headache near city hospital,Consultation
+Please help me with headache near pharmacy,Consultation
+Please help me with headache near medical store,Consultation
+Please help me with headache near doctor's clinic,Consultation
+Please help me with headache near Apollo hospital,Consultation
+Please help me with headache near Asha worker,Consultation
+Please help me with headache near dispensary,Consultation
+Please help me with headache near first aid center,Consultation
+Please help me with asthma attack near primary health centre,Emergency
+Please help me with asthma attack near village clinic,Emergency
+Please help me with asthma attack near city hospital,Emergency
+Please help me with asthma attack near pharmacy,Emergency
+Please help me with asthma attack near medical store,Emergency
+Please help me with asthma attack near doctor's clinic,Emergency
+Please help me with asthma attack near Apollo hospital,Emergency
+Please help me with asthma attack near Asha worker,Emergency
+Please help me with asthma attack near dispensary,Emergency
+Please help me with asthma attack near first aid center,Emergency
+Please help me with pregnancy complications near primary health centre,Emergency
+Please help me with pregnancy complications near village clinic,Emergency
+Please help me with pregnancy complications near city hospital,Emergency
+Please help me with pregnancy complications near pharmacy,Emergency
+Please help me with pregnancy complications near medical store,Emergency
+Please help me with pregnancy complications near doctor's clinic,Emergency
+Please help me with pregnancy complications near Apollo hospital,Emergency
+Please help me with pregnancy complications near Asha worker,Emergency
+Please help me with pregnancy complications near dispensary,Emergency
+Please help me with pregnancy complications near first aid center,Emergency
+Please help me with stomach ache near primary health centre,Consultation
+Please help me with stomach ache near village clinic,Consultation
+Please help me with stomach ache near city hospital,Consultation
+Please help me with stomach ache near pharmacy,Consultation
+Please help me with stomach ache near medical store,Consultation
+Please help me with stomach ache near doctor's clinic,Consultation
+Please help me with stomach ache near Apollo hospital,Consultation
+Please help me with stomach ache near Asha worker,Consultation
+Please help me with stomach ache near dispensary,Consultation
+Please help me with stomach ache near first aid center,Consultation
+Please help me with broken leg near primary health centre,Emergency
+Please help me with broken leg near village clinic,Emergency
+Please help me with broken leg near city hospital,Emergency
+Please help me with broken leg near pharmacy,Emergency
+Please help me with broken leg near medical store,Emergency
+Please help me with broken leg near doctor's clinic,Emergency
+Please help me with broken leg near Apollo hospital,Emergency
+Please help me with broken leg near Asha worker,Emergency
+Please help me with broken leg near dispensary,Emergency
+Please help me with broken leg near first aid center,Emergency
+Please help me with bleeding near primary health centre,Emergency
+Please help me with bleeding near village clinic,Emergency
+Please help me with bleeding near city hospital,Emergency
+Please help me with bleeding near pharmacy,Emergency
+Please help me with bleeding near medical store,Emergency
+Please help me with bleeding near doctor's clinic,Emergency
+Please help me with bleeding near Apollo hospital,Emergency
+Please help me with bleeding near Asha worker,Emergency
+Please help me with bleeding near dispensary,Emergency
+Please help me with bleeding near first aid center,Emergency
+Can primary health centre treat severe chest pain?,Emergency
+Can village clinic treat severe chest pain?,Emergency
+Can city hospital treat severe chest pain?,Emergency
+Can pharmacy treat severe chest pain?,Emergency
+Can medical store treat severe chest pain?,Emergency
+Can doctor's clinic treat severe chest pain?,Emergency
+Can Apollo hospital treat severe chest pain?,Emergency
+Can Asha worker treat severe chest pain?,Emergency
+Can dispensary treat severe chest pain?,Emergency
+Can first aid center treat severe chest pain?,Emergency
+Can primary health centre treat high fever?,Consultation
+Can village clinic treat high fever?,Consultation
+Can city hospital treat high fever?,Consultation
+Can pharmacy treat high fever?,Consultation
+Can medical store treat high fever?,Consultation
+Can doctor's clinic treat high fever?,Consultation
+Can Apollo hospital treat high fever?,Consultation
+Can Asha worker treat high fever?,Consultation
+Can dispensary treat high fever?,Consultation
+Can first aid center treat high fever?,Consultation
+Can primary health centre treat snake bite?,Emergency
+Can village clinic treat snake bite?,Emergency
+Can city hospital treat snake bite?,Emergency
+Can pharmacy treat snake bite?,Emergency
+Can medical store treat snake bite?,Emergency
+Can doctor's clinic treat snake bite?,Emergency
+Can Apollo hospital treat snake bite?,Emergency
+Can Asha worker treat snake bite?,Emergency
+Can dispensary treat snake bite?,Emergency
+Can first aid center treat snake bite?,Emergency
+Can primary health centre treat dengue?,Consultation
+Can village clinic treat dengue?,Consultation
+Can city hospital treat dengue?,Consultation
+Can pharmacy treat dengue?,Consultation
+Can medical store treat dengue?,Consultation
+Can doctor's clinic treat dengue?,Consultation
+Can Apollo hospital treat dengue?,Consultation
+Can Asha worker treat dengue?,Consultation
+Can dispensary treat dengue?,Consultation
+Can first aid center treat dengue?,Consultation
+Can primary health centre treat malaria?,Consultation
+Can village clinic treat malaria?,Consultation
+Can city hospital treat malaria?,Consultation
+Can pharmacy treat malaria?,Consultation
+Can medical store treat malaria?,Consultation
+Can doctor's clinic treat malaria?,Consultation
+Can Apollo hospital treat malaria?,Consultation
+Can Asha worker treat malaria?,Consultation
+Can dispensary treat malaria?,Consultation
+Can first aid center treat malaria?,Consultation
+Can primary health centre treat cough?,Consultation
+Can village clinic treat cough?,Consultation
+Can city hospital treat cough?,Consultation
+Can pharmacy treat cough?,Consultation
+Can medical store treat cough?,Consultation
+Can doctor's clinic treat cough?,Consultation
+Can Apollo hospital treat cough?,Consultation
+Can Asha worker treat cough?,Consultation
+Can dispensary treat cough?,Consultation
+Can first aid center treat cough?,Consultation
+Can primary health centre treat headache?,Consultation
+Can village clinic treat headache?,Consultation
+Can city hospital treat headache?,Consultation
+Can pharmacy treat headache?,Consultation
+Can medical store treat headache?,Consultation
+Can doctor's clinic treat headache?,Consultation
+Can Apollo hospital treat headache?,Consultation
+Can Asha worker treat headache?,Consultation
+Can dispensary treat headache?,Consultation
+Can first aid center treat headache?,Consultation
+Can primary health centre treat asthma attack?,Emergency
+Can village clinic treat asthma attack?,Emergency
+Can city hospital treat asthma attack?,Emergency
+Can pharmacy treat asthma attack?,Emergency
+Can medical store treat asthma attack?,Emergency
+Can doctor's clinic treat asthma attack?,Emergency
+Can Apollo hospital treat asthma attack?,Emergency
+Can Asha worker treat asthma attack?,Emergency
+Can dispensary treat asthma attack?,Emergency
+Can first aid center treat asthma attack?,Emergency
+Can primary health centre treat pregnancy complications?,Emergency
+Can village clinic treat pregnancy complications?,Emergency
+Can city hospital treat pregnancy complications?,Emergency
+Can pharmacy treat pregnancy complications?,Emergency
+Can medical store treat pregnancy complications?,Emergency
+Can doctor's clinic treat pregnancy complications?,Emergency
+Can Apollo hospital treat pregnancy complications?,Emergency
+Can Asha worker treat pregnancy complications?,Emergency
+Can dispensary treat pregnancy complications?,Emergency
+Can first aid center treat pregnancy complications?,Emergency
+Can primary health centre treat stomach ache?,Consultation
+Can village clinic treat stomach ache?,Consultation
+Can city hospital treat stomach ache?,Consultation
+Can pharmacy treat stomach ache?,Consultation
+Can medical store treat stomach ache?,Consultation
+Can doctor's clinic treat stomach ache?,Consultation
+Can Apollo hospital treat stomach ache?,Consultation
+Can Asha worker treat stomach ache?,Consultation
+Can dispensary treat stomach ache?,Consultation
+Can first aid center treat stomach ache?,Consultation
+Can primary health centre treat broken leg?,Emergency
+Can village clinic treat broken leg?,Emergency
+Can city hospital treat broken leg?,Emergency
+Can pharmacy treat broken leg?,Emergency
+Can medical store treat broken leg?,Emergency
+Can doctor's clinic treat broken leg?,Emergency
+Can Apollo hospital treat broken leg?,Emergency
+Can Asha worker treat broken leg?,Emergency
+Can dispensary treat broken leg?,Emergency
+Can first aid center treat broken leg?,Emergency
+Can primary health centre treat bleeding?,Emergency
+Can village clinic treat bleeding?,Emergency
+Can city hospital treat bleeding?,Emergency
+Can pharmacy treat bleeding?,Emergency
+Can medical store treat bleeding?,Emergency
+Can doctor's clinic treat bleeding?,Emergency
+Can Apollo hospital treat bleeding?,Emergency
+Can Asha worker treat bleeding?,Emergency
+Can dispensary treat bleeding?,Emergency
+Can first aid center treat bleeding?,Emergency
+Show me the route to primary health centre for severe chest pain,Emergency
+Show me the route to village clinic for severe chest pain,Emergency
+Show me the route to city hospital for severe chest pain,Emergency
+Show me the route to pharmacy for severe chest pain,Emergency
+Show me the route to medical store for severe chest pain,Emergency
+Show me the route to doctor's clinic for severe chest pain,Emergency
+Show me the route to Apollo hospital for severe chest pain,Emergency
+Show me the route to Asha worker for severe chest pain,Emergency
+Show me the route to dispensary for severe chest pain,Emergency
+Show me the route to first aid center for severe chest pain,Emergency
+Show me the route to primary health centre for high fever,Consultation
+Show me the route to village clinic for high fever,Consultation
+Show me the route to city hospital for high fever,Consultation
+Show me the route to pharmacy for high fever,Consultation
+Show me the route to medical store for high fever,Consultation
+Show me the route to doctor's clinic for high fever,Consultation
+Show me the route to Apollo hospital for high fever,Consultation
+Show me the route to Asha worker for high fever,Consultation
+Show me the route to dispensary for high fever,Consultation
+Show me the route to first aid center for high fever,Consultation
+Show me the route to primary health centre for snake bite,Emergency
+Show me the route to village clinic for snake bite,Emergency
+Show me the route to city hospital for snake bite,Emergency
+Show me the route to pharmacy for snake bite,Emergency
+Show me the route to medical store for snake bite,Emergency
+Show me the route to doctor's clinic for snake bite,Emergency
+Show me the route to Apollo hospital for snake bite,Emergency
+Show me the route to Asha worker for snake bite,Emergency
+Show me the route to dispensary for snake bite,Emergency
+Show me the route to first aid center for snake bite,Emergency
+Show me the route to primary health centre for dengue,Consultation
+Show me the route to village clinic for dengue,Consultation
+Show me the route to city hospital for dengue,Consultation
+Show me the route to pharmacy for dengue,Consultation
+Show me the route to medical store for dengue,Consultation
+Show me the route to doctor's clinic for dengue,Consultation
+Show me the route to Apollo hospital for dengue,Consultation
+Show me the route to Asha worker for dengue,Consultation
+Show me the route to dispensary for dengue,Consultation
+Show me the route to first aid center for dengue,Consultation
+Show me the route to primary health centre for malaria,Consultation
+Show me the route to village clinic for malaria,Consultation
+Show me the route to city hospital for malaria,Consultation
+Show me the route to pharmacy for malaria,Consultation
+Show me the route to medical store for malaria,Consultation
+Show me the route to doctor's clinic for malaria,Consultation
+Show me the route to Apollo hospital for malaria,Consultation
+Show me the route to Asha worker for malaria,Consultation
+Show me the route to dispensary for malaria,Consultation
+Show me the route to first aid center for malaria,Consultation
+Show me the route to primary health centre for cough,Consultation
+Show me the route to village clinic for cough,Consultation
+Show me the route to city hospital for cough,Consultation
+Show me the route to pharmacy for cough,Consultation
+Show me the route to medical store for cough,Consultation
+Show me the route to doctor's clinic for cough,Consultation
+Show me the route to Apollo hospital for cough,Consultation
+Show me the route to Asha worker for cough,Consultation
+Show me the route to dispensary for cough,Consultation
+Show me the route to first aid center for cough,Consultation
+Show me the route to primary health centre for headache,Consultation
+Show me the route to village clinic for headache,Consultation
+Show me the route to city hospital for headache,Consultation
+Show me the route to pharmacy for headache,Consultation
+Show me the route to medical store for headache,Consultation
+Show me the route to doctor's clinic for headache,Consultation
+Show me the route to Apollo hospital for headache,Consultation
+Show me the route to Asha worker for headache,Consultation
+Show me the route to dispensary for headache,Consultation
+Show me the route to first aid center for headache,Consultation
+Show me the route to primary health centre for asthma attack,Emergency
+Show me the route to village clinic for asthma attack,Emergency
+Show me the route to city hospital for asthma attack,Emergency
+Show me the route to pharmacy for asthma attack,Emergency
+Show me the route to medical store for asthma attack,Emergency
+Show me the route to doctor's clinic for asthma attack,Emergency
+Show me the route to Apollo hospital for asthma attack,Emergency
+Show me the route to Asha worker for asthma attack,Emergency
+Show me the route to dispensary for asthma attack,Emergency
+Show me the route to first aid center for asthma attack,Emergency
+Show me the route to primary health centre for pregnancy complications,Emergency
+Show me the route to village clinic for pregnancy complications,Emergency
+Show me the route to city hospital for pregnancy complications,Emergency
+Show me the route to pharmacy for pregnancy complications,Emergency
+Show me the route to medical store for pregnancy complications,Emergency
+Show me the route to doctor's clinic for pregnancy complications,Emergency
+Show me the route to Apollo hospital for pregnancy complications,Emergency
+Show me the route to Asha worker for pregnancy complications,Emergency
+Show me the route to dispensary for pregnancy complications,Emergency
+Show me the route to first aid center for pregnancy complications,Emergency
+Show me the route to primary health centre for stomach ache,Consultation
+Show me the route to village clinic for stomach ache,Consultation
+Show me the route to city hospital for stomach ache,Consultation
+Show me the route to pharmacy for stomach ache,Consultation
+Show me the route to medical store for stomach ache,Consultation
+Show me the route to doctor's clinic for stomach ache,Consultation
+Show me the route to Apollo hospital for stomach ache,Consultation
+Show me the route to Asha worker for stomach ache,Consultation
+Show me the route to dispensary for stomach ache,Consultation
+Show me the route to first aid center for stomach ache,Consultation
+Show me the route to primary health centre for broken leg,Emergency
+Show me the route to village clinic for broken leg,Emergency
+Show me the route to city hospital for broken leg,Emergency
+Show me the route to pharmacy for broken leg,Emergency
+Show me the route to medical store for broken leg,Emergency
+Show me the route to doctor's clinic for broken leg,Emergency
+Show me the route to Apollo hospital for broken leg,Emergency
+Show me the route to Asha worker for broken leg,Emergency
+Show me the route to dispensary for broken leg,Emergency
+Show me the route to first aid center for broken leg,Emergency
+Show me the route to primary health centre for bleeding,Emergency
+Show me the route to village clinic for bleeding,Emergency
+Show me the route to city hospital for bleeding,Emergency
+Show me the route to pharmacy for bleeding,Emergency
+Show me the route to medical store for bleeding,Emergency
+Show me the route to doctor's clinic for bleeding,Emergency
+Show me the route to Apollo hospital for bleeding,Emergency
+Show me the route to Asha worker for bleeding,Emergency
+Show me the route to dispensary for bleeding,Emergency
+Show me the route to first aid center for bleeding,Emergency
+I am suffering from severe chest pain at primary health centre,Emergency
+I am suffering from severe chest pain at village clinic,Emergency
+I am suffering from severe chest pain at city hospital,Emergency
+I am suffering from severe chest pain at pharmacy,Emergency
+I am suffering from severe chest pain at medical store,Emergency
+I am suffering from severe chest pain at doctor's clinic,Emergency
+I am suffering from severe chest pain at Apollo hospital,Emergency
+I am suffering from severe chest pain at Asha worker,Emergency
+I am suffering from severe chest pain at dispensary,Emergency
+I am suffering from severe chest pain at first aid center,Emergency
+I am suffering from high fever at primary health centre,Consultation
+I am suffering from high fever at village clinic,Consultation
+I am suffering from high fever at city hospital,Consultation
+I am suffering from high fever at pharmacy,Consultation
+I am suffering from high fever at medical store,Consultation
+I am suffering from high fever at doctor's clinic,Consultation
+I am suffering from high fever at Apollo hospital,Consultation
+I am suffering from high fever at Asha worker,Consultation
+I am suffering from high fever at dispensary,Consultation
+I am suffering from high fever at first aid center,Consultation
+I am suffering from snake bite at primary health centre,Emergency
+I am suffering from snake bite at village clinic,Emergency
+I am suffering from snake bite at city hospital,Emergency
+I am suffering from snake bite at pharmacy,Emergency
+I am suffering from snake bite at medical store,Emergency
+I am suffering from snake bite at doctor's clinic,Emergency
+I am suffering from snake bite at Apollo hospital,Emergency
+I am suffering from snake bite at Asha worker,Emergency
+I am suffering from snake bite at dispensary,Emergency
+I am suffering from snake bite at first aid center,Emergency
+I am suffering from dengue at primary health centre,Consultation
+I am suffering from dengue at village clinic,Consultation
+I am suffering from dengue at city hospital,Consultation
+I am suffering from dengue at pharmacy,Consultation
+I am suffering from dengue at medical store,Consultation
+I am suffering from dengue at doctor's clinic,Consultation
+I am suffering from dengue at Apollo hospital,Consultation
+I am suffering from dengue at Asha worker,Consultation
+I am suffering from dengue at dispensary,Consultation
+I am suffering from dengue at first aid center,Consultation
+I am suffering from malaria at primary health centre,Consultation
+I am suffering from malaria at village clinic,Consultation
+I am suffering from malaria at city hospital,Consultation
+I am suffering from malaria at pharmacy,Consultation
+I am suffering from malaria at medical store,Consultation
+I am suffering from malaria at doctor's clinic,Consultation
+I am suffering from malaria at Apollo hospital,Consultation
+I am suffering from malaria at Asha worker,Consultation
+I am suffering from malaria at dispensary,Consultation
+I am suffering from malaria at first aid center,Consultation
+I am suffering from cough at primary health centre,Consultation
+I am suffering from cough at village clinic,Consultation
+I am suffering from cough at city hospital,Consultation
+I am suffering from cough at pharmacy,Consultation
+I am suffering from cough at medical store,Consultation
+I am suffering from cough at doctor's clinic,Consultation
+I am suffering from cough at Apollo hospital,Consultation
+I am suffering from cough at Asha worker,Consultation
+I am suffering from cough at dispensary,Consultation
+I am suffering from cough at first aid center,Consultation
+I am suffering from headache at primary health centre,Consultation
+I am suffering from headache at village clinic,Consultation
+I am suffering from headache at city hospital,Consultation
+I am suffering from headache at pharmacy,Consultation
+I am suffering from headache at medical store,Consultation
+I am suffering from headache at doctor's clinic,Consultation
+I am suffering from headache at Apollo hospital,Consultation
+I am suffering from headache at Asha worker,Consultation
+I am suffering from headache at dispensary,Consultation
+I am suffering from headache at first aid center,Consultation
+I am suffering from asthma attack at primary health centre,Emergency
+I am suffering from asthma attack at village clinic,Emergency
+I am suffering from asthma attack at city hospital,Emergency
+I am suffering from asthma attack at pharmacy,Emergency
+I am suffering from asthma attack at medical store,Emergency
+I am suffering from asthma attack at doctor's clinic,Emergency
+I am suffering from asthma attack at Apollo hospital,Emergency
+I am suffering from asthma attack at Asha worker,Emergency
+I am suffering from asthma attack at dispensary,Emergency
+I am suffering from asthma attack at first aid center,Emergency
+I am suffering from pregnancy complications at primary health centre,Emergency
+I am suffering from pregnancy complications at village clinic,Emergency
+I am suffering from pregnancy complications at city hospital,Emergency
+I am suffering from pregnancy complications at pharmacy,Emergency
+I am suffering from pregnancy complications at medical store,Emergency
+I am suffering from pregnancy complications at doctor's clinic,Emergency
+I am suffering from pregnancy complications at Apollo hospital,Emergency
+I am suffering from pregnancy complications at Asha worker,Emergency
+I am suffering from pregnancy complications at dispensary,Emergency
+I am suffering from pregnancy complications at first aid center,Emergency
+I am suffering from stomach ache at primary health centre,Consultation
+I am suffering from stomach ache at village clinic,Consultation
+I am suffering from stomach ache at city hospital,Consultation
+I am suffering from stomach ache at pharmacy,Consultation
+I am suffering from stomach ache at medical store,Consultation
+I am suffering from stomach ache at doctor's clinic,Consultation
+I am suffering from stomach ache at Apollo hospital,Consultation
+I am suffering from stomach ache at Asha worker,Consultation
+I am suffering from stomach ache at dispensary,Consultation
+I am suffering from stomach ache at first aid center,Consultation
+I am suffering from broken leg at primary health centre,Emergency
+I am suffering from broken leg at village clinic,Emergency
+I am suffering from broken leg at city hospital,Emergency
+I am suffering from broken leg at pharmacy,Emergency
+I am suffering from broken leg at medical store,Emergency
+I am suffering from broken leg at doctor's clinic,Emergency
+I am suffering from broken leg at Apollo hospital,Emergency
+I am suffering from broken leg at Asha worker,Emergency
+I am suffering from broken leg at dispensary,Emergency
+I am suffering from broken leg at first aid center,Emergency
+I am suffering from bleeding at primary health centre,Emergency
+I am suffering from bleeding at village clinic,Emergency
+I am suffering from bleeding at city hospital,Emergency
+I am suffering from bleeding at pharmacy,Emergency
+I am suffering from bleeding at medical store,Emergency
+I am suffering from bleeding at doctor's clinic,Emergency
+I am suffering from bleeding at Apollo hospital,Emergency
+I am suffering from bleeding at Asha worker,Emergency
+I am suffering from bleeding at dispensary,Emergency
+I am suffering from bleeding at first aid center,Emergency

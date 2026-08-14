@@ -1,0 +1,32 @@
+{
+  "guides": [
+    {
+      "id": "snake_bite_01",
+      "title": "Snake Bite First Response",
+      "category": "animal_hazards",
+      "icon": "assets/icons/snake.svg",
+      "steps": [
+        "Keep the person calm and still.",
+        "Remove tight clothing or jewelry near the bite.",
+        "Do not cut the wound or attempt to suck out the venom.",
+        "Seek medical help immediately."
+      ]
+    },
+    {
+      "id": "burn_01",
+      "title": "Burn Injury",
+      "category": "first_aid",
+      "icon": "assets/icons/burn.svg",
+      "steps": [
+        "Cool the burn with running water for 20 mins.",
+        "Cover loosely with cling film or a clean plastic bag.",
+        "Do NOT pop blisters or apply ice/ointments.",
+        "Seek medical help if severe."
+      ]
+    }
+  ],
+  "default_contacts": [
+    {"role": "National Emergency", "number": "112"},
+    {"role": "Ambulance", "number": "108"}
+  ]
+}
