@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "452982939148",
+    "project_id": "modern-photon-464812-a8",
+    "storage_bucket": "modern-photon-464812-a8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:452982939148:android:026212bf88945552015829",
+        "android_client_info": {
+          "package_name": "com.techpheonix.adyuta"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "452982939148-echkoger6loa3kgsnfiqjk3l4tjrs0om.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIjL5CJYnEmVyGT0GMZ_qO2MajRN3dE08"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "452982939148-echkoger6loa3kgsnfiqjk3l4tjrs0om.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "452982939148-aagj3hb1gg4kaosfkssunhi9u21cnjvc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.techpheonix.adyuta"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

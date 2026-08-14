@@ -1,0 +1,129 @@
+import json
+import os
+
+def generate_nutrition_data():
+    foods = [
+        {
+            "id": 1, "name": "Finger Millet", "local_name": "Ragi", "category": "Grains",
+            "serving_size_g": 100, "calories": 328, "protein_g": 7.3, "iron_mg": 3.9, 
+            "calcium_mg": 344, "fibre_g": 11.2, "fat_g": 1.3, "carbs_g": 72.0, "sugar_g": 0.0, "sodium_mg": 11,
+            "source_ref": "IFCT 2017"
+        },
+        {
+            "id": 2, "name": "Pigeon Pea", "local_name": "Toor Dal", "category": "Legumes",
+            "serving_size_g": 100, "calories": 343, "protein_g": 21.7, "iron_mg": 2.7, 
+            "calcium_mg": 130, "fibre_g": 15.0, "fat_g": 1.5, "carbs_g": 62.8, "sugar_g": 0.0, "sodium_mg": 17,
+            "source_ref": "IFCT 2017"
+        },
+        {
+            "id": 3, "name": "Jaggery", "local_name": "Gud", "category": "Sugars",
+            "serving_size_g": 100, "calories": 383, "protein_g": 0.4, "iron_mg": 2.6, 
+            "calcium_mg": 80, "fibre_g": 0.0, "fat_g": 0.1, "carbs_g": 98.0, "sugar_g": 98.0, "sodium_mg": 27,
+            "source_ref": "IFCT 2017"
+        },
+        {
+            "id": 4, "name": "Moringa Leaves", "local_name": "Drumstick Leaves / Nuggekai Soppu", "category": "Vegetables",
+            "serving_size_g": 100, "calories": 92, "protein_g": 6.7, "iron_mg": 4.0, 
+            "calcium_mg": 440, "fibre_g": 0.9, "fat_g": 1.7, "carbs_g": 12.5, "sugar_g": 0.0, "sodium_mg": 9,
+            "source_ref": "IFCT 2017"
+        },
+        {
+            "id": 5, "name": "Curd (Whole Milk)", "local_name": "Dahi / Mosaru", "category": "Dairy",
+            "serving_size_g": 100, "calories": 61, "protein_g": 3.1, "iron_mg": 0.1, 
+            "calcium_mg": 118, "fibre_g": 0.0, "fat_g": 3.3, "carbs_g": 4.7, "sugar_g": 4.7, "sodium_mg": 40,
+            "source_ref": "IFCT 2017"
+        },
+        {
+            "id": 6, "name": "Pearl Millet", "local_name": "Bajra", "category": "Grains",
+            "serving_size_g": 100, "calories": 361, "protein_g": 11.6, "iron_mg": 8.0, 
+            "calcium_mg": 42, "fibre_g": 11.5, "fat_g": 5.0, "carbs_g": 67.5, "sugar_g": 0.0, "sodium_mg": 10,
+            "source_ref": "IFCT 2017"
+        },
+        {
+            "id": 7, "name": "Amla", "local_name": "Indian Gooseberry / Nellikai", "category": "Fruits",
+            "serving_size_g": 100, "calories": 44, "protein_g": 0.5, "iron_mg": 1.2, 
+            "calcium_mg": 50, "fibre_g": 3.4, "fat_g": 0.1, "carbs_g": 10.2, "sugar_g": 0.0, "sodium_mg": 5,
+            "source_ref": "IFCT 2017"
+        }
+    ]
+
+    recipes = [
+        {
+            "id": 1, "name": "Ragi Mudde", "local_name": "Ragi Ball", "serving_size_g": 200, 
+            "calories": 250, "protein_g": 5.5, "iron_mg": 3.0,
+            "notes": "Excellent staple food. High in calcium. Good for diabetes control and bone health."
+        },
+        {
+            "id": 2, "name": "Moringa Leaf Dal", "local_name": "Nuggekai Soppu Dal", "serving_size_g": 150, 
+            "calories": 180, "protein_g": 10.5, "iron_mg": 3.5,
+            "notes": "Highly recommended for pregnant women and anaemic patients."
+        }
+    ]
+
+    diet_tags = [
+        {"food_id": 1, "tag": "high_calcium"},
+        {"food_id": 1, "tag": "diabetes_friendly"},
+        {"food_id": 1, "tag": "child_growth"},
+        {"food_id": 2, "tag": "high_protein"},
+        {"food_id": 2, "tag": "pregnancy_friendly"},
+        {"food_id": 3, "tag": "energy_boost"},
+        {"food_id": 3, "tag": "anaemia_support"}, # often used with iron foods
+        {"food_id": 4, "tag": "iron_rich"},
+        {"food_id": 4, "tag": "high_calcium"},
+        {"food_id": 4, "tag": "pregnancy_friendly"},
+        {"food_id": 4, "tag": "anaemia_support"},
+        {"food_id": 5, "tag": "digestive_health"},
+        {"food_id": 5, "tag": "high_calcium"},
+        {"food_id": 6, "tag": "iron_rich"},
+        {"food_id": 6, "tag": "high_energy"},
+        {"food_id": 7, "tag": "immunity_boost"},
+        {"food_id": 7, "tag": "iron_absorption"} # Vit C
+    ]
+
+    ayurveda_food_meta = [
+        {"food_id": 1, "rasa": "Sweet, Astringent", "guna": "Light, Dry", "virya": "Cooling", "notes": "Balances Kapha and Pitta. Excellent for strengthening dhatus (tissues)."},
+        {"food_id": 2, "rasa": "Astringent, Sweet", "guna": "Light, Dry", "virya": "Cooling", "notes": "Aggravates Vata if eaten alone; usually cooked with ghee/spices to balance."},
+        {"food_id": 3, "rasa": "Sweet", "guna": "Heavy, Snigdha (Unctuous)", "virya": "Heating", "notes": "Old jaggery is considered wholesome and balances Tridosha. Purifies blood."},
+        {"food_id": 4, "rasa": "Pungent, Bitter", "guna": "Light, Dry", "virya": "Heating", "notes": "Balances Kapha and Vata. Deepana (kindles digestive fire)."},
+        {"food_id": 5, "rasa": "Sweet, Sour", "guna": "Heavy, Snigdha", "virya": "Heating", "notes": "Aggravates Pitta and Kapha. Best avoided at night. Enhances strength (Bala)."},
+        {"food_id": 6, "rasa": "Sweet", "guna": "Dry, Light", "virya": "Heating", "notes": "Excellent for winter. Balances Kapha, increases Pitta."},
+        {"food_id": 7, "rasa": "All except Salty (Sour dominant)", "guna": "Light, Dry", "virya": "Cooling", "notes": "Tridosha balancing (especially Pitta). Rasayana (rejuvenative)."}
+    ]
+
+    condition_guides = [
+        {
+            "id": 1, "slug": "anaemia", "title": "Anaemia Support (Low Blood)", 
+            "safe_foods": "Moringa leaves, Bajra, Ragi, Jaggery, Amla (helps absorb iron), Dates.",
+            "limit_foods": "Avoid tea or coffee within 1 hour of meals, as they block iron absorption.",
+            "referral_warning": "If severely pale or constantly exhausted, visit PHC for iron supplements."
+        },
+        {
+            "id": 2, "slug": "pregnancy", "title": "Pregnancy Diet", 
+            "safe_foods": "Curd, Toor Dal, Ragi, Spinach, Eggs, Milk. Focus on Iron, Calcium, and Protein.",
+            "limit_foods": "Avoid raw papaya, excessive caffeine, and unpasteurized milk.",
+            "referral_warning": "Take Iron-Folic Acid tablets as prescribed by your doctor."
+        },
+        {
+            "id": 3, "slug": "diabetes", "title": "Diabetes-Friendly Basics", 
+            "safe_foods": "Ragi, Bajra, Whole Grams, Leafy Vegetables, Bitter Gourd.",
+            "limit_foods": "Limit white rice, sugar, jaggery, and potatoes.",
+            "referral_warning": "Diet does not replace medication. Regularly monitor sugar at PHC."
+        }
+    ]
+
+    output_data = {
+        "foods": foods,
+        "recipes": recipes,
+        "diet_tags": diet_tags,
+        "ayurveda_food_meta": ayurveda_food_meta,
+        "condition_guides": condition_guides
+    }
+
+    output_path = os.path.join(os.path.dirname(__file__), 'nutrition_data.json')
+    with open(output_path, 'w') as f:
+        json.dump(output_data, f, indent=4)
+        
+    print(f"Generated Nutrition JSON data to {output_path}")
+
+if __name__ == "__main__":
+    generate_nutrition_data()

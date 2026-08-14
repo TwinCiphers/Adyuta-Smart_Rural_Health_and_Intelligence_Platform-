@@ -6,7 +6,13 @@ import 'package:geolocator/geolocator.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sensors_plus/sensors_plus.dart';
+import 'package:flutter_background_service/flutter_background_service.dart';
+import 'package:background_sms/background_sms.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
+import 'package:permission_handler/permission_handler.dart';
 import '../../core/theme/safety_theme.dart';
+import '../broadcasts/broadcast_screen.dart';
+import '../../core/services/background_safety_service.dart';
 
 class TrustedContact {
   final String name;
@@ -45,9 +51,18 @@ class _SosScreenState extends State<SosScreen> with SingleTickerProviderStateMix
   int _shakeCount = 0;
   DateTime? _lastShakeTime;
 
+  bool _liveTrackingEnabled = false;
+  Timer? _liveTrackingTimer;
+
+  int _sosTapCount = 0;
+  Timer? _sosTapTimer;
+
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _requestPermissions();
+    });
     _pulseController = AnimationController(vsync: this, duration: const Duration(milliseconds: 1000))..repeat(reverse: true);
     _pulseAnimation = Tween<double>(begin: 1.0, end: 1.08).animate(CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut));
     _fetchLocation();
@@ -55,10 +70,20 @@ class _SosScreenState extends State<SosScreen> with SingleTickerProviderStateMix
     _initShakeDetection();
   }
 
+  Future<void> _requestPermissions() async {
+    await [
+      Permission.sms,
+      Permission.phone,
+      Permission.location,
+    ].request();
+  }
+
   @override
   void dispose() {
     _pulseController.dispose();
     _accelerometerSub?.cancel();
+    _liveTrackingTimer?.cancel();
+    _sosTapTimer?.cancel();
     super.dispose();
   }
 
@@ -70,16 +95,10 @@ class _SosScreenState extends State<SosScreen> with SingleTickerProviderStateMix
         _contacts = storedList.map((s) => TrustedContact.fromStorageString(s)).toList();
       });
     } else {
-      // Default initial contacts
-      final initial = [
-        const TrustedContact('Father (Home)', 'Parent', '+919876543210'),
-        const TrustedContact('Mother', 'Parent', '+919876543211'),
-        const TrustedContact('Police Control Room', 'Emergency', '100'),
-      ];
+      // Start with empty real contacts
       setState(() {
-        _contacts = initial;
+        _contacts = [];
       });
-      _saveContacts(initial);
     }
   }
 
@@ -140,7 +159,52 @@ class _SosScreenState extends State<SosScreen> with SingleTickerProviderStateMix
     }
   }
 
-  void _triggerSos({bool fromShake = false}) {
+  void _toggleLiveTracking(bool enable) async {
+    setState(() => _liveTrackingEnabled = enable);
+    final service = FlutterBackgroundService();
+    
+    if (enable) {
+      bool isRunning = await service.isRunning();
+      if (!isRunning) {
+        await service.startService();
+      }
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('Live Tracking active. Location updating in background.'),
+        backgroundColor: Colors.green,
+      ));
+    } else {
+      service.invoke("stopService");
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('Live Tracking disabled.'),
+        backgroundColor: Colors.grey,
+      ));
+    }
+  }
+
+  void _handleSosTap() {
+    _sosTapCount++;
+    if (_sosTapTimer != null && _sosTapTimer!.isActive) {
+      _sosTapTimer!.cancel();
+    }
+    
+    if (_sosTapCount >= 3) {
+      _sosTapCount = 0;
+      _triggerSos(fromShake: false, isAuto: true);
+    } else {
+      ScaffoldMessenger.of(context).clearSnackBars();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Tap \${3 - _sosTapCount} more times rapidly to trigger Auto SOS.'),
+          duration: const Duration(seconds: 1),
+        ),
+      );
+      _sosTapTimer = Timer(const Duration(milliseconds: 1500), () {
+        _sosTapCount = 0;
+      });
+    }
+  }
+
+  void _triggerSos({bool fromShake = false, bool isAuto = false}) async {
     if (_contacts.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -154,6 +218,56 @@ class _SosScreenState extends State<SosScreen> with SingleTickerProviderStateMix
     setState(() {
       _sosActive = true;
     });
+
+    String coords = _currentPosition != null ? 'https://maps.google.com/?q=${_currentPosition!.latitude},${_currentPosition!.longitude}' : 'Location unavailable';
+    String messageBody = "EMERGENCY (Adyuta Safety): I need immediate help. My last known location is: $coords";
+
+    if (isAuto || fromShake) {
+      // 1. Auto Live Tracking Enable
+      if (!_liveTrackingEnabled) {
+        _toggleLiveTracking(true);
+      }
+
+      // 2. Auto SMS via BackgroundSms
+      int smsSentCount = 0;
+      for (var contact in _contacts) {
+        try {
+          var result = await BackgroundSms.sendMessage(phoneNumber: contact.phone, message: messageBody);
+          if (result == SmsStatus.sent) smsSentCount++;
+        } catch (e) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("SMS Failed: \$e")));
+        }
+      }
+      
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('SOS Activated! SMS sent to \$smsSentCount contacts.')),
+      );
+
+      // 3. Auto Call first emergency contact
+      if (_contacts.isNotEmpty) {
+        try {
+          await FlutterPhoneDirectCaller.callNumber(_contacts.first.phone);
+        } catch (e) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Auto-Call Failed: \$e")));
+        }
+      }
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('SOS Activated! Auto-Calling and Sending SMS.'), backgroundColor: SafetyTheme.primaryRed),
+      );
+    } else {
+      // Launch SMS intent for manual single tap
+      String smsUrl = "sms:${_contacts.map((c) => c.phone).join(',')}?body=${Uri.encodeComponent(messageBody)}";
+
+      launchUrl(Uri.parse(smsUrl)).catchError((e) {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Could not open SMS app')),
+          );
+        }
+        return false;
+      });
+    }
 
     _pulseController.duration = const Duration(milliseconds: 400);
     _pulseController.repeat(reverse: true);
@@ -420,9 +534,9 @@ class _SosScreenState extends State<SosScreen> with SingleTickerProviderStateMix
             elevation: 0,
             title: Row(
               children: [
-                const Icon(Icons.shield, color: SafetyTheme.primaryRed, size: 24),
+                const Icon(Icons.shield, color: SafetyTheme.primaryRed),
                 const SizedBox(width: 8),
-                Text('SheGuard SOS Shield', style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 18, color: SafetyTheme.textDark)),
+                Text('Adyuta Shield', style: GoogleFonts.inter(fontWeight: FontWeight.bold, color: SafetyTheme.textDark)),
               ],
             ),
             actions: [
@@ -482,7 +596,7 @@ class _SosScreenState extends State<SosScreen> with SingleTickerProviderStateMix
 
                   // Big Pulsing Emergency SOS Button
                   GestureDetector(
-                    onTap: _toggleSosButton,
+                    onTap: _handleSosTap,
                     child: AnimatedBuilder(
                       animation: _pulseAnimation,
                       builder: (context, child) {

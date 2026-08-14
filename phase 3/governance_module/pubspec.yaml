@@ -15,9 +15,16 @@ dependencies:
   shared_preferences: any
   url_launcher: any
 
+  drift: any
+  sqlite3_flutter_libs: any
+  path_provider: any
+  path: any
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  build_runner: any
+  drift_dev: any
   flutter_lints: ^2.0.0
 
 flutter:

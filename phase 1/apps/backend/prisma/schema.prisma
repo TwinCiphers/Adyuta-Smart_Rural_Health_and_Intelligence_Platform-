@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String    @id @default(uuid())
+  email          String?   @unique
+  phoneNumber    String?   @unique
+  googleId       String?   @unique
+  appleId        String?   @unique
+  passwordHash   String?
+  name           String
+  role           String    @default("USER")
+  privacyAccepted DateTime?
+  tokenVersion   Int       @default(1)
+  createdAt      DateTime  @default(now())
+  sessions       Session[]
+  passkeys       Passkey[]
+}
+
+model Session {
+  id               String   @id @default(uuid())
+  userId           String
+  deviceId         String
+  refreshTokenHash String   @unique
+  lastIp           String?
+  revoked          Boolean  @default(false)
+  lastUsedAt       DateTime @default(now())
+  expiresAt        DateTime
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, deviceId])
+}
+
+model Passkey {
+  id           String   @id @default(uuid())
+  userId       String
+  credentialID String   @unique
+  publicKey    Bytes
+  counter      BigInt
+  transports   String?
+  createdAt    DateTime @default(now())
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
