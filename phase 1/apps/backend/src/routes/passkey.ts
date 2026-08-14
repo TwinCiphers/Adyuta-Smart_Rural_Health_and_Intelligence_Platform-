@@ -32,7 +32,7 @@ const passkeyRoutes: FastifyPluginAsync = async (server) => {
       }
 
       const userPasskeys = user.passkeys.map(passkey => ({
-        id: Buffer.from(passkey.credentialID, 'base64'),
+        id: passkey.credentialID,
         type: 'public-key' as const,
       }));
 
@@ -91,14 +91,14 @@ const passkeyRoutes: FastifyPluginAsync = async (server) => {
       }
 
       if (verification.verified && verification.registrationInfo) {
-        const { credentialPublicKey, credentialID, counter } = verification.registrationInfo;
+        const { credential } = verification.registrationInfo;
 
         await server.prisma.passkey.create({
           data: {
             userId,
-            credentialID: Buffer.from(credentialID).toString('base64'),
-            publicKey: Buffer.from(credentialPublicKey),
-            counter: BigInt(counter),
+            credentialID: credential.id,
+            publicKey: Buffer.from(credential.publicKey),
+            counter: BigInt(credential.counter),
           }
         });
 
@@ -134,7 +134,7 @@ const passkeyRoutes: FastifyPluginAsync = async (server) => {
       const options = await generateAuthenticationOptions({
         rpID,
         allowCredentials: user.passkeys.map(passkey => ({
-          id: Buffer.from(passkey.credentialID, 'base64'),
+          id: passkey.credentialID,
           type: 'public-key' as const,
         })),
         userVerification: 'preferred',
@@ -185,9 +185,9 @@ const passkeyRoutes: FastifyPluginAsync = async (server) => {
           expectedChallenge,
           expectedOrigin: origin,
           expectedRPID: rpID,
-          authenticator: {
-            credentialID: Buffer.from(passkey.credentialID, 'base64'),
-            credentialPublicKey: passkey.publicKey,
+          credential: {
+            id: passkey.credentialID,
+            publicKey: new Uint8Array(passkey.publicKey),
             counter: Number(passkey.counter),
             transports: passkey.transports ? JSON.parse(passkey.transports) : undefined,
           },

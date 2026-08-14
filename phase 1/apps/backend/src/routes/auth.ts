@@ -59,6 +59,11 @@ const authRoutes: FastifyPluginAsync = async (server) => {
         return reply.status(401).send({ error: 'Invalid credentials' });
       }
 
+      if (!user.passwordHash) {
+        await new Promise(r => setTimeout(r, 1000));
+        return reply.status(401).send({ error: 'Invalid credentials' });
+      }
+
       const isValid = await argon2.verify(user.passwordHash, data.password);
       if (!isValid) {
         await new Promise(r => setTimeout(r, 1000));
