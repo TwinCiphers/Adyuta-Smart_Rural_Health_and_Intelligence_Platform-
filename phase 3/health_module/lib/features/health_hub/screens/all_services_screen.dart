@@ -1,3 +1,4 @@
+import 'package:bhashini_core/bhashini_core.dart';
 import 'package:flutter/material.dart';
 import 'package:health_module/core/theme/app_theme.dart';
 import 'package:health_module/core/widgets/soft_background_layout.dart';
@@ -28,12 +29,12 @@ class AllServicesScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 24),
-              Text(
+              GlobalBhashiniText(
                 'All Health Services',
                 style: Theme.of(context).textTheme.displayMedium?.copyWith(fontSize: 32),
               ),
               const SizedBox(height: 8),
-              Text(
+              GlobalBhashiniText(
                 'Explore all available modules in Adyuta Health.',
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 14),
               ),
@@ -81,7 +82,7 @@ class AllServicesScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  GlobalBhashiniText(
                     title,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontSize: 16,
@@ -89,7 +90,7 @@ class AllServicesScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 4),
-                  Text(
+                  GlobalBhashiniText(
                     subtitle,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       fontSize: 12,

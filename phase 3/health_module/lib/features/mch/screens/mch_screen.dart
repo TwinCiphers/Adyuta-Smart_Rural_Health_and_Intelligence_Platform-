@@ -1,3 +1,4 @@
+import 'package:bhashini_core/bhashini_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:health_module/core/theme/app_theme.dart';
@@ -42,12 +43,12 @@ class MchScreen extends ConsumerWidget {
                   ),
                 ),
                 const SizedBox(height: 24),
-                Text(
+                GlobalBhashiniText(
                   'Maternal Health',
                   style: Theme.of(context).textTheme.displayMedium?.copyWith(fontSize: 32),
                 ),
                 const SizedBox(height: 8),
-                Text(
+                GlobalBhashiniText(
                   'Pregnancy guide, vaccines & danger signs.',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 14),
                 ),
@@ -64,7 +65,7 @@ class MchScreen extends ConsumerWidget {
                   Center(
                     child: Padding(
                       padding: const EdgeInsets.all(24),
-                      child: Text(
+                      child: GlobalBhashiniText(
                         'Error loading data. Please try again.',
                         style: TextStyle(color: Colors.red[700]),
                       ),
@@ -93,7 +94,7 @@ class MchScreen extends ConsumerWidget {
                               Icon(Icons.warning_amber_rounded, color: Colors.red[700], size: 18),
                               const SizedBox(width: 8),
                               Expanded(
-                                child: Text(
+                                child: GlobalBhashiniText(
                                   s.signText,
                                   style: TextStyle(color: Colors.red[900], fontSize: 13, height: 1.4),
                                 ),
@@ -104,7 +105,7 @@ class MchScreen extends ConsumerWidget {
                                   color: s.referralLevel == 'Emergency' ? Colors.red : Colors.orange,
                                   borderRadius: BorderRadius.circular(8),
                                 ),
-                                child: Text(
+                                child: GlobalBhashiniText(
                                   s.referralLevel ?? '',
                                   style: const TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold),
                                 ),
@@ -162,7 +163,7 @@ class MchScreen extends ConsumerWidget {
   }
 
   Widget _sectionTitle(BuildContext context, String title, {Color? color}) {
-    return Text(
+    return GlobalBhashiniText(
       title,
       style: Theme.of(context).textTheme.titleLarge?.copyWith(
         fontSize: 18,
@@ -190,7 +191,7 @@ class MchScreen extends ConsumerWidget {
               shape: BoxShape.circle,
             ),
             child: Center(
-              child: Text(
+              child: GlobalBhashiniText(
                 code ?? '💉',
                 style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.blue),
                 textAlign: TextAlign.center,
@@ -202,10 +203,10 @@ class MchScreen extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title, style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 15)),
+                GlobalBhashiniText(title, style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 15)),
                 if (time != null) ...[
                   const SizedBox(height: 4),
-                  Text(time, style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 12, color: Colors.grey[600])),
+                  GlobalBhashiniText(time, style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 12, color: Colors.grey[600])),
                 ],
               ],
             ),
@@ -238,11 +239,11 @@ class MchScreen extends ConsumerWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                GlobalBhashiniText(
                   '$weekNo',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: color),
                 ),
-                Text(
+                GlobalBhashiniText(
                   'wk',
                   style: TextStyle(fontSize: 10, color: color),
                 ),
@@ -254,12 +255,12 @@ class MchScreen extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                GlobalBhashiniText(
                   'Week $weekNo — $trimester Trimester',
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 15),
                 ),
                 const SizedBox(height: 4),
-                Text(
+                GlobalBhashiniText(
                   babyGrowth,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 12, color: Colors.grey[600]),
                   maxLines: 2,

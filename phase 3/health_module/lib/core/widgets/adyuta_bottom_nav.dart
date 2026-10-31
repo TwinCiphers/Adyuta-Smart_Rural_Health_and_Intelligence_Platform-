@@ -1,3 +1,4 @@
+import 'package:bhashini_core/bhashini_core.dart';
 import 'package:flutter/material.dart';
 import '../theme/app_theme.dart';
 
@@ -74,7 +75,7 @@ class AdyutaBottomNav extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 4),
-          Text(
+          GlobalBhashiniText(
             label,
             style: TextStyle(
               fontSize: 11,

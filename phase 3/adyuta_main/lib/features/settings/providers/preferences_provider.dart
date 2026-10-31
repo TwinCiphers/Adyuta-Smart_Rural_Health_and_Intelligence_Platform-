@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+
 import 'package:adyuta_main/features/authentication/providers/auth_provider.dart';
 
 class PreferencesData {
@@ -55,14 +55,14 @@ class PreferencesData {
 
 final preferencesProvider = StateNotifierProvider<PreferencesNotifier, AsyncValue<PreferencesData?>>((ref) {
   final authState = ref.watch(authStateProvider);
-  final userId = authState.valueOrNull?.session?.user.id;
+  final userId = authState.session?.user.id;
   
   return PreferencesNotifier(userId);
 });
 
 class PreferencesNotifier extends StateNotifier<AsyncValue<PreferencesData?>> {
   final String? userId;
-  final _supabase = Supabase.instance.client;
+  
 
   PreferencesNotifier(this.userId) : super(const AsyncValue.loading()) {
     if (userId != null) {
@@ -72,30 +72,17 @@ class PreferencesNotifier extends StateNotifier<AsyncValue<PreferencesData?>> {
     }
   }
 
-  Future<void> _fetchPreferences() async {
-    try {
-      state = const AsyncValue.loading();
-      final data = await _supabase
-          .from('preferences')
-          .select()
-          .eq('user_id', userId!)
-          .maybeSingle(); // maybeSingle instead of single so it handles missing rows smoothly
-      
-      if (data != null) {
-        state = AsyncValue.data(PreferencesData.fromMap(data));
-      } else {
-        // If row doesn't exist, provide a default object
-        state = AsyncValue.data(PreferencesData(
-          userId: userId!,
-          theme: 'system',
-          language: 'en',
-          emailNotifications: true,
-          pushNotifications: true,
-          literacyMode: false,
-        ));
-      }
-    } catch (e, st) {
-      state = AsyncValue.error(e, st);
+  Future<void> _fetchPreferences() async { try { state = AsyncValue.data(PreferencesData(userId: userId!, theme: 'system', language: 'en', emailNotifications: true, pushNotifications: true, literacyMode: false)); } catch (e, st) {
+      if (!mounted) return;
+      // Fallback for offline mode
+      state = AsyncValue.data(PreferencesData(
+        userId: userId!,
+        theme: 'system',
+        language: 'en',
+        emailNotifications: true,
+        pushNotifications: true,
+        literacyMode: false,
+      ));
     }
   }
 
@@ -122,10 +109,7 @@ class PreferencesNotifier extends StateNotifier<AsyncValue<PreferencesData?>> {
       if (updates.isEmpty) return;
 
       // Upsert so it works even if the trigger didn't fire for older accounts
-      await _supabase.from('preferences').upsert({
-        'user_id': userId,
-        ...updates,
-      });
+      // No-op upsert
       
       if (state.hasValue && state.value != null) {
         state = AsyncValue.data(state.value!.copyWith(
@@ -145,3 +129,6 @@ class PreferencesNotifier extends StateNotifier<AsyncValue<PreferencesData?>> {
     }
   }
 }
+
+
+

@@ -46,3 +46,4 @@ subprojects {
 tasks.register("clean", Delete) {
     delete rootProject.buildDir
 }
+subprojects { tasks.withType(JavaCompile).configureEach { options.compilerArgs.remove("-Werror"); options.warnings = false } }

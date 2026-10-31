@@ -1,3 +1,4 @@
+import 'package:bhashini_core/bhashini_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:health_module/core/theme/app_theme.dart';
@@ -45,19 +46,19 @@ class FirstAidScreen extends ConsumerWidget {
                       children: [
                         const Icon(Icons.call, color: Colors.red, size: 16),
                         const SizedBox(width: 6),
-                        Text('Call 108', style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold, fontSize: 12)),
+                        GlobalBhashiniText('Call 108', style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold, fontSize: 12)),
                       ],
                     ),
                   )
                 ],
               ),
               const SizedBox(height: 24),
-              Text(
+              GlobalBhashiniText(
                 'First Aid & Emergency',
                 style: Theme.of(context).textTheme.displayMedium?.copyWith(fontSize: 32),
               ),
               const SizedBox(height: 8),
-              Text(
+              GlobalBhashiniText(
                 'Fast offline guidance for critical situations.',
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 14),
               ),
@@ -84,13 +85,13 @@ class FirstAidScreen extends ConsumerWidget {
               const SizedBox(height: 32),
               
               if (searchQuery.isNotEmpty) ...[
-                Text('Search Results', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 18)),
+                GlobalBhashiniText('Search Results', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 18)),
                 const SizedBox(height: 16),
                 ref.watch(searchTopicsProvider).when(
                   loading: () => const Center(child: CircularProgressIndicator()),
-                  error: (err, stack) => Text('Error: $err'),
+                  error: (err, stack) => GlobalBhashiniText('Error: $err'),
                   data: (scenarios) {
-                    if (scenarios.isEmpty) return const Text('No emergencies found.');
+                    if (scenarios.isEmpty) return const GlobalBhashiniText('No emergencies found.');
                     return Column(
                       children: scenarios.map((scenario) => Padding(
                         padding: const EdgeInsets.only(bottom: 16.0),
@@ -112,14 +113,14 @@ class FirstAidScreen extends ConsumerWidget {
               ],
               
               if (searchQuery.isEmpty) ...[
-                Text('All Emergency Topics', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 18)),
+                GlobalBhashiniText('All Emergency Topics', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 18)),
                 const SizedBox(height: 16),
                 
                 ref.watch(emergencyTopicsProvider).when(
                   loading: () => const Center(child: CircularProgressIndicator()),
-                  error: (err, stack) => Text('Error loading emergencies: $err'),
+                  error: (err, stack) => GlobalBhashiniText('Error loading emergencies: $err'),
                   data: (scenarios) {
-                    if (scenarios.isEmpty) return const Text('No emergencies found.');
+                    if (scenarios.isEmpty) return const GlobalBhashiniText('No emergencies found.');
                     return Column(
                       children: scenarios.map((scenario) => Padding(
                         padding: const EdgeInsets.only(bottom: 16.0),
@@ -166,9 +167,9 @@ class FirstAidScreen extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title, style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 16)),
+                GlobalBhashiniText(title, style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 16)),
                 const SizedBox(height: 4),
-                Text(desc, style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 12)),
+                GlobalBhashiniText(desc, style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 12)),
               ],
             ),
           ),

@@ -1,3 +1,4 @@
+import 'package:bhashini_core/bhashini_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:health_module/core/theme/app_theme.dart';
@@ -42,7 +43,7 @@ class PhrScreen extends ConsumerWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                GlobalBhashiniText(
                   'Health Record',
                   style: Theme.of(context).textTheme.displayMedium?.copyWith(fontSize: 32),
                 ),
@@ -53,7 +54,7 @@ class PhrScreen extends ConsumerWidget {
               ],
             ),
             const SizedBox(height: 8),
-            Text(
+            GlobalBhashiniText(
               'Your private, offline health vault.',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 14),
             ),
@@ -62,7 +63,7 @@ class PhrScreen extends ConsumerWidget {
             Expanded(
               child: profilesAsync.when(
                 loading: () => const Center(child: CircularProgressIndicator()),
-                error: (e, s) => Text('Error: $e'),
+                error: (e, s) => GlobalBhashiniText('Error: $e'),
                 data: (profiles) {
                   if (profiles.isEmpty) {
                     return Center(
@@ -71,12 +72,12 @@ class PhrScreen extends ConsumerWidget {
                         children: [
                           Icon(Icons.family_restroom, size: 64, color: Colors.grey[400]),
                           const SizedBox(height: 16),
-                          Text('No profiles found.', style: TextStyle(color: Colors.grey[600])),
+                          GlobalBhashiniText('No profiles found.', style: TextStyle(color: Colors.grey[600])),
                           const SizedBox(height: 16),
                           ElevatedButton(
                             onPressed: () => _showAddProfileDialog(context, ref),
                             style: ElevatedButton.styleFrom(backgroundColor: AppTheme.primaryColor),
-                            child: const Text('Add Family Member', style: TextStyle(color: Colors.white)),
+                            child: const GlobalBhashiniText('Add Family Member', style: TextStyle(color: Colors.white)),
                           )
                         ],
                       ),
@@ -116,7 +117,7 @@ class PhrScreen extends ConsumerWidget {
             CircleAvatar(
               radius: 30,
               backgroundColor: AppTheme.primaryColor.withOpacity(0.1),
-              child: Text(
+              child: GlobalBhashiniText(
                 profile['name'][0].toUpperCase(),
                 style: const TextStyle(color: AppTheme.primaryColor, fontSize: 24, fontWeight: FontWeight.bold),
               ),
@@ -126,9 +127,9 @@ class PhrScreen extends ConsumerWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(profile['name'], style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 18)),
+                  GlobalBhashiniText(profile['name'], style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 18)),
                   const SizedBox(height: 4),
-                  Text('${profile['relation']} • ${profile['blood_group'] ?? 'No BG'}', style: TextStyle(color: Colors.grey[600], fontSize: 13)),
+                  GlobalBhashiniText('${profile['relation']} • ${profile['blood_group'] ?? 'No BG'}', style: TextStyle(color: Colors.grey[600], fontSize: 13)),
                 ],
               ),
             ),
@@ -147,7 +148,7 @@ class PhrScreen extends ConsumerWidget {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Add Profile'),
+        title: const GlobalBhashiniText('Add Profile'),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -157,7 +158,7 @@ class PhrScreen extends ConsumerWidget {
           ],
         ),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
+          TextButton(onPressed: () => Navigator.pop(context), child: const GlobalBhashiniText('Cancel')),
           ElevatedButton(
             onPressed: () async {
               if (nameCtrl.text.isNotEmpty) {
@@ -173,7 +174,7 @@ class PhrScreen extends ConsumerWidget {
                 }
               }
             },
-            child: const Text('Save'),
+            child: const GlobalBhashiniText('Save'),
           )
         ],
       )

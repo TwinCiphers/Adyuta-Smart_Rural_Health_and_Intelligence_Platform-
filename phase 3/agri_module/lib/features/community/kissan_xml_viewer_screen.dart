@@ -1,3 +1,4 @@
+import 'package:bhashini_core/bhashini_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -233,12 +234,12 @@ class _KissanXmlViewerScreenState extends State<KissanXmlViewerScreen> with Sing
       if (_bookmarkedPages.contains(pageIndex)) {
         _bookmarkedPages.remove(pageIndex);
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Removed bookmark from page'), duration: Duration(seconds: 1)),
+          const SnackBar(content: GlobalBhashiniText('Removed bookmark from page'), duration: Duration(seconds: 1)),
         );
       } else {
         _bookmarkedPages.add(pageIndex);
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Bookmarked page for quick access!'), backgroundColor: AgriTheme.primaryGreen, duration: Duration(seconds: 1)),
+          const SnackBar(content: GlobalBhashiniText('Bookmarked page for quick access!'), backgroundColor: AgriTheme.primaryGreen, duration: Duration(seconds: 1)),
         );
       }
     });
@@ -261,7 +262,7 @@ class _KissanXmlViewerScreenState extends State<KissanXmlViewerScreen> with Sing
             Icon(isPlaying ? Icons.stop : Icons.volume_up, color: Colors.white, size: compact ? 14 : 16),
             if (!compact) ...[
               const SizedBox(width: 6),
-              Text(
+              GlobalBhashiniText(
                 isPlaying
                     ? BhashiniTtsService.getUiString('stop', _selectedLang.code)
                     : BhashiniTtsService.getUiString('listen', _selectedLang.code),
@@ -308,7 +309,7 @@ class _KissanXmlViewerScreenState extends State<KissanXmlViewerScreen> with Sing
               const Icon(Icons.volume_up, color: Colors.white),
               const SizedBox(width: 12),
               Expanded(
-                child: Text('Bhashini AI Voice (${_selectedLang.nativeName}): Reading in ${_selectedLang.name}...'),
+                child: GlobalBhashiniText('Bhashini AI Voice (${_selectedLang.nativeName}): Reading in ${_selectedLang.name}...'),
               ),
             ],
           ),
@@ -343,7 +344,7 @@ class _KissanXmlViewerScreenState extends State<KissanXmlViewerScreen> with Sing
                     color: AgriTheme.lightGreen,
                     borderRadius: BorderRadius.circular(6),
                   ),
-                  child: Text(
+                  child: GlobalBhashiniText(
                     'XML KNOWLEDGE BASE',
                     style: GoogleFonts.outfit(
                       color: AgriTheme.primaryGreen,
@@ -354,7 +355,7 @@ class _KissanXmlViewerScreenState extends State<KissanXmlViewerScreen> with Sing
                 ),
                 const SizedBox(width: 8),
                 Expanded(
-                  child: Text(
+                  child: GlobalBhashiniText(
                     widget.title,
                     style: GoogleFonts.outfit(
                       color: AgriTheme.textDark,
@@ -367,7 +368,7 @@ class _KissanXmlViewerScreenState extends State<KissanXmlViewerScreen> with Sing
                 ),
               ],
             ),
-            Text(
+            GlobalBhashiniText(
               'By ${widget.author}',
               style: GoogleFonts.outfit(color: AgriTheme.textMuted, fontSize: 12),
               maxLines: 1,
@@ -388,7 +389,7 @@ class _KissanXmlViewerScreenState extends State<KissanXmlViewerScreen> with Sing
               });
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: Text(_isContinuousScroll ? 'Switched to Continuous Scroll Mode' : 'Switched to Card Page Mode'),
+                  content: GlobalBhashiniText(_isContinuousScroll ? 'Switched to Continuous Scroll Mode' : 'Switched to Card Page Mode'),
                   duration: const Duration(seconds: 1),
                 ),
               );
@@ -403,10 +404,10 @@ class _KissanXmlViewerScreenState extends State<KissanXmlViewerScreen> with Sing
               });
             },
             itemBuilder: (context) => [
-              const PopupMenuItem(value: 14.0, child: Text('Small (14pt)')),
-              const PopupMenuItem(value: 16.0, child: Text('Normal (16pt)')),
-              const PopupMenuItem(value: 18.0, child: Text('Large (18pt)')),
-              const PopupMenuItem(value: 22.0, child: Text('Extra Large (22pt)')),
+              const PopupMenuItem(value: 14.0, child: GlobalBhashiniText('Small (14pt)')),
+              const PopupMenuItem(value: 16.0, child: GlobalBhashiniText('Normal (16pt)')),
+              const PopupMenuItem(value: 18.0, child: GlobalBhashiniText('Large (18pt)')),
+              const PopupMenuItem(value: 22.0, child: GlobalBhashiniText('Extra Large (22pt)')),
             ],
           ),
           const SizedBox(width: 4),
@@ -419,7 +420,7 @@ class _KissanXmlViewerScreenState extends State<KissanXmlViewerScreen> with Sing
                 children: [
                   CircularProgressIndicator(color: AgriTheme.primaryGreen),
                   SizedBox(height: 16),
-                  Text('Parsing XML Knowledge Base Document...', style: TextStyle(color: AgriTheme.textMuted, fontWeight: FontWeight.w600)),
+                  GlobalBhashiniText('Parsing XML Knowledge Base Document...', style: TextStyle(color: AgriTheme.textMuted, fontWeight: FontWeight.w600)),
                 ],
               ),
             )
@@ -432,13 +433,13 @@ class _KissanXmlViewerScreenState extends State<KissanXmlViewerScreen> with Sing
                       children: [
                         const Icon(Icons.error_outline, color: Colors.redAccent, size: 48),
                         const SizedBox(height: 16),
-                        Text(_errorMessage!, textAlign: TextAlign.center, style: GoogleFonts.outfit(color: AgriTheme.textDark, fontSize: 16)),
+                        GlobalBhashiniText(_errorMessage!, textAlign: TextAlign.center, style: GoogleFonts.outfit(color: AgriTheme.textDark, fontSize: 16)),
                         const SizedBox(height: 24),
                         ElevatedButton.icon(
                           onPressed: _loadXmlDocument,
                           style: ElevatedButton.styleFrom(backgroundColor: AgriTheme.primaryGreen),
                           icon: const Icon(Icons.refresh, color: Colors.white),
-                          label: const Text('Retry', style: TextStyle(color: Colors.white)),
+                          label: const GlobalBhashiniText('Retry', style: TextStyle(color: Colors.white)),
                         ),
                       ],
                     ),
@@ -463,7 +464,7 @@ class _KissanXmlViewerScreenState extends State<KissanXmlViewerScreen> with Sing
                                 const Icon(Icons.info_outline, size: 16, color: Color(0xFF854D0E)),
                                 const SizedBox(width: 8),
                                 Expanded(
-                                  child: Text(
+                                  child: GlobalBhashiniText(
                                     'Viewing raw OCR extracted text. Switch back for structured guide.',
                                     style: GoogleFonts.outfit(fontSize: 12, color: const Color(0xFF854D0E)),
                                   ),
@@ -471,7 +472,7 @@ class _KissanXmlViewerScreenState extends State<KissanXmlViewerScreen> with Sing
                                 TextButton.icon(
                                   onPressed: () => setState(() => _showRawXml = false),
                                   icon: const Icon(Icons.article, size: 16, color: AgriTheme.primaryGreen),
-                                  label: Text('Curated Blog', style: GoogleFonts.outfit(fontSize: 12, fontWeight: FontWeight.bold, color: AgriTheme.primaryGreen)),
+                                  label: GlobalBhashiniText('Curated Blog', style: GoogleFonts.outfit(fontSize: 12, fontWeight: FontWeight.bold, color: AgriTheme.primaryGreen)),
                                 ),
                               ],
                             ),
@@ -551,7 +552,7 @@ class _KissanXmlViewerScreenState extends State<KissanXmlViewerScreen> with Sing
             const SizedBox(height: 8),
             Row(
               children: [
-                Text(
+                GlobalBhashiniText(
                   'Found matches on ${_matchingPageIndices.length} page(s)',
                   style: GoogleFonts.outfit(color: AgriTheme.primaryGreen, fontSize: 12, fontWeight: FontWeight.w600),
                 ),
@@ -559,7 +560,7 @@ class _KissanXmlViewerScreenState extends State<KissanXmlViewerScreen> with Sing
                 if (_matchingPageIndices.isNotEmpty)
                   Row(
                     children: [
-                      Text(
+                      GlobalBhashiniText(
                         'Jump to match: ',
                         style: GoogleFonts.outfit(color: AgriTheme.textMuted, fontSize: 12),
                       ),
@@ -584,7 +585,7 @@ class _KissanXmlViewerScreenState extends State<KissanXmlViewerScreen> with Sing
                                   color: _currentPageIndex == pageIdx ? AgriTheme.primaryGreen : AgriTheme.lightGreen,
                                   borderRadius: BorderRadius.circular(6),
                                 ),
-                                child: Text(
+                                child: GlobalBhashiniText(
                                   'P.${_pages[pageIdx].pageNumber}',
                                   style: GoogleFonts.outfit(
                                     color: _currentPageIndex == pageIdx ? Colors.white : AgriTheme.primaryGreen,
@@ -627,11 +628,11 @@ class _KissanXmlViewerScreenState extends State<KissanXmlViewerScreen> with Sing
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    GlobalBhashiniText(
                       'Kisan Voice Assistant Active',
                       style: GoogleFonts.outfit(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 13),
                     ),
-                    Text(
+                    GlobalBhashiniText(
                       'Reading advisory notes loud and clear for field listening...',
                       style: GoogleFonts.outfit(color: Colors.white70, fontSize: 11),
                     ),
@@ -662,7 +663,7 @@ class _KissanXmlViewerScreenState extends State<KissanXmlViewerScreen> with Sing
               children: [
                 const Icon(Icons.translate, size: 16, color: AgriTheme.primaryGreen),
                 const SizedBox(width: 6),
-                Text(
+                GlobalBhashiniText(
                   BhashiniTtsService.getUiString('voice_heading', _selectedLang.code),
                   style: GoogleFonts.outfit(fontSize: 12, fontWeight: FontWeight.bold, color: AgriTheme.primaryGreen),
                 ),
@@ -689,7 +690,7 @@ class _KissanXmlViewerScreenState extends State<KissanXmlViewerScreen> with Sing
                       });
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
-                          content: Text('Switched to ${lang.name} (${lang.nativeName}) - Bhashini AI Voice Ready'),
+                          content: GlobalBhashiniText('Switched to ${lang.name} (${lang.nativeName}) - Bhashini AI Voice Ready'),
                           backgroundColor: AgriTheme.primaryGreen,
                           duration: const Duration(seconds: 1),
                         ),
@@ -707,9 +708,9 @@ class _KissanXmlViewerScreenState extends State<KissanXmlViewerScreen> with Sing
                       ),
                       child: Row(
                         children: [
-                          Text(lang.flag, style: const TextStyle(fontSize: 14)),
+                          GlobalBhashiniText(lang.flag, style: const TextStyle(fontSize: 14)),
                           const SizedBox(width: 6),
-                          Text(
+                          GlobalBhashiniText(
                             lang.nativeName,
                             style: GoogleFonts.outfit(
                               fontSize: 13,
@@ -771,7 +772,7 @@ class _KissanXmlViewerScreenState extends State<KissanXmlViewerScreen> with Sing
                       color: const Color(0xFFF1F5F9),
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    child: Text(
+                    child: GlobalBhashiniText(
                       'PAGE ${page.pageNumber}',
                       style: GoogleFonts.outfit(
                         fontWeight: FontWeight.bold,
@@ -794,7 +795,7 @@ class _KissanXmlViewerScreenState extends State<KissanXmlViewerScreen> with Sing
                     onPressed: () {
                       Clipboard.setData(ClipboardData(text: page.rawText));
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Page text copied to clipboard!'), duration: Duration(seconds: 1)),
+                        const SnackBar(content: GlobalBhashiniText('Page text copied to clipboard!'), duration: Duration(seconds: 1)),
                       );
                     },
                     tooltip: 'Copy Page Text',
@@ -845,7 +846,7 @@ class _KissanXmlViewerScreenState extends State<KissanXmlViewerScreen> with Sing
                       color: isMatch ? const Color(0xFFFEF08A) : const Color(0xFFF1F5F9),
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    child: Text(
+                    child: GlobalBhashiniText(
                       'PAGE ${page.pageNumber}',
                       style: GoogleFonts.outfit(
                         fontWeight: FontWeight.bold,
@@ -856,7 +857,7 @@ class _KissanXmlViewerScreenState extends State<KissanXmlViewerScreen> with Sing
                   ),
                   if (isMatch) ...[
                     const SizedBox(width: 8),
-                    Text(
+                    GlobalBhashiniText(
                       '⭐ Keyword Match',
                       style: GoogleFonts.outfit(fontSize: 11, color: const Color(0xFF854D0E), fontWeight: FontWeight.bold),
                     ),
@@ -884,7 +885,7 @@ class _KissanXmlViewerScreenState extends State<KissanXmlViewerScreen> with Sing
     if (_searchQuery.isEmpty || !text.toLowerCase().contains(_searchQuery)) {
       return Padding(
         padding: const EdgeInsets.only(bottom: 14),
-        child: Text(
+        child: GlobalBhashiniText(
           text,
           style: GoogleFonts.outfit(
             fontSize: _fontSize,
@@ -960,7 +961,7 @@ class _KissanXmlViewerScreenState extends State<KissanXmlViewerScreen> with Sing
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(
+                  GlobalBhashiniText(
                     'Page ${_pages[_currentPageIndex].pageNumber} of ${_pages.length}',
                     style: GoogleFonts.outfit(fontWeight: FontWeight.bold, fontSize: 13, color: AgriTheme.textDark),
                   ),
@@ -1052,7 +1053,7 @@ class _KissanXmlViewerScreenState extends State<KissanXmlViewerScreen> with Sing
                         color: AgriTheme.primaryGreen,
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child: Text(
+                      child: GlobalBhashiniText(
                         _getTranslated(blog.category).toUpperCase(),
                         style: GoogleFonts.outfit(color: Colors.white, fontSize: 11, fontWeight: FontWeight.bold),
                       ),
@@ -1062,7 +1063,7 @@ class _KissanXmlViewerScreenState extends State<KissanXmlViewerScreen> with Sing
                       children: [
                         Icon(Icons.timer_outlined, size: 16, color: AgriTheme.primaryGreen),
                         const SizedBox(width: 4),
-                        Text(
+                        GlobalBhashiniText(
                           _getTranslated(blog.readTime),
                           style: GoogleFonts.outfit(color: AgriTheme.primaryGreen, fontSize: 12, fontWeight: FontWeight.w600),
                         ),
@@ -1071,12 +1072,12 @@ class _KissanXmlViewerScreenState extends State<KissanXmlViewerScreen> with Sing
                   ],
                 ),
                 const SizedBox(height: 14),
-                Text(
+                GlobalBhashiniText(
                   _getTranslated(blog.title),
                   style: GoogleFonts.outfit(fontSize: 22, fontWeight: FontWeight.bold, color: AgriTheme.textDark, height: 1.3),
                 ),
                 const SizedBox(height: 6),
-                Text(
+                GlobalBhashiniText(
                   _getTranslated(blog.subtitle),
                   style: GoogleFonts.outfit(fontSize: 14, color: const Color(0xFF065F46), fontStyle: FontStyle.italic),
                 ),
@@ -1099,7 +1100,7 @@ class _KissanXmlViewerScreenState extends State<KissanXmlViewerScreen> with Sing
                         ),
                         const SizedBox(width: 10),
                         Flexible(
-                          child: Text(
+                          child: GlobalBhashiniText(
                             '${BhashiniTtsService.getUiString('synthesized_by', _selectedLang.code)} ${_getTranslated(blog.author)}',
                             style: GoogleFonts.outfit(fontSize: 13, fontWeight: FontWeight.w600, color: AgriTheme.textDark),
                           ),
@@ -1137,7 +1138,7 @@ class _KissanXmlViewerScreenState extends State<KissanXmlViewerScreen> with Sing
                     ),
                     const SizedBox(width: 12),
                     Expanded(
-                      child: Text(
+                      child: GlobalBhashiniText(
                         BhashiniTtsService.getUiString('exec_summary', _selectedLang.code),
                         style: GoogleFonts.outfit(fontSize: 16, fontWeight: FontWeight.bold, color: const Color(0xFF854D0E)),
                       ),
@@ -1145,7 +1146,7 @@ class _KissanXmlViewerScreenState extends State<KissanXmlViewerScreen> with Sing
                   ],
                 ),
                 const SizedBox(height: 12),
-                Text(
+                GlobalBhashiniText(
                   _getTranslated(blog.executiveSummary),
                   style: GoogleFonts.outfit(fontSize: 14, color: const Color(0xFF713F12), height: 1.5),
                 ),
@@ -1160,10 +1161,10 @@ class _KissanXmlViewerScreenState extends State<KissanXmlViewerScreen> with Sing
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text('💡', style: TextStyle(fontSize: 20)),
+                      const GlobalBhashiniText('💡', style: TextStyle(fontSize: 20)),
                       const SizedBox(width: 10),
                       Expanded(
-                        child: Text(
+                        child: GlobalBhashiniText(
                           _getTranslated(blog.goldNuggetTip),
                           style: GoogleFonts.outfit(fontSize: 13, fontWeight: FontWeight.w600, color: const Color(0xFF854D0E), height: 1.5),
                         ),
@@ -1177,7 +1178,7 @@ class _KissanXmlViewerScreenState extends State<KissanXmlViewerScreen> with Sing
           const SizedBox(height: 24),
 
           // Quick Stats Grid
-          Text(
+          GlobalBhashiniText(
             BhashiniTtsService.getUiString('research_findings', _selectedLang.code),
             style: GoogleFonts.outfit(fontSize: 18, fontWeight: FontWeight.bold, color: AgriTheme.textDark),
           ),
@@ -1210,8 +1211,8 @@ class _KissanXmlViewerScreenState extends State<KissanXmlViewerScreen> with Sing
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(stat.value, style: GoogleFonts.outfit(fontSize: 16, fontWeight: FontWeight.bold, color: AgriTheme.textDark)),
-                          Text(_getTranslated(stat.label), style: GoogleFonts.outfit(fontSize: 11, color: AgriTheme.textMuted), maxLines: 1, overflow: TextOverflow.ellipsis),
+                          GlobalBhashiniText(stat.value, style: GoogleFonts.outfit(fontSize: 16, fontWeight: FontWeight.bold, color: AgriTheme.textDark)),
+                          GlobalBhashiniText(_getTranslated(stat.label), style: GoogleFonts.outfit(fontSize: 11, color: AgriTheme.textMuted), maxLines: 1, overflow: TextOverflow.ellipsis),
                         ],
                       ),
                     ),
@@ -1239,7 +1240,7 @@ class _KissanXmlViewerScreenState extends State<KissanXmlViewerScreen> with Sing
                   runSpacing: 4,
                   children: [
                     const Icon(Icons.check_circle, color: AgriTheme.primaryGreen, size: 24),
-                    Text(
+                    GlobalBhashiniText(
                       '${BhashiniTtsService.getUiString('action_checklist', _selectedLang.code)} (${_completedChecklistItems.length}/${blog.actionChecklist.length})',
                       style: GoogleFonts.outfit(fontSize: 16, fontWeight: FontWeight.bold, color: AgriTheme.primaryGreen),
                     ),
@@ -1278,7 +1279,7 @@ class _KissanXmlViewerScreenState extends State<KissanXmlViewerScreen> with Sing
                           ),
                           const SizedBox(width: 12),
                           Expanded(
-                            child: Text(
+                            child: GlobalBhashiniText(
                               _getTranslated(task),
                               style: GoogleFonts.outfit(
                                 fontSize: 14,
@@ -1299,7 +1300,7 @@ class _KissanXmlViewerScreenState extends State<KissanXmlViewerScreen> with Sing
           const SizedBox(height: 28),
 
           // Blog Sections
-          Text(
+          GlobalBhashiniText(
             BhashiniTtsService.getUiString('detailed_guide', _selectedLang.code),
             style: GoogleFonts.outfit(fontSize: 18, fontWeight: FontWeight.bold, color: AgriTheme.textDark),
           ),
@@ -1308,7 +1309,7 @@ class _KissanXmlViewerScreenState extends State<KissanXmlViewerScreen> with Sing
             Container(
               padding: const EdgeInsets.all(24),
               alignment: Alignment.center,
-              child: Text(
+              child: GlobalBhashiniText(
                 '${BhashiniTtsService.getUiString('no_results', _selectedLang.code)} "$_searchQuery"',
                 style: GoogleFonts.outfit(fontSize: 14, color: AgriTheme.textMuted),
               ),
@@ -1337,7 +1338,7 @@ class _KissanXmlViewerScreenState extends State<KissanXmlViewerScreen> with Sing
                       ),
                       const SizedBox(width: 12),
                       Expanded(
-                        child: Text(
+                        child: GlobalBhashiniText(
                           _getTranslated(sec.title),
                           style: GoogleFonts.outfit(fontSize: 17, fontWeight: FontWeight.bold, color: AgriTheme.textDark),
                         ),
@@ -1352,7 +1353,7 @@ class _KissanXmlViewerScreenState extends State<KissanXmlViewerScreen> with Sing
                   const SizedBox(height: 16),
                   ...sec.paragraphs.map((p) => Padding(
                     padding: const EdgeInsets.only(bottom: 12),
-                    child: Text(
+                    child: GlobalBhashiniText(
                       _getTranslated(p),
                       style: GoogleFonts.outfit(fontSize: _fontSize, color: AgriTheme.textDark, height: 1.6),
                     ),
@@ -1369,9 +1370,9 @@ class _KissanXmlViewerScreenState extends State<KissanXmlViewerScreen> with Sing
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text('• ', style: TextStyle(color: AgriTheme.primaryGreen, fontWeight: FontWeight.bold, fontSize: 16)),
+                              const GlobalBhashiniText('• ', style: TextStyle(color: AgriTheme.primaryGreen, fontWeight: FontWeight.bold, fontSize: 16)),
                               Expanded(
-                                child: Text(
+                                child: GlobalBhashiniText(
                                   _getTranslated(b),
                                   style: GoogleFonts.outfit(fontSize: _fontSize - 1, color: const Color(0xFF334155), height: 1.5, fontWeight: FontWeight.w500),
                                 ),
@@ -1396,7 +1397,7 @@ class _KissanXmlViewerScreenState extends State<KissanXmlViewerScreen> with Sing
                   _showRawXml = true;
                 });
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Switched to Raw Extracted OCR XML View'), duration: Duration(seconds: 2)),
+                  const SnackBar(content: GlobalBhashiniText('Switched to Raw Extracted OCR XML View'), duration: Duration(seconds: 2)),
                 );
               },
               style: OutlinedButton.styleFrom(
@@ -1405,7 +1406,7 @@ class _KissanXmlViewerScreenState extends State<KissanXmlViewerScreen> with Sing
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
               ),
               icon: const Icon(Icons.code, color: AgriTheme.primaryGreen),
-              label: Text('View Raw Extracted OCR XML Data (${_pages.length} Pages)', style: GoogleFonts.outfit(color: AgriTheme.primaryGreen, fontWeight: FontWeight.bold)),
+              label: GlobalBhashiniText('View Raw Extracted OCR XML Data (${_pages.length} Pages)', style: GoogleFonts.outfit(color: AgriTheme.primaryGreen, fontWeight: FontWeight.bold)),
             ),
           ),
           const SizedBox(height: 40),

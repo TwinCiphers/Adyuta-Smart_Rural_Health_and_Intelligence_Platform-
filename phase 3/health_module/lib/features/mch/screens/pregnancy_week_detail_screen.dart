@@ -1,3 +1,4 @@
+import 'package:bhashini_core/bhashini_core.dart';
 import 'package:flutter/material.dart';
 import 'package:health_module/core/theme/app_theme.dart';
 import 'package:health_module/core/widgets/soft_background_layout.dart';
@@ -44,7 +45,7 @@ class PregnancyWeekDetailScreen extends StatelessWidget {
               ),
               const SizedBox(height: 24),
               Center(
-                child: Text(
+                child: GlobalBhashiniText(
                   'Week ${week.weekNo}',
                   style: Theme.of(context).textTheme.displayMedium?.copyWith(fontSize: 32),
                 ),
@@ -86,12 +87,12 @@ class PregnancyWeekDetailScreen extends StatelessWidget {
               Icon(icon, color: color),
               const SizedBox(width: 12),
               Expanded(
-                child: Text(title, style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 18, color: color)),
+                child: GlobalBhashiniText(title, style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 18, color: color)),
               ),
             ],
           ),
           const SizedBox(height: 16),
-          Text(
+          GlobalBhashiniText(
             content,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 15, height: 1.5),
           ),

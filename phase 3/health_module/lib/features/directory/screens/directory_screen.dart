@@ -1,3 +1,4 @@
+import 'package:bhashini_core/bhashini_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:health_module/core/theme/app_theme.dart';
@@ -86,12 +87,12 @@ class _DirectoryScreenState extends ConsumerState<DirectoryScreen> {
                 ),
               ),
               const SizedBox(height: 24),
-              Text(
+              GlobalBhashiniText(
                 'Local Health Directory',
                 style: Theme.of(context).textTheme.displayMedium?.copyWith(fontSize: 32),
               ),
               const SizedBox(height: 8),
-              Text(
+              GlobalBhashiniText(
                 'Find PHCs, CHCs, and hospitals near you.',
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 14),
               ),
@@ -119,9 +120,9 @@ class _DirectoryScreenState extends ConsumerState<DirectoryScreen> {
               if (searchQuery.isNotEmpty) ...[
                 ref.watch(searchFacilitiesProvider).when(
                   loading: () => const Center(child: CircularProgressIndicator()),
-                  error: (err, stack) => Text('Error: $err'),
+                  error: (err, stack) => GlobalBhashiniText('Error: $err'),
                   data: (results) {
-                    if (results.isEmpty) return const Text('No facilities found.');
+                    if (results.isEmpty) return const GlobalBhashiniText('No facilities found.');
                     return Column(
                       children: results.map((fac) => Padding(
                         padding: const EdgeInsets.only(bottom: 16.0),
@@ -142,13 +143,13 @@ class _DirectoryScreenState extends ConsumerState<DirectoryScreen> {
               ],
               
               if (searchQuery.isEmpty) ...[
-                Text('Nearby Facilities', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 18)),
+                GlobalBhashiniText('Nearby Facilities', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 18)),
                 const SizedBox(height: 12),
                 ref.watch(facilitiesProvider).when(
                   loading: () => const Center(child: CircularProgressIndicator()),
-                  error: (err, stack) => Text('Error loading directory: $err'),
+                  error: (err, stack) => GlobalBhashiniText('Error loading directory: $err'),
                   data: (facilities) {
-                    if (facilities.isEmpty) return const Text('No facilities found.');
+                    if (facilities.isEmpty) return const GlobalBhashiniText('No facilities found.');
                     return Column(
                       children: facilities.map((fac) => Padding(
                         padding: const EdgeInsets.only(bottom: 16.0),
@@ -168,13 +169,13 @@ class _DirectoryScreenState extends ConsumerState<DirectoryScreen> {
                 ),
                 
                 const SizedBox(height: 24),
-                Text('Local Helpers (ASHA/Anganwadi)', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 18)),
+                GlobalBhashiniText('Local Helpers (ASHA/Anganwadi)', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 18)),
                 const SizedBox(height: 12),
                 ref.watch(localHelpersProvider).when(
                   loading: () => const Center(child: CircularProgressIndicator()),
-                  error: (err, stack) => Text('Error loading helpers: $err'),
+                  error: (err, stack) => GlobalBhashiniText('Error loading helpers: $err'),
                   data: (helpers) {
-                    if (helpers.isEmpty) return const Text('No helpers found.');
+                    if (helpers.isEmpty) return const GlobalBhashiniText('No helpers found.');
                     return Column(
                       children: helpers.map((h) => Padding(
                         padding: const EdgeInsets.only(bottom: 16.0),
@@ -218,9 +219,9 @@ class _DirectoryScreenState extends ConsumerState<DirectoryScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(name, style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 16)),
+                    GlobalBhashiniText(name, style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 16)),
                     const SizedBox(height: 4),
-                    Text(details, style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 12)),
+                    GlobalBhashiniText(details, style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 12)),
                   ],
                 ),
               ),
@@ -233,13 +234,13 @@ class _DirectoryScreenState extends ConsumerState<DirectoryScreen> {
               TextButton.icon(
                 onPressed: () {},
                 icon: const Icon(Icons.directions, color: AppTheme.primaryColor, size: 18),
-                label: const Text('Directions', style: TextStyle(color: AppTheme.primaryColor)),
+                label: const GlobalBhashiniText('Directions', style: TextStyle(color: AppTheme.primaryColor)),
               ),
               if (phone.isNotEmpty)
                 TextButton.icon(
                   onPressed: () => _makePhoneCall(phone),
                   icon: const Icon(Icons.call, color: AppTheme.primaryColor, size: 18),
-                  label: const Text('Call', style: TextStyle(color: AppTheme.primaryColor)),
+                  label: const GlobalBhashiniText('Call', style: TextStyle(color: AppTheme.primaryColor)),
                 )
             ],
           )
@@ -272,9 +273,9 @@ class _DirectoryScreenState extends ConsumerState<DirectoryScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(name, style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 16)),
+                GlobalBhashiniText(name, style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 16)),
                 const SizedBox(height: 4),
-                Text(details, style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 12)),
+                GlobalBhashiniText(details, style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 12)),
               ],
             ),
           ),

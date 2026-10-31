@@ -266,3 +266,4 @@ const passkeyRoutes: FastifyPluginAsync = async (server) => {
 };
 
 export default passkeyRoutes;
+

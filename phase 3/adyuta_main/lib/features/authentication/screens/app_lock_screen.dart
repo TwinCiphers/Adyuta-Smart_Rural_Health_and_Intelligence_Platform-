@@ -1,3 +1,4 @@
+import 'package:bhashini_core/bhashini_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:adyuta_main/features/authentication/providers/local_security_provider.dart';
@@ -34,6 +35,7 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
   Future<void> _verifyPin(String pin) async {
     final notifier = ref.read(localSecurityProvider.notifier);
     final success = await notifier.verifyMpin(pin);
+    if (!mounted) return;
     if (!success) {
       setState(() {
         _hasError = true;
@@ -56,12 +58,12 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
             children: [
               const Icon(Icons.lock_outline, size: 80, color: Colors.white),
               const SizedBox(height: 24),
-              const Text(
+              const GlobalBhashiniText(
                 'App Locked',
                 style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.white),
               ),
               const SizedBox(height: 8),
-              const Text(
+              const GlobalBhashiniText(
                 'Enter your 4-digit MPIN to unlock',
                 style: TextStyle(fontSize: 16, color: Colors.white70),
               ),
@@ -96,7 +98,7 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
 
               if (_hasError) ...[
                 const SizedBox(height: 16),
-                const Text('Incorrect PIN. Please try again.', style: TextStyle(color: Colors.redAccent)),
+                const GlobalBhashiniText('Incorrect PIN. Please try again.', style: TextStyle(color: Colors.redAccent)),
               ],
 
               const SizedBox(height: 48),
@@ -113,7 +115,7 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
                   await ref.read(authRepositoryProvider).signOut();
                 },
                 icon: const Icon(Icons.logout, color: Colors.white54),
-                label: const Text('Sign Out', style: TextStyle(color: Colors.white54)),
+                label: const GlobalBhashiniText('Sign Out', style: TextStyle(color: Colors.white54)),
               ),
               const SizedBox(height: 24),
             ],

@@ -1,9 +1,13 @@
+import 'package:bhashini_core/bhashini_core.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../core/theme/edu_theme.dart';
 import '../../models/models.dart';
 import '../../services/edu_storage_service.dart';
+import '../../services/world_bank_edu_service.dart';
+import '../../core/models/edu_data_point.dart';
+import '../../core/widgets/education_snapshot_card.dart';
 import '../courses/course_detail_screen.dart';
 import '../courses/my_courses_screen.dart';
 
@@ -24,12 +28,17 @@ class _EduHomeScreenState extends State<EduHomeScreen> {
   Timer? _debouncer;
   bool _isLoading = true;
 
+  // World Bank state
+  List<EduDataPoint> _indicators = [];
+  bool _isLoadingIndicators = true;
+
   final List<String> _categories = ['All', 'Agri', 'Finance', 'Tech', 'Business'];
 
   @override
   void initState() {
     super.initState();
     _loadCourses();
+    _loadIndicators();
   }
 
   @override
@@ -47,6 +56,16 @@ class _EduHomeScreenState extends State<EduHomeScreen> {
         _allCourses = courses;
         _applyFilters();
         _isLoading = false;
+      });
+    }
+  }
+
+  Future<void> _loadIndicators() async {
+    final data = await WorldBankEduService.getIndiaIndicators();
+    if (mounted) {
+      setState(() {
+        _indicators = data;
+        _isLoadingIndicators = false;
       });
     }
   }
@@ -132,7 +151,7 @@ class _EduHomeScreenState extends State<EduHomeScreen> {
             icon: const Icon(Icons.arrow_back, color: Colors.white),
             onPressed: () => Navigator.of(context).pop(),
           ),
-          title: Text(
+          title: GlobalBhashiniText(
             'Adyuta E-Learn',
             style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.white),
           ),
@@ -161,13 +180,13 @@ class _EduHomeScreenState extends State<EduHomeScreen> {
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                         decoration: BoxDecoration(color: EduTheme.accentGold, borderRadius: BorderRadius.circular(12)),
-                        child: Text(
+                        child: GlobalBhashiniText(
                           'RURAL SKILL ACADEMY',
                           style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 10, color: EduTheme.textDark),
                         ),
                       ),
                       const SizedBox(height: 8),
-                      Text(
+                      GlobalBhashiniText(
                         'Master Free Skills Online & Offline',
                         style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white),
                       ),
@@ -185,6 +204,13 @@ class _EduHomeScreenState extends State<EduHomeScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                EducationSnapshotCard(
+                  indicators: _indicators,
+                  isLoading: _isLoadingIndicators,
+                ),
+                
+                const SizedBox(height: 24),
+
                 // Search Bar
                 Container(
                   decoration: BoxDecoration(
@@ -238,7 +264,7 @@ class _EduHomeScreenState extends State<EduHomeScreen> {
                             border: Border.all(color: isSelected ? EduTheme.primaryIndigo : const Color(0xFFCBD5E1)),
                             boxShadow: isSelected ? EduTheme.cardShadow : null,
                           ),
-                          child: Text(
+                          child: GlobalBhashiniText(
                             cat,
                             style: GoogleFonts.inter(
                               fontWeight: FontWeight.bold,
@@ -253,7 +279,7 @@ class _EduHomeScreenState extends State<EduHomeScreen> {
                 ),
                 const SizedBox(height: 24),
 
-                Text(
+                GlobalBhashiniText(
                   'Available Courses (${_filteredCourses.length})',
                   style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 18, color: EduTheme.textDark),
                 ),
@@ -329,7 +355,7 @@ class _EduHomeScreenState extends State<EduHomeScreen> {
                       child: Container(
                         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                         decoration: BoxDecoration(color: EduTheme.accentGold, borderRadius: BorderRadius.circular(12)),
-                        child: Text(
+                        child: GlobalBhashiniText(
                           course.category.toUpperCase(),
                           style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 10, color: EduTheme.textDark),
                         ),
@@ -342,7 +368,7 @@ class _EduHomeScreenState extends State<EduHomeScreen> {
                         child: Container(
                           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                           decoration: BoxDecoration(color: EduTheme.accentTeal, borderRadius: BorderRadius.circular(12)),
-                          child: Text(
+                          child: GlobalBhashiniText(
                             'ENROLLED',
                             style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 10, color: Colors.white),
                           ),
@@ -357,7 +383,7 @@ class _EduHomeScreenState extends State<EduHomeScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  GlobalBhashiniText(
                     course.title,
                     style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 16, color: EduTheme.textDark),
                   ),
@@ -367,7 +393,7 @@ class _EduHomeScreenState extends State<EduHomeScreen> {
                       const Icon(Icons.person_outline, size: 16, color: EduTheme.textGrey),
                       const SizedBox(width: 4),
                       Expanded(
-                        child: Text(
+                        child: GlobalBhashiniText(
                           course.instructor,
                           style: GoogleFonts.inter(fontSize: 12, color: EduTheme.textGrey),
                           maxLines: 1,
@@ -384,7 +410,7 @@ class _EduHomeScreenState extends State<EduHomeScreen> {
                         children: [
                           const Icon(Icons.menu_book, size: 16, color: EduTheme.primaryIndigo),
                           const SizedBox(width: 4),
-                          Text(
+                          GlobalBhashiniText(
                             '${course.lessons.length} Lessons',
                             style: GoogleFonts.inter(fontWeight: FontWeight.w600, fontSize: 12, color: EduTheme.primaryIndigo),
                           ),
@@ -392,7 +418,7 @@ class _EduHomeScreenState extends State<EduHomeScreen> {
                       ),
                       Row(
                         children: [
-                          Text('View Syllabus', style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 13, color: EduTheme.textDark)),
+                          GlobalBhashiniText('View Syllabus', style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 13, color: EduTheme.textDark)),
                           const SizedBox(width: 4),
                           const Icon(Icons.arrow_forward_ios, size: 12, color: EduTheme.textDark),
                         ],
@@ -417,9 +443,9 @@ class _EduHomeScreenState extends State<EduHomeScreen> {
           children: [
             const Icon(Icons.search_off, size: 48, color: EduTheme.textGrey),
             const SizedBox(height: 16),
-            Text('No Courses Found', style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 18, color: EduTheme.textDark)),
+            GlobalBhashiniText('No Courses Found', style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 18, color: EduTheme.textDark)),
             const SizedBox(height: 8),
-            Text(
+            GlobalBhashiniText(
               'We could not find any courses matching your search. Try different keywords or select "All" categories.',
               textAlign: TextAlign.center,
               style: GoogleFonts.inter(fontSize: 14, color: EduTheme.textGrey, height: 1.5),

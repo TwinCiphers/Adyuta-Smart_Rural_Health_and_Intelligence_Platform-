@@ -1,3 +1,4 @@
+import 'package:bhashini_core/bhashini_core.dart';
 import 'package:flutter/material.dart';
 
 class ErrorStateWidget extends StatelessWidget {
@@ -31,13 +32,13 @@ class ErrorStateWidget extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            Text(
+            GlobalBhashiniText(
               'Oops! Something went wrong',
               style: Theme.of(context).textTheme.titleLarge,
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 8),
-            Text(
+            GlobalBhashiniText(
               message,
               style: Theme.of(context).textTheme.bodyMedium,
               textAlign: TextAlign.center,
@@ -46,7 +47,7 @@ class ErrorStateWidget extends StatelessWidget {
             OutlinedButton.icon(
               onPressed: onRetry,
               icon: const Icon(Icons.refresh),
-              label: const Text('Try Again'),
+              label: const GlobalBhashiniText('Try Again'),
             )
           ],
         ),

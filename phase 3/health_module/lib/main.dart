@@ -1,3 +1,4 @@
+import 'package:bhashini_core/bhashini_core.dart';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -104,7 +105,7 @@ class MainNavigationScaffold extends ConsumerWidget {
   Widget _buildBody(int index) {
     switch (index) {
       case 0:
-        return const Center(child: Text('Home Dashboard (Coming Soon)'));
+        return const Center(child: GlobalBhashiniText('Home Dashboard (Coming Soon)'));
       case 1:
         return const HealthHubScreen(); // The main health grid
       default:

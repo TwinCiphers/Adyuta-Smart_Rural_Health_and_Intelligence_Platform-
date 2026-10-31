@@ -1,10 +1,38 @@
+import 'package:bhashini_core/bhashini_core.dart';
 import 'package:flutter/material.dart';
 import 'package:health_module/core/theme/app_theme.dart';
 import 'package:health_module/core/widgets/soft_background_layout.dart';
 import 'package:health_module/core/widgets/custom_search_bar.dart';
+import 'package:health_module/core/services/who_service.dart';
+import 'package:health_module/core/models/health_data_point.dart';
+import 'package:health_module/core/widgets/who_indicator_card.dart';
 
-class HealthHubScreen extends StatelessWidget {
+class HealthHubScreen extends StatefulWidget {
   const HealthHubScreen({super.key});
+
+  @override
+  State<HealthHubScreen> createState() => _HealthHubScreenState();
+}
+
+class _HealthHubScreenState extends State<HealthHubScreen> {
+  List<HealthDataPoint> _indicators = [];
+  bool _isLoadingIndicators = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadIndicators();
+  }
+
+  Future<void> _loadIndicators() async {
+    final data = await WhoService.getIndiaIndicators();
+    if (mounted) {
+      setState(() {
+        _indicators = data;
+        _isLoadingIndicators = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,30 +45,72 @@ class HealthHubScreen extends StatelessWidget {
             const SizedBox(height: 60), // Status bar padding
             
             // Header
-
-            const SizedBox(height: 30),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      GlobalBhashiniText(
+                        'Hello 👋',
+                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                              color: Colors.grey.shade600,
+                            ),
+                      ),
+                      GlobalBhashiniText(
+                        'How are you feeling?',
+                        style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                              color: Colors.black87,
+                              fontWeight: FontWeight.w800,
+                              letterSpacing: -0.5,
+                            ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  width: 48,
+                  height: 48,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppTheme.primaryColor.withOpacity(0.1),
+                        blurRadius: 10,
+                        offset: const Offset(0, 4),
+                      ),
+                    ],
+                  ),
+                  child: const Icon(
+                    Icons.notifications_outlined,
+                    color: AppTheme.primaryColor,
+                  ),
+                ),
+              ],
+            ),
             
-            // Search
+            const SizedBox(height: 24),
             CustomSearchBar(
               hintText: 'Search health services, doctors...',
               onFilterTap: () {},
             ),
-            
             const SizedBox(height: 32),
-            
-            // Services Title
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  'Health Services',
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 20),
+                Expanded(
+                  child: GlobalBhashiniText(
+                    'Health Services',
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 20),
+                  ),
                 ),
                 GestureDetector(
                   onTap: () => Navigator.pushNamed(context, '/all_services'),
                   child: Row(
                     children: [
-                      Text(
+                      GlobalBhashiniText(
                         'View All',
                         style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           color: AppTheme.primaryColor,
@@ -77,60 +147,13 @@ class HealthHubScreen extends StatelessWidget {
             ),
 
             const SizedBox(height: 24),
-
-            // Banner
-            Container(
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: AppTheme.primaryColor.withOpacity(0.08),
-                borderRadius: BorderRadius.circular(24),
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            const Icon(Icons.lightbulb, color: AppTheme.primaryColor, size: 16),
-                            const SizedBox(width: 6),
-                            Text(
-                              'Health Tip',
-                              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                color: AppTheme.primaryColor,
-                                fontSize: 13,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 12),
-                        Text(
-                          'Small steps today,\nstronger you tomorrow.',
-                          style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 18),
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          'Drink more water, eat balanced meals and stay active.',
-                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 13),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-                  // Shield Icon representation
-                  Container(
-                    width: 70,
-                    height: 70,
-                    decoration: BoxDecoration(
-                      color: AppTheme.secondaryColor.withOpacity(0.2),
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Icon(Icons.shield_rounded, color: AppTheme.primaryColor, size: 40),
-                  )
-                ],
-              ),
+            
+            // Live WHO Indicators (Replaces static tip)
+            WhoIndicatorCard(
+              indicators: _indicators,
+              isLoading: _isLoadingIndicators,
             ),
+            
             const SizedBox(height: 100), // padding for bottom nav
           ],
         ),
@@ -163,7 +186,7 @@ class HealthHubScreen extends StatelessWidget {
               child: Icon(icon, color: AppTheme.primaryColor, size: 30),
             ),
             const Spacer(),
-            Text(
+            GlobalBhashiniText(
               title,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
@@ -173,7 +196,7 @@ class HealthHubScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 6),
-            Text(
+            GlobalBhashiniText(
               subtitle,
               textAlign: TextAlign.center,
               maxLines: 2,

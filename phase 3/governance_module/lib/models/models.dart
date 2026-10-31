@@ -61,3 +61,4 @@ class CitizenDocument {
     required this.description,
   });
 }
+

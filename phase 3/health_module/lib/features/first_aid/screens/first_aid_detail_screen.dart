@@ -1,3 +1,4 @@
+import 'package:bhashini_core/bhashini_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:health_module/core/theme/app_theme.dart';
@@ -13,6 +14,7 @@ class FirstAidDetailScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return SoftBackgroundLayout(
+      hasScrollBody: true,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
@@ -44,19 +46,19 @@ class FirstAidDetailScreen extends ConsumerWidget {
                     children: [
                       const Icon(Icons.call, color: Colors.red, size: 16),
                       const SizedBox(width: 6),
-                      Text('Call 108', style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold, fontSize: 12)),
+                      GlobalBhashiniText('Call 108', style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold, fontSize: 12)),
                     ],
                   ),
                 )
               ],
             ),
             const SizedBox(height: 24),
-            Text(
+            GlobalBhashiniText(
               scenario.title,
               style: Theme.of(context).textTheme.displayMedium?.copyWith(fontSize: 28),
             ),
             const SizedBox(height: 8),
-            Text(
+            GlobalBhashiniText(
               '${scenario.category} • ${scenario.urgencyLevel}',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 16, color: Colors.orange[800]),
             ),
@@ -82,7 +84,7 @@ class FirstAidDetailScreen extends ConsumerWidget {
                               children: [
                                 const Icon(Icons.warning_amber_rounded, color: Colors.red),
                                 const SizedBox(width: 8),
-                                Text('Danger Signs', style: Theme.of(context).textTheme.titleLarge?.copyWith(color: Colors.red[800], fontSize: 16)),
+                                GlobalBhashiniText('Danger Signs', style: Theme.of(context).textTheme.titleLarge?.copyWith(color: Colors.red[800], fontSize: 16)),
                               ],
                             ),
                             const SizedBox(height: 8),
@@ -91,8 +93,8 @@ class FirstAidDetailScreen extends ConsumerWidget {
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const Text('• ', style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold)),
-                                  Expanded(child: Text(sign, style: TextStyle(color: Colors.red[900]))),
+                                  const GlobalBhashiniText('• ', style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold)),
+                                  Expanded(child: GlobalBhashiniText(sign, style: TextStyle(color: Colors.red[900]))),
                                 ],
                               ),
                             )),
@@ -117,7 +119,7 @@ class FirstAidDetailScreen extends ConsumerWidget {
                               children: [
                                 const Icon(Icons.do_not_disturb_alt_rounded, color: Colors.orange),
                                 const SizedBox(width: 8),
-                                Text('DO NOT DO THIS', style: Theme.of(context).textTheme.titleLarge?.copyWith(color: Colors.orange[900], fontSize: 16)),
+                                GlobalBhashiniText('DO NOT DO THIS', style: Theme.of(context).textTheme.titleLarge?.copyWith(color: Colors.orange[900], fontSize: 16)),
                               ],
                             ),
                             const SizedBox(height: 8),
@@ -126,8 +128,8 @@ class FirstAidDetailScreen extends ConsumerWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text('❌ ${avoid['action']}', style: TextStyle(color: Colors.orange[900], fontWeight: FontWeight.bold)),
-                                  Text(avoid['reason'] ?? '', style: TextStyle(color: Colors.orange[800], fontSize: 12)),
+                                  GlobalBhashiniText('❌ ${avoid['action']}', style: TextStyle(color: Colors.orange[900], fontWeight: FontWeight.bold)),
+                                  GlobalBhashiniText(avoid['reason'] ?? '', style: TextStyle(color: Colors.orange[800], fontSize: 12)),
                                 ],
                               ),
                             )),
@@ -137,14 +139,14 @@ class FirstAidDetailScreen extends ConsumerWidget {
                       const SizedBox(height: 24),
                     ],
                     
-                    Text('Steps to take', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 18)),
+                    GlobalBhashiniText('Steps to take', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 18)),
                     const SizedBox(height: 16),
                     
                     ref.watch(firstAidStepsProvider(scenario.id)).when(
                       loading: () => const Center(child: CircularProgressIndicator()),
-                      error: (err, stack) => Text('Error loading steps: $err'),
+                      error: (err, stack) => GlobalBhashiniText('Error loading steps: $err'),
                       data: (steps) {
-                        if (steps.isEmpty) return const Text('No steps found for this emergency.');
+                        if (steps.isEmpty) return const GlobalBhashiniText('No steps found for this emergency.');
                         return Column(
                           children: steps.map((step) => Padding(
                             padding: const EdgeInsets.only(bottom: 16.0),
@@ -159,19 +161,19 @@ class FirstAidDetailScreen extends ConsumerWidget {
                                     color: AppTheme.primaryColor.withOpacity(0.1),
                                     shape: BoxShape.circle,
                                   ),
-                                  child: Text('${step.stepNo}', style: const TextStyle(fontWeight: FontWeight.bold, color: AppTheme.primaryColor)),
+                                  child: GlobalBhashiniText('${step.stepNo}', style: const TextStyle(fontWeight: FontWeight.bold, color: AppTheme.primaryColor)),
                                 ),
                                 const SizedBox(width: 16),
                                 Expanded(
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text(
+                                      GlobalBhashiniText(
                                         step.type,
                                         style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
                                       ),
                                       const SizedBox(height: 4),
-                                      Text(
+                                      GlobalBhashiniText(
                                         step.textContent,
                                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 14, height: 1.5),
                                       ),

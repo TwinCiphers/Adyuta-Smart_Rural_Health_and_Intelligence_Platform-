@@ -1,3 +1,4 @@
+import 'package:bhashini_core/bhashini_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:health_module/core/theme/app_theme.dart';
@@ -60,14 +61,14 @@ class PharmacyScreen extends ConsumerWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        GlobalBhashiniText(
                           'Pharmacy',
                           style: Theme.of(context).textTheme.displayMedium?.copyWith(
                             fontSize: 32,
                           ),
                         ),
                         const SizedBox(height: 8),
-                        Text(
+                        GlobalBhashiniText(
                           'Find medicines, wellness products and more, delivered to your door.',
                           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             fontSize: 14,
@@ -110,13 +111,13 @@ class PharmacyScreen extends ConsumerWidget {
               const SizedBox(height: 32),
               
               if (searchQuery.isNotEmpty) ...[
-                Text('Search Results', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 18)),
+                GlobalBhashiniText('Search Results', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 18)),
                 const SizedBox(height: 16),
                 ref.watch(searchMedicinesProvider).when(
                   loading: () => const Center(child: CircularProgressIndicator()),
-                  error: (err, stack) => Text('Error: $err'),
+                  error: (err, stack) => GlobalBhashiniText('Error: $err'),
                   data: (results) {
-                    if (results.isEmpty) return const Text('No medicines found.');
+                    if (results.isEmpty) return const GlobalBhashiniText('No medicines found.');
                     return Column(
                       children: results.map((med) => Padding(
                         padding: const EdgeInsets.only(bottom: 16.0),
@@ -141,12 +142,12 @@ class PharmacyScreen extends ConsumerWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Top Picks for You', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 18)),
+                    GlobalBhashiniText('Top Picks for You', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 18)),
                     GestureDetector(
                       onTap: () => Navigator.pushNamed(context, '/all_medicines'),
                       child: Row(
                         children: [
-                          Text('View All', style: Theme.of(context).textTheme.titleMedium?.copyWith(color: AppTheme.primaryColor, fontSize: 14)),
+                          GlobalBhashiniText('View All', style: Theme.of(context).textTheme.titleMedium?.copyWith(color: AppTheme.primaryColor, fontSize: 14)),
                           const Icon(Icons.arrow_forward_rounded, color: AppTheme.primaryColor, size: 16),
                         ],
                       ),
@@ -158,9 +159,9 @@ class PharmacyScreen extends ConsumerWidget {
                 // Consume Provider
                 ref.watch(topMedicinesProvider).when(
                   loading: () => const Center(child: CircularProgressIndicator()),
-                  error: (err, stack) => Text('Error loading medicines: $err'),
+                  error: (err, stack) => GlobalBhashiniText('Error loading medicines: $err'),
                   data: (medicines) {
-                    if (medicines.isEmpty) return const Text('No medicines found.');
+                    if (medicines.isEmpty) return const GlobalBhashiniText('No medicines found.');
                     return Column(
                       children: medicines.map((med) => Padding(
                         padding: const EdgeInsets.only(bottom: 16.0),
@@ -212,9 +213,9 @@ class PharmacyScreen extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(name, style: Theme.of(context).textTheme.titleMedium?.copyWith(fontSize: 15, fontWeight: FontWeight.bold)),
+                GlobalBhashiniText(name, style: Theme.of(context).textTheme.titleMedium?.copyWith(fontSize: 15, fontWeight: FontWeight.bold)),
                 const SizedBox(height: 4),
-                Text(subtitle, style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 12)),
+                GlobalBhashiniText(subtitle, style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 12)),
                 const SizedBox(height: 6),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
@@ -222,14 +223,14 @@ class PharmacyScreen extends ConsumerWidget {
                     color: AppTheme.secondaryColor.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(4),
                   ),
-                  child: Text(discount, style: TextStyle(color: AppTheme.primaryColor, fontSize: 10, fontWeight: FontWeight.bold)),
+                  child: GlobalBhashiniText(discount, style: TextStyle(color: AppTheme.primaryColor, fontSize: 10, fontWeight: FontWeight.bold)),
                 ),
                 const SizedBox(height: 6),
                 Row(
                   children: [
-                    Text(price, style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 16)),
+                    GlobalBhashiniText(price, style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 16)),
                     const SizedBox(width: 8),
-                    Text(
+                    GlobalBhashiniText(
                       oldPrice, 
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         fontSize: 12,

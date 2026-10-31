@@ -1,3 +1,4 @@
+import 'package:bhashini_core/bhashini_core.dart';
 import 'package:flutter/material.dart';
 import 'package:health_module/core/theme/app_theme.dart';
 import 'package:health_module/core/widgets/soft_background_layout.dart';
@@ -44,7 +45,7 @@ class FoodDetailScreen extends StatelessWidget {
               ),
               const SizedBox(height: 24),
               Center(
-                child: Text(
+                child: GlobalBhashiniText(
                   food.name,
                   style: Theme.of(context).textTheme.displayMedium?.copyWith(fontSize: 32),
                   textAlign: TextAlign.center,
@@ -54,7 +55,7 @@ class FoodDetailScreen extends StatelessWidget {
                 Center(
                   child: Padding(
                     padding: const EdgeInsets.only(top: 8.0),
-                    child: Text(
+                    child: GlobalBhashiniText(
                       '(${food.localName})',
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 18, color: Colors.grey[700]),
                       textAlign: TextAlign.center,
@@ -63,7 +64,7 @@ class FoodDetailScreen extends StatelessWidget {
                 ),
               const SizedBox(height: 8),
               Center(
-                child: Text(
+                child: GlobalBhashiniText(
                   food.category.isNotEmpty ? food.category : 'General Food',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 16, color: Colors.orange[800]),
                 ),
@@ -81,13 +82,13 @@ class FoodDetailScreen extends StatelessWidget {
                       border: Border.all(color: Colors.green),
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    child: Text(tag, style: TextStyle(color: Colors.green[800], fontSize: 12, fontWeight: FontWeight.bold)),
+                    child: GlobalBhashiniText(tag, style: TextStyle(color: Colors.green[800], fontSize: 12, fontWeight: FontWeight.bold)),
                   )).toList(),
                 ),
                 const SizedBox(height: 24),
               ],
               
-              Text('Nutrition Facts (per ${food.servingSizeG}g)', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 18)),
+              GlobalBhashiniText('Nutrition Facts (per ${food.servingSizeG}g)', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 18)),
               const SizedBox(height: 12),
               
               _buildNutritionFact(context, 'Calories', '${food.calories} kcal'),
@@ -102,7 +103,7 @@ class FoodDetailScreen extends StatelessWidget {
               
               const SizedBox(height: 24),
               if (food.ayurvedaMeta != null) ...[
-                Text('Ayurvedic Properties', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 18)),
+                GlobalBhashiniText('Ayurvedic Properties', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 18)),
                 const SizedBox(height: 12),
                 Container(
                   padding: const EdgeInsets.all(16),
@@ -148,8 +149,8 @@ class FoodDetailScreen extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(label, style: Theme.of(context).textTheme.titleMedium?.copyWith(fontSize: 16)),
-          Text(value, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: AppTheme.primaryColor)),
+          GlobalBhashiniText(label, style: Theme.of(context).textTheme.titleMedium?.copyWith(fontSize: 16)),
+          GlobalBhashiniText(value, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: AppTheme.primaryColor)),
         ],
       ),
     );
@@ -160,8 +161,8 @@ class FoodDetailScreen extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('$label: ', style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.brown)),
-        Expanded(child: Text(value, style: TextStyle(color: Colors.brown[900]))),
+        GlobalBhashiniText('$label: ', style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.brown)),
+        Expanded(child: GlobalBhashiniText(value, style: TextStyle(color: Colors.brown[900]))),
       ],
     );
   }

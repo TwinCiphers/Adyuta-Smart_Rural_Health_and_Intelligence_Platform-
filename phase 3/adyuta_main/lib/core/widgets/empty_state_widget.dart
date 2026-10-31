@@ -1,3 +1,4 @@
+import 'package:bhashini_core/bhashini_core.dart';
 import 'package:flutter/material.dart';
 import 'package:adyuta_main/core/theme/app_theme.dart';
 
@@ -38,13 +39,13 @@ class EmptyStateWidget extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 24),
-            Text(
+            GlobalBhashiniText(
               title,
               style: Theme.of(context).textTheme.titleLarge,
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 8),
-            Text(
+            GlobalBhashiniText(
               description,
               style: Theme.of(context).textTheme.bodyMedium,
               textAlign: TextAlign.center,
@@ -54,7 +55,7 @@ class EmptyStateWidget extends StatelessWidget {
               ElevatedButton.icon(
                 onPressed: onAction,
                 icon: const Icon(Icons.add),
-                label: Text(actionText!),
+                label: GlobalBhashiniText(actionText!),
               )
             ]
           ],

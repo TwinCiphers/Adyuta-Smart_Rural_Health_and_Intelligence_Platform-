@@ -39,3 +39,5 @@ export const profileRoutes: FastifyPluginAsync = async (fastify: FastifyInstance
 };
 
 export default profileRoutes;
+
+

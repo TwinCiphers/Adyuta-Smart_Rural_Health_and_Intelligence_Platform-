@@ -1,0 +1,95 @@
+# General OS Files
+.DS_Store
+Thumbs.db
+desktop.ini
+*.bak
+*.swp
+*~
+*.tmp
+*.log
+
+# Environment Variables
+.env
+.env.local
+.env.*.local
+
+# IDEs and Editors
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.iml
+*.iws
+.project
+.classpath
+.settings/
+
+# Node.js
+node_modules/
+dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.npm/
+.eslintcache
+coverage/
+.nyc_output/
+
+# Android / Java / Kotlin
+*.class
+*.apk
+*.ap_
+*.aab
+*.dex
+*.dvm
+bin/
+gen/
+out/
+.gradle/
+local.properties
+proguard/
+*.keystore
+*.jks
+
+# Flutter / Dart / Pub
+**/.dart_tool/
+**/build/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+ephemeral/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.pytest_cache/
+
+# Databases (Runtime & dev databases, keep offline assets tracked)
+*.db
+*.sqlite
+*.sqlite3
+!assets/offline/**
+!**/assets/offline/**
+!scripts/assets/offline/**
+
+# Temporary Scratch Scripts
+scratch/
+**/scratch/
+scratch_*.py
+**/scratch_*.py

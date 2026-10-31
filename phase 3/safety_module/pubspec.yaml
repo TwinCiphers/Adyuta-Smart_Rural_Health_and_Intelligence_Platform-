@@ -8,6 +8,9 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
+  flutter_screenutil: ^5.9.3
+  bhashini_core:
+    path: ../bhashini_core
   flutter:
     sdk: flutter
   google_fonts: ^5.0.0
@@ -29,8 +32,11 @@ dependencies:
   sqlite3_flutter_libs: any
   path_provider: any
   path: any
+  http: any
+  xml: ^6.3.0
 
 dev_dependencies:
+  flutter_screenutil: ^5.9.3
   flutter_test:
     sdk: flutter
   build_runner: any

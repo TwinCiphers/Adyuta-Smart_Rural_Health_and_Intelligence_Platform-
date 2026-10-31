@@ -1,3 +1,4 @@
+import 'package:bhashini_core/bhashini_core.dart';
 import 'package:flutter/material.dart';
 import 'package:health_module/core/theme/app_theme.dart';
 import 'package:health_module/core/widgets/soft_background_layout.dart';
@@ -55,7 +56,7 @@ class MedicineDetailScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 24),
-              Text(
+              GlobalBhashiniText(
                 medicine.brandName ?? medicine.genericName ?? 'Unknown',
                 style: Theme.of(context).textTheme.displayMedium?.copyWith(fontSize: 28),
               ),
@@ -68,7 +69,7 @@ class MedicineDetailScreen extends StatelessWidget {
                       color: medicine.system.toLowerCase() == 'ayurveda' ? Colors.green[100] : Colors.blue[100],
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: Text(
+                    child: GlobalBhashiniText(
                       medicine.system.toUpperCase(),
                       style: TextStyle(
                         fontSize: 12, 
@@ -79,7 +80,7 @@ class MedicineDetailScreen extends StatelessWidget {
                   ),
                   const SizedBox(width: 12),
                   Expanded(
-                    child: Text(
+                    child: GlobalBhashiniText(
                       medicine.dosageAndForm ?? 'Pills',
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 16, color: AppTheme.primaryColor),
                     ),
@@ -89,7 +90,7 @@ class MedicineDetailScreen extends StatelessWidget {
               const SizedBox(height: 24),
               
               if (medicine.purchaseLinks.isNotEmpty) ...[
-                Text('Available On', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 18)),
+                GlobalBhashiniText('Available On', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 18)),
                 const SizedBox(height: 12),
                 Wrap(
                   spacing: 12,
@@ -109,7 +110,7 @@ class MedicineDetailScreen extends StatelessWidget {
                         children: [
                           const Icon(Icons.shopping_cart_checkout, color: AppTheme.primaryColor, size: 18),
                           const SizedBox(width: 8),
-                          Text(link.platform, style: const TextStyle(color: AppTheme.primaryColor, fontWeight: FontWeight.bold)),
+                          GlobalBhashiniText(link.platform, style: const TextStyle(color: AppTheme.primaryColor, fontWeight: FontWeight.bold)),
                         ],
                       ),
                     ),
@@ -171,11 +172,11 @@ class MedicineDetailScreen extends StatelessWidget {
               children: [
                 if (isWarning) const Icon(Icons.warning_amber_rounded, color: Colors.red, size: 20),
                 if (isWarning) const SizedBox(width: 8),
-                Text(title, style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 16, color: isWarning ? Colors.red[800] : Colors.black87)),
+                GlobalBhashiniText(title, style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 16, color: isWarning ? Colors.red[800] : Colors.black87)),
               ],
             ),
             const SizedBox(height: 8),
-            Text(
+            GlobalBhashiniText(
               content,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 14, height: 1.5, color: isWarning ? Colors.red[900] : Colors.black87),
             ),

@@ -1,0 +1,79 @@
+import 'dart:convert';
+import 'package:flutter/foundation.dart';
+import 'package:http/http.dart' as http;
+import 'package:drift/drift.dart' as drift;
+import '../db/safety_database.dart';
+
+class HelplineService {
+  static const String _githubHelplinesUrl = 'https://raw.githubusercontent.com/Kouki-odaka/open-helplines/main/data/countries/in/helplines.json';
+  static SafetyDatabase get _db => SafetyDatabase.instance;
+
+    static Future<void> syncHelplines() async {
+    for (int retry = 0; retry < 5; retry++) {
+      try {
+        final db = _db;
+        await db.customStatement('DELETE FROM helplines');
+        
+        final core = [
+          ('112', 'National Emergency (ERSS)', 'All-in-one Emergency', 'Govt of India'),
+          ('100', 'Police Control Room', 'Emergency Police', 'Police Dept'),
+          ('101', 'Fire Brigade', 'Fire & Rescue', 'Fire Dept'),
+          ('102', 'Ambulance', 'Emergency Medical', 'Health Dept'),
+          ('108', 'Emergency Disaster Medical', 'Disaster Medical Response', 'Govt of India'),
+          ('104', 'Health Helpline', 'Medical Advice & Info', 'Health Dept'),
+          ('1091', 'Women Helpline', 'Women in Distress', 'NCW'),
+          ('181', 'Women Helpline (Domestic Abuse)', 'Domestic Abuse', 'Govt of India'),
+          ('1098', 'Child Helpline (Childline)', 'Child Protection', 'Ministry of WCD'),
+          ('14567', 'Senior Citizens (Elder Line)', 'Elder Care', 'Govt of India'),
+          ('1930', 'Cyber Crime Helpline', 'Financial Fraud & Cyber', 'MHA'),
+          ('155260', 'Cyber Fraud (Alternate)', 'Cyber Crime reporting', 'MHA'),
+          ('1073', 'Road Accident', 'Highway Rescue', 'NHAI'),
+          ('1033', 'National Highway Helpline', 'Highway Emergency', 'NHAI'),
+          ('1363', 'Tourist Helpline', 'Assistance for Tourists', 'Tourism Dept'),
+          ('1072', 'Train Accident', 'Railways Helpline', 'Indian Railways'),
+          ('139', 'Railway Security & Enquiry', 'Railway Security', 'Indian Railways'),
+          ('1070', 'Relief Commissioner', 'Natural Disasters', 'NDMA'),
+          ('1077', 'Earthquake / Flood', 'Disaster Management', 'NDMA'),
+          ('1800110456', 'Kisan Call Centre', 'Agricultural Assistance', 'Agri Dept'),
+          ('1906', 'LPG Leak Helpline', 'Gas Leak Emergency', 'MoPNG'),
+          ('1097', 'AIDS Helpline', 'HIV/AIDS Information', 'NACO'),
+          ('1800114000', 'Anti-Ragging Helpline', 'Students Anti-Ragging', 'UGC'),
+          ('1056', 'Emergency Relief Centre', 'State Emergency Relief', 'Govt of India'),
+          ('14443', 'Ayush Covid Helpline', 'Ayush Health Services', 'Ministry of Ayush'),
+          ('1094', 'Missing Children/Women', 'Missing Persons', 'Police Dept'),
+          ('1090', 'Anti-Terror Helpline', 'Terrorism Alert', 'Police Dept'),
+          ('1800111363', 'Tourist Helpline (Toll Free)', 'Tourist Safety', 'Tourism Dept'),
+          ('112', 'Pan-India Emergency', 'Single Emergency Number', 'Govt of India'),
+          ('15100', 'Army Helpine', 'Indian Army Assistance', 'Indian Army'),
+        ];
+        
+        for (final h in core) {
+          await db.into(db.helplines).insert(HelplinesCompanion.insert(
+            number: h.$1,
+            name: h.$2,
+            description: drift.Value('Category: ${h.$3}'),
+            type: h.$3,
+            updatedAt: DateTime.now().millisecondsSinceEpoch,
+            source: h.$4,
+          ));
+        }
+        debugPrint('HelplineService: Initialized ${core.length} standard Indian helplines');
+        break; // Success
+      } catch (e) {
+        debugPrint('HelplineService: Failed to init helplines (retry $retry): $e');
+        await Future.delayed(const Duration(milliseconds: 1500));
+      }
+    }
+  }
+
+  static Future<List<Helpline>> getHelplines() async {
+    try {
+      final db = _db;
+      final list = await db.select(db.helplines).get();
+      return list;
+    } catch (e) {
+      debugPrint('HelplineService: Failed to read from DB: $e');
+      return [];
+    }
+  }
+}

@@ -1,3 +1,4 @@
+import 'package:bhashini_core/bhashini_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'core/theme/safety_theme.dart';
@@ -124,7 +125,7 @@ class _SafetyHomeNavState extends State<SafetyHomeNav> {
             Icon(icon, color: isSelected ? activeColor : const Color(0xFF64748B), size: 24),
             if (isSelected) ...[
               const SizedBox(width: 8),
-              Text(
+              GlobalBhashiniText(
                 label,
                 style: GoogleFonts.inter(
                   fontWeight: FontWeight.bold,

@@ -1,98 +1,46 @@
+import 'package:bhashini_core/bhashini_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../core/theme/safety_theme.dart';
+import '../../core/services/helpline_service.dart';
+import '../../core/db/safety_database.dart';
 
-class HelplineItem {
-  final String title;
-  final String number;
-  final String description;
-  final IconData icon;
-  final Color color;
-  const HelplineItem({
-    required this.title,
-    required this.number,
-    required this.description,
-    required this.icon,
-    required this.color,
-  });
-}
-
-class HelplineScreen extends StatelessWidget {
+class HelplineScreen extends StatefulWidget {
   const HelplineScreen({super.key});
 
-  final List<HelplineItem> _helplines = const [
-    HelplineItem(
-      title: 'National Emergency Number',
-      number: '112',
-      description: 'All-in-one emergency dispatch for Police, Fire, and Ambulance.',
-      icon: Icons.emergency,
-      color: Color(0xFFDC2626),
-    ),
-    HelplineItem(
-      title: 'Women Helpline (All India)',
-      number: '1091',
-      description: '24/7 immediate assistance and counseling for women in distress.',
-      icon: Icons.support_agent,
-      color: Color(0xFFE11D48),
-    ),
-    HelplineItem(
-      title: 'Police Control Room',
-      number: '100',
-      description: 'Direct connection to local law enforcement and patrol units.',
-      icon: Icons.local_police,
-      color: Color(0xFF2563EB),
-    ),
-    HelplineItem(
-      title: 'Domestic Abuse & Violence',
-      number: '181',
-      description: 'Abhayam women helpline for crisis intervention and shelter support.',
-      icon: Icons.shield,
-      color: Color(0xFF9333EA),
-    ),
-    HelplineItem(
-      title: 'National Cyber Crime Helpline',
-      number: '1930',
-      description: 'Report online harassment, cyberstalking, and financial fraud.',
-      icon: Icons.security,
-      color: Color(0xFF0D9488),
-    ),
-    HelplineItem(
-      title: 'Ambulance & Medical Emergency',
-      number: '102',
-      description: 'Emergency medical transport and hospital admission assistance.',
-      icon: Icons.medical_services,
-      color: Color(0xFF16A34A),
-    ),
-    HelplineItem(
-      title: 'Childline India',
-      number: '1098',
-      description: 'Free emergency helpline for children and minors in need of aid.',
-      icon: Icons.child_care,
-      color: Color(0xFFEA580C),
-    ),
-    HelplineItem(
-      title: 'National Commission for Women',
-      number: '7827170170',
-      description: 'WhatsApp & Helpline for legal rights complaints and grievance redressal.',
-      icon: Icons.gavel,
-      color: Color(0xFF4F46E5),
-    ),
-  ];
+  @override
+  State<HelplineScreen> createState() => _HelplineScreenState();
+}
 
-  Future<void> _makeCall(BuildContext context, String number) async {
-    final cleanNum = number.replaceAll(RegExp(r'[^0-9+]'), '');
-    final uri = Uri.parse('tel:$cleanNum');
-    try {
-      if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
-        await launchUrl(uri);
-      }
-    } catch (e) {
-      if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Could not open dialer for $cleanNum: $e')),
-        );
-      }
+class _HelplineScreenState extends State<HelplineScreen> {
+  List<Helpline> _helplines = [];
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadData();
+  }
+  
+  Future<void> _loadData() async {
+    setState(() => _isLoading = true);
+    // Sync from GitHub/Gov first
+    await HelplineService.syncHelplines();
+    // Load from local Drift DB
+    final data = await HelplineService.getHelplines();
+    if (mounted) {
+      setState(() {
+        _helplines = data;
+        _isLoading = false;
+      });
+    }
+  }
+
+  Future<void> _callNumber(String number) async {
+    final uri = Uri.parse('tel:$number');
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
     }
   }
 
@@ -100,42 +48,21 @@ class HelplineScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
-      body: CustomScrollView(
+      body: _isLoading 
+        ? const Center(child: CircularProgressIndicator(color: SafetyTheme.primaryRed))
+        : CustomScrollView(
         slivers: [
-          SliverAppBar(
-            backgroundColor: Colors.white,
-            pinned: true,
-            elevation: 0,
-            title: Text('Emergency Helplines', style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 18, color: SafetyTheme.textDark)),
-            centerTitle: false,
-          ),
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.all(20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFFEF2F2),
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(color: const Color(0xFFFECACA)),
-                    ),
-                    child: Row(
-                      children: [
-                        const Icon(Icons.info_outline, color: SafetyTheme.primaryRed, size: 28),
-                        const SizedBox(width: 12),
-                        Expanded(
-                          child: Text(
-                            'Tap any helpline button to immediately connect with verified 24/7 emergency response centers across India.',
-                            style: GoogleFonts.inter(fontSize: 13, color: const Color(0xFF7F1D1D), height: 1.4),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 16),
+                  GlobalBhashiniText('Emergency Helplines', style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 18, color: SafetyTheme.textDark)),
+                  const SizedBox(height: 8),
+                  GlobalBhashiniText('Tap any helpline button to immediately connect with verified emergency response centers. Synced from National Portal & Open Helplines.',
+                      style: GoogleFonts.inter(fontSize: 14, color: SafetyTheme.textGrey, height: 1.4)),
+                  const SizedBox(height: 24),
                   ListView.separated(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
@@ -147,56 +74,52 @@ class HelplineScreen extends StatelessWidget {
                         padding: const EdgeInsets.all(16),
                         decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(20),
-                          boxShadow: SafetyTheme.cardShadow,
-                          border: Border.all(color: const Color(0xFFF1F5F9)),
+                          borderRadius: BorderRadius.circular(16),
+                          boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 10, offset: const Offset(0, 4))],
                         ),
                         child: Row(
                           children: [
                             Container(
                               padding: const EdgeInsets.all(12),
-                              decoration: BoxDecoration(
-                                color: item.color.withOpacity(0.12),
-                                borderRadius: BorderRadius.circular(16),
-                              ),
-                              child: Icon(item.icon, color: item.color, size: 28),
+                              decoration: BoxDecoration(color: SafetyTheme.primaryRed.withOpacity(0.1), shape: BoxShape.circle),
+                              child: const Icon(Icons.phone_in_talk, color: SafetyTheme.primaryRed),
                             ),
                             const SizedBox(width: 16),
                             Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    item.title,
-                                    style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 16, color: SafetyTheme.textDark),
-                                  ),
-                                  const SizedBox(height: 4),
-                                  Text(
-                                    item.description,
-                                    style: GoogleFonts.inter(fontSize: 12, color: SafetyTheme.textGrey, height: 1.3),
+                                  GlobalBhashiniText(item.name, style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 15, color: SafetyTheme.textDark)),
+                                  if (item.description != null) ...[
+                                    const SizedBox(height: 4),
+                                    GlobalBhashiniText(item.description!, style: GoogleFonts.inter(fontSize: 12, color: SafetyTheme.textGrey)),
+                                  ],
+                                  const SizedBox(height: 6),
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                                    decoration: BoxDecoration(color: Colors.grey.shade200, borderRadius: BorderRadius.circular(4)),
+                                    child: GlobalBhashiniText(item.source, style: GoogleFonts.inter(fontSize: 9, color: Colors.grey.shade600, fontWeight: FontWeight.w600)),
                                   ),
                                 ],
                               ),
                             ),
-                            const SizedBox(width: 12),
-                            ElevatedButton.icon(
-                              onPressed: () => _makeCall(context, item.number),
+                            ElevatedButton(
+                              onPressed: () => _callNumber(item.number),
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: item.color,
+                                backgroundColor: SafetyTheme.primaryRed,
                                 foregroundColor: Colors.white,
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                                 elevation: 0,
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-                                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
                               ),
-                              icon: const Icon(Icons.call, size: 16),
-                              label: Text(item.number, style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 13)),
+                              child: GlobalBhashiniText(item.number, style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 14)),
                             ),
                           ],
                         ),
                       );
                     },
                   ),
-                  const SizedBox(height: 40),
+                  const SizedBox(height: 100),
                 ],
               ),
             ),

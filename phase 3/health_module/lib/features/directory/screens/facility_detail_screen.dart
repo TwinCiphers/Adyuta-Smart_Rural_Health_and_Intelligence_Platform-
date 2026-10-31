@@ -1,3 +1,4 @@
+import 'package:bhashini_core/bhashini_core.dart';
 import 'package:flutter/material.dart';
 import 'package:health_module/core/theme/app_theme.dart';
 import 'package:health_module/core/widgets/soft_background_layout.dart';
@@ -44,7 +45,7 @@ class FacilityDetailScreen extends StatelessWidget {
               ),
               const SizedBox(height: 24),
               Center(
-                child: Text(
+                child: GlobalBhashiniText(
                   facility.name,
                   style: Theme.of(context).textTheme.displayMedium?.copyWith(fontSize: 28),
                   textAlign: TextAlign.center,
@@ -58,7 +59,7 @@ class FacilityDetailScreen extends StatelessWidget {
                     color: AppTheme.primaryColor.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  child: Text(
+                  child: GlobalBhashiniText(
                     facility.type,
                     style: const TextStyle(color: AppTheme.primaryColor, fontWeight: FontWeight.bold),
                   ),
@@ -99,9 +100,9 @@ class FacilityDetailScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title, style: Theme.of(context).textTheme.titleMedium?.copyWith(color: Colors.grey[600], fontSize: 14)),
+                GlobalBhashiniText(title, style: Theme.of(context).textTheme.titleMedium?.copyWith(color: Colors.grey[600], fontSize: 14)),
                 const SizedBox(height: 4),
-                Text(content, style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontSize: 16)),
+                GlobalBhashiniText(content, style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontSize: 16)),
               ],
             ),
           ),

@@ -1,7 +1,7 @@
+import 'package:bhashini_core/bhashini_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:adyuta_main/features/authentication/providers/auth_provider.dart';
 import 'package:adyuta_main/core/widgets/adyuta_button.dart';
@@ -54,7 +54,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
     setState(() {
       _has8Chars = pass.length >= 8;
       _hasNumber = RegExp(r'[0-9]').hasMatch(pass);
-      _hasSpecialChar = RegExp(r'[!@#\$&*~]').hasMatch(pass);
+      _hasSpecialChar = RegExp(r'[!@#$&*~]').hasMatch(pass);
     });
   }
 
@@ -74,15 +74,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
     setState(() { _loading = true; _error = null; });
     try {
       final authRepo = ref.read(authRepositoryProvider);
-      final res = await authRepo.signUpWithEmail(
-        _emailController.text.trim(),
-        pass,
-        fullName: _fullNameController.text.trim().isNotEmpty ? _fullNameController.text.trim() : null,
-        phone: _phoneController.text.trim().isNotEmpty ? _phoneController.text.trim() : null,
-      );
-      if (res.session == null) {
-        setState(() => _error = 'Account created successfully! Please check your email to verify it.');
-      }
+      await authRepo.signUpWithEmail( _emailController.text.trim(), pass, fullName: _fullNameController.text.trim().isNotEmpty ? _fullNameController.text.trim() : null, phone: _phoneController.text.trim().isNotEmpty ? _phoneController.text.trim() : null, ); setState(() => _error = 'Account created successfully! You can now log in.');
     } catch (e) {
       debugPrint('Signup Error: $e');
       setState(() => _error = e.toString());
@@ -125,12 +117,13 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                   Row(
                     children: [
                       GestureDetector(
-                        onTap: () => context.pop(),
+                        onTap: () => context.go('/login'),
+                        behavior: HitTestBehavior.opaque,
                         child: Row(
                           children: [
                             const Icon(Icons.arrow_back, size: 20, color: Colors.black87),
                             const SizedBox(width: 4),
-                            Text('Back', style: GoogleFonts.inter(fontSize: 14, color: Colors.black87, fontWeight: FontWeight.w500)),
+                            GlobalBhashiniText('Back', style: GoogleFonts.inter(fontSize: 14, color: Colors.black87, fontWeight: FontWeight.w500)),
                           ],
                         ),
                       )
@@ -151,9 +144,9 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Create your account', style: GoogleFonts.outfit(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.black87)),
+                        GlobalBhashiniText('Create your account', style: GoogleFonts.outfit(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.black87)),
                         const SizedBox(height: 4),
-                        Text('Join Adyuta and start your journey', style: GoogleFonts.inter(fontSize: 14, color: Colors.black54)),
+                        GlobalBhashiniText('Join Adyuta and start your journey', style: GoogleFonts.inter(fontSize: 14, color: Colors.black54)),
                         const SizedBox(height: 24),
 
                         if (_error != null)
@@ -161,7 +154,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                             padding: const EdgeInsets.all(12),
                             margin: const EdgeInsets.only(bottom: 16),
                             decoration: BoxDecoration(color: Colors.red.shade50, borderRadius: BorderRadius.circular(8)),
-                            child: Text(_error!, style: TextStyle(color: Colors.red.shade800, fontSize: 13), textAlign: TextAlign.center),
+                            child: GlobalBhashiniText(_error!, style: TextStyle(color: Colors.red.shade800, fontSize: 13), textAlign: TextAlign.center),
                           ),
 
                         // Segmented Control
@@ -184,7 +177,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                                       children: [
                                         Icon(Icons.email_outlined, size: 16, color: _selectedTab == 0 ? Colors.white : Colors.black54),
                                         const SizedBox(width: 8),
-                                        Text('Email', style: GoogleFonts.inter(fontWeight: FontWeight.w600, color: _selectedTab == 0 ? Colors.white : Colors.black54)),
+                                        GlobalBhashiniText('Email', style: GoogleFonts.inter(fontWeight: FontWeight.w600, color: _selectedTab == 0 ? Colors.white : Colors.black54)),
                                       ],
                                     ),
                                   ),
@@ -204,7 +197,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                                       children: [
                                         Icon(Icons.person_outline, size: 16, color: _selectedTab == 1 ? Colors.white : Colors.black54),
                                         const SizedBox(width: 8),
-                                        Text('Guest', style: GoogleFonts.inter(fontWeight: FontWeight.w600, color: _selectedTab == 1 ? Colors.white : Colors.black54)),
+                                        GlobalBhashiniText('Guest', style: GoogleFonts.inter(fontWeight: FontWeight.w600, color: _selectedTab == 1 ? Colors.white : Colors.black54)),
                                       ],
                                     ),
                                   ),
@@ -216,7 +209,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                         const SizedBox(height: 24),
 
                         if (_selectedTab == 0) ...[
-                          Text('Full name', style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600, color: Colors.black87)),
+                          GlobalBhashiniText('Full name', style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600, color: Colors.black87)),
                           const SizedBox(height: 8),
                           TextField(
                             controller: _fullNameController,
@@ -224,7 +217,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                           ),
                           const SizedBox(height: 16),
                           
-                          Text('Mobile number', style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600, color: Colors.black87)),
+                          GlobalBhashiniText('Mobile number', style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600, color: Colors.black87)),
                           const SizedBox(height: 8),
                           TextField(
                             controller: _phoneController,
@@ -232,13 +225,13 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                             decoration: _inputDeco('98765 43210').copyWith(
                               prefixIcon: Padding(
                                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
-                                child: Text('🇮🇳 +91   |', style: GoogleFonts.inter(color: Colors.black87, fontWeight: FontWeight.w500)),
+                                child: GlobalBhashiniText('🇮🇳 +91   |', style: GoogleFonts.inter(color: Colors.black87, fontWeight: FontWeight.w500)),
                               ),
                             ),
                           ),
                           const SizedBox(height: 16),
 
-                          Text('Date of birth', style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600, color: Colors.black87)),
+                          GlobalBhashiniText('Date of birth', style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600, color: Colors.black87)),
                           const SizedBox(height: 8),
                           TextField(
                             controller: _dobController,
@@ -246,7 +239,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                           ),
                           const SizedBox(height: 16),
 
-                          Text('Email address', style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600, color: Colors.black87)),
+                          GlobalBhashiniText('Email address', style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600, color: Colors.black87)),
                           const SizedBox(height: 8),
                           TextField(
                             controller: _emailController,
@@ -255,7 +248,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                           ),
                           const SizedBox(height: 16),
 
-                          Text('Password', style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600, color: Colors.black87)),
+                          GlobalBhashiniText('Password', style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600, color: Colors.black87)),
                           const SizedBox(height: 8),
                           TextField(
                             controller: _passwordController,
@@ -325,9 +318,9 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                               children: [
                                 Icon(Icons.person_outline, size: 64, color: _primaryPurple),
                                 const SizedBox(height: 16),
-                                Text('Try Adyuta as a Guest', style: GoogleFonts.inter(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black87)),
+                                GlobalBhashiniText('Try Adyuta as a Guest', style: GoogleFonts.inter(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black87)),
                                 const SizedBox(height: 8),
-                                Text('You will have limited access. Your session will automatically sign out in 25 minutes for security.', textAlign: TextAlign.center, style: GoogleFonts.inter(fontSize: 14, color: Colors.black54)),
+                                GlobalBhashiniText('You will have limited access. Your session will automatically sign out in 25 minutes for security.', textAlign: TextAlign.center, style: GoogleFonts.inter(fontSize: 14, color: Colors.black54)),
                                 const SizedBox(height: 24),
                                 SizedBox(
                                   width: double.infinity,
@@ -342,7 +335,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                                     ),
                                     child: _loading 
                                       ? const SizedBox(height: 20, width: 20, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2))
-                                      : Text('Continue as Guest', style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w600)),
+                                      : GlobalBhashiniText('Continue as Guest', style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w600)),
                                   ),
                                 ),
                               ],
@@ -354,10 +347,10 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text('Already have an account? ', style: GoogleFonts.inter(fontSize: 14, color: Colors.black54)),
+                            GlobalBhashiniText('Already have an account? ', style: GoogleFonts.inter(fontSize: 14, color: Colors.black54)),
                             GestureDetector(
                               onTap: () => context.go('/login'),
-                              child: Text('Sign in', style: GoogleFonts.inter(fontSize: 14, color: _primaryPurple, fontWeight: FontWeight.bold)),
+                              child: GlobalBhashiniText('Sign in', style: GoogleFonts.inter(fontSize: 14, color: _primaryPurple, fontWeight: FontWeight.bold)),
                             ),
                           ],
                         ),
@@ -385,9 +378,9 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                           ),
                         ),
                         const SizedBox(height: 24),
-                        Text('Why we ask for this information', style: GoogleFonts.inter(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black87)),
+                        GlobalBhashiniText('Why we ask for this information', style: GoogleFonts.inter(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black87)),
                         const SizedBox(height: 8),
-                        Text('We use this information to personalize your experience and keep your account secure.', style: GoogleFonts.inter(fontSize: 13, color: Colors.black54)),
+                        GlobalBhashiniText('We use this information to personalize your experience and keep your account secure.', style: GoogleFonts.inter(fontSize: 13, color: Colors.black54)),
                         const SizedBox(height: 24),
                         
                         _buildInfoItem(
@@ -416,7 +409,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                             children: [
                               Icon(Icons.lock_outline, size: 16, color: _primaryPurple),
                               const SizedBox(width: 8),
-                              Expanded(child: Text('Your data is encrypted and never shared.', style: GoogleFonts.inter(fontSize: 12, color: _primaryPurple, fontWeight: FontWeight.w500))),
+                              Expanded(child: GlobalBhashiniText('Your data is encrypted and never shared.', style: GoogleFonts.inter(fontSize: 12, color: _primaryPurple, fontWeight: FontWeight.w500))),
                             ],
                           ),
                         )
@@ -439,7 +432,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
       children: [
         Icon(Icons.check, size: 12, color: met ? Colors.green : Colors.grey.shade400),
         const SizedBox(width: 4),
-        Text(text, style: GoogleFonts.inter(fontSize: 10, color: met ? Colors.green : Colors.grey.shade500, fontWeight: FontWeight.w500)),
+        GlobalBhashiniText(text, style: GoogleFonts.inter(fontSize: 10, color: met ? Colors.green : Colors.grey.shade500, fontWeight: FontWeight.w500)),
       ],
     );
   }
@@ -454,9 +447,9 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(title, style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w600, color: Colors.black87)),
+              GlobalBhashiniText(title, style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w600, color: Colors.black87)),
               const SizedBox(height: 4),
-              Text(desc, style: GoogleFonts.inter(fontSize: 13, color: Colors.black54)),
+              GlobalBhashiniText(desc, style: GoogleFonts.inter(fontSize: 13, color: Colors.black54)),
             ],
           ),
         )
@@ -477,3 +470,5 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
     );
   }
 }
+
+

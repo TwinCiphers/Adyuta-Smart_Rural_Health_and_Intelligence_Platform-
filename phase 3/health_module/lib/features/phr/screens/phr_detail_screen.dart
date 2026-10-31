@@ -1,3 +1,4 @@
+import 'package:bhashini_core/bhashini_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:health_module/core/theme/app_theme.dart';
@@ -51,7 +52,7 @@ class _PhrDetailScreenState extends ConsumerState<PhrDetailScreen> with SingleTi
                 ),
                 const SizedBox(width: 16),
                 Expanded(
-                  child: Text(
+                  child: GlobalBhashiniText(
                     widget.profile['name'],
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 24),
                   ),
@@ -98,9 +99,9 @@ class _VitalsTab extends ConsumerWidget {
       fetchData: () => ref.read(phrRepoProvider).getVitals(profileId),
       onAdd: () => _showAddVitals(context, ref),
       buildItem: (item) => ListTile(
-        title: Text('BP: ${item['blood_pressure_sys']}/${item['blood_pressure_dia']}  •  Sugar: ${item['blood_sugar']}'),
-        subtitle: Text('Weight: ${item['weight_kg']}kg  •  Temp: ${item['temperature_f']}°F'),
-        trailing: Text(item['timestamp'].toString().split('T')[0]),
+        title: GlobalBhashiniText('BP: ${item['blood_pressure_sys']}/${item['blood_pressure_dia']}  •  Sugar: ${item['blood_sugar']}'),
+        subtitle: GlobalBhashiniText('Weight: ${item['weight_kg']}kg  •  Temp: ${item['temperature_f']}°F'),
+        trailing: GlobalBhashiniText(item['timestamp'].toString().split('T')[0]),
       ),
     );
   }
@@ -112,7 +113,7 @@ class _VitalsTab extends ConsumerWidget {
     final weightCtrl = TextEditingController();
 
     showDialog(context: context, builder: (_) => AlertDialog(
-      title: const Text('Add Vitals'),
+      title: const GlobalBhashiniText('Add Vitals'),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -126,7 +127,7 @@ class _VitalsTab extends ConsumerWidget {
         ],
       ),
       actions: [
-        TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
+        TextButton(onPressed: () => Navigator.pop(context), child: const GlobalBhashiniText('Cancel')),
         ElevatedButton(
           onPressed: () async {
             await ref.read(phrRepoProvider).addVitals({
@@ -139,7 +140,7 @@ class _VitalsTab extends ConsumerWidget {
             });
             if (context.mounted) Navigator.pop(context);
           },
-          child: const Text('Save'),
+          child: const GlobalBhashiniText('Save'),
         )
       ],
     ));
@@ -157,8 +158,8 @@ class _MedicinesTab extends ConsumerWidget {
       fetchData: () => ref.read(phrRepoProvider).getMedicines(profileId),
       onAdd: () => _showAddMedicine(context, ref),
       buildItem: (item) => ListTile(
-        title: Text(item['medicine_name']),
-        subtitle: Text('Dosage: ${item['dosage']}'),
+        title: GlobalBhashiniText(item['medicine_name']),
+        subtitle: GlobalBhashiniText('Dosage: ${item['dosage']}'),
         trailing: item['is_active'] == 1 ? const Icon(Icons.check_circle, color: Colors.green) : null,
       ),
     );
@@ -169,7 +170,7 @@ class _MedicinesTab extends ConsumerWidget {
     final dosageCtrl = TextEditingController();
 
     showDialog(context: context, builder: (_) => AlertDialog(
-      title: const Text('Add Medicine'),
+      title: const GlobalBhashiniText('Add Medicine'),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -178,7 +179,7 @@ class _MedicinesTab extends ConsumerWidget {
         ],
       ),
       actions: [
-        TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
+        TextButton(onPressed: () => Navigator.pop(context), child: const GlobalBhashiniText('Cancel')),
         ElevatedButton(
           onPressed: () async {
             if (nameCtrl.text.isNotEmpty) {
@@ -192,7 +193,7 @@ class _MedicinesTab extends ConsumerWidget {
               if(context.mounted) Navigator.pop(context);
             }
           },
-          child: const Text('Save'),
+          child: const GlobalBhashiniText('Save'),
         )
       ],
     ));
@@ -210,9 +211,9 @@ class _VisitsTab extends ConsumerWidget {
       fetchData: () => ref.read(phrRepoProvider).getVisits(profileId),
       onAdd: () => _showAddVisit(context, ref),
       buildItem: (item) => ListTile(
-        title: Text(item['chief_complaint'] ?? 'Routine Visit'),
-        subtitle: Text('Doctor: ${item['doctor_name']}  •  Facility: ${item['facility_name']}'),
-        trailing: Text(item['visit_date'].toString().split('T')[0]),
+        title: GlobalBhashiniText(item['chief_complaint'] ?? 'Routine Visit'),
+        subtitle: GlobalBhashiniText('Doctor: ${item['doctor_name']}  •  Facility: ${item['facility_name']}'),
+        trailing: GlobalBhashiniText(item['visit_date'].toString().split('T')[0]),
       ),
     );
   }
@@ -223,7 +224,7 @@ class _VisitsTab extends ConsumerWidget {
     final facilityCtrl = TextEditingController();
 
     showDialog(context: context, builder: (_) => AlertDialog(
-      title: const Text('Add Visit'),
+      title: const GlobalBhashiniText('Add Visit'),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -233,7 +234,7 @@ class _VisitsTab extends ConsumerWidget {
         ],
       ),
       actions: [
-        TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
+        TextButton(onPressed: () => Navigator.pop(context), child: const GlobalBhashiniText('Cancel')),
         ElevatedButton(
           onPressed: () async {
             if (complaintCtrl.text.isNotEmpty) {
@@ -247,7 +248,7 @@ class _VisitsTab extends ConsumerWidget {
               if(context.mounted) Navigator.pop(context);
             }
           },
-          child: const Text('Save'),
+          child: const GlobalBhashiniText('Save'),
         )
       ],
     ));
@@ -293,11 +294,11 @@ class _BaseTabState extends State<_BaseTab> {
                 return const Center(child: CircularProgressIndicator());
               }
               if (snapshot.hasError) {
-                return Center(child: Text('Error: ${snapshot.error}'));
+                return Center(child: GlobalBhashiniText('Error: ${snapshot.error}'));
               }
               final data = snapshot.data ?? [];
               if (data.isEmpty) {
-                return const Center(child: Text('No records found.'));
+                return const Center(child: GlobalBhashiniText('No records found.'));
               }
               return ListView.builder(
                 itemCount: data.length,
@@ -321,7 +322,7 @@ class _BaseTabState extends State<_BaseTab> {
               Future.delayed(const Duration(milliseconds: 500), _loadData);
             },
             icon: const Icon(Icons.add, color: Colors.white),
-            label: const Text('Add New', style: TextStyle(color: Colors.white)),
+            label: const GlobalBhashiniText('Add New', style: TextStyle(color: Colors.white)),
             style: ElevatedButton.styleFrom(
               backgroundColor: AppTheme.primaryColor,
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),

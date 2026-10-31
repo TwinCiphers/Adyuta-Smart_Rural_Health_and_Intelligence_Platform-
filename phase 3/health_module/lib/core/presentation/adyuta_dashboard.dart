@@ -1,3 +1,4 @@
+import 'package:bhashini_core/bhashini_core.dart';
 import 'package:flutter/material.dart';
 // import '../../features/agriculture/presentation/screens/agri_home_screen.dart';
 // import '../../features/education/presentation/screens/edu_home_screen.dart';
@@ -12,8 +13,8 @@ class HealthHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Health Center'), backgroundColor: const Color(0xFF00796B)),
-      body: const Center(child: Text('Health Module Loaded')),
+      appBar: AppBar(title: const GlobalBhashiniText('Health Center'), backgroundColor: const Color(0xFF00796B)),
+      body: const Center(child: GlobalBhashiniText('Health Module Loaded')),
     );
   }
 }
@@ -26,7 +27,7 @@ class AdyutaDashboard extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFFF5F7FA), // Soft clean background
       appBar: AppBar(
-        title: const Text(
+        title: const GlobalBhashiniText(
           'ADYUTA Platform',
           style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 1),
         ),
@@ -38,7 +39,7 @@ class AdyutaDashboard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const Text(
+            const GlobalBhashiniText(
               'Select Module',
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black87),
             ),
@@ -144,9 +145,9 @@ class _ModuleCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: color)),
+                  GlobalBhashiniText(title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: color)),
                   const SizedBox(height: 4),
-                  Text(subtitle, style: const TextStyle(fontSize: 14, color: Colors.black54)),
+                  GlobalBhashiniText(subtitle, style: const TextStyle(fontSize: 14, color: Colors.black54)),
                 ],
               ),
             ),

@@ -1,3 +1,4 @@
+import 'package:bhashini_core/bhashini_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
@@ -102,7 +103,7 @@ class _MyCoursesScreenState extends State<MyCoursesScreen> {
                                             color: EduTheme.accentGold,
                                             borderRadius: BorderRadius.circular(12),
                                           ),
-                                          child: Text(
+                                          child: GlobalBhashiniText(
                                             'ENROLLED',
                                             style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 10, color: EduTheme.textDark),
                                           ),
@@ -117,18 +118,18 @@ class _MyCoursesScreenState extends State<MyCoursesScreen> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
+                                    GlobalBhashiniText(
                                       course.title,
                                       style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 16, color: EduTheme.textDark),
                                     ),
                                     const SizedBox(height: 4),
-                                    Text('Instructor: ${course.instructor}', style: GoogleFonts.inter(fontSize: 12, color: EduTheme.textGrey)),
+                                    GlobalBhashiniText('Instructor: ${course.instructor}', style: GoogleFonts.inter(fontSize: 12, color: EduTheme.textGrey)),
                                     const SizedBox(height: 14),
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text('Progress', style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w600, color: EduTheme.textDark)),
-                                        Text(
+                                        GlobalBhashiniText('Progress', style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w600, color: EduTheme.textDark)),
+                                        GlobalBhashiniText(
                                           '${(progress * 100).toInt()}%',
                                           style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.bold, color: EduTheme.accentTeal),
                                         ),
@@ -147,7 +148,7 @@ class _MyCoursesScreenState extends State<MyCoursesScreen> {
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
-                                        Text(
+                                        GlobalBhashiniText(
                                           'Resume Learning',
                                           style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 13, color: EduTheme.primaryIndigo),
                                         ),
@@ -181,9 +182,9 @@ class _MyCoursesScreenState extends State<MyCoursesScreen> {
               child: const Icon(Icons.school_outlined, size: 64, color: EduTheme.primaryIndigo),
             ),
             const SizedBox(height: 20),
-            Text('No Enrolled Courses Yet', style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 20, color: EduTheme.textDark)),
+            GlobalBhashiniText('No Enrolled Courses Yet', style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 20, color: EduTheme.textDark)),
             const SizedBox(height: 8),
-            Text(
+            GlobalBhashiniText(
               'Explore our catalog of free rural skill courses and enroll today to start learning offline & online!',
               textAlign: TextAlign.center,
               style: GoogleFonts.inter(fontSize: 14, color: EduTheme.textGrey, height: 1.5),

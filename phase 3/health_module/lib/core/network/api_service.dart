@@ -12,12 +12,12 @@ class ApiService {
   // ─── Live Hospital/Facility Data ─────────────────────────────────────────
   // Uses OpenStreetMap Overpass API — free, no key needed.
   // Falls back gracefully; seeded local data always available even if this fails.
-  Future<List<Facility>> fetchFacilities() async {
+  Future<List<Facility>> fetchFacilities({double lat = 12.9716, double lon = 77.5946}) async {
     try {
       final uri = Uri.parse(
         'https://overpass-api.de/api/interpreter'
         '?data=[out:json][timeout:10];'
-        'node(around:25000,12.9716,77.5946)[amenity~"hospital|clinic|pharmacy"];out 50;'
+        'node(around:25000,$lat,$lon)[amenity~"hospital|clinic|pharmacy"];out 50;'
       );
       final response = await http.get(uri).timeout(const Duration(seconds: 12));
 

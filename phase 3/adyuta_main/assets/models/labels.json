@@ -1,0 +1,268 @@
+{
+  "0": {
+    "crop": "Apple",
+    "condition": "Apple Scab",
+    "display_name": "Apple - Apple Scab",
+    "is_healthy": false,
+    "advice_hint": "Prune affected leaves and fallen debris to reduce fungal spores. Apply preventative copper or sulfur fungicides before rainy periods."
+  },
+  "1": {
+    "crop": "Apple",
+    "condition": "Black Rot",
+    "display_name": "Apple - Black Rot",
+    "is_healthy": false,
+    "advice_hint": "Prune out dead wood, mummified fruits, and cankers. Spray with appropriate fungicide from petal fall through harvest."
+  },
+  "2": {
+    "crop": "Apple",
+    "condition": "Cedar Apple Rust",
+    "display_name": "Apple - Cedar Apple Rust",
+    "is_healthy": false,
+    "advice_hint": "Remove nearby cedar or juniper galls if feasible. Treat with myclobutanil or sulfur fungicide at bud break."
+  },
+  "3": {
+    "crop": "Apple",
+    "condition": "Healthy",
+    "display_name": "Apple - Healthy",
+    "is_healthy": true,
+    "advice_hint": "Plant appears healthy. Continue balanced watering, mulching, and routine nutrient management."
+  },
+  "4": {
+    "crop": "Blueberry",
+    "condition": "Healthy",
+    "display_name": "Blueberry - Healthy",
+    "is_healthy": true,
+    "advice_hint": "Bush is healthy. Maintain acidic soil pH (4.5–5.5) and keep soil consistently moist with organic mulch."
+  },
+  "5": {
+    "crop": "Cherry",
+    "condition": "Powdery Mildew",
+    "display_name": "Cherry - Powdery Mildew",
+    "is_healthy": false,
+    "advice_hint": "Ensure adequate sunlight and air circulation through pruning. Apply potassium bicarbonate or sulfur sprays upon first sign."
+  },
+  "6": {
+    "crop": "Cherry",
+    "condition": "Healthy",
+    "display_name": "Cherry - Healthy",
+    "is_healthy": true,
+    "advice_hint": "Cherry foliage is healthy. Maintain regular pruning and avoid moisture buildup around root collars."
+  },
+  "7": {
+    "crop": "Corn",
+    "condition": "Cercospora Gray Leaf Spot",
+    "display_name": "Corn - Cercospora Gray Leaf Spot",
+    "is_healthy": false,
+    "advice_hint": "Practice crop rotation with non-host crops and bury crop residue. Apply foliar fungicide if lesions appear before tasseling."
+  },
+  "8": {
+    "crop": "Corn",
+    "condition": "Common Rust",
+    "display_name": "Corn - Common Rust",
+    "is_healthy": false,
+    "advice_hint": "Plant resistant hybrid varieties. Fungicides are generally only needed if pustules spread heavily before silking."
+  },
+  "9": {
+    "crop": "Corn",
+    "condition": "Northern Leaf Blight",
+    "display_name": "Corn - Northern Leaf Blight",
+    "is_healthy": false,
+    "advice_hint": "Rotate crops and manage debris to break disease cycle. Apply recommended fungicides if lesions develop early in upper canopy."
+  },
+  "10": {
+    "crop": "Corn",
+    "condition": "Healthy",
+    "display_name": "Corn - Healthy",
+    "is_healthy": true,
+    "advice_hint": "Crop is healthy and vigorous. Maintain nitrogen scheduling and monitor soil moisture during flowering."
+  },
+  "11": {
+    "crop": "Grape",
+    "condition": "Black Rot",
+    "display_name": "Grape - Black Rot",
+    "is_healthy": false,
+    "advice_hint": "Remove mummified berries from vines and ground. Spray mancozeb or captan from bud break until veraison."
+  },
+  "12": {
+    "crop": "Grape",
+    "condition": "Esca (Black Measles)",
+    "display_name": "Grape - Esca (Black Measles)",
+    "is_healthy": false,
+    "advice_hint": "Prune infected vines during dry periods and protect pruning wounds. Remove heavily symptomatic wood to prolong vine life."
+  },
+  "13": {
+    "crop": "Grape",
+    "condition": "Leaf Blight (Isariopsis)",
+    "display_name": "Grape - Leaf Blight (Isariopsis)",
+    "is_healthy": false,
+    "advice_hint": "Prune canopy to promote air movement and sunlight penetration. Apply copper oxychloride or protectant fungicide sprays."
+  },
+  "14": {
+    "crop": "Grape",
+    "condition": "Healthy",
+    "display_name": "Grape - Healthy",
+    "is_healthy": true,
+    "advice_hint": "Vine foliage is healthy. Keep canopy well-trained on trellises and avoid water stress during berry formation."
+  },
+  "15": {
+    "crop": "Orange",
+    "condition": "Huanglongbing (Citrus Greening)",
+    "display_name": "Orange - Huanglongbing (Citrus Greening)",
+    "is_healthy": false,
+    "advice_hint": "Control Asian citrus psyllid vectors immediately with horticultural oils or insecticides. Remove severely infected trees to protect surrounding orchards."
+  },
+  "16": {
+    "crop": "Peach",
+    "condition": "Bacterial Spot",
+    "display_name": "Peach - Bacterial Spot",
+    "is_healthy": false,
+    "advice_hint": "Avoid high-nitrogen fertilizers which stimulate succulent growth. Apply copper bactericides during dormancy and oxytetracycline during the season."
+  },
+  "17": {
+    "crop": "Peach",
+    "condition": "Healthy",
+    "display_name": "Peach - Healthy",
+    "is_healthy": true,
+    "advice_hint": "Foliage is healthy. Maintain routine orchard sanitation and thin fruit for optimal canopy airflow."
+  },
+  "18": {
+    "crop": "Bell Pepper",
+    "condition": "Bacterial Spot",
+    "display_name": "Bell Pepper - Bacterial Spot",
+    "is_healthy": false,
+    "advice_hint": "Use certified disease-free seeds and avoid overhead irrigation. Apply copper hydroxide mixed with mancozeb to slow spread."
+  },
+  "19": {
+    "crop": "Bell Pepper",
+    "condition": "Healthy",
+    "display_name": "Bell Pepper - Healthy",
+    "is_healthy": true,
+    "advice_hint": "Pepper plant is healthy. Support with stakes and maintain consistent soil moisture to prevent blossom end rot."
+  },
+  "20": {
+    "crop": "Potato",
+    "condition": "Early Blight",
+    "display_name": "Potato - Early Blight",
+    "is_healthy": false,
+    "advice_hint": "Remove infected lower foliage and avoid overhead sprinkling. Spray chlorothalonil or copper fungicides at initial symptom onset."
+  },
+  "21": {
+    "crop": "Potato",
+    "condition": "Late Blight",
+    "display_name": "Potato - Late Blight",
+    "is_healthy": false,
+    "advice_hint": "Urgent: destroy infected vines immediately to prevent tuber rot. Spray systemic fungicides such as metalaxyl or dimethomorph promptly."
+  },
+  "22": {
+    "crop": "Potato",
+    "condition": "Healthy",
+    "display_name": "Potato - Healthy",
+    "is_healthy": true,
+    "advice_hint": "Plant appears vigorous and healthy. Hill soil around stems and monitor regularly during cool, humid weather."
+  },
+  "23": {
+    "crop": "Raspberry",
+    "condition": "Healthy",
+    "display_name": "Raspberry - Healthy",
+    "is_healthy": true,
+    "advice_hint": "Canes are healthy. Prune out floricanes post-harvest and ensure well-draining organic soil."
+  },
+  "24": {
+    "crop": "Soybean",
+    "condition": "Healthy",
+    "display_name": "Soybean - Healthy",
+    "is_healthy": true,
+    "advice_hint": "Foliage is healthy. Ensure adequate potassium levels and scout weekly for defoliating pests."
+  },
+  "25": {
+    "crop": "Squash",
+    "condition": "Powdery Mildew",
+    "display_name": "Squash - Powdery Mildew",
+    "is_healthy": false,
+    "advice_hint": "Space vines to improve airflow and water at soil base. Apply neem oil, potassium bicarbonate, or sulfur fungicide at first spots."
+  },
+  "26": {
+    "crop": "Strawberry",
+    "condition": "Leaf Scorch",
+    "display_name": "Strawberry - Leaf Scorch",
+    "is_healthy": false,
+    "advice_hint": "Remove infected old leaves after harvest and plant resistant cultivars. Apply protective copper sprays in spring."
+  },
+  "27": {
+    "crop": "Strawberry",
+    "condition": "Healthy",
+    "display_name": "Strawberry - Healthy",
+    "is_healthy": true,
+    "advice_hint": "Plants are healthy. Keep straw mulch beneath fruit and water with drip lines to keep crowns dry."
+  },
+  "28": {
+    "crop": "Tomato",
+    "condition": "Bacterial Spot",
+    "display_name": "Tomato - Bacterial Spot",
+    "is_healthy": false,
+    "advice_hint": "Avoid overhead watering and working in wet foliage. Treat with copper-based sprays combined with mancozeb."
+  },
+  "29": {
+    "crop": "Tomato",
+    "condition": "Early Blight",
+    "display_name": "Tomato - Early Blight",
+    "is_healthy": false,
+    "advice_hint": "Prune lower leaves touching soil and apply thick organic mulch. Spray copper fungicide or chlorothalonil every 7-10 days in wet conditions."
+  },
+  "30": {
+    "crop": "Tomato",
+    "condition": "Late Blight",
+    "display_name": "Tomato - Late Blight",
+    "is_healthy": false,
+    "advice_hint": "Highly destructive fungal pathogen: isolate and dispose of affected plant parts immediately. Apply preventative copper or mancozeb."
+  },
+  "31": {
+    "crop": "Tomato",
+    "condition": "Leaf Mold",
+    "display_name": "Tomato - Leaf Mold",
+    "is_healthy": false,
+    "advice_hint": "Lower humidity in greenhouses and maximize ventilation. Spray copper fungicides upon detecting olive-green mold underneath leaves."
+  },
+  "32": {
+    "crop": "Tomato",
+    "condition": "Septoria Leaf Spot",
+    "display_name": "Tomato - Septoria Leaf Spot",
+    "is_healthy": false,
+    "advice_hint": "Strip bottom infected leaves immediately to stop upward progression. Apply fungicidal spray and practice 3-year crop rotation."
+  },
+  "33": {
+    "crop": "Tomato",
+    "condition": "Spider Mites (Two-Spotted)",
+    "display_name": "Tomato - Spider Mites (Two-Spotted)",
+    "is_healthy": false,
+    "advice_hint": "Wash undersides of leaves with strong water spray or apply insecticidal soap/neem oil. Release predatory mites in greenhouse settings."
+  },
+  "34": {
+    "crop": "Tomato",
+    "condition": "Target Spot",
+    "display_name": "Tomato - Target Spot",
+    "is_healthy": false,
+    "advice_hint": "Improve row spacing and prune inner suckers for airflow. Apply azoxystrobin or chlorothalonil fungicides as directed."
+  },
+  "35": {
+    "crop": "Tomato",
+    "condition": "Tomato Yellow Leaf Curl Virus",
+    "display_name": "Tomato - Tomato Yellow Leaf Curl Virus",
+    "is_healthy": false,
+    "advice_hint": "Virus transmitted by whiteflies: install yellow sticky traps and apply insecticidal soap. Rogue out infected plants to protect healthy ones."
+  },
+  "36": {
+    "crop": "Tomato",
+    "condition": "Tomato Mosaic Virus",
+    "display_name": "Tomato - Tomato Mosaic Virus",
+    "is_healthy": false,
+    "advice_hint": "No chemical cure: sanitize hands and pruning shears thoroughly; avoid tobacco contact. Remove and burn heavily infected plants."
+  },
+  "37": {
+    "crop": "Tomato",
+    "condition": "Healthy",
+    "display_name": "Tomato - Healthy",
+    "is_healthy": true,
+    "advice_hint": "Plant is vibrant and healthy. Maintain consistent drip irrigation, cage/stake support, and balanced fertilization."
+  }
+}

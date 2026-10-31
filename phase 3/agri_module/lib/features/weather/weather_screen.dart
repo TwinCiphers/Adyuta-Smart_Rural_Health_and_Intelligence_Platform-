@@ -1,10 +1,13 @@
+import 'package:bhashini_core/bhashini_core.dart';
 import 'dart:convert';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:geolocator/geolocator.dart';
+import 'package:drift/drift.dart' as drift;
 import '../../core/theme/agri_theme.dart';
+import '../../core/db/agri_database.dart';
 
 class _Location {
   final String name;
@@ -48,6 +51,8 @@ class _WeatherScreenState extends State<WeatherScreen> {
   String? _errorMessage;
   Map<String, dynamic>? _weatherData;
   int _selectedDayIndex = 0;
+  bool _isFromCache = false;
+  DateTime? _lastUpdated;
 
   @override
   void initState() {
@@ -110,7 +115,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
       String placeName = 'GPS (${position.latitude.toStringAsFixed(2)}°, ${position.longitude.toStringAsFixed(2)}°)';
       try {
         final revUrl = Uri.parse('https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${position.latitude}&longitude=${position.longitude}&localityLanguage=en');
-        final revRes = await http.get(revUrl);
+        final revRes = await http.get(revUrl).timeout(const Duration(seconds: 5));
         if (revRes.statusCode == 200) {
           final revData = jsonDecode(revRes.body);
           final city = revData['city'] ?? revData['locality'] ?? revData['principalSubdivision'] ?? '';
@@ -143,36 +148,82 @@ class _WeatherScreenState extends State<WeatherScreen> {
       setState(() {
         _isLoading = true;
         _errorMessage = null;
+        _isFromCache = false;
       });
     }
+    
+    final db = AgriDatabase();
+    
     try {
       final url = Uri.parse(
           'https://api.open-meteo.com/v1/forecast?latitude=${_selectedLocation.lat}&longitude=${_selectedLocation.lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,surface_pressure,wind_speed_10m,wind_direction_10m,wind_gusts_10m,visibility,uv_index&hourly=temperature_2m,precipitation_probability,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,sunrise,sunset,uv_index_max&timezone=auto');
-      final response = await http.get(url);
+      final response = await http.get(url).timeout(const Duration(seconds: 10));
+      
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
+        
+        // Save to cache
+        await db.upsertWeatherCache(WeatherCacheCompanion(
+          latitude: drift.Value(_selectedLocation.lat),
+          longitude: drift.Value(_selectedLocation.lon),
+          locationName: drift.Value(_selectedLocation.name),
+          responseJson: drift.Value(response.body),
+          fetchedAt: drift.Value(DateTime.now().millisecondsSinceEpoch),
+        ));
+        
         if (mounted) {
           setState(() {
             _weatherData = data;
+            _lastUpdated = DateTime.now();
+            _isFromCache = false;
             _isLoading = false;
           });
         }
       } else {
+        throw Exception('Failed to load weather forecast (Error ${response.statusCode})');
+      }
+    } catch (e) {
+      // Fallback to cache
+      try {
+        final cached = await db.loadWeatherCache(_selectedLocation.name);
+        if (cached != null) {
+          final data = jsonDecode(cached.responseJson);
+          if (mounted) {
+            setState(() {
+              _weatherData = data;
+              _lastUpdated = DateTime.fromMillisecondsSinceEpoch(cached.fetchedAt);
+              _isFromCache = true;
+              _isLoading = false;
+            });
+          }
+        } else {
+          if (mounted) {
+            setState(() {
+              _errorMessage = 'Network error and no offline data available for this location.';
+              _isLoading = false;
+            });
+          }
+        }
+      } catch (cacheError) {
         if (mounted) {
           setState(() {
-            _errorMessage = 'Failed to load weather forecast (Error ${response.statusCode})';
+            _errorMessage = 'Network error: Could not reach live weather API.';
             _isLoading = false;
           });
         }
       }
-    } catch (e) {
-      if (mounted) {
-        setState(() {
-          _errorMessage = 'Network error: Could not reach live weather API.';
-          _isLoading = false;
-        });
-      }
+    } finally {
+      await db.close();
     }
+  }
+
+  String _getLastUpdatedLabel() {
+    if (_lastUpdated == null) return '';
+    final age = DateTime.now().difference(_lastUpdated!);
+    if (age.inMinutes < 1) return 'just now';
+    if (age.inMinutes < 60) return '${age.inMinutes} min ago';
+    if (age.inHours < 24) return '${age.inHours}h ago';
+    return '${age.inDays}d ago';
   }
 
   Map<String, dynamic> _getWeatherInfo(int code) {
@@ -247,7 +298,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
       appBar: AppBar(
         backgroundColor: const Color(0xFFF3F4F6),
         elevation: 0,
-        title: Text('Live Climate & Weather', style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 18, color: const Color(0xFF1E293B))),
+        title: GlobalBhashiniText('Live Climate & Weather', style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 18, color: const Color(0xFF1E293B))),
         actions: [
           IconButton(
             icon: const Icon(Icons.my_location, color: AgriTheme.primaryGreen),
@@ -275,7 +326,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                 children: [
                   CircularProgressIndicator(color: AgriTheme.primaryGreen),
                   SizedBox(height: 16),
-                  Text('Syncing live satellite climate grid...'),
+                  GlobalBhashiniText('Syncing live satellite climate grid...'),
                 ],
               ),
             )
@@ -288,7 +339,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                       children: [
                         const Icon(Icons.cloud_off, size: 64, color: AgriTheme.priceDown),
                         const SizedBox(height: 16),
-                        Text(
+                        GlobalBhashiniText(
                           _errorMessage!,
                           textAlign: TextAlign.center,
                           style: GoogleFonts.inter(fontSize: 16, color: AgriTheme.textDark),
@@ -304,7 +355,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                           },
                           style: ElevatedButton.styleFrom(backgroundColor: AgriTheme.primaryGreen, foregroundColor: Colors.white),
                           icon: const Icon(Icons.refresh),
-                          label: const Text('Try Again'),
+                          label: const GlobalBhashiniText('Try Again'),
                         )
                       ],
                     ),
@@ -392,12 +443,12 @@ class _WeatherScreenState extends State<WeatherScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    GlobalBhashiniText(
                       '${_selectedLocation.name}  ${TimeOfDay.now().format(context)}',
                       style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.bold, color: const Color(0xFF1E293B)),
                     ),
                     const SizedBox(height: 2),
-                    Text(
+                    GlobalBhashiniText(
                       'Updated just now • Live Satellite Grid',
                       style: GoogleFonts.inter(fontSize: 12, color: const Color(0xFF64748B)),
                     ),
@@ -432,7 +483,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                     items: _locations.map((loc) {
                       return DropdownMenuItem(
                         value: loc,
-                        child: Text(loc.name.length > 15 ? '${loc.name.substring(0, 15)}...' : loc.name),
+                        child: GlobalBhashiniText(loc.name.length > 15 ? '${loc.name.substring(0, 15)}...' : loc.name),
                       );
                     }).toList(),
                   ),
@@ -473,16 +524,16 @@ class _WeatherScreenState extends State<WeatherScreen> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
+                            GlobalBhashiniText(
                               '${temp.toStringAsFixed(0)}°C',
                               style: GoogleFonts.inter(fontSize: 48, fontWeight: FontWeight.w800, color: const Color(0xFF0F172A), height: 1.0),
                             ),
                             const SizedBox(height: 4),
-                            Text(
+                            GlobalBhashiniText(
                               currentInfo['desc'] as String,
                               style: GoogleFonts.inter(fontSize: 18, fontWeight: FontWeight.w600, color: const Color(0xFF334155)),
                             ),
-                            Text(
+                            GlobalBhashiniText(
                               'H${todayMax.toStringAsFixed(0)}°  L${todayMin.toStringAsFixed(0)}°',
                               style: GoogleFonts.inter(fontSize: 13, color: const Color(0xFF64748B), fontWeight: FontWeight.w500),
                             ),
@@ -498,8 +549,8 @@ class _WeatherScreenState extends State<WeatherScreen> {
                       ),
                       child: Column(
                         children: [
-                          Text('Feels like', style: GoogleFonts.inter(fontSize: 11, color: const Color(0xFF64748B))),
-                          Text('${apparentTemp.toStringAsFixed(0)}°', style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.bold, color: const Color(0xFF0F172A))),
+                          GlobalBhashiniText('Feels like', style: GoogleFonts.inter(fontSize: 11, color: const Color(0xFF64748B))),
+                          GlobalBhashiniText('${apparentTemp.toStringAsFixed(0)}°', style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.bold, color: const Color(0xFF0F172A))),
                         ],
                       ),
                     ),
@@ -536,7 +587,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Text(
+                              GlobalBhashiniText(
                                 dayStr,
                                 style: GoogleFonts.inter(
                                   fontSize: 12,
@@ -545,7 +596,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                 ),
                               ),
                               Icon(info['icon'] as IconData, size: 22, color: isSelected ? const Color(0xFFF59E0B) : info['color'] as Color),
-                              Text(
+                              GlobalBhashiniText(
                                 '$maxT° $minT°',
                                 style: GoogleFonts.inter(
                                   fontSize: 11,
@@ -565,7 +616,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                 const SizedBox(height: 12),
 
                 // Hourly Trend Bar (Like Image 1 curve with rain % underneath)
-                Text('Hourly Trend & Rain Prob.', style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.bold, color: const Color(0xFF475569))),
+                GlobalBhashiniText('Hourly Trend & Rain Prob.', style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.bold, color: const Color(0xFF475569))),
                 const SizedBox(height: 12),
                 SizedBox(
                   height: 110,
@@ -591,8 +642,8 @@ class _WeatherScreenState extends State<WeatherScreen> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(hTime, style: GoogleFonts.inter(fontSize: 11, fontWeight: FontWeight.w600, color: const Color(0xFF64748B))),
-                            Text('$hTemp°', style: GoogleFonts.inter(fontSize: 15, fontWeight: FontWeight.bold, color: const Color(0xFF0F172A))),
+                            GlobalBhashiniText(hTime, style: GoogleFonts.inter(fontSize: 11, fontWeight: FontWeight.w600, color: const Color(0xFF64748B))),
+                            GlobalBhashiniText('$hTemp°', style: GoogleFonts.inter(fontSize: 15, fontWeight: FontWeight.bold, color: const Color(0xFF0F172A))),
                             Container(
                               height: 4,
                               width: 24,
@@ -605,7 +656,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 const Icon(Icons.water_drop, size: 10, color: Color(0xFF3B82F6)),
-                                Text('$hPrecip%', style: GoogleFonts.inter(fontSize: 11, fontWeight: FontWeight.bold, color: const Color(0xFF3B82F6))),
+                                GlobalBhashiniText('$hPrecip%', style: GoogleFonts.inter(fontSize: 11, fontWeight: FontWeight.bold, color: const Color(0xFF3B82F6))),
                               ],
                             ),
                           ],
@@ -768,7 +819,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Sun Hours • Daylight Schedule', style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w600, color: const Color(0xFF64748B))),
+                GlobalBhashiniText('Sun Hours • Daylight Schedule', style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w600, color: const Color(0xFF64748B))),
                 const SizedBox(height: 16),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -777,8 +828,8 @@ class _WeatherScreenState extends State<WeatherScreen> {
                       children: [
                         const Icon(Icons.wb_twilight, color: Color(0xFFF59E0B), size: 28),
                         const SizedBox(height: 6),
-                        Text(sunriseTime, style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.bold, color: const Color(0xFF0F172A))),
-                        Text('Sunrise', style: GoogleFonts.inter(fontSize: 12, color: const Color(0xFF64748B))),
+                        GlobalBhashiniText(sunriseTime, style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.bold, color: const Color(0xFF0F172A))),
+                        GlobalBhashiniText('Sunrise', style: GoogleFonts.inter(fontSize: 12, color: const Color(0xFF64748B))),
                       ],
                     ),
                     Container(
@@ -787,7 +838,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                         color: const Color(0xFFFEF3C7),
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      child: Text(
+                      child: GlobalBhashiniText(
                         '☀️ approx 12h 40m daylight',
                         style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.bold, color: const Color(0xFFD97706)),
                       ),
@@ -796,8 +847,8 @@ class _WeatherScreenState extends State<WeatherScreen> {
                       children: [
                         const Icon(Icons.nights_stay_outlined, color: Color(0xFF6366F1), size: 28),
                         const SizedBox(height: 6),
-                        Text(sunsetTime, style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.bold, color: const Color(0xFF0F172A))),
-                        Text('Sunset', style: GoogleFonts.inter(fontSize: 12, color: const Color(0xFF64748B))),
+                        GlobalBhashiniText(sunsetTime, style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.bold, color: const Color(0xFF0F172A))),
+                        GlobalBhashiniText('Sunset', style: GoogleFonts.inter(fontSize: 12, color: const Color(0xFF64748B))),
                       ],
                     ),
                   ],
@@ -832,12 +883,12 @@ class _WeatherScreenState extends State<WeatherScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      GlobalBhashiniText(
                         advisoryTitle,
                         style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 16, color: advisoryColor),
                       ),
                       const SizedBox(height: 4),
-                      Text(
+                      GlobalBhashiniText(
                         advisoryDesc,
                         style: GoogleFonts.inter(fontSize: 13, color: const Color(0xFF1E293B), height: 1.4),
                       ),
@@ -864,7 +915,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title, style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600, color: const Color(0xFF64748B))),
+          GlobalBhashiniText(title, style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600, color: const Color(0xFF64748B))),
           const SizedBox(height: 8),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -873,9 +924,9 @@ class _WeatherScreenState extends State<WeatherScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(mainValue, style: GoogleFonts.inter(fontSize: 20, fontWeight: FontWeight.bold, color: const Color(0xFF0F172A))),
+                    GlobalBhashiniText(mainValue, style: GoogleFonts.inter(fontSize: 20, fontWeight: FontWeight.bold, color: const Color(0xFF0F172A))),
                     const SizedBox(height: 2),
-                    Text(subValue, style: GoogleFonts.inter(fontSize: 11, fontWeight: FontWeight.w500, color: const Color(0xFF64748B))),
+                    GlobalBhashiniText(subValue, style: GoogleFonts.inter(fontSize: 11, fontWeight: FontWeight.w500, color: const Color(0xFF64748B))),
                   ],
                 ),
               ),

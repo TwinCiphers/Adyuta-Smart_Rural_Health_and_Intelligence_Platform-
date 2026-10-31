@@ -1,5 +1,7 @@
+import 'package:bhashini_core/bhashini_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../core/theme/agri_theme.dart';
 
 class YojnaScreen extends StatelessWidget {
@@ -12,7 +14,8 @@ class YojnaScreen extends StatelessWidget {
       'benefit': '₹6,000 / Year in 3 equal installments',
       'eligibility': 'All landholding farming families with cultivable land.',
       'status': 'Active Scheme',
-      'tag': 'Direct Benefit Transfer'
+      'tag': 'Direct Benefit Transfer',
+      'url': 'https://pmkisan.gov.in/'
     },
     {
       'title': 'PM Fasal Bima Yojana (PMFBY)',
@@ -20,7 +23,8 @@ class YojnaScreen extends StatelessWidget {
       'benefit': 'Full insurance claim against yield losses',
       'eligibility': 'Farmers growing notified crops in notified areas.',
       'status': 'Open for Kharif/Rabi',
-      'tag': 'Crop Insurance'
+      'tag': 'Crop Insurance',
+      'url': 'https://pmfby.gov.in/'
     },
     {
       'title': 'Soil Health Card Scheme',
@@ -28,7 +32,8 @@ class YojnaScreen extends StatelessWidget {
       'benefit': 'Free soil testing & nutrient mapping report',
       'eligibility': 'Available to all Indian farmers.',
       'status': 'Ongoing',
-      'tag': 'Soil Advisory'
+      'tag': 'Soil Advisory',
+      'url': 'https://soilhealth.dac.gov.in/'
     },
     {
       'title': 'Kisan Credit Card (KCC)',
@@ -36,7 +41,8 @@ class YojnaScreen extends StatelessWidget {
       'benefit': 'Subsidized loan up to ₹3 Lakhs',
       'eligibility': 'Individual/joint borrowers who are owner cultivators.',
       'status': 'Bank Apply',
-      'tag': 'Subsidized Loan'
+      'tag': 'Subsidized Loan',
+      'url': 'https://sbi.co.in/web/agri-rural/agriculture-banking/crop-loan/kisan-credit-card'
     },
     {
       'title': 'Paramparagat Krishi Vikas Yojana',
@@ -44,16 +50,28 @@ class YojnaScreen extends StatelessWidget {
       'benefit': '₹50,000 per hectare for 3 years',
       'eligibility': 'Farmers forming organic clusters of 20 ha or more.',
       'status': 'Cluster Based',
-      'tag': 'Organic Farming'
+      'tag': 'Organic Farming',
+      'url': 'https://pgsindia-ncof.gov.in/'
     },
   ];
+
+  Future<void> _launchUrl(BuildContext context, String urlString) async {
+    final Uri url = Uri.parse(urlString);
+    if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: GlobalBhashiniText('Could not open link. Please check your internet connection.')),
+        );
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: AppBar(
-        title: const Text('Government Kisan Schemes'),
+        title: const GlobalBhashiniText('Government Kisan Schemes'),
         centerTitle: false,
       ),
       body: ListView.builder(
@@ -91,7 +109,7 @@ class YojnaScreen extends StatelessWidget {
                           color: AgriTheme.primaryGreen,
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        child: Text(
+                        child: GlobalBhashiniText(
                           y['tag']!,
                           style: GoogleFonts.outfit(color: Colors.white, fontSize: 11, fontWeight: FontWeight.bold),
                         ),
@@ -100,7 +118,7 @@ class YojnaScreen extends StatelessWidget {
                         children: [
                           const Icon(Icons.verified, color: AgriTheme.primaryGreen, size: 16),
                           const SizedBox(width: 4),
-                          Text(
+                          GlobalBhashiniText(
                             y['status']!,
                             style: GoogleFonts.outfit(color: AgriTheme.primaryGreen, fontSize: 12, fontWeight: FontWeight.w600),
                           ),
@@ -114,12 +132,12 @@ class YojnaScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      GlobalBhashiniText(
                         y['title']!,
                         style: GoogleFonts.outfit(fontWeight: FontWeight.bold, fontSize: 18, color: AgriTheme.textDark),
                       ),
                       const SizedBox(height: 6),
-                      Text(
+                      GlobalBhashiniText(
                         y['subtitle']!,
                         style: GoogleFonts.outfit(fontSize: 14, color: AgriTheme.textMuted, height: 1.4),
                       ),
@@ -138,7 +156,7 @@ class YojnaScreen extends StatelessWidget {
                                 const Icon(Icons.monetization_on, color: AgriTheme.accentGold, size: 20),
                                 const SizedBox(width: 8),
                                 Expanded(
-                                  child: Text(
+                                  child: GlobalBhashiniText(
                                     'Benefit: ${y['benefit']!}',
                                     style: GoogleFonts.outfit(fontWeight: FontWeight.w600, fontSize: 13, color: AgriTheme.textDark),
                                   ),
@@ -151,7 +169,7 @@ class YojnaScreen extends StatelessWidget {
                                 const Icon(Icons.people_alt, color: AgriTheme.primaryGreen, size: 20),
                                 const SizedBox(width: 8),
                                 Expanded(
-                                  child: Text(
+                                  child: GlobalBhashiniText(
                                     'Eligibility: ${y['eligibility']!}',
                                     style: GoogleFonts.outfit(fontSize: 12, color: AgriTheme.textMuted),
                                   ),
@@ -166,11 +184,7 @@ class YojnaScreen extends StatelessWidget {
                         children: [
                           Expanded(
                             child: ElevatedButton.icon(
-                              onPressed: () {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(content: Text('Opening official portal for ${y['title']}...')),
-                                );
-                              },
+                              onPressed: () => _launchUrl(context, y['url']!),
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: AgriTheme.primaryGreen,
                                 foregroundColor: Colors.white,
@@ -179,14 +193,14 @@ class YojnaScreen extends StatelessWidget {
                                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                               ),
                               icon: const Icon(Icons.launch, size: 16),
-                              label: Text('Apply / Know More', style: GoogleFonts.outfit(fontWeight: FontWeight.w600)),
+                              label: GlobalBhashiniText('Apply / Know More', style: GoogleFonts.outfit(fontWeight: FontWeight.w600)),
                             ),
                           ),
                           const SizedBox(width: 10),
                           IconButton(
                             onPressed: () {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text('Saved "${y['title']}" to your bookmarks')),
+                                SnackBar(content: GlobalBhashiniText('Saved "${y['title']}" to your bookmarks')),
                               );
                             },
                             style: IconButton.styleFrom(

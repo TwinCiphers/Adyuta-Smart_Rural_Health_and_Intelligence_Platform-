@@ -6,6 +6,41 @@ import { SignupSchema, LoginSchema, RefreshSchema, LogoutSchema } from '../schem
 
 const authRoutes: FastifyPluginAsync = async (server) => {
 
+    server.post('/anonymous', async (request, reply) => {
+    try {
+      const guestId = 'guest-' + crypto.randomBytes(4).toString('hex');
+      const email = guestId + '@guest.adyuta.local';
+      const passwordHash = await argon2.hash(crypto.randomBytes(16).toString('hex'));
+      
+      const user = await server.prisma.user.create({
+        data: {
+          email,
+          name: 'Guest User',
+          passwordHash,
+          role: 'CITIZEN'
+        },
+      });
+
+      const accessToken = server.jwt.sign({ 
+        sub: user.id, 
+        email: user.email || '',
+        tokenVersion: user.tokenVersion
+      }, { expiresIn: '15m' });
+      
+      const refreshToken = crypto.randomBytes(40).toString('hex');
+      
+      return reply.status(200).send({
+        accessToken,
+        refreshToken,
+        expiresIn: 900,
+        user: { id: user.id, email: user.email, name: user.name }
+      });
+    } catch (err) {
+      server.log.error(err);
+      return reply.status(500).send({ error: 'Internal Server Error' });
+    }
+  });
+
   server.post('/signup', async (request, reply) => {
     try {
       const data = SignupSchema.parse(request.body);
@@ -261,3 +296,5 @@ const authRoutes: FastifyPluginAsync = async (server) => {
 };
 
 export default authRoutes;
+
+

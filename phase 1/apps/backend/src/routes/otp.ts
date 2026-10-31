@@ -130,3 +130,4 @@ const otpRoutes: FastifyPluginAsync = async (server) => {
 };
 
 export default otpRoutes;
+

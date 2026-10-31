@@ -1,3 +1,4 @@
+import 'package:bhashini_core/bhashini_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:adyuta_main/features/authentication/providers/local_security_provider.dart';
@@ -18,7 +19,7 @@ class _MpinSetupScreenState extends ConsumerState<MpinSetupScreen> {
   String _firstPin = '';
   bool _hasError = false;
 
-  void _onPinComplete(String pin) {
+  Future<void> _onPinComplete(String pin) async {
     if (!_isConfirming) {
       setState(() {
         _firstPin = pin;
@@ -28,14 +29,15 @@ class _MpinSetupScreenState extends ConsumerState<MpinSetupScreen> {
     } else {
       if (pin == _firstPin) {
         // Success! Save the MPIN.
-        ref.read(localSecurityProvider.notifier).setMpin(pin);
-        
+        await ref.read(localSecurityProvider.notifier).setMpin(pin);
+        if (!mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('MPIN successfully configured!')),
+          const SnackBar(content: GlobalBhashiniText('MPIN successfully configured!')),
         );
         Navigator.pop(context);
       } else {
         // Mismatch
+        if (!mounted) return;
         setState(() {
           _hasError = true;
           _pinController.clear();
@@ -50,7 +52,7 @@ class _MpinSetupScreenState extends ConsumerState<MpinSetupScreen> {
     
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Setup MPIN'),
+        title: const GlobalBhashiniText('Setup MPIN'),
         backgroundColor: Colors.white,
         foregroundColor: Colors.black87,
         elevation: 1,
@@ -63,12 +65,12 @@ class _MpinSetupScreenState extends ConsumerState<MpinSetupScreen> {
             const SizedBox(height: 32),
             Icon(Icons.lock_person, size: 64, color: Colors.indigo.shade900),
             const SizedBox(height: 24),
-            Text(
+            GlobalBhashiniText(
               _isConfirming ? 'Confirm your MPIN' : 'Create a 4-digit MPIN',
               style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black87),
             ),
             const SizedBox(height: 8),
-            Text(
+            GlobalBhashiniText(
               'This PIN will be used to quickly unlock the app.',
               style: TextStyle(fontSize: 14, color: Colors.grey.shade600),
               textAlign: TextAlign.center,
@@ -107,7 +109,7 @@ class _MpinSetupScreenState extends ConsumerState<MpinSetupScreen> {
 
             if (_hasError) ...[
               const SizedBox(height: 16),
-              const Text('PINs do not match. Please try again.', style: TextStyle(color: Colors.redAccent)),
+              const GlobalBhashiniText('PINs do not match. Please try again.', style: TextStyle(color: Colors.redAccent)),
             ],
 
             const Spacer(),
@@ -121,12 +123,12 @@ class _MpinSetupScreenState extends ConsumerState<MpinSetupScreen> {
                 border: Border.all(color: Colors.grey.shade200),
               ),
               child: SwitchListTile(
-                title: const Text('Enable Fingerprint/FaceID', style: TextStyle(fontWeight: FontWeight.w600)),
-                subtitle: const Text('Unlock the app even faster.', style: TextStyle(fontSize: 12)),
+                title: const GlobalBhashiniText('Enable Fingerprint/FaceID', style: TextStyle(fontWeight: FontWeight.w600)),
+                subtitle: const GlobalBhashiniText('Unlock the app even faster.', style: TextStyle(fontSize: 12)),
                 secondary: const Icon(Icons.fingerprint, color: Color(0xFF3366FF), size: 32),
                 value: securityState.biometricsEnabled,
-                onChanged: (val) {
-                  ref.read(localSecurityProvider.notifier).setBiometricsEnabled(val);
+                onChanged: (val) async {
+                  await ref.read(localSecurityProvider.notifier).toggleBiometricsWithChallenge(val);
                 },
               ),
             ),

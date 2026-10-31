@@ -1,0 +1,170 @@
+{
+  "course_01": [
+    {
+      "title": "Millennial Farmer",
+      "videoId": "p7_DCRtDWlQ"
+    },
+    {
+      "title": "Ag PhD Hefty",
+      "videoId": "HjKDQ4M5WPA"
+    },
+    {
+      "title": "How Farms Work",
+      "videoId": "VpiENRncjtM"
+    },
+    {
+      "title": "Farmonaut",
+      "videoId": "LTRRfSYnGz8"
+    },
+    {
+      "title": "Nature's Always Right",
+      "videoId": "Js_MNqptyt4"
+    },
+    {
+      "title": "Krishi Jagran",
+      "videoId": "v9frwYvaz_0"
+    },
+    {
+      "title": "Digital Green agriculture",
+      "videoId": "3zZriOaVgZw"
+    },
+    {
+      "title": "Peterson Farm Bros",
+      "videoId": "a69d79BCLu4"
+    },
+    {
+      "title": "Cole the Cornstar",
+      "videoId": "PbcZxK6suhU"
+    },
+    {
+      "title": "FAO sustainable agriculture",
+      "videoId": "WeoIsjYBQH0"
+    }
+  ],
+  "course_02": [
+    {
+      "title": "The Plain Bagel",
+      "videoId": "mzkdUnCThjc"
+    },
+    {
+      "title": "Ben Felix PWL Capital",
+      "videoId": "1FwgCRIS0Wg"
+    },
+    {
+      "title": "Graham Stephan",
+      "videoId": "Lp85WbbSs8Y"
+    },
+    {
+      "title": "Two Cents PBS",
+      "videoId": "rewsNWT8aiw"
+    },
+    {
+      "title": "Patrick Boyle finance",
+      "videoId": "T-oXyXwD6sE"
+    },
+    {
+      "title": "Zerodha Varsity",
+      "videoId": "i9O0FZxpCRE"
+    },
+    {
+      "title": "CA Rachana Ranade",
+      "videoId": "1MoqBEv9BGw"
+    },
+    {
+      "title": "Khan Academy Finance and Capital Markets",
+      "videoId": "Rm6UdfRs3gw"
+    },
+    {
+      "title": "Aswath Damodaran valuation",
+      "videoId": "znmQ7oMiQrM"
+    },
+    {
+      "title": "Bloomberg Originals markets",
+      "videoId": "cndVRiZ9Pdc"
+    }
+  ],
+  "course_03": [
+    {
+      "title": "Fireship",
+      "videoId": "TbkUKCm3CHQ"
+    },
+    {
+      "title": "freeCodeCamp",
+      "videoId": "FVN0t1vb7k8"
+    },
+    {
+      "title": "Traversy Media",
+      "videoId": "0isk_iLFCdk"
+    },
+    {
+      "title": "CS50 Harvard",
+      "videoId": "OvKCESUCWII"
+    },
+    {
+      "title": "Two Minute Papers",
+      "videoId": "SA9kdAX2Zj0"
+    },
+    {
+      "title": "NetworkChuck",
+      "videoId": "7RVf25Rg0Mc"
+    },
+    {
+      "title": "The Cyber Mentor",
+      "videoId": "XmZ6OPEhnsI"
+    },
+    {
+      "title": "Corey Schafer Python",
+      "videoId": "YYXdXT2l-Gg"
+    },
+    {
+      "title": "IBM Technology",
+      "videoId": "kyJ1vd7yEPc"
+    },
+    {
+      "title": "sentdex",
+      "videoId": "HO_1Tof1-qk"
+    }
+  ],
+  "course_04": [
+    {
+      "title": "Y Combinator startup school",
+      "videoId": "wr6PMD06hP0"
+    },
+    {
+      "title": "Harvard Business Review YouTube",
+      "videoId": "orQKfIXMiA8"
+    },
+    {
+      "title": "Ali Abdaal",
+      "videoId": "J5U3t6-zVz0"
+    },
+    {
+      "title": "Valuetainment Patrick Bet-David",
+      "videoId": "F-_qOh5tKrI"
+    },
+    {
+      "title": "Slidebean startup",
+      "videoId": "n6PyNZqN7R0"
+    },
+    {
+      "title": "Think Media",
+      "videoId": "_B-4GdOQaGw"
+    },
+    {
+      "title": "Wall Street Journal business",
+      "videoId": "brB-gpMBU4k"
+    },
+    {
+      "title": "Exponent podcast tech business",
+      "videoId": "yJBXunVOWC4"
+    },
+    {
+      "title": "GaryVee",
+      "videoId": "HPNMn1Qd16c"
+    },
+    {
+      "title": "Stanford GSB View From The Top",
+      "videoId": "j_7X7WZcCx8"
+    }
+  ]
+}

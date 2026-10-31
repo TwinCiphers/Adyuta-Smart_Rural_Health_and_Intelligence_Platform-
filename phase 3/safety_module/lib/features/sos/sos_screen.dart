@@ -1,3 +1,4 @@
+import 'package:bhashini_core/bhashini_core.dart';
 import 'dart:async';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
@@ -169,13 +170,13 @@ class _SosScreenState extends State<SosScreen> with SingleTickerProviderStateMix
         await service.startService();
       }
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text('Live Tracking active. Location updating in background.'),
+        content: GlobalBhashiniText('Live Tracking active. Location updating in background.'),
         backgroundColor: Colors.green,
       ));
     } else {
       service.invoke("stopService");
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text('Live Tracking disabled.'),
+        content: GlobalBhashiniText('Live Tracking disabled.'),
         backgroundColor: Colors.grey,
       ));
     }
@@ -194,7 +195,7 @@ class _SosScreenState extends State<SosScreen> with SingleTickerProviderStateMix
       ScaffoldMessenger.of(context).clearSnackBars();
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Tap \${3 - _sosTapCount} more times rapidly to trigger Auto SOS.'),
+          content: GlobalBhashiniText('Tap ${3 - _sosTapCount} more times rapidly to trigger Auto SOS.'),
           duration: const Duration(seconds: 1),
         ),
       );
@@ -208,7 +209,7 @@ class _SosScreenState extends State<SosScreen> with SingleTickerProviderStateMix
     if (_contacts.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('⚠️ No trusted emergency contacts saved! Please add a contact first.'),
+          content: GlobalBhashiniText('⚠️ No trusted emergency contacts saved! Please add a contact first.'),
           backgroundColor: SafetyTheme.primaryRed,
         ),
       );
@@ -219,55 +220,47 @@ class _SosScreenState extends State<SosScreen> with SingleTickerProviderStateMix
       _sosActive = true;
     });
 
+    if (_currentPosition == null) {
+      try {
+        _currentPosition = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high, timeLimit: const Duration(seconds: 4));
+      } catch (e) {
+        try {
+          _currentPosition = await Geolocator.getLastKnownPosition();
+        } catch (_) {}
+      }
+    }
+
     String coords = _currentPosition != null ? 'https://maps.google.com/?q=${_currentPosition!.latitude},${_currentPosition!.longitude}' : 'Location unavailable';
     String messageBody = "EMERGENCY (Adyuta Safety): I need immediate help. My last known location is: $coords";
 
-    if (isAuto || fromShake) {
-      // 1. Auto Live Tracking Enable
-      if (!_liveTrackingEnabled) {
-        _toggleLiveTracking(true);
-      }
-
-      // 2. Auto SMS via BackgroundSms
-      int smsSentCount = 0;
-      for (var contact in _contacts) {
-        try {
-          var result = await BackgroundSms.sendMessage(phoneNumber: contact.phone, message: messageBody);
-          if (result == SmsStatus.sent) smsSentCount++;
-        } catch (e) {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("SMS Failed: \$e")));
-        }
-      }
-      
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('SOS Activated! SMS sent to \$smsSentCount contacts.')),
-      );
-
-      // 3. Auto Call first emergency contact
-      if (_contacts.isNotEmpty) {
-        try {
-          await FlutterPhoneDirectCaller.callNumber(_contacts.first.phone);
-        } catch (e) {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Auto-Call Failed: \$e")));
-        }
-      }
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('SOS Activated! Auto-Calling and Sending SMS.'), backgroundColor: SafetyTheme.primaryRed),
-      );
-    } else {
-      // Launch SMS intent for manual single tap
-      String smsUrl = "sms:${_contacts.map((c) => c.phone).join(',')}?body=${Uri.encodeComponent(messageBody)}";
-
-      launchUrl(Uri.parse(smsUrl)).catchError((e) {
-        if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Could not open SMS app')),
-          );
-        }
-        return false;
-      });
+    // 1. Auto Live Tracking Enable
+    if (!_liveTrackingEnabled) {
+      _toggleLiveTracking(true);
     }
+
+    // 2. Auto SMS via BackgroundSms silently
+    int smsSentCount = 0;
+    for (var contact in _contacts) {
+      try {
+        var result = await BackgroundSms.sendMessage(phoneNumber: contact.phone, message: messageBody);
+        if (result == SmsStatus.sent) smsSentCount++;
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: GlobalBhashiniText("SMS Failed: $e")));
+      }
+    }
+
+    // 3. Auto Call first emergency contact
+    if (_contacts.isNotEmpty) {
+      try {
+        await FlutterPhoneDirectCaller.callNumber(_contacts.first.phone);
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: GlobalBhashiniText("Auto-Call Failed: $e")));
+      }
+    }
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: GlobalBhashiniText('SOS Activated! Auto-Calling and SMS sent to $smsSentCount contacts.'), backgroundColor: SafetyTheme.primaryRed),
+    );
 
     _pulseController.duration = const Duration(milliseconds: 400);
     _pulseController.repeat(reverse: true);
@@ -307,12 +300,12 @@ class _SosScreenState extends State<SosScreen> with SingleTickerProviderStateMix
                 child: const Icon(Icons.warning_amber_rounded, color: SafetyTheme.primaryRed, size: 48),
               ),
               const SizedBox(height: 16),
-              Text(
+              GlobalBhashiniText(
                 fromShake ? 'SHAKE-TO-SOS ACTIVATED!' : 'EMERGENCY SOS ACTIVATED!',
                 style: GoogleFonts.inter(fontSize: 20, fontWeight: FontWeight.w800, color: SafetyTheme.primaryRed),
               ),
               const SizedBox(height: 8),
-              Text(
+              GlobalBhashiniText(
                 'Siren alarm triggered! Dedicated SOS alert will broadcast strictly to your ${_contacts.length} saved trusted emergency contacts.',
                 textAlign: TextAlign.center,
                 style: GoogleFonts.inter(fontSize: 13, color: SafetyTheme.textGrey, height: 1.4),
@@ -325,7 +318,7 @@ class _SosScreenState extends State<SosScreen> with SingleTickerProviderStateMix
                   children: [
                     const Icon(Icons.location_on, color: SafetyTheme.primaryRed, size: 20),
                     const SizedBox(width: 8),
-                    Expanded(child: Text(_locationStatus, style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w600, color: SafetyTheme.textDark))),
+                    Expanded(child: GlobalBhashiniText(_locationStatus, style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w600, color: SafetyTheme.textDark))),
                   ],
                 ),
               ),
@@ -340,7 +333,7 @@ class _SosScreenState extends State<SosScreen> with SingleTickerProviderStateMix
                       },
                       style: ElevatedButton.styleFrom(backgroundColor: SafetyTheme.warningOrange, foregroundColor: Colors.white, padding: const EdgeInsets.symmetric(vertical: 14), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14))),
                       icon: const Icon(Icons.sms, size: 18),
-                      label: Text('SMS All (${_contacts.length})', style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 13)),
+                      label: GlobalBhashiniText('SMS All (${_contacts.length})', style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 13)),
                     ),
                   ),
                   const SizedBox(width: 12),
@@ -352,7 +345,7 @@ class _SosScreenState extends State<SosScreen> with SingleTickerProviderStateMix
                       },
                       style: ElevatedButton.styleFrom(backgroundColor: SafetyTheme.primaryRed, foregroundColor: Colors.white, padding: const EdgeInsets.symmetric(vertical: 14), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14))),
                       icon: const Icon(Icons.call, size: 18),
-                      label: Text('Call ${_contacts.first.name.split(' ')[0]}', style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 13)),
+                      label: GlobalBhashiniText('Call ${_contacts.first.name.split(' ')[0]}', style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 13)),
                     ),
                   ),
                 ],
@@ -367,7 +360,7 @@ class _SosScreenState extends State<SosScreen> with SingleTickerProviderStateMix
                     _pulseController.repeat(reverse: true);
                   });
                 },
-                child: Text('DEACTIVATE ALARM', style: GoogleFonts.inter(fontWeight: FontWeight.bold, color: SafetyTheme.textGrey)),
+                child: GlobalBhashiniText('DEACTIVATE ALARM', style: GoogleFonts.inter(fontWeight: FontWeight.bold, color: SafetyTheme.textGrey)),
               ),
             ],
           ),
@@ -384,7 +377,7 @@ class _SosScreenState extends State<SosScreen> with SingleTickerProviderStateMix
         await launchUrl(uri);
       }
     } catch (e) {
-      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Could not open phone dialer for $cleanPhone: $e')));
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: GlobalBhashiniText('Could not open phone dialer for $cleanPhone: $e')));
     }
   }
 
@@ -398,7 +391,7 @@ class _SosScreenState extends State<SosScreen> with SingleTickerProviderStateMix
         await launchUrl(uri);
       }
     } catch (e) {
-      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Could not open SMS app for ${contact.name}: $e')));
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: GlobalBhashiniText('Could not open SMS app for ${contact.name}: $e')));
     }
   }
 
@@ -427,7 +420,7 @@ class _SosScreenState extends State<SosScreen> with SingleTickerProviderStateMix
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: Text('Add Trusted Contact', style: GoogleFonts.inter(fontWeight: FontWeight.bold)),
+        title: GlobalBhashiniText('Add Trusted Contact', style: GoogleFonts.inter(fontWeight: FontWeight.bold)),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -437,7 +430,7 @@ class _SosScreenState extends State<SosScreen> with SingleTickerProviderStateMix
           ],
         ),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(ctx), child: const Text('Cancel')),
+          TextButton(onPressed: () => Navigator.pop(ctx), child: const GlobalBhashiniText('Cancel')),
           ElevatedButton(
             onPressed: () {
               if (nameCtrl.text.trim().isNotEmpty && phoneCtrl.text.trim().isNotEmpty) {
@@ -447,12 +440,12 @@ class _SosScreenState extends State<SosScreen> with SingleTickerProviderStateMix
                 _saveContacts();
                 Navigator.pop(ctx);
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Added "${nameCtrl.text.trim()}" to trusted contacts.')),
+                  SnackBar(content: GlobalBhashiniText('Added "${nameCtrl.text.trim()}" to trusted contacts.')),
                 );
               }
             },
             style: ElevatedButton.styleFrom(backgroundColor: SafetyTheme.primaryRed, foregroundColor: Colors.white),
-            child: const Text('Add Contact'),
+            child: const GlobalBhashiniText('Add Contact'),
           ),
         ],
       ),
@@ -467,7 +460,7 @@ class _SosScreenState extends State<SosScreen> with SingleTickerProviderStateMix
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: Text('Modify Trusted Contact', style: GoogleFonts.inter(fontWeight: FontWeight.bold)),
+        title: GlobalBhashiniText('Modify Trusted Contact', style: GoogleFonts.inter(fontWeight: FontWeight.bold)),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -477,7 +470,7 @@ class _SosScreenState extends State<SosScreen> with SingleTickerProviderStateMix
           ],
         ),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(ctx), child: const Text('Cancel')),
+          TextButton(onPressed: () => Navigator.pop(ctx), child: const GlobalBhashiniText('Cancel')),
           ElevatedButton(
             onPressed: () {
               if (nameCtrl.text.trim().isNotEmpty && phoneCtrl.text.trim().isNotEmpty) {
@@ -487,12 +480,12 @@ class _SosScreenState extends State<SosScreen> with SingleTickerProviderStateMix
                 _saveContacts();
                 Navigator.pop(ctx);
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Updated "${nameCtrl.text.trim()}" in trusted contacts.')),
+                  SnackBar(content: GlobalBhashiniText('Updated "${nameCtrl.text.trim()}" in trusted contacts.')),
                 );
               }
             },
             style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF2563EB), foregroundColor: Colors.white),
-            child: const Text('Save Changes'),
+            child: const GlobalBhashiniText('Save Changes'),
           ),
         ],
       ),
@@ -507,7 +500,7 @@ class _SosScreenState extends State<SosScreen> with SingleTickerProviderStateMix
     _saveContacts();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text('Removed "${removed.name}" from trusted contacts.'),
+        content: GlobalBhashiniText('Removed "${removed.name}" from trusted contacts.'),
         action: SnackBarAction(
           label: 'UNDO',
           textColor: Colors.amber,
@@ -536,7 +529,7 @@ class _SosScreenState extends State<SosScreen> with SingleTickerProviderStateMix
               children: [
                 const Icon(Icons.shield, color: SafetyTheme.primaryRed),
                 const SizedBox(width: 8),
-                Text('Adyuta Shield', style: GoogleFonts.inter(fontWeight: FontWeight.bold, color: SafetyTheme.textDark)),
+                GlobalBhashiniText('Adyuta Shield', style: GoogleFonts.inter(fontWeight: FontWeight.bold, color: SafetyTheme.textDark)),
               ],
             ),
             actions: [
@@ -577,12 +570,12 @@ class _SosScreenState extends State<SosScreen> with SingleTickerProviderStateMix
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
+                              GlobalBhashiniText(
                                 _sosActive ? 'EMERGENCY BROADCAST ACTIVE' : 'Safety Shield Active',
                                 style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 14, color: _sosActive ? SafetyTheme.primaryRed : SafetyTheme.textDark),
                               ),
                               const SizedBox(height: 2),
-                              Text(
+                              GlobalBhashiniText(
                                 _locationStatus,
                                 style: GoogleFonts.inter(fontSize: 11, color: SafetyTheme.textGrey),
                               ),
@@ -624,12 +617,12 @@ class _SosScreenState extends State<SosScreen> with SingleTickerProviderStateMix
                               children: [
                                 Icon(_sosActive ? Icons.notifications_active : Icons.touch_app, size: 56, color: Colors.white),
                                 const SizedBox(height: 8),
-                                Text(
+                                GlobalBhashiniText(
                                   _sosActive ? 'STOP SOS' : 'TAP FOR SOS',
                                   style: GoogleFonts.inter(fontSize: 20, fontWeight: FontWeight.w900, color: Colors.white, letterSpacing: 1.2),
                                 ),
                                 const SizedBox(height: 4),
-                                Text(
+                                GlobalBhashiniText(
                                   _sosActive ? 'Alerting ${_contacts.length} Contacts' : 'Instant Emergency Alert',
                                   style: GoogleFonts.inter(fontSize: 11, fontWeight: FontWeight.w600, color: Colors.white70),
                                 ),
@@ -666,8 +659,8 @@ class _SosScreenState extends State<SosScreen> with SingleTickerProviderStateMix
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text('Shake Detection to SOS', style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 14, color: SafetyTheme.textDark)),
-                                    Text('Shake phone 3 times to trigger siren & alerts', style: GoogleFonts.inter(fontSize: 11, color: SafetyTheme.textGrey)),
+                                    GlobalBhashiniText('Shake Detection to SOS', style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 14, color: SafetyTheme.textDark)),
+                                    GlobalBhashiniText('Shake phone 3 times to trigger siren & alerts', style: GoogleFonts.inter(fontSize: 11, color: SafetyTheme.textGrey)),
                                   ],
                                 ),
                               ),
@@ -694,14 +687,14 @@ class _SosScreenState extends State<SosScreen> with SingleTickerProviderStateMix
                           children: [
                             const Icon(Icons.people_alt, color: SafetyTheme.textDark, size: 20),
                             const SizedBox(width: 8),
-                            Text('Trusted Emergency Contacts (${_contacts.length})', style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 16, color: SafetyTheme.textDark)),
+                            GlobalBhashiniText('Trusted Emergency Contacts (${_contacts.length})', style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 16, color: SafetyTheme.textDark)),
                           ],
                         ),
                         const SizedBox(width: 8),
                         TextButton.icon(
                           onPressed: _addContactDialog,
                           icon: const Icon(Icons.add_circle, color: SafetyTheme.primaryRed, size: 18),
-                          label: Text('Add', style: GoogleFonts.inter(fontWeight: FontWeight.bold, color: SafetyTheme.primaryRed)),
+                          label: GlobalBhashiniText('Add', style: GoogleFonts.inter(fontWeight: FontWeight.bold, color: SafetyTheme.primaryRed)),
                         ),
                       ],
                     ),
@@ -720,9 +713,9 @@ class _SosScreenState extends State<SosScreen> with SingleTickerProviderStateMix
                         children: [
                           const Icon(Icons.person_off, color: SafetyTheme.primaryRed, size: 36),
                           const SizedBox(height: 8),
-                          Text('No Trusted Contacts Saved', style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 15, color: const Color(0xFF7F1D1D))),
+                          GlobalBhashiniText('No Trusted Contacts Saved', style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 15, color: const Color(0xFF7F1D1D))),
                           const SizedBox(height: 4),
-                          Text('Tap "Add" above to save emergency contacts who will receive your SOS alerts when triggered.', textAlign: TextAlign.center, style: GoogleFonts.inter(fontSize: 12, color: SafetyTheme.textGrey)),
+                          GlobalBhashiniText('Tap "Add" above to save emergency contacts who will receive your SOS alerts when triggered.', textAlign: TextAlign.center, style: GoogleFonts.inter(fontSize: 12, color: SafetyTheme.textGrey)),
                         ],
                       ),
                     )
@@ -746,15 +739,15 @@ class _SosScreenState extends State<SosScreen> with SingleTickerProviderStateMix
                             children: [
                               CircleAvatar(
                                 backgroundColor: SafetyTheme.primaryRed.withOpacity(0.12),
-                                child: Text(c.name.isNotEmpty ? c.name[0].toUpperCase() : '?', style: GoogleFonts.inter(fontWeight: FontWeight.bold, color: SafetyTheme.primaryRed)),
+                                child: GlobalBhashiniText(c.name.isNotEmpty ? c.name[0].toUpperCase() : '?', style: GoogleFonts.inter(fontWeight: FontWeight.bold, color: SafetyTheme.primaryRed)),
                               ),
                               const SizedBox(width: 14),
                               Expanded(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(c.name, style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 14, color: SafetyTheme.textDark)),
-                                    Text('${c.relation} • ${c.phone}', style: GoogleFonts.inter(fontSize: 12, color: SafetyTheme.textGrey)),
+                                    GlobalBhashiniText(c.name, style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 14, color: SafetyTheme.textDark)),
+                                    GlobalBhashiniText('${c.relation} • ${c.phone}', style: GoogleFonts.inter(fontSize: 12, color: SafetyTheme.textGrey)),
                                   ],
                                 ),
                               ),

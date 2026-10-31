@@ -1,3 +1,4 @@
+import 'package:bhashini_core/bhashini_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -9,8 +10,7 @@ class BhashiniService extends ChangeNotifier {
   static final BhashiniService instance = BhashiniService._internal();
   BhashiniService._internal();
 
-  String _currentLanguageCode = 'en';
-  String get currentLanguageCode => _currentLanguageCode;
+  String get currentLanguageCode => GlobalBhashiniService.instance.currentLanguageCode;
 
   /// The 12 requested languages with English as default
   static const List<Map<String, String>> supportedLanguages = [
@@ -30,8 +30,8 @@ class BhashiniService extends ChangeNotifier {
 
   /// Set new language and notify listeners to rebuild UI seamlessly
   void setLanguage(String langCode) {
-    if (_currentLanguageCode == langCode) return;
-    _currentLanguageCode = langCode;
+    if (GlobalBhashiniService.instance.currentLanguageCode == langCode) return;
+    GlobalBhashiniService.instance.setLanguage(langCode);
     notifyListeners();
   }
 
@@ -483,8 +483,8 @@ class BhashiniService extends ChangeNotifier {
 
   /// Translate string synchronously without altering font style or typography
   String t(String text) {
-    if (_currentLanguageCode == 'en') return text;
-    final langDict = _localTranslations[_currentLanguageCode];
+    if (currentLanguageCode == 'en') return text;
+    final langDict = _localTranslations[currentLanguageCode];
     if (langDict != null && langDict.containsKey(text)) {
       return langDict[text]!;
     }
@@ -552,7 +552,7 @@ class _BhashiniLanguageSheetState extends State<_BhashiniLanguageSheet> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    GlobalBhashiniText(
                       'App Language / भाषा चुनें',
                       style: GoogleFonts.outfit(
                         fontSize: 20,
@@ -561,7 +561,7 @@ class _BhashiniLanguageSheetState extends State<_BhashiniLanguageSheet> {
                       ),
                     ),
                     const SizedBox(height: 2),
-                    Text(
+                    GlobalBhashiniText(
                       'Powered by Bhashini AI • Govt of India NLTM',
                       style: GoogleFonts.inter(
                         fontSize: 11,
@@ -604,7 +604,7 @@ class _BhashiniLanguageSheetState extends State<_BhashiniLanguageSheet> {
                     Navigator.pop(context);
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        content: Text(
+                        content: GlobalBhashiniText(
                           isDefault 
                             ? 'Language switched to English (Default)' 
                             : 'Bhashini AI active: Switched to ${lang['name']} (${lang['native']})',
@@ -640,7 +640,7 @@ class _BhashiniLanguageSheetState extends State<_BhashiniLanguageSheet> {
                             children: [
                               Row(
                                 children: [
-                                  Text(
+                                  GlobalBhashiniText(
                                     lang['native']!,
                                     style: TextStyle(
                                       fontSize: 16,
@@ -656,7 +656,7 @@ class _BhashiniLanguageSheetState extends State<_BhashiniLanguageSheet> {
                                         color: const Color(0xFFC67D00).withOpacity(0.15),
                                         borderRadius: BorderRadius.circular(4),
                                       ),
-                                      child: Text(
+                                      child: GlobalBhashiniText(
                                         'Default',
                                         style: GoogleFonts.inter(fontSize: 8, fontWeight: FontWeight.bold, color: const Color(0xFFC67D00)),
                                       ),
@@ -665,7 +665,7 @@ class _BhashiniLanguageSheetState extends State<_BhashiniLanguageSheet> {
                                 ],
                               ),
                               const SizedBox(height: 2),
-                              Text(
+                              GlobalBhashiniText(
                                 lang['name']!,
                                 style: GoogleFonts.inter(
                                   fontSize: 11,

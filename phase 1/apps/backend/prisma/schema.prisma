@@ -3,8 +3,8 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider = "sqlite"
+  url = "file:./dev.db"
 }
 
 model User {
@@ -21,6 +21,9 @@ model User {
   createdAt      DateTime  @default(now())
   sessions       Session[]
   passkeys       Passkey[]
+  activityLogs   ActivityLog[]
+  domainProfiles DomainProfile[]
+  sosAlerts      SosAlert[]
 }
 
 model Session {
@@ -48,4 +51,122 @@ model Passkey {
   transports   String?
   createdAt    DateTime @default(now())
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+
+model ActivityLog {
+  id        String   @id @default(uuid())
+  userId    String
+  domain    String   // e.g., 'health', 'agriculture'
+  message   String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model DomainProfile {
+  id        String   @id @default(uuid())
+  userId    String
+  domain    String   // e.g., 'health', 'agriculture'
+  data      String     // Domain specific data
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, domain])
+}
+
+
+// --- Health Module ---
+model Hospital {
+  id          String   @id @default(uuid())
+  name        String
+  location    String
+  contact     String?
+  type        String   // PHC, CHC, District
+  createdAt   DateTime @default(now())
+}
+
+model Pharmacy {
+  id          String   @id @default(uuid())
+  name        String
+  inventory   String     // Live stock
+  location    String
+  createdAt   DateTime @default(now())
+}
+
+// --- Agriculture Module ---
+model MandiPrice {
+  id          String   @id @default(uuid())
+  commodity   String
+  state       String
+  market      String
+  minPrice    Float
+  maxPrice    Float
+  modalPrice  Float
+  fetchedAt   DateTime @default(now())
+}
+
+model CropAdvisory {
+  id          String   @id @default(uuid())
+  crop        String
+  advice      String
+  weatherReq  String?
+  createdAt   DateTime @default(now())
+}
+
+// --- Governance Module ---
+model GovernmentScheme {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  eligibility String
+  link        String?
+  createdAt   DateTime @default(now())
+}
+
+// --- Education Module ---
+model Course {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  videoUrl    String?
+  thumbnail   String?
+  createdAt   DateTime @default(now())
+}
+
+// --- Safety Module ---
+model SosAlert {
+  id          String   @id @default(uuid())
+  userId      String
+  latitude    Float
+  longitude   Float
+  status      String   @default("ACTIVE")
+  createdAt   DateTime @default(now())
+  user        User     @relation(fields: [userId], references: [id])
+}
+
+
+
+// --- Marketplace Module ---
+model Product {
+  id          String   @id @default(uuid())
+  title       String
+  brand       String
+  price       Float
+  oldPrice    Float?
+  discount    String?
+  rating      Float    @default(0.0)
+  reviews     Int      @default(0)
+  category    String
+  imageIcon   String?  // icon name representation
+  createdAt   DateTime @default(now())
+  cartItems   CartItem[]
+}
+
+model CartItem {
+  id        String   @id @default(uuid())
+  userId    String
+  productId String
+  quantity  Int      @default(1)
+  createdAt DateTime @default(now())
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
 }

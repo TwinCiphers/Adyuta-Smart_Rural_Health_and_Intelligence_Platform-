@@ -1,6 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../repositories/directory_repo.dart';
+import '../repositories/realtime_directory_service.dart';
 import '../models/facility.dart';
+
 
 final directoryRepositoryProvider = Provider<DirectoryRepository>((ref) {
   return DirectoryRepository();
@@ -8,12 +10,19 @@ final directoryRepositoryProvider = Provider<DirectoryRepository>((ref) {
 
 final directorySearchQueryProvider = StateProvider<String>((ref) => '');
 
+
 final searchFacilitiesProvider = FutureProvider<List<Facility>>((ref) async {
   final query = ref.watch(directorySearchQueryProvider);
   if (query.isEmpty) return [];
+  // Use REAL OSM Overpass API to find actual hospitals matching the city/state query
+  final realData = await RealTimeDirectoryService.searchHospitalsByCity(query);
+  if (realData.isNotEmpty) return realData;
+  
+  // Fallback to local DB if OSM fails or returns empty
   final repo = ref.watch(directoryRepositoryProvider);
   return repo.searchFacilities(query);
 });
+
 
 final facilitiesProvider = FutureProvider<List<Facility>>((ref) async {
   final repo = ref.watch(directoryRepositoryProvider);

@@ -7,10 +7,17 @@ import fs from 'fs';
 import path from 'path';
 
 import prismaPlugin from './plugins/prisma';
-import redisPlugin from './plugins/redis';
+// No redis
 import authRoutes from './routes/auth';
 import otpRoutes from './routes/otp';
 import profileRoutes from './routes/profile';
+import healthRoutes from './routes/health';
+import agriRoutes from './routes/agri';
+import govRoutes from './routes/gov';
+import eduRoutes from './routes/edu';
+import safetyRoutes from './routes/safety';
+import dashboardRoutes from './routes/dashboard';
+import marketplaceRoutes from './routes/marketplace';
 
 const buildServer = async () => {
   const server = Fastify({
@@ -22,13 +29,31 @@ const buildServer = async () => {
 
   // CORS - restrict to your app's domain in production
   await server.register(cors, {
-    origin: process.env.ALLOWED_ORIGIN || 'https://adyuta-app.local', 
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    origin: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'x-refresh-token'],
+    credentials: true,
   });
 
   // Register Prisma and Redis
   await server.register(prismaPlugin);
-  await server.register(redisPlugin);
+  // Real JWT Authenticate
+  server.decorate('authenticate', async (request: any, reply: any) => {
+    try {
+      await request.jwtVerify();
+      const user = await server.prisma.user.findUnique({
+        where: { id: request.user.sub as string }
+      });
+      if (!user || user.tokenVersion !== request.user.tokenVersion) {
+        throw new Error('Token revoked');
+      }
+      request.user = { id: user.id, email: user.email, role: user.role };
+    } catch (err) {
+      server.log.error(err); reply.status(401).send({ error: 'Unauthorized', detail: String(err) });
+    }
+  });
+
+  // No redis
 
   // Read RSA keys for JWT
   const keysDir = path.join(__dirname, '../keys');
@@ -48,13 +73,20 @@ const buildServer = async () => {
   await server.register(fastifyRateLimit, {
     max: 100,
     timeWindow: '1 minute',
-    redis: server.redis, // use the redis instance from our plugin
+    // No redis // use the redis instance from our plugin
   });
 
   // Routes
   server.register(authRoutes, { prefix: '/api/auth' });
   server.register(otpRoutes, { prefix: '/api/auth/otp' });
   server.register(profileRoutes, { prefix: '/api' });
+  server.register(healthRoutes, { prefix: '/api' });
+  server.register(agriRoutes, { prefix: '/api' });
+  server.register(govRoutes, { prefix: '/api' });
+  server.register(eduRoutes, { prefix: '/api' });
+  server.register(safetyRoutes, { prefix: '/api' });
+  server.register(dashboardRoutes, { prefix: '/api' });
+  server.register(marketplaceRoutes, { prefix: '/api/agri' });
 
   // Health check route
   server.get('/', async (request, reply) => {
@@ -65,3 +97,12 @@ const buildServer = async () => {
 };
 
 export default buildServer;
+
+
+
+
+
+
+
+
+

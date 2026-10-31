@@ -1,33 +1,25 @@
+import 'package:bhashini_core/bhashini_core.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:safety_module/core/services/background_safety_service.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
 
 import 'package:adyuta_main/core/routing/app_router.dart';
 import 'package:adyuta_main/core/theme/app_theme.dart';
 
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
 
   await Hive.initFlutter();
 
-  // Initialize Supabase
-  try {
-    const supabaseUrl = String.fromEnvironment('SUPABASE_URL', defaultValue: 'https://wntieyjzdqfaykvzvxia.supabase.co');
-    const supabaseAnonKey = String.fromEnvironment('SUPABASE_ANON_KEY', defaultValue: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndudGlleWp6ZHFmYXlrdnp2eGlhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODUzMzc2MTAsImV4cCI6MjEwMDkxMzYxMH0.JAyXybLOQdvGVsuBrYfsOBYw_KTaaq84rbqc0KhR5mo');
-    
-    await Supabase.initialize(
-      url: supabaseUrl,
-      anonKey: supabaseAnonKey,
-    );
-  } catch (e) {
-    debugPrint('Supabase init error: $e');
-  }
+  // Removed Supabase
 
   // Background Safety Service
   try {
@@ -50,27 +42,29 @@ class AdyutaHostApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final goRouter = ref.watch(goRouterProvider);
 
-    return MaterialApp.router(
-      title: 'ADYUTA',
-      debugShowCheckedModeBanner: false,
-      
-      routerConfig: goRouter,
-
-      localizationsDelegates: const [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.light,
-      
+    return ScreenUtilInit(
+      designSize: const Size(360, 800),
+      minTextAdapt: true,
+      splitScreenMode: true,
       builder: (context, child) {
-        return Stack(
-          children: [
-            if (child != null) child,
-            const GlobalSafetyBanner(),
+        return MaterialApp.router(
+          title: 'ADYUTA',
+          debugShowCheckedModeBanner: false,
+          
+          routerConfig: goRouter,
+
+          localizationsDelegates: const [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
           ],
+          theme: AppTheme.lightTheme,
+          darkTheme: AppTheme.darkTheme,
+          themeMode: ThemeMode.light,
+          
+          builder: (context, widget) {
+            return widget ?? const SizedBox.shrink();
+          },
         );
       },
     );
@@ -156,7 +150,7 @@ class _GlobalSafetyBannerState extends State<GlobalSafetyBanner> with WidgetsBin
               const Icon(Icons.security, color: Colors.white),
               const SizedBox(width: 12),
               const Expanded(
-                child: Text(
+                child: GlobalBhashiniText(
                   'Safety Service Active (Live Tracking & Watch Me)',
                   style: TextStyle(
                       color: Colors.white,
@@ -175,7 +169,7 @@ class _GlobalSafetyBannerState extends State<GlobalSafetyBanner> with WidgetsBin
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(20)),
-                  child: const Text('STOP',
+                  child: const GlobalBhashiniText('STOP',
                       style: TextStyle(
                           color: Colors.redAccent,
                           fontWeight: FontWeight.bold,
@@ -189,3 +183,4 @@ class _GlobalSafetyBannerState extends State<GlobalSafetyBanner> with WidgetsBin
     );
   }
 }
+

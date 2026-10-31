@@ -1,7 +1,7 @@
+import 'package:bhashini_core/bhashini_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:adyuta_main/features/authentication/providers/auth_provider.dart';
 import 'package:adyuta_main/core/widgets/adyuta_button.dart';
@@ -83,11 +83,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         return AlertDialog(
           backgroundColor: Colors.white,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-          title: Text('Magic Link Sign In', style: GoogleFonts.inter(color: Colors.black87, fontWeight: FontWeight.bold)),
+          title: GlobalBhashiniText('Magic Link Sign In', style: GoogleFonts.inter(color: Colors.black87, fontWeight: FontWeight.bold)),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text('We will send a secure login link directly to your email.', style: GoogleFonts.inter(color: Colors.black54, fontSize: 14)),
+              GlobalBhashiniText('We will send a secure login link directly to your email.', style: GoogleFonts.inter(color: Colors.black54, fontSize: 14)),
               const SizedBox(height: 16),
               TextField(
                 controller: magicEmailController,
@@ -104,7 +104,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
             ],
           ),
           actions: [
-            TextButton(onPressed: () => Navigator.pop(context), child: Text('Cancel', style: TextStyle(color: Colors.grey.shade600))),
+            TextButton(onPressed: () => Navigator.pop(context), child: GlobalBhashiniText('Cancel', style: TextStyle(color: Colors.grey.shade600))),
             ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: Theme.of(context).colorScheme.primary, foregroundColor: Colors.white, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
               onPressed: () {
@@ -114,7 +114,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   _processMagicLink(email);
                 }
               },
-              child: const Text('Send Link'),
+              child: const GlobalBhashiniText('Send Link'),
             )
           ],
         );
@@ -157,14 +157,14 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.change_history_rounded, color: Theme.of(context).colorScheme.primary, size: 36), // Placeholder for Adyuta logo
+                      Image.asset('assets/images/adyuta_logo.png', height: 36), // Adyuta logo
                       const SizedBox(width: 8),
-                      Text('Adyuta', style: GoogleFonts.outfit(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.black87)),
+                      GlobalBhashiniText('Adyuta', style: GoogleFonts.outfit(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.black87)),
                     ],
                   ),
                   const SizedBox(height: 8),
-                  Text('Secure. Simple. Seamless.', style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black87)),
-                  Text('One account. Infinite possibilities.', style: GoogleFonts.inter(fontSize: 14, color: Colors.black54)),
+                  GlobalBhashiniText('Secure. Simple. Seamless.', style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black87)),
+                  GlobalBhashiniText('One account. Infinite possibilities.', style: GoogleFonts.inter(fontSize: 14, color: Colors.black54)),
                   const SizedBox(height: 32),
 
                   // Main Form Card
@@ -180,9 +180,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Welcome back', style: GoogleFonts.outfit(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.black87)),
+                        GlobalBhashiniText('Welcome back', style: GoogleFonts.outfit(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.black87)),
                         const SizedBox(height: 4),
-                        Text('Sign in to continue to Adyuta', style: GoogleFonts.inter(fontSize: 14, color: Colors.black54)),
+                        GlobalBhashiniText('Sign in to continue to Adyuta', style: GoogleFonts.inter(fontSize: 14, color: Colors.black54)),
                         const SizedBox(height: 24),
 
                         if (_error != null)
@@ -190,7 +190,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                             padding: const EdgeInsets.all(12),
                             margin: const EdgeInsets.only(bottom: 16),
                             decoration: BoxDecoration(color: Colors.red.shade50, borderRadius: BorderRadius.circular(8)),
-                            child: Text(_error!, style: TextStyle(color: Colors.red.shade800, fontSize: 13), textAlign: TextAlign.center),
+                            child: GlobalBhashiniText(_error!, style: TextStyle(color: Colors.red.shade800, fontSize: 13), textAlign: TextAlign.center),
                           ),
 
                         // OAuth Buttons
@@ -212,7 +212,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                             Expanded(child: Divider(color: Colors.grey.shade200)),
                             Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 16),
-                              child: Text('OR', style: GoogleFonts.inter(color: Colors.grey.shade400, fontSize: 12, fontWeight: FontWeight.bold)),
+                              child: GlobalBhashiniText('OR', style: GoogleFonts.inter(color: Colors.grey.shade400, fontSize: 12, fontWeight: FontWeight.bold)),
                             ),
                             Expanded(child: Divider(color: Colors.grey.shade200)),
                           ],
@@ -220,7 +220,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         const SizedBox(height: 24),
 
                         // Email Form
-                        Text('Email address', style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600, color: Colors.black87)),
+                        GlobalBhashiniText('Email address', style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600, color: Colors.black87)),
                         const SizedBox(height: 8),
                         TextField(
                           controller: _emailController,
@@ -232,8 +232,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text('Password', style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600, color: Colors.black87)),
-                            Text('Forgot password?', style: GoogleFonts.inter(fontSize: 12, color: Theme.of(context).colorScheme.primary, fontWeight: FontWeight.w500)),
+                            GlobalBhashiniText('Password', style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600, color: Colors.black87)),
+                            GlobalBhashiniText('Forgot password?', style: GoogleFonts.inter(fontSize: 12, color: Theme.of(context).colorScheme.primary, fontWeight: FontWeight.w500)),
                           ],
                         ),
                         const SizedBox(height: 8),
@@ -262,7 +262,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                               ),
                             ),
                             const SizedBox(width: 8),
-                            Text('Remember me', style: GoogleFonts.inter(fontSize: 13, color: Colors.black54)),
+                            GlobalBhashiniText('Remember me', style: GoogleFonts.inter(fontSize: 13, color: Colors.black54)),
                           ],
                         ),
                         const SizedBox(height: 24),
@@ -280,7 +280,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                             ),
                             child: _loading 
                               ? const SizedBox(height: 20, width: 20, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2))
-                              : Text('Sign in', style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w600)),
+                              : GlobalBhashiniText('Sign in', style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w600)),
                           ),
                         ),
                         
@@ -288,10 +288,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text('New to Adyuta? ', style: GoogleFonts.inter(fontSize: 14, color: Colors.black54)),
+                            GlobalBhashiniText('New to Adyuta? ', style: GoogleFonts.inter(fontSize: 14, color: Colors.black54)),
                             GestureDetector(
                               onTap: () => context.go('/signup'),
-                              child: Text('Sign up', style: GoogleFonts.inter(fontSize: 14, color: Theme.of(context).colorScheme.primary, fontWeight: FontWeight.bold)),
+                              child: GlobalBhashiniText('Sign up', style: GoogleFonts.inter(fontSize: 14, color: Theme.of(context).colorScheme.primary, fontWeight: FontWeight.bold)),
                             ),
                           ],
                         ),
@@ -311,7 +311,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Your security, our priority', style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black87)),
+                        GlobalBhashiniText('Your security, our priority', style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black87)),
                         const SizedBox(height: 24),
                         
                         _buildInfoItem(
@@ -353,7 +353,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                             children: [
                               Icon(Icons.verified_user, size: 16, color: Theme.of(context).colorScheme.primary),
                               const SizedBox(width: 8),
-                              Expanded(child: Text('MFA is optional and can be enabled after you sign in.', style: GoogleFonts.inter(fontSize: 12, color: Theme.of(context).colorScheme.primary))),
+                              Expanded(child: GlobalBhashiniText('MFA is optional and can be enabled after you sign in.', style: GoogleFonts.inter(fontSize: 12, color: Theme.of(context).colorScheme.primary))),
                             ],
                           ),
                         )
@@ -391,8 +391,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(label, style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w500, color: isPrimary ? Theme.of(context).colorScheme.primary : Colors.black87), overflow: TextOverflow.ellipsis),
-                  if (subtitle != null) Text(subtitle, style: GoogleFonts.inter(fontSize: 11, color: Theme.of(context).colorScheme.primary.withOpacity(0.8)), maxLines: 2, overflow: TextOverflow.ellipsis),
+                  GlobalBhashiniText(label, style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w500, color: isPrimary ? Theme.of(context).colorScheme.primary : Colors.black87), overflow: TextOverflow.ellipsis),
+                  if (subtitle != null) GlobalBhashiniText(subtitle, style: GoogleFonts.inter(fontSize: 11, color: Theme.of(context).colorScheme.primary.withOpacity(0.8)), maxLines: 2, overflow: TextOverflow.ellipsis),
                 ],
               ),
             ),
@@ -416,9 +416,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(title, style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w600, color: Colors.black87)),
+              GlobalBhashiniText(title, style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w600, color: Colors.black87)),
               const SizedBox(height: 4),
-              Text(desc, style: GoogleFonts.inter(fontSize: 13, color: Colors.black54)),
+              GlobalBhashiniText(desc, style: GoogleFonts.inter(fontSize: 13, color: Colors.black54)),
             ],
           ),
         )

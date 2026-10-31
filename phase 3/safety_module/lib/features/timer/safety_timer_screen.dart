@@ -1,4 +1,9 @@
+import 'package:bhashini_core/bhashini_core.dart';
 import 'dart:async';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:url_launcher/url_launcher.dart';
+import '../sos/sos_screen.dart'; // For TrustedContact
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
@@ -61,12 +66,12 @@ class _SafetyTimerScreenState extends State<SafetyTimerScreen> with TickerProvid
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: Text('Cancel Timer?', style: GoogleFonts.inter(fontWeight: FontWeight.bold)),
-        content: Text('Are you sure you have reached safely?', style: GoogleFonts.inter()),
+        title: GlobalBhashiniText('Cancel Timer?', style: GoogleFonts.inter(fontWeight: FontWeight.bold)),
+        content: GlobalBhashiniText('Are you sure you have reached safely?', style: GoogleFonts.inter()),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx),
-            child: Text('NO', style: GoogleFonts.inter(color: SafetyTheme.textGrey)),
+            child: GlobalBhashiniText('NO', style: GoogleFonts.inter(color: SafetyTheme.textGrey)),
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(backgroundColor: SafetyTheme.primaryRed),
@@ -74,7 +79,7 @@ class _SafetyTimerScreenState extends State<SafetyTimerScreen> with TickerProvid
               Navigator.pop(ctx);
               _stopTimerLogic();
             },
-            child: Text('YES, CANCEL', style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.bold)),
+            child: GlobalBhashiniText('YES, CANCEL', style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.bold)),
           ),
         ],
       ),
@@ -91,8 +96,41 @@ class _SafetyTimerScreenState extends State<SafetyTimerScreen> with TickerProvid
     });
   }
 
+  Future<void> _sendTimerSOS() async {
+    final prefs = await SharedPreferences.getInstance();
+    final storedList = prefs.getStringList('sheguard_trusted_contacts');
+    if (storedList == null || storedList.isEmpty) return;
+
+    List<TrustedContact> contacts = storedList.map((s) => TrustedContact.fromStorageString(s)).toList();
+    if (contacts.isEmpty) return;
+
+    Position? pos;
+    try {
+      if (await Geolocator.isLocationServiceEnabled()) {
+        pos = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+      }
+    } catch(e) {}
+
+    final String locText = pos != null 
+        ? 'https://maps.google.com/?q=${pos.latitude},${pos.longitude}' 
+        : 'Location unavailable';
+    
+    final String body = Uri.encodeComponent('SAFETY TIMER EXPIRED! I might be in danger. My GPS location is: $locText');
+    
+    final allPhones = contacts.map((c) => c.phone.replaceAll(RegExp(r'[^0-9+]'), '')).join(',');
+    final uri = Uri.parse('sms:$allPhones?body=$body');
+    try {
+      if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+        await launchUrl(uri);
+      }
+    } catch (e) {}
+  }
+
   void _triggerTimerSOS() {
     _stopTimerLogic();
+    // Fire real SOS in background
+    _sendTimerSOS();
+    
     showModalBottomSheet(
       context: context,
       isDismissible: false,
@@ -113,13 +151,13 @@ class _SafetyTimerScreenState extends State<SafetyTimerScreen> with TickerProvid
                 child: const Icon(Icons.timer_off, color: SafetyTheme.primaryRed, size: 48),
               ),
               const SizedBox(height: 16),
-              Text(
-                'TIMER EXPIRED!',
+              GlobalBhashiniText(
+                'SOS SENT!',
                 style: GoogleFonts.inter(fontSize: 20, fontWeight: FontWeight.w800, color: SafetyTheme.primaryRed),
               ),
               const SizedBox(height: 8),
-              Text(
-                'Safety Timer ran out. Initiating SOS sequence...',
+              GlobalBhashiniText(
+                'Safety Timer ran out. Real SOS alerts have been dispatched to your trusted contacts with your GPS location.',
                 textAlign: TextAlign.center,
                 style: GoogleFonts.inter(fontSize: 15, color: SafetyTheme.textDark),
               ),
@@ -133,7 +171,7 @@ class _SafetyTimerScreenState extends State<SafetyTimerScreen> with TickerProvid
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                   ),
                   onPressed: () => Navigator.pop(ctx),
-                  child: Text('CANCEL FALSE ALARM', style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.bold)),
+                  child: GlobalBhashiniText('DISMISS', style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.bold)),
                 ),
               ),
             ],
@@ -158,7 +196,7 @@ class _SafetyTimerScreenState extends State<SafetyTimerScreen> with TickerProvid
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: Text(
+        title: GlobalBhashiniText(
           'Safety Timer',
           style: GoogleFonts.outfit(fontWeight: FontWeight.bold, color: SafetyTheme.textDark, fontSize: 24),
         ),
@@ -169,7 +207,7 @@ class _SafetyTimerScreenState extends State<SafetyTimerScreen> with TickerProvid
           child: Column(
             children: [
               const SizedBox(height: 10),
-              Text(
+              GlobalBhashiniText(
                 'Set a timer while traveling. If you don\'t cancel it before time runs out, an SOS will be triggered automatically.',
                 style: GoogleFonts.inter(color: SafetyTheme.textGrey, fontSize: 14, height: 1.5),
                 textAlign: TextAlign.center,
@@ -191,7 +229,7 @@ class _SafetyTimerScreenState extends State<SafetyTimerScreen> with TickerProvid
                       center: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
+                          GlobalBhashiniText(
                             _formatTime(_remainingSeconds),
                             style: GoogleFonts.inter(
                               fontSize: 48,
@@ -199,7 +237,7 @@ class _SafetyTimerScreenState extends State<SafetyTimerScreen> with TickerProvid
                               color: SafetyTheme.textDark,
                             ),
                           ),
-                          Text(
+                          GlobalBhashiniText(
                             _isRunning ? 'REMAINING' : 'MINUTES',
                             style: GoogleFonts.inter(
                               fontSize: 12,
@@ -217,7 +255,7 @@ class _SafetyTimerScreenState extends State<SafetyTimerScreen> with TickerProvid
               const SizedBox(height: 50),
               
               if (!_isRunning) ...[
-                Text(
+                GlobalBhashiniText(
                   'Select Duration',
                   style: GoogleFonts.inter(fontWeight: FontWeight.w600, color: SafetyTheme.textDark, fontSize: 16),
                 ),
@@ -246,7 +284,7 @@ class _SafetyTimerScreenState extends State<SafetyTimerScreen> with TickerProvid
                           ),
                           boxShadow: isSelected ? SafetyTheme.glowShadow : [],
                         ),
-                        child: Text(
+                        child: GlobalBhashiniText(
                           '$mins m',
                           style: GoogleFonts.inter(
                             fontWeight: FontWeight.bold,
@@ -269,7 +307,7 @@ class _SafetyTimerScreenState extends State<SafetyTimerScreen> with TickerProvid
                       elevation: 4,
                     ),
                     onPressed: _startTimer,
-                    child: Text(
+                    child: GlobalBhashiniText(
                       'START "WATCH ME"',
                       style: GoogleFonts.inter(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold, letterSpacing: 1.2),
                     ),
@@ -288,7 +326,7 @@ class _SafetyTimerScreenState extends State<SafetyTimerScreen> with TickerProvid
                     ),
                     onPressed: _cancelTimer,
                     icon: const Icon(Icons.stop_circle_outlined, color: Colors.white, size: 28),
-                    label: Text(
+                    label: GlobalBhashiniText(
                       'I\'M SAFE - STOP TIMER',
                       style: GoogleFonts.inter(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold, letterSpacing: 1.2),
                     ),

@@ -1,3 +1,4 @@
+import 'package:bhashini_core/bhashini_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:geolocator/geolocator.dart';
@@ -71,7 +72,7 @@ class _IncidentReportScreenState extends State<IncidentReportScreen> {
     if (_formKey.currentState!.validate()) {
       if (_incidentLocation == null) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Please pin the location of the incident.'), backgroundColor: SafetyTheme.primaryRed),
+          const SnackBar(content: GlobalBhashiniText('Please pin the location of the incident.'), backgroundColor: SafetyTheme.primaryRed),
         );
         return;
       }
@@ -91,7 +92,7 @@ class _IncidentReportScreenState extends State<IncidentReportScreen> {
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text('Report saved locally. It will automatically sync when online.'),
+              content: GlobalBhashiniText('Report saved locally. It will automatically sync when online.'),
               backgroundColor: Colors.green,
             ),
           );
@@ -100,7 +101,7 @@ class _IncidentReportScreenState extends State<IncidentReportScreen> {
          if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
-              content: Text('Report submitted securely.'),
+              content: GlobalBhashiniText('Report submitted securely.'),
               backgroundColor: Colors.green,
             ),
           );
@@ -124,7 +125,7 @@ class _IncidentReportScreenState extends State<IncidentReportScreen> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: Text(
+        title: GlobalBhashiniText(
           'Report Incident',
           style: GoogleFonts.outfit(fontWeight: FontWeight.bold, color: SafetyTheme.textDark, fontSize: 24),
         ),
@@ -149,7 +150,7 @@ class _IncidentReportScreenState extends State<IncidentReportScreen> {
                       const Icon(Icons.privacy_tip_outlined, color: Colors.blue),
                       const SizedBox(width: 12),
                       Expanded(
-                        child: Text(
+                        child: GlobalBhashiniText(
                           'Reports are 100% anonymous and help authorities map unsafe areas in the city.',
                           style: GoogleFonts.inter(fontSize: 13, color: Colors.blue.shade800),
                         ),
@@ -159,24 +160,24 @@ class _IncidentReportScreenState extends State<IncidentReportScreen> {
                 ),
                 const SizedBox(height: 32),
                 
-                Text('Incident Type', style: GoogleFonts.inter(fontWeight: FontWeight.w600, color: SafetyTheme.textDark)),
+                GlobalBhashiniText('Incident Type', style: GoogleFonts.inter(fontWeight: FontWeight.w600, color: SafetyTheme.textDark)),
                 const SizedBox(height: 8),
                 DropdownButtonFormField<String>(
                   value: _selectedIncidentType,
-                  hint: Text('Select incident type', style: GoogleFonts.inter(color: SafetyTheme.textGrey)),
+                  hint: GlobalBhashiniText('Select incident type', style: GoogleFonts.inter(color: SafetyTheme.textGrey)),
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.white,
                     border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
                     contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                   ),
-                  items: _incidentTypes.map((type) => DropdownMenuItem(value: type, child: Text(type, style: GoogleFonts.inter()))).toList(),
+                  items: _incidentTypes.map((type) => DropdownMenuItem(value: type, child: GlobalBhashiniText(type, style: GoogleFonts.inter()))).toList(),
                   onChanged: (val) => setState(() => _selectedIncidentType = val),
                   validator: (value) => value == null ? 'Please select a type' : null,
                 ),
                 
                 const SizedBox(height: 24),
-                Text('Description (Optional)', style: GoogleFonts.inter(fontWeight: FontWeight.w600, color: SafetyTheme.textDark)),
+                GlobalBhashiniText('Description (Optional)', style: GoogleFonts.inter(fontWeight: FontWeight.w600, color: SafetyTheme.textDark)),
                 const SizedBox(height: 8),
                 TextFormField(
                   controller: _descController,
@@ -191,7 +192,7 @@ class _IncidentReportScreenState extends State<IncidentReportScreen> {
                 ),
 
                 const SizedBox(height: 24),
-                Text('Location', style: GoogleFonts.inter(fontWeight: FontWeight.w600, color: SafetyTheme.textDark)),
+                GlobalBhashiniText('Location', style: GoogleFonts.inter(fontWeight: FontWeight.w600, color: SafetyTheme.textDark)),
                 const SizedBox(height: 8),
                 InkWell(
                   onTap: _fetchLocation,
@@ -211,7 +212,7 @@ class _IncidentReportScreenState extends State<IncidentReportScreen> {
                         ),
                         const SizedBox(width: 12),
                         Expanded(
-                          child: Text(
+                          child: GlobalBhashiniText(
                             _isGettingLocation ? 'Acquiring GPS signal...' : _locationString,
                             style: GoogleFonts.inter(
                               color: _incidentLocation != null ? Colors.green.shade700 : SafetyTheme.textDark,
@@ -236,7 +237,7 @@ class _IncidentReportScreenState extends State<IncidentReportScreen> {
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                     ),
                     onPressed: _submitReport,
-                    child: Text('SUBMIT SECURELY', style: GoogleFonts.inter(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
+                    child: GlobalBhashiniText('SUBMIT SECURELY', style: GoogleFonts.inter(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
                   ),
                 ),
                 const SizedBox(height: 24),

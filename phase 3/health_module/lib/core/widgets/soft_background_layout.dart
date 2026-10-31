@@ -41,14 +41,16 @@ class SoftBackgroundLayout extends StatelessWidget {
           ),
 
           // The main content
-          SafeArea(
-            bottom: false,
-            child: hasScrollBody
-                ? child
-                : SingleChildScrollView(
-                    physics: const BouncingScrollPhysics(),
-                    child: child,
-                  ),
+          Positioned.fill(
+            child: SafeArea(
+              bottom: false,
+              child: hasScrollBody
+                  ? child
+                  : SingleChildScrollView(
+                      physics: const BouncingScrollPhysics(),
+                      child: child,
+                    ),
+            ),
           ),
         ],
       ),

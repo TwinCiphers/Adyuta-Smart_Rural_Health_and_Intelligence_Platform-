@@ -1,7 +1,16 @@
+import 'package:bhashini_core/bhashini_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../core/theme/agri_theme.dart';
+import '../../core/db/agri_database.dart';
+import '../../core/services/mandi_service.dart';
 
+/// Mandi Prices Screen — live commodity prices from Agmarknet via data.gov.in.
+///
+/// Online: fetches real prices from the OGD API and caches them locally.
+/// Offline: shows cached prices with a "Cached" badge and last-sync timestamp.
+/// No key: shows a registration prompt instead of an empty list.
 class MandiPricesScreen extends StatefulWidget {
   const MandiPricesScreen({super.key});
 
@@ -10,281 +19,532 @@ class MandiPricesScreen extends StatefulWidget {
 }
 
 class _MandiPricesScreenState extends State<MandiPricesScreen> {
+  String _selectedState = 'Karnataka';
   String _selectedCategory = 'All';
   String _searchQuery = '';
 
-  final List<String> _categories = ['All', 'Grains', 'Vegetables', 'Fruits', 'Cash Crops'];
-
-  final List<Map<String, dynamic>> _mandiData = [
-    {
-      'commodity': 'Wheat (Lok-1)',
-      'mandi': 'Indore Mandi, MP',
-      'price': '₹2,650 / Qtl',
-      'change': '+₹45',
-      'isUp': true,
-      'category': 'Grains',
-      'date': 'Today, 07:30 AM'
-    },
-    {
-      'commodity': 'Soybean (Yellow)',
-      'mandi': 'Ujjain Mandi, MP',
-      'price': '₹4,820 / Qtl',
-      'change': '-₹120',
-      'isUp': false,
-      'category': 'Cash Crops',
-      'date': 'Today, 07:15 AM'
-    },
-    {
-      'commodity': 'Cotton (Long Staple)',
-      'mandi': 'Rajkot Mandi, Gujarat',
-      'price': '₹7,400 / Qtl',
-      'change': '+₹150',
-      'isUp': true,
-      'category': 'Cash Crops',
-      'date': 'Today, 06:50 AM'
-    },
-    {
-      'commodity': 'Tomato (Hybrid)',
-      'mandi': 'Azadpur Mandi, Delhi',
-      'price': '₹1,800 / Qtl',
-      'change': '+₹200',
-      'isUp': true,
-      'category': 'Vegetables',
-      'date': 'Today, 07:45 AM'
-    },
-    {
-      'commodity': 'Onion (Red)',
-      'mandi': 'Lasalgaon Mandi, MH',
-      'price': '₹2,100 / Qtl',
-      'change': '-₹80',
-      'isUp': false,
-      'category': 'Vegetables',
-      'date': 'Today, 07:00 AM'
-    },
-    {
-      'commodity': 'Pomegranate (Bhagwa)',
-      'mandi': 'Nashik Mandi, MH',
-      'price': '₹8,500 / Qtl',
-      'change': '+₹350',
-      'isUp': true,
-      'category': 'Fruits',
-      'date': 'Today, 06:30 AM'
-    },
-    {
-      'commodity': 'Rice (Basmati 1121)',
-      'mandi': 'Karnal Mandi, Haryana',
-      'price': '₹4,300 / Qtl',
-      'change': '+₹90',
-      'isUp': true,
-      'category': 'Grains',
-      'date': 'Today, 07:20 AM'
-    },
+  final List<String> _states = [
+    'Karnataka', 'Maharashtra', 'Madhya Pradesh',
+    'Punjab', 'Haryana', 'Uttar Pradesh',
+    'Rajasthan', 'Gujarat', 'Andhra Pradesh',
+    'Tamil Nadu', 'All India',
   ];
+  final List<String> _categories = [
+    'All', 'Grains', 'Vegetables', 'Fruits', 'Cash Crops', 'Other'
+  ];
+
+  bool _isLoading = true;
+  MandiServiceResult? _result;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchPrices();
+  }
+
+  Future<void> _fetchPrices() async {
+    setState(() => _isLoading = true);
+    final result = await MandiService.fetchMandiPrices(
+      stateFilter: _selectedState == 'All India' ? null : _selectedState,
+    );
+    if (mounted) {
+      setState(() {
+        _result = result;
+        _isLoading = false;
+      });
+    }
+  }
+
+  List<MandiPrice> get _filteredPrices {
+    if (_result == null) return [];
+    var list = _result!.prices;
+
+    // Category filter
+    if (_selectedCategory != 'All') {
+      list = list
+          .where((p) => MandiService.categoryFor(p.commodity) == _selectedCategory)
+          .toList();
+    }
+
+    // Search filter
+    if (_searchQuery.isNotEmpty) {
+      final q = _searchQuery.toLowerCase();
+      list = list
+          .where((p) =>
+              p.commodity.toLowerCase().contains(q) ||
+              p.market.toLowerCase().contains(q) ||
+              p.district.toLowerCase().contains(q))
+          .toList();
+    }
+
+    return list;
+  }
+
+  // ─── Build ──────────────────────────────────────────────────────────────────
 
   @override
   Widget build(BuildContext context) {
-    final filteredList = _mandiData.where((item) {
-      final matchesCategory = _selectedCategory == 'All' || item['category'] == _selectedCategory;
-      final matchesSearch = item['commodity'].toLowerCase().contains(_searchQuery.toLowerCase()) ||
-          item['mandi'].toLowerCase().contains(_searchQuery.toLowerCase());
-      return matchesCategory && matchesSearch;
-    }).toList();
-
     return Scaffold(
-      backgroundColor: Colors.transparent,
+      backgroundColor: AgriTheme.background,
       appBar: AppBar(
-        title: const Text('Daily APMC Mandi Rates'),
-        centerTitle: false,
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: AgriTheme.textDark),
+          onPressed: () => Navigator.pop(context),
+        ),
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            GlobalBhashiniText(
+              'Mandi Prices',
+              style: GoogleFonts.outfit(
+                  fontWeight: FontWeight.bold,
+                  color: AgriTheme.textDark,
+                  fontSize: 18),
+            ),
+            if (_result != null)
+              GlobalBhashiniText(
+                _result!.isLive
+                    ? '🟠 Live · Agmarknet'
+                    : _result!.requiresApiKey
+                        ? '🔑 API key required'
+                        : '⚫ Cached · ${_formatDate(_result!.fetchedAt)}',
+                style: GoogleFonts.inter(
+                    fontSize: 10, color: AgriTheme.textMuted),
+              ),
+          ],
+        ),
         actions: [
           IconButton(
             icon: const Icon(Icons.refresh, color: AgriTheme.primaryGreen),
-            onPressed: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Mandi prices updated to latest APMC bulletin')),
-              );
-            },
-          ),
+            onPressed: _fetchPrices,
+            tooltip: 'Refresh',
+          )
         ],
       ),
-      body: Column(
+      body: _isLoading
+          ? const Center(
+              child: CircularProgressIndicator(color: AgriTheme.primaryGreen))
+          : _result!.requiresApiKey
+              ? _buildApiKeyPrompt()
+              : Column(
+                  children: [
+                    _buildFilters(),
+                    _buildSourceBar(),
+                    Expanded(
+                      child: _filteredPrices.isEmpty
+                          ? _buildEmptyState()
+                          : RefreshIndicator(
+                              onRefresh: _fetchPrices,
+                              child: ListView.separated(
+                                padding: const EdgeInsets.all(16),
+                                itemCount: _filteredPrices.length,
+                                separatorBuilder: (_, __) =>
+                                    const SizedBox(height: 10),
+                                itemBuilder: (context, i) =>
+                                    _buildPriceCard(_filteredPrices[i]),
+                              ),
+                            ),
+                    ),
+                  ],
+                ),
+    );
+  }
+
+  // ─── API Key Prompt ──────────────────────────────────────────────────────────
+
+  Widget _buildApiKeyPrompt() {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(32),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: AgriTheme.amberLight,
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(Icons.vpn_key_rounded,
+                  size: 48, color: AgriTheme.accentGold),
+            ),
+            const SizedBox(height: 24),
+            GlobalBhashiniText(
+              'Live Mandi Prices',
+              style: GoogleFonts.outfit(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: AgriTheme.textDark),
+            ),
+            const SizedBox(height: 12),
+            GlobalBhashiniText(
+              'Register for a free API key at data.gov.in to see live Agmarknet commodity prices from markets across India.',
+              textAlign: TextAlign.center,
+              style: GoogleFonts.inter(
+                  fontSize: 14, color: AgriTheme.textMuted, height: 1.5),
+            ),
+            const SizedBox(height: 8),
+            GlobalBhashiniText(
+              'Once you have a key, add it to MandiService._apiKey in the code.',
+              textAlign: TextAlign.center,
+              style: GoogleFonts.inter(
+                  fontSize: 12,
+                  color: AgriTheme.textMuted,
+                  fontStyle: FontStyle.italic),
+            ),
+            const SizedBox(height: 24),
+            ElevatedButton.icon(
+              onPressed: () =>
+                  launchUrl(Uri.parse('https://data.gov.in/user/register')),
+              icon: const Icon(Icons.open_in_new, size: 16),
+              label: GlobalBhashiniText('Register at data.gov.in',
+                  style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AgriTheme.primaryGreen,
+                foregroundColor: Colors.white,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12)),
+              ),
+            ),
+            const SizedBox(height: 12),
+            GlobalBhashiniText(
+              'Free · No credit card · Instant access',
+              style: GoogleFonts.inter(
+                  fontSize: 11, color: Colors.green.shade700),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  // ─── Filters ────────────────────────────────────────────────────────────────
+
+  Widget _buildFilters() {
+    return Container(
+      color: Colors.white,
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      child: Column(
         children: [
-          // Search & Filter Header
-          Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              boxShadow: AgriTheme.cardShadow,
-            ),
-            child: Column(
-              children: [
-                TextField(
-                  onChanged: (val) => setState(() => _searchQuery = val),
-                  decoration: InputDecoration(
-                    hintText: 'Search crop, mandi or city...',
-                    hintStyle: GoogleFonts.outfit(color: AgriTheme.textMuted),
-                    prefixIcon: const Icon(Icons.search, color: AgriTheme.textMuted),
-                    filled: true,
-                    fillColor: AgriTheme.background,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide.none,
-                    ),
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                  ),
-                ),
-                const SizedBox(height: 12),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: _categories.map((cat) {
-                      final isSelected = _selectedCategory == cat;
-                      return Padding(
-                        padding: const EdgeInsets.only(right: 8.0),
-                        child: ChoiceChip(
-                          label: Text(
-                            cat,
-                            style: GoogleFonts.outfit(
-                              color: isSelected ? Colors.white : AgriTheme.textDark,
-                              fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
-                            ),
-                          ),
-                          selected: isSelected,
-                          selectedColor: AgriTheme.primaryGreen,
-                          backgroundColor: Colors.transparent,
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                          onSelected: (_) => setState(() => _selectedCategory = cat),
-                        ),
-                      );
-                    }).toList(),
-                  ),
-                ),
-              ],
+          // Search
+          TextField(
+            onChanged: (v) => setState(() => _searchQuery = v),
+            decoration: InputDecoration(
+              hintText: 'Search commodity, market or district…',
+              hintStyle: GoogleFonts.inter(
+                  fontSize: 13, color: AgriTheme.textMuted),
+              prefixIcon: const Icon(Icons.search,
+                  size: 18, color: AgriTheme.textMuted),
+              contentPadding: const EdgeInsets.symmetric(vertical: 10),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(color: AgriTheme.borderLight),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: const BorderSide(color: AgriTheme.primaryGreen),
+              ),
+              filled: true,
+              fillColor: AgriTheme.background,
             ),
           ),
-
-          // Price ticker notice
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            color: AgriTheme.amberLight,
-            child: Row(
-              children: [
-                const Icon(Icons.info_outline, size: 16, color: AgriTheme.accentGold),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: Text(
-                    'Live APMC rates sourced from Agmarknet. Prices vary by quality.',
-                    style: GoogleFonts.outfit(fontSize: 12, color: const Color(0xFF92400E)),
-                  ),
+          const SizedBox(height: 10),
+          // State + Category dropdowns
+          Row(
+            children: [
+              Expanded(
+                child: _buildDropdown(
+                  value: _selectedState,
+                  items: _states,
+                  onChanged: (v) {
+                    setState(() => _selectedState = v!);
+                    _fetchPrices();
+                  },
+                  icon: Icons.location_on_outlined,
                 ),
-              ],
-            ),
-          ),
-
-          // List of Mandi Rates
-          Expanded(
-            child: filteredList.isEmpty
-                ? Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.query_stats, size: 64, color: AgriTheme.textMuted.withOpacity(0.4)),
-                        const SizedBox(height: 12),
-                        Text('No mandi prices found', style: GoogleFonts.outfit(fontSize: 16, color: AgriTheme.textMuted)),
-                      ],
-                    ),
-                  )
-                : ListView.builder(
-                    padding: const EdgeInsets.all(16),
-                    itemCount: filteredList.length,
-                    itemBuilder: (context, index) {
-                      final item = filteredList[index];
-                      final isUp = item['isUp'] as bool;
-                      return Container(
-                        margin: const EdgeInsets.only(bottom: 12),
-                        padding: const EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(16),
-                          boxShadow: AgriTheme.cardShadow,
-                          border: Border.all(color: AgriTheme.borderLight),
-                        ),
-                        child: Row(
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.all(12),
-                              decoration: BoxDecoration(
-                                color: AgriTheme.lightGreen,
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: const Icon(Icons.eco, color: AgriTheme.primaryGreen, size: 28),
-                            ),
-                            const SizedBox(width: 14),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    item['commodity'],
-                                    style: GoogleFonts.outfit(fontWeight: FontWeight.bold, fontSize: 16, color: AgriTheme.textDark),
-                                  ),
-                                  const SizedBox(height: 2),
-                                  Text(
-                                    item['mandi'],
-                                    style: GoogleFonts.outfit(fontSize: 13, color: AgriTheme.textMuted),
-                                  ),
-                                  const SizedBox(height: 4),
-                                  Text(
-                                    item['date'],
-                                    style: GoogleFonts.outfit(fontSize: 11, color: AgriTheme.textMuted.withOpacity(0.8)),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Text(
-                                  item['price'],
-                                  style: GoogleFonts.outfit(fontWeight: FontWeight.bold, fontSize: 16, color: AgriTheme.primaryGreen),
-                                ),
-                                const SizedBox(height: 4),
-                                Container(
-                                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                                  decoration: BoxDecoration(
-                                    color: (isUp ? AgriTheme.priceUp : AgriTheme.priceDown).withOpacity(0.12),
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Icon(
-                                        isUp ? Icons.arrow_upward : Icons.arrow_downward,
-                                        size: 12,
-                                        color: isUp ? AgriTheme.priceUp : AgriTheme.priceDown,
-                                      ),
-                                      const SizedBox(width: 2),
-                                      Text(
-                                        item['change'],
-                                        style: GoogleFonts.outfit(
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 12,
-                                          color: isUp ? AgriTheme.priceUp : AgriTheme.priceDown,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  ),
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: _buildDropdown(
+                  value: _selectedCategory,
+                  items: _categories,
+                  onChanged: (v) => setState(() => _selectedCategory = v!),
+                  icon: Icons.category_outlined,
+                ),
+              ),
+            ],
           ),
         ],
       ),
     );
+  }
+
+  Widget _buildDropdown({
+    required String value,
+    required List<String> items,
+    required ValueChanged<String?> onChanged,
+    required IconData icon,
+  }) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      decoration: BoxDecoration(
+        color: AgriTheme.background,
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: AgriTheme.borderLight),
+      ),
+      child: DropdownButton<String>(
+        value: value,
+        isExpanded: true,
+        underline: const SizedBox(),
+        icon: const Icon(Icons.keyboard_arrow_down,
+            size: 18, color: AgriTheme.textMuted),
+        style: GoogleFonts.inter(fontSize: 12, color: AgriTheme.textDark),
+        items: items
+            .map((s) => DropdownMenuItem(
+                  value: s,
+                  child: Row(
+                    children: [
+                      Icon(icon, size: 14, color: AgriTheme.primaryGreen),
+                      const SizedBox(width: 6),
+                      Expanded(
+                          child: GlobalBhashiniText(s,
+                              overflow: TextOverflow.ellipsis,
+                              style: GoogleFonts.inter(fontSize: 12))),
+                    ],
+                  ),
+                ))
+            .toList(),
+        onChanged: onChanged,
+      ),
+    );
+  }
+
+  // ─── Source bar ──────────────────────────────────────────────────────────────
+
+  Widget _buildSourceBar() {
+    if (_result == null) return const SizedBox();
+    return Container(
+      color: _result!.isLive ? Colors.green.shade50 : Colors.grey.shade100,
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+      child: Row(
+        children: [
+          Icon(
+            _result!.isLive ? Icons.cloud_done : Icons.cloud_off,
+            size: 13,
+            color: _result!.isLive ? Colors.green : Colors.grey,
+          ),
+          const SizedBox(width: 6),
+          GlobalBhashiniText(
+            _result!.isLive
+                ? 'Live · ${_result!.source} · ${_filteredPrices.length} records'
+                : 'Cached · ${_result!.source} · ${_filteredPrices.length} records',
+            style: GoogleFonts.inter(
+              fontSize: 11,
+              color: _result!.isLive ? Colors.green.shade800 : Colors.grey.shade600,
+            ),
+          ),
+          const Spacer(),
+          GlobalBhashiniText(
+            _formatDate(_result!.fetchedAt),
+            style: GoogleFonts.inter(
+                fontSize: 10, color: Colors.grey.shade500),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // ─── Price card ───────────────────────────────────────────────────────────────
+
+  Widget _buildPriceCard(MandiPrice price) {
+    final observedAt = price.observedAt > 0
+        ? DateTime.fromMillisecondsSinceEpoch(price.observedAt)
+        : null;
+    final category = MandiService.categoryFor(price.commodity);
+    final categoryColor = _categoryColor(category);
+
+    return Container(
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: AgriTheme.cardBg,
+        borderRadius: BorderRadius.circular(14),
+        boxShadow: AgriTheme.cardShadow,
+        border: Border.all(color: AgriTheme.borderLight, width: 0.8),
+      ),
+      child: Row(
+        children: [
+          // ── Category dot ───────────────────────────────────────────────
+          Container(
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(
+              color: categoryColor.withOpacity(0.1),
+              shape: BoxShape.circle,
+            ),
+            child: Center(
+              child: GlobalBhashiniText(
+                _categoryEmoji(category),
+                style: const TextStyle(fontSize: 18),
+              ),
+            ),
+          ),
+          const SizedBox(width: 12),
+          // ── Name + location ────────────────────────────────────────────
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                GlobalBhashiniText(
+                  price.commodity,
+                  style: GoogleFonts.outfit(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 14,
+                      color: AgriTheme.textDark),
+                ),
+                if (price.variety.isNotEmpty)
+                  GlobalBhashiniText(
+                    price.variety,
+                    style: GoogleFonts.inter(
+                        fontSize: 10, color: AgriTheme.textMuted),
+                  ),
+                const SizedBox(height: 2),
+                Row(
+                  children: [
+                    const Icon(Icons.location_on,
+                        size: 10, color: AgriTheme.textMuted),
+                    const SizedBox(width: 2),
+                    Expanded(
+                      child: GlobalBhashiniText(
+                        '${price.market}, ${price.district}',
+                        style: GoogleFonts.inter(
+                            fontSize: 11, color: AgriTheme.textMuted),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 4),
+                // ── Freshness badge ──────────────────────────────────────
+                Row(
+                  children: [
+                    Container(
+                      width: 6,
+                      height: 6,
+                      decoration: BoxDecoration(
+                        color: _result!.isLive
+                            ? const Color(0xFFF97316)
+                            : Colors.grey,
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                    const SizedBox(width: 4),
+                    GlobalBhashiniText(
+                      observedAt != null
+                          ? '${price.source} · ${_formatDate(observedAt)}'
+                          : price.source,
+                      style: GoogleFonts.inter(
+                          fontSize: 10, color: AgriTheme.textMuted),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          // ── Modal price ────────────────────────────────────────────────
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              GlobalBhashiniText(
+                MandiService.formatPrice(price.modalPrice),
+                style: GoogleFonts.outfit(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 17,
+                    color: AgriTheme.primaryGreen),
+              ),
+              GlobalBhashiniText(
+                price.priceUnit,
+                style: GoogleFonts.inter(
+                    fontSize: 9, color: AgriTheme.textMuted),
+              ),
+              if (price.minPrice > 0 && price.maxPrice > 0)
+                GlobalBhashiniText(
+                  '${MandiService.formatPrice(price.minPrice)}–${MandiService.formatPrice(price.maxPrice)}',
+                  style: GoogleFonts.inter(
+                      fontSize: 9, color: AgriTheme.textMuted),
+                ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildEmptyState() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(Icons.inbox_outlined, size: 48, color: Colors.grey.shade300),
+          const SizedBox(height: 12),
+          GlobalBhashiniText(
+            'No prices found',
+            style: GoogleFonts.outfit(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: AgriTheme.textMuted),
+          ),
+          const SizedBox(height: 4),
+          GlobalBhashiniText(
+            'Try a different state or category',
+            style: GoogleFonts.inter(fontSize: 13, color: AgriTheme.textMuted),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // ─── Helpers ──────────────────────────────────────────────────────────────────
+
+  Color _categoryColor(String cat) {
+    switch (cat) {
+      case 'Grains':
+        return const Color(0xFFF59E0B);
+      case 'Vegetables':
+        return const Color(0xFF10B981);
+      case 'Fruits':
+        return const Color(0xFFEC4899);
+      case 'Cash Crops':
+        return const Color(0xFF8B5CF6);
+      default:
+        return const Color(0xFF64748B);
+    }
+  }
+
+  String _categoryEmoji(String cat) {
+    switch (cat) {
+      case 'Grains':
+        return '🌾';
+      case 'Vegetables':
+        return '🥦';
+      case 'Fruits':
+        return '🍎';
+      case 'Cash Crops':
+        return '🌿';
+      default:
+        return '📦';
+    }
+  }
+
+  String _formatDate(DateTime dt) {
+    final now = DateTime.now();
+    final diff = now.difference(dt);
+    if (diff.inMinutes < 1) return 'just now';
+    if (diff.inMinutes < 60) return '${diff.inMinutes} min ago';
+    if (diff.inHours < 24) return '${diff.inHours}h ago';
+    return '${dt.day}/${dt.month}/${dt.year}';
   }
 }

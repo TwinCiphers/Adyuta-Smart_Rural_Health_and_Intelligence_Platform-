@@ -1,3 +1,4 @@
+import 'package:bhashini_core/bhashini_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
@@ -35,18 +36,29 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('🎉 Enrolled in ${widget.course.title}!', style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
+            content: GlobalBhashiniText('🎉 Enrolled in ${widget.course.title}!', style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
             backgroundColor: EduTheme.accentTeal,
             behavior: SnackBarBehavior.floating,
           ),
         );
+        
+        if (widget.course.lessons.isNotEmpty) {
+          final firstIncomplete = widget.course.lessons.firstWhere((l) => !l.isCompleted, orElse: () => widget.course.lessons.first);
+          await Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => LessonPlayerScreen(lesson: firstIncomplete, course: widget.course),
+            ),
+          );
+          setState(() {});
+        }
       }
     } else {
       await EduStorageService.unenrollFromCourse(widget.course.id);
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Unenrolled from course.', style: GoogleFonts.inter()),
+            content: GlobalBhashiniText('Unenrolled from course.', style: GoogleFonts.inter()),
             backgroundColor: EduTheme.textGrey,
             behavior: SnackBarBehavior.floating,
           ),
@@ -114,20 +126,20 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                             color: EduTheme.accentGold,
                             borderRadius: BorderRadius.circular(12),
                           ),
-                          child: Text(
+                          child: GlobalBhashiniText(
                             widget.course.category.toUpperCase(),
                             style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 10, color: EduTheme.textDark),
                           ),
                         ),
                         const SizedBox(height: 8),
-                        Text(
+                        GlobalBhashiniText(
                           widget.course.title,
                           style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white),
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                         ),
                         const SizedBox(height: 4),
-                        Text(
+                        GlobalBhashiniText(
                           'Instructor: ${widget.course.instructor}',
                           style: GoogleFonts.inter(fontSize: 13, color: Colors.white70),
                         ),
@@ -164,7 +176,7 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                               children: [
                                 Icon(_isEnrolled ? Icons.school : Icons.menu_book, color: _isEnrolled ? EduTheme.accentTeal : EduTheme.primaryIndigo, size: 24),
                                 const SizedBox(width: 10),
-                                Text(
+                                GlobalBhashiniText(
                                   _isEnrolled ? 'Currently Enrolled' : 'Free Rural Skill Course',
                                   style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 15, color: EduTheme.textDark),
                                 ),
@@ -174,7 +186,7 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                               Container(
                                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                                 decoration: BoxDecoration(color: const Color(0xFFDCFCE7), borderRadius: BorderRadius.circular(8)),
-                                child: Text(
+                                child: GlobalBhashiniText(
                                   '${(progress * 100).toInt()}% Done',
                                   style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 12, color: const Color(0xFF166534)),
                                 ),
@@ -192,7 +204,7 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                             padding: EdgeInsets.zero,
                           ),
                           const SizedBox(height: 8),
-                          Text('Complete all lessons below to master this topic!', style: GoogleFonts.inter(fontSize: 12, color: EduTheme.textGrey)),
+                          GlobalBhashiniText('Complete all lessons below to master this topic!', style: GoogleFonts.inter(fontSize: 12, color: EduTheme.textGrey)),
                         ],
                         const SizedBox(height: 16),
                         SizedBox(
@@ -209,7 +221,7 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                                 side: _isEnrolled ? const BorderSide(color: Color(0xFFFECACA)) : BorderSide.none,
                               ),
                             ),
-                            child: Text(
+                            child: GlobalBhashiniText(
                               _isEnrolled ? 'Unenroll from Course' : 'Enroll Now for Free',
                               style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 15),
                             ),
@@ -221,9 +233,9 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                   const SizedBox(height: 24),
 
                   // Course Overview
-                  Text('Course Overview', style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 18, color: EduTheme.textDark)),
+                  GlobalBhashiniText('Course Overview', style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 18, color: EduTheme.textDark)),
                   const SizedBox(height: 8),
-                  Text(
+                  GlobalBhashiniText(
                     widget.course.description,
                     style: GoogleFonts.inter(fontSize: 14, color: EduTheme.textGrey, height: 1.5),
                   ),
@@ -233,8 +245,8 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Course Syllabus', style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 18, color: EduTheme.textDark)),
-                      Text('${widget.course.lessons.length} Lessons', style: GoogleFonts.inter(fontWeight: FontWeight.w600, fontSize: 13, color: EduTheme.primaryIndigo)),
+                      GlobalBhashiniText('Course Syllabus', style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 18, color: EduTheme.textDark)),
+                      GlobalBhashiniText('${widget.course.lessons.length} Lessons', style: GoogleFonts.inter(fontWeight: FontWeight.w600, fontSize: 13, color: EduTheme.primaryIndigo)),
                     ],
                   ),
                   const SizedBox(height: 12),
@@ -270,7 +282,7 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                                 child: Center(
                                   child: lesson.isCompleted
                                       ? const Icon(Icons.check_circle, color: EduTheme.accentTeal, size: 22)
-                                      : Text(
+                                      : GlobalBhashiniText(
                                           '${index + 1}',
                                           style: GoogleFonts.inter(fontWeight: FontWeight.bold, color: EduTheme.primaryIndigo),
                                         ),
@@ -281,7 +293,7 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
+                                    GlobalBhashiniText(
                                       lesson.title,
                                       style: GoogleFonts.inter(
                                         fontWeight: FontWeight.bold,
@@ -294,7 +306,7 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                                       children: [
                                         const Icon(Icons.play_circle_outline, size: 14, color: EduTheme.textGrey),
                                         const SizedBox(width: 4),
-                                        Text(lesson.duration, style: GoogleFonts.inter(fontSize: 12, color: EduTheme.textGrey)),
+                                        GlobalBhashiniText(lesson.duration, style: GoogleFonts.inter(fontSize: 12, color: EduTheme.textGrey)),
                                       ],
                                     ),
                                   ],

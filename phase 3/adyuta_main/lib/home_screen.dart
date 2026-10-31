@@ -1,3 +1,5 @@
+import 'package:bhashini_core/bhashini_core.dart';
+import 'package:adyuta_main/chat/ui/chat_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:health_module/main.dart'; // Import the Health module's entry point
@@ -56,7 +58,9 @@ class _AdyutaMainHomeState extends ConsumerState<AdyutaMainHome> {
           backgroundColor: const Color(0xFFF8F9FA),
           drawer: _buildDrawer(),
           appBar: _buildAppBar(),
-          body: Container(
+          body: Stack(
+            children: [
+              Container(
             decoration: const BoxDecoration(
                 color: Color(0xFFF8F9FA),
                 image: DecorationImage(
@@ -88,13 +92,13 @@ class _AdyutaMainHomeState extends ConsumerState<AdyutaMainHome> {
                               const Icon(Icons.warning_amber_rounded, color: Colors.orange),
                               const SizedBox(width: 12),
                               const Expanded(
-                                child: Text('Complete security setup to enable fast MPIN login.'),
+                                child: GlobalBhashiniText('Complete security setup to enable fast MPIN login.'),
                               ),
                               TextButton(
                                 onPressed: () {
                                   context.push('/setup_mpin');
                                 },
-                                child: const Text('Setup now'),
+                                child: const GlobalBhashiniText('Setup now'),
                               )
                             ],
                           ),
@@ -119,8 +123,88 @@ class _AdyutaMainHomeState extends ConsumerState<AdyutaMainHome> {
               ),
             ),
           ),
+            Positioned(
+
+              bottom: 40,
+
+              left: 0,
+
+              right: 0,
+
+              child: IgnorePointer(
+
+                child: Center(
+
+                  child: Container(
+
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+
+                    decoration: BoxDecoration(
+
+                      color: Colors.white,
+
+                      borderRadius: BorderRadius.circular(20),
+
+                      boxShadow: [
+
+                        BoxShadow(
+
+                          color: Colors.black.withOpacity(0.15),
+
+                          blurRadius: 10,
+
+                          offset: const Offset(0, 4),
+
+                        ),
+
+                      ],
+
+                      border: Border.all(color: const Color(0xFF3366FF).withOpacity(0.2)),
+
+                    ),
+
+                    child: Row(
+
+                      mainAxisSize: MainAxisSize.min,
+
+                      children: [
+
+                        Image.asset('assets/images/aroha_logo.png', height: 20),
+
+                        const SizedBox(width: 8),
+
+                        const GlobalBhashiniText(
+
+                          'Hi, I am Aroha! How can I help you?',
+
+                          style: TextStyle(
+
+                            color: Colors.black87,
+
+                            fontWeight: FontWeight.w600,
+
+                            fontSize: 13,
+
+                          ),
+
+                        ),
+
+                      ],
+
+                    ),
+
+                  ),
+
+                ),
+
+              ),
+
+            ),
+
+          ],
+          ),
           floatingActionButton: FloatingActionButton(
-            onPressed: () => _showAIChatbotModal(context),
+            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const ChatScreen())),
             backgroundColor: const Color(0xFF3366FF),
             elevation: 6,
             shape: const CircleBorder(),
@@ -168,16 +252,16 @@ class _AdyutaMainHomeState extends ConsumerState<AdyutaMainHome> {
                       child: Consumer(
                         builder: (context, ref, child) {
                           final user = ref.watch(userProvider);
-                          final name = user?.userMetadata?['full_name'] ?? user?.userMetadata?['name'];
+                          final name = user?.name;
                           return Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                name?.isNotEmpty == true ? name : 'Citizen User',
+                              GlobalBhashiniText(
+                                name?.isNotEmpty == true ? name! : 'Citizen User',
                                 style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.white),
                               ),
-                              Text(
-                                user?.phone ?? '+91 \u2022\u2022\u2022\u2022\u2022 \u2022\u2022808',
+                              GlobalBhashiniText(
+                                '' ?? '+91 \u2022\u2022\u2022\u2022\u2022 \u2022\u2022808',
                                 style: GoogleFonts.inter(fontSize: 13, color: Colors.white70),
                               ),
                             ],
@@ -192,7 +276,7 @@ class _AdyutaMainHomeState extends ConsumerState<AdyutaMainHome> {
             const SizedBox(height: 10),
             ListTile(
               leading: const Icon(Icons.home_outlined, color: Color(0xFF19326A)),
-              title: Text(b.t('Home Dashboard'), style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
+              title: GlobalBhashiniText(b.t('Home Dashboard'), style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
               onTap: () {
                 Navigator.pop(context);
                 _scrollController.animateTo(0, duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
@@ -200,7 +284,7 @@ class _AdyutaMainHomeState extends ConsumerState<AdyutaMainHome> {
             ),
             ListTile(
               leading: const Icon(Icons.grid_view, color: Color(0xFF2E7D32)),
-              title: Text(b.t('Our Services'), style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
+              title: GlobalBhashiniText(b.t('Our Services'), style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
               onTap: () {
                 Navigator.pop(context);
                 _scrollToKey(_servicesKey);
@@ -208,15 +292,15 @@ class _AdyutaMainHomeState extends ConsumerState<AdyutaMainHome> {
             ),
             ListTile(
               leading: const Icon(Icons.auto_awesome, color: Color(0xFF3366FF)),
-              title: Text(b.t('AI Assistant & Chatbot'), style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
+              title: GlobalBhashiniText(b.t('AI Assistant & Chatbot'), style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
               onTap: () {
                 Navigator.pop(context);
-                _showAIChatbotModal(context);
+                Navigator.push(context, MaterialPageRoute(builder: (_) => const ChatScreen()));
               },
             ),
             ListTile(
               leading: const Icon(Icons.notifications_active_outlined, color: Color(0xFFE65100)),
-              title: Text(b.t('Updates & Alerts'), style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
+              title: GlobalBhashiniText(b.t('Updates & Alerts'), style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
               onTap: () {
                 Navigator.pop(context);
                 _scrollToKey(_updatesKey);
@@ -224,7 +308,7 @@ class _AdyutaMainHomeState extends ConsumerState<AdyutaMainHome> {
             ),
             ListTile(
               leading: const Icon(Icons.settings_outlined, color: Color(0xFF4A148C)),
-              title: Text(b.t('Settings & Preferences'), style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
+              title: GlobalBhashiniText(b.t('Settings & Preferences'), style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
               onTap: () {
                 Navigator.pop(context);
                 context.push('/settings');
@@ -233,8 +317,8 @@ class _AdyutaMainHomeState extends ConsumerState<AdyutaMainHome> {
             const Divider(),
             ListTile(
               leading: const Icon(Icons.language, color: Color(0xFF19326A)),
-              title: Text(b.t('Language / भाषा'), style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
-              subtitle: Text(
+              title: GlobalBhashiniText(b.t('Language / भाषा'), style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
+              subtitle: GlobalBhashiniText(
                 b.currentLanguageCode == 'en' ? 'English (Default)' : BhashiniService.supportedLanguages.firstWhere((l) => l['code'] == b.currentLanguageCode)['native']!,
                 style: GoogleFonts.inter(fontSize: 12, color: const Color(0xFFC67D00), fontWeight: FontWeight.bold),
               ),
@@ -245,18 +329,18 @@ class _AdyutaMainHomeState extends ConsumerState<AdyutaMainHome> {
             ),
             ListTile(
               leading: const Icon(Icons.help_outline, color: Colors.black87),
-              title: Text(b.t('Help & Helpline 1930'), style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
+              title: GlobalBhashiniText(b.t('Help & Helpline 1930'), style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
               onTap: () {
                 Navigator.pop(context);
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('National Cyber & Citizen Helpline: 1930 / 112')),
+                  const SnackBar(content: GlobalBhashiniText('National Cyber & Citizen Helpline: 1930 / 112')),
                 );
               },
             ),
             const Spacer(),
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Text(
+              child: GlobalBhashiniText(
                 'Adyuta v1.0.0 (Pure Dart Offline)',
                 style: GoogleFonts.inter(fontSize: 11, color: Colors.grey.shade500),
               ),
@@ -293,9 +377,9 @@ class _AdyutaMainHomeState extends ConsumerState<AdyutaMainHome> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text('Adyuta', style: GoogleFonts.caveat(fontWeight: FontWeight.bold, fontSize: 42, color: const Color(0xFF19326A), height: 1.0)),
+                GlobalBhashiniText('Adyuta', style: GoogleFonts.caveat(fontWeight: FontWeight.bold, fontSize: 42, color: const Color(0xFF19326A), height: 1.0)),
                 const SizedBox(height: 2),
-                Text(
+                GlobalBhashiniText(
                   'Where Rare Stands Alone',
                   style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600, color: Colors.grey.shade700, height: 1.2),
                 ),
@@ -383,10 +467,10 @@ class _AdyutaMainHomeState extends ConsumerState<AdyutaMainHome> {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                     decoration: BoxDecoration(color: Colors.white.withOpacity(0.2), borderRadius: BorderRadius.circular(20)),
-                    child: Text('Bharat Citizen Portal', style: GoogleFonts.inter(fontSize: 11, fontWeight: FontWeight.bold, color: Colors.white)),
+                    child: GlobalBhashiniText('Bharat Citizen Portal', style: GoogleFonts.inter(fontSize: 11, fontWeight: FontWeight.bold, color: Colors.white)),
                   ),
                   const SizedBox(height: 12),
-                  Text(
+                  GlobalBhashiniText(
                     'Smart Rural Health,\nAgri & Governance',
                     style: GoogleFonts.inter(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white, height: 1.2),
                   ),
@@ -394,7 +478,7 @@ class _AdyutaMainHomeState extends ConsumerState<AdyutaMainHome> {
                   ElevatedButton.icon(
                     onPressed: () => _scrollToKey(_servicesKey),
                     icon: const Icon(Icons.explore, size: 16),
-                    label: Text('Explore Services', style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w600)),
+                    label: GlobalBhashiniText('Explore Services', style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w600)),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
                       foregroundColor: const Color(0xFF19326A),
@@ -424,7 +508,7 @@ class _AdyutaMainHomeState extends ConsumerState<AdyutaMainHome> {
               children: [
                 const Icon(Icons.cloud_done, size: 14, color: Colors.green),
                 const SizedBox(width: 4),
-                Text('Online & Synced', style: GoogleFonts.inter(fontSize: 11, color: Colors.green, fontWeight: FontWeight.bold)),
+                GlobalBhashiniText('Online & Synced', style: GoogleFonts.inter(fontSize: 11, color: Colors.green, fontWeight: FontWeight.bold)),
               ],
             ),
           )
@@ -445,7 +529,7 @@ class _AdyutaMainHomeState extends ConsumerState<AdyutaMainHome> {
             children: [
               Align(
                 alignment: Alignment.centerLeft,
-                child: Text(b.t('Our Services'), style: GoogleFonts.inter(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black87)),
+                child: GlobalBhashiniText(b.t('Our Services'), style: GoogleFonts.inter(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black87)),
               ),
               const SizedBox(height: 16),
               dashboardAsync.when(
@@ -564,14 +648,14 @@ class _AdyutaMainHomeState extends ConsumerState<AdyutaMainHome> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(b.t('Recent Activity'), style: GoogleFonts.inter(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black87)),
+                  GlobalBhashiniText(b.t('Recent Activity'), style: GoogleFonts.inter(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black87)),
                   Icon(Icons.history, color: Colors.grey.shade600, size: 20),
                 ],
               ),
               const SizedBox(height: 16),
               feedAsync.when(
                 loading: () => const Center(child: CircularProgressIndicator()),
-                error: (err, stack) => const Text('Unable to load activity.'),
+                error: (err, stack) => const GlobalBhashiniText('Unable to load activity.'),
                 data: (logs) {
                   if (logs.isEmpty) {
                     return Container(
@@ -582,7 +666,7 @@ class _AdyutaMainHomeState extends ConsumerState<AdyutaMainHome> {
                         borderRadius: BorderRadius.circular(16),
                         border: Border.all(color: Colors.grey.shade200),
                       ),
-                      child: Text('No recent activity. Start exploring the modules above!', 
+                      child: GlobalBhashiniText('No recent activity. Start exploring the modules above!', 
                         style: GoogleFonts.inter(color: Colors.grey.shade600),
                         textAlign: TextAlign.center,
                       ),
@@ -620,8 +704,8 @@ class _AdyutaMainHomeState extends ConsumerState<AdyutaMainHome> {
                             decoration: BoxDecoration(color: color.withOpacity(0.1), shape: BoxShape.circle),
                             child: Icon(icon, color: color, size: 20),
                           ),
-                          title: Text(log.message, style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w600)),
-                          subtitle: Text(DateFormat.yMMMd().add_jm().format(log.createdAt), style: GoogleFonts.inter(fontSize: 11, color: Colors.grey.shade500)),
+                          title: GlobalBhashiniText(log.message, style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w600)),
+                          subtitle: GlobalBhashiniText(DateFormat.yMMMd().add_jm().format(log.createdAt), style: GoogleFonts.inter(fontSize: 11, color: Colors.grey.shade500)),
                         );
                       },
                     ),
@@ -652,11 +736,11 @@ class _AdyutaMainHomeState extends ConsumerState<AdyutaMainHome> {
               children: [
                 Image.asset('assets/images/adyuta_logo.png', height: 38),
                 const SizedBox(width: 10),
-                Text('About Adyuta Platform', style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black87)),
+                GlobalBhashiniText('About Adyuta Platform', style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black87)),
               ],
             ),
             const SizedBox(height: 8),
-            Text(
+            GlobalBhashiniText(
               'Adyuta is your all-in-one platform bringing essential services, statutory rights, and government schemes to your fingertips.',
               style: GoogleFonts.inter(fontSize: 12, color: Colors.black87, height: 1.4),
             ),
@@ -673,7 +757,7 @@ class _AdyutaMainHomeState extends ConsumerState<AdyutaMainHome> {
                 elevation: 0,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
               ),
-              child: Text('Know More', style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w600)),
+              child: GlobalBhashiniText('Know More', style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w600)),
             )
           ],
         ),
@@ -700,7 +784,7 @@ class _AdyutaMainHomeState extends ConsumerState<AdyutaMainHome> {
           const SizedBox(height: 16),
           FittedBox(
             fit: BoxFit.scaleDown,
-            child: Text(
+            child: GlobalBhashiniText(
               '#AdyutaForIndia',
               style: GoogleFonts.caveat(
                 fontSize: 44,
@@ -747,7 +831,7 @@ class _AdyutaMainHomeState extends ConsumerState<AdyutaMainHome> {
                     ],
                   ),
                 ),
-                Text('Made by India', style: GoogleFonts.caveat(fontSize: 24, fontWeight: FontWeight.bold, color: const Color(0xFF334155))),
+                GlobalBhashiniText('Made by India', style: GoogleFonts.caveat(fontSize: 24, fontWeight: FontWeight.bold, color: const Color(0xFF334155))),
               ],
             ),
           ),
@@ -759,7 +843,7 @@ class _AdyutaMainHomeState extends ConsumerState<AdyutaMainHome> {
               children: [
                 const Icon(Icons.favorite, color: Color(0xFFE11D48), size: 20),
                 const SizedBox(width: 6),
-                Text('crafted by TwinCiphers at Tech-Pheonix world', style: GoogleFonts.caveat(fontSize: 22, fontWeight: FontWeight.bold, color: const Color(0xFF64748B))),
+                GlobalBhashiniText('crafted by TwinCiphers at Tech-Pheonix world', style: GoogleFonts.caveat(fontSize: 22, fontWeight: FontWeight.bold, color: const Color(0xFF64748B))),
               ],
             ),
           ),
@@ -779,7 +863,7 @@ class _AdyutaMainHomeState extends ConsumerState<AdyutaMainHome> {
             ],
           ),
           const SizedBox(height: 20),
-          Text(
+          GlobalBhashiniText(
             '© 2026 Adyuta Smart Rural Health & Intelligence Platform. All rights reserved.',
             textAlign: TextAlign.center,
             style: GoogleFonts.inter(fontSize: 10, color: const Color(0xFF94A3B8)),
@@ -860,9 +944,9 @@ class _AdyutaMainHomeState extends ConsumerState<AdyutaMainHome> {
             const SizedBox(height: 20),
             Image.asset('assets/images/adyuta_logo.png', height: 72),
             const SizedBox(height: 16),
-            Text('Adyuta AI Assistant', style: GoogleFonts.inter(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black87)),
+            GlobalBhashiniText('Adyuta AI Assistant', style: GoogleFonts.inter(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black87)),
             const SizedBox(height: 8),
-            Text(
+            GlobalBhashiniText(
               'Your intelligent rural guide for Government Schemes, Statutory Laws, Health diagnosis, and Farming advice.',
               textAlign: TextAlign.center,
               style: GoogleFonts.inter(fontSize: 13, color: Colors.grey.shade600, height: 1.4),
@@ -876,7 +960,7 @@ class _AdyutaMainHomeState extends ConsumerState<AdyutaMainHome> {
                   const Icon(Icons.psychology, color: Color(0xFF3366FF), size: 28),
                   const SizedBox(width: 12),
                   Expanded(
-                    child: Text(
+                    child: GlobalBhashiniText(
                       'Voice & multilingual AI conversational agent is connected to SchemeSaathi offline directory! (Live LLM streaming interface will be added in upcoming release).',
                       style: GoogleFonts.inter(fontSize: 12, color: Colors.black87, height: 1.3),
                     ),
@@ -895,7 +979,7 @@ class _AdyutaMainHomeState extends ConsumerState<AdyutaMainHome> {
                   padding: const EdgeInsets.symmetric(vertical: 14),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                 ),
-                child: Text('Got it, Return to Dashboard', style: GoogleFonts.inter(fontWeight: FontWeight.bold)),
+                child: GlobalBhashiniText('Got it, Return to Dashboard', style: GoogleFonts.inter(fontWeight: FontWeight.bold)),
               ),
             ),
             const SizedBox(height: 10),
@@ -914,7 +998,7 @@ class _AdyutaMainHomeState extends ConsumerState<AdyutaMainHome> {
           children: [
             const Icon(Icons.notifications_active, color: Color(0xFFE65100)),
             const SizedBox(width: 10),
-            Text('Recent Notifications', style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 18)),
+            GlobalBhashiniText('Recent Notifications', style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 18)),
           ],
         ),
         content: Column(
@@ -930,7 +1014,7 @@ class _AdyutaMainHomeState extends ConsumerState<AdyutaMainHome> {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: Text('Close', style: GoogleFonts.inter(fontWeight: FontWeight.bold, color: const Color(0xFF3366FF))),
+            child: GlobalBhashiniText('Close', style: GoogleFonts.inter(fontWeight: FontWeight.bold, color: const Color(0xFF3366FF))),
           )
         ],
       ),
@@ -965,11 +1049,11 @@ class _AdyutaMainHomeState extends ConsumerState<AdyutaMainHome> {
               children: [
                 Image.asset('assets/images/adyuta_logo.png', height: 32),
                 const SizedBox(width: 12),
-                Expanded(child: Text(title, style: GoogleFonts.inter(fontSize: 20, fontWeight: FontWeight.bold, color: const Color(0xFF19326A)))),
+                Expanded(child: GlobalBhashiniText(title, style: GoogleFonts.inter(fontSize: 20, fontWeight: FontWeight.bold, color: const Color(0xFF19326A)))),
               ],
             ),
             const SizedBox(height: 16),
-            Text(content, style: GoogleFonts.inter(fontSize: 13, color: Colors.black87, height: 1.5)),
+            GlobalBhashiniText(content, style: GoogleFonts.inter(fontSize: 13, color: Colors.black87, height: 1.5)),
             const SizedBox(height: 24),
             SizedBox(
               width: double.infinity,
@@ -981,7 +1065,7 @@ class _AdyutaMainHomeState extends ConsumerState<AdyutaMainHome> {
                   padding: const EdgeInsets.symmetric(vertical: 14),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                 ),
-                child: Text('Close', style: GoogleFonts.inter(fontWeight: FontWeight.bold)),
+                child: GlobalBhashiniText('Close', style: GoogleFonts.inter(fontWeight: FontWeight.bold)),
               ),
             ),
             const SizedBox(height: 10),
@@ -1039,7 +1123,7 @@ class _ServiceCard extends StatelessWidget {
               child: Icon(icon, color: iconColor, size: 28),
             ),
             const SizedBox(height: 10),
-            Text(
+            GlobalBhashiniText(
               title,
               textAlign: TextAlign.center,
               maxLines: 1,
@@ -1047,7 +1131,7 @@ class _ServiceCard extends StatelessWidget {
               style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 13, color: Colors.black87),
             ),
             const SizedBox(height: 4),
-            Text(
+            GlobalBhashiniText(
               subtitle,
               textAlign: TextAlign.center,
               maxLines: 2,
@@ -1099,9 +1183,9 @@ class _KnowledgeCard extends StatelessWidget {
               child: Icon(icon, color: iconColor, size: 22),
             ),
             const Spacer(),
-            Text(title, style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 14, color: Colors.black87)),
+            GlobalBhashiniText(title, style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 14, color: Colors.black87)),
             const SizedBox(height: 2),
-            Text(subtitle, maxLines: 1, overflow: TextOverflow.ellipsis, style: GoogleFonts.inter(fontSize: 11, color: Colors.black54)),
+            GlobalBhashiniText(subtitle, maxLines: 1, overflow: TextOverflow.ellipsis, style: GoogleFonts.inter(fontSize: 11, color: Colors.black54)),
           ],
         ),
       ),
@@ -1130,7 +1214,7 @@ class _NavIcon extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(icon, color: color, size: 20),
-            Text(label, style: GoogleFonts.inter(fontSize: 9.5, color: color, fontWeight: isActive ? FontWeight.bold : FontWeight.normal)),
+            GlobalBhashiniText(label, style: GoogleFonts.inter(fontSize: 9.5, color: color, fontWeight: isActive ? FontWeight.bold : FontWeight.normal)),
           ],
         ),
       ),
@@ -1148,7 +1232,7 @@ class _FooterLink extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      child: Text(
+      child: GlobalBhashiniText(
         label,
         style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w500, color: const Color(0xFF3366FF)),
       ),
@@ -1173,12 +1257,12 @@ class _NotificationItem extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(title, style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 13, color: Colors.black87)),
-              Text(time, style: GoogleFonts.inter(fontSize: 10, color: Colors.grey.shade500)),
+              GlobalBhashiniText(title, style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 13, color: Colors.black87)),
+              GlobalBhashiniText(time, style: GoogleFonts.inter(fontSize: 10, color: Colors.grey.shade500)),
             ],
           ),
           const SizedBox(height: 4),
-          Text(desc, style: GoogleFonts.inter(fontSize: 11, color: Colors.grey.shade700)),
+          GlobalBhashiniText(desc, style: GoogleFonts.inter(fontSize: 11, color: Colors.grey.shade700)),
         ],
       ),
     );

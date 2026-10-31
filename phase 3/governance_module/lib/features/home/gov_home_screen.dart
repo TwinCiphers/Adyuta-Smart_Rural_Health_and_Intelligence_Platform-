@@ -1,9 +1,13 @@
+import 'package:bhashini_core/bhashini_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../core/theme/gov_theme.dart';
 import '../../models/models.dart';
 import '../../data/gov_data.dart';
 import '../../services/gov_storage_service.dart';
+import '../../services/world_bank_service.dart';
+import '../../core/models/gov_data_point.dart';
+import '../../core/widgets/india_snapshot_card.dart';
 import '../schemes/scheme_detail_screen.dart';
 import '../laws/law_detail_screen.dart';
 import '../vault/doc_vault_screen.dart';
@@ -30,10 +34,15 @@ class _GovHomeScreenState extends State<GovHomeScreen> {
   String _lawSearchQuery = '';
   final List<String> _lawDomains = ['All', 'Constitution', 'RBI & Finance', 'Police & FIR', 'Cyberlaws', 'Farmer Rights', 'Labor & MGNREGA'];
 
+  // World Bank state
+  List<GovDataPoint> _indicators = [];
+  bool _isLoadingIndicators = true;
+
   @override
   void initState() {
     super.initState();
     _loadData();
+    _loadIndicators();
   }
 
   Future<void> _loadData() async {
@@ -42,6 +51,16 @@ class _GovHomeScreenState extends State<GovHomeScreen> {
       _allSchemes = schemes;
       _allLaws = GovCatalog.laws;
     });
+  }
+
+  Future<void> _loadIndicators() async {
+    final data = await WorldBankService.getIndiaIndicators();
+    if (mounted) {
+      setState(() {
+        _indicators = data;
+        _isLoadingIndicators = false;
+      });
+    }
   }
 
   List<GovernmentScheme> get _filteredSchemes {
@@ -76,7 +95,7 @@ class _GovHomeScreenState extends State<GovHomeScreen> {
           children: [
             const Icon(Icons.account_balance, color: GovTheme.saffronGold),
             const SizedBox(width: 10),
-            Text('Adyuta SchemeSaathi & Citizen Rights', style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 16)),
+            GlobalBhashiniText('Adyuta SchemeSaathi & Citizen Rights', style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 16)),
           ],
         ),
       ),
@@ -139,25 +158,32 @@ class _GovHomeScreenState extends State<GovHomeScreen> {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                   decoration: BoxDecoration(color: GovTheme.saffronGold, borderRadius: BorderRadius.circular(12)),
-                  child: Text(
+                  child: GlobalBhashiniText(
                     'AI SCHEME EXPLORER',
                     style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 10, color: Colors.white),
                   ),
                 ),
                 const SizedBox(height: 12),
-                Text(
+                GlobalBhashiniText(
                   'Empowering Rural Citizens with Entitlements',
                   style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white),
                 ),
                 const SizedBox(height: 6),
-                Text(
+                GlobalBhashiniText(
                   'Explore over 1,800+ national and state schemes. Check eligibility and verify your document readiness instantly.',
                   style: GoogleFonts.inter(fontSize: 13, color: Colors.white70, height: 1.4),
                 ),
               ],
             ),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 24),
+
+          IndiaSnapshotCard(
+            indicators: _indicators,
+            isLoading: _isLoadingIndicators,
+          ),
+          
+          const SizedBox(height: 24),
 
           // Search Bar
           TextField(
@@ -185,7 +211,7 @@ class _GovHomeScreenState extends State<GovHomeScreen> {
                 return Padding(
                   padding: const EdgeInsets.only(right: 8),
                   child: FilterChip(
-                    label: Text(cat, style: GoogleFonts.inter(fontWeight: isSelected ? FontWeight.bold : FontWeight.normal, fontSize: 13)),
+                    label: GlobalBhashiniText(cat, style: GoogleFonts.inter(fontWeight: isSelected ? FontWeight.bold : FontWeight.normal, fontSize: 13)),
                     selected: isSelected,
                     onSelected: (_) => setState(() => _selectedSchemeCategory = cat),
                     selectedColor: GovTheme.accentBlue,
@@ -208,7 +234,7 @@ class _GovHomeScreenState extends State<GovHomeScreen> {
                   children: [
                     const Icon(Icons.search_off, size: 48, color: GovTheme.textGrey),
                     const SizedBox(height: 12),
-                    Text('No schemes found matching criteria.', style: GoogleFonts.inter(fontSize: 15, color: GovTheme.textGrey)),
+                    GlobalBhashiniText('No schemes found matching criteria.', style: GoogleFonts.inter(fontSize: 15, color: GovTheme.textGrey)),
                   ],
                 ),
               ),
@@ -247,17 +273,17 @@ class _GovHomeScreenState extends State<GovHomeScreen> {
                             Container(
                               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                               decoration: BoxDecoration(color: const Color(0xFFEFF6FF), borderRadius: BorderRadius.circular(8)),
-                              child: Text(scheme.category, style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 11, color: GovTheme.accentBlue)),
+                              child: GlobalBhashiniText(scheme.category, style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 11, color: GovTheme.accentBlue)),
                             ),
                             Icon(scheme.isBookmarked ? Icons.bookmark : Icons.bookmark_border, color: scheme.isBookmarked ? GovTheme.saffronGold : GovTheme.textGrey, size: 20),
                           ],
                         ),
                         const SizedBox(height: 10),
-                        Text(scheme.title, style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 16, color: GovTheme.textDark)),
+                        GlobalBhashiniText(scheme.title, style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 16, color: GovTheme.textDark)),
                         const SizedBox(height: 4),
-                        Text(scheme.ministry, style: GoogleFonts.inter(fontSize: 12, color: GovTheme.textGrey, fontWeight: FontWeight.w500)),
+                        GlobalBhashiniText(scheme.ministry, style: GoogleFonts.inter(fontSize: 12, color: GovTheme.textGrey, fontWeight: FontWeight.w500)),
                         const SizedBox(height: 10),
-                        Text(
+                        GlobalBhashiniText(
                           scheme.benefits,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
@@ -267,7 +293,7 @@ class _GovHomeScreenState extends State<GovHomeScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Text('View Eligibility & Apply', style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 13, color: GovTheme.accentBlue)),
+                            GlobalBhashiniText('View Eligibility & Apply', style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 13, color: GovTheme.accentBlue)),
                             const SizedBox(width: 4),
                             const Icon(Icons.arrow_forward_ios, size: 12, color: GovTheme.accentBlue),
                           ],
@@ -310,18 +336,18 @@ class _GovHomeScreenState extends State<GovHomeScreen> {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                   decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(12)),
-                  child: Text(
+                  child: GlobalBhashiniText(
                     'AUTHENTIC STATUTORY RIGHTS',
                     style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 10, color: const Color(0xFF9A3412)),
                   ),
                 ),
                 const SizedBox(height: 12),
-                Text(
+                GlobalBhashiniText(
                   'Know Your Constitutional & Legal Rights',
                   style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white),
                 ),
                 const SizedBox(height: 6),
-                Text(
+                GlobalBhashiniText(
                   'Strictly zero mock data. Explore verbatim Indian statutes on KCC interest subvention, Zero FIR rights, RBI banking fraud protections, and MGNREGA unemployment allowance.',
                   style: GoogleFonts.inter(fontSize: 13, color: Colors.white70, height: 1.4),
                 ),
@@ -356,7 +382,7 @@ class _GovHomeScreenState extends State<GovHomeScreen> {
                 return Padding(
                   padding: const EdgeInsets.only(right: 8),
                   child: FilterChip(
-                    label: Text(dom, style: GoogleFonts.inter(fontWeight: isSelected ? FontWeight.bold : FontWeight.normal, fontSize: 13)),
+                    label: GlobalBhashiniText(dom, style: GoogleFonts.inter(fontWeight: isSelected ? FontWeight.bold : FontWeight.normal, fontSize: 13)),
                     selected: isSelected,
                     onSelected: (_) => setState(() => _selectedLawDomain = dom),
                     selectedColor: const Color(0xFFEA580C),
@@ -379,7 +405,7 @@ class _GovHomeScreenState extends State<GovHomeScreen> {
                   children: [
                     const Icon(Icons.search_off, size: 48, color: GovTheme.textGrey),
                     const SizedBox(height: 12),
-                    Text('No statutory provisions found matching query.', style: GoogleFonts.inter(fontSize: 15, color: GovTheme.textGrey)),
+                    GlobalBhashiniText('No statutory provisions found matching query.', style: GoogleFonts.inter(fontSize: 15, color: GovTheme.textGrey)),
                   ],
                 ),
               ),
@@ -417,11 +443,11 @@ class _GovHomeScreenState extends State<GovHomeScreen> {
                             Container(
                               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                               decoration: BoxDecoration(color: const Color(0xFFFFF7ED), borderRadius: BorderRadius.circular(8)),
-                              child: Text(law.domain, style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 11, color: const Color(0xFFC2410C))),
+                              child: GlobalBhashiniText(law.domain, style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 11, color: const Color(0xFFC2410C))),
                             ),
                             const SizedBox(width: 8),
                             Expanded(
-                              child: Text(
+                              child: GlobalBhashiniText(
                                 law.sectionNumber,
                                 textAlign: TextAlign.end,
                                 overflow: TextOverflow.ellipsis,
@@ -431,11 +457,11 @@ class _GovHomeScreenState extends State<GovHomeScreen> {
                           ],
                         ),
                         const SizedBox(height: 10),
-                        Text(law.title, style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 16, color: GovTheme.textDark)),
+                        GlobalBhashiniText(law.title, style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 16, color: GovTheme.textDark)),
                         const SizedBox(height: 4),
-                        Text(law.actCitation, style: GoogleFonts.inter(fontSize: 12, color: GovTheme.textGrey, fontStyle: FontStyle.italic)),
+                        GlobalBhashiniText(law.actCitation, style: GoogleFonts.inter(fontSize: 12, color: GovTheme.textGrey, fontStyle: FontStyle.italic)),
                         const SizedBox(height: 10),
-                        Text(
+                        GlobalBhashiniText(
                           law.plainExplanation,
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
@@ -445,7 +471,7 @@ class _GovHomeScreenState extends State<GovHomeScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Text('Read Legal Rights & Actions', style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 13, color: const Color(0xFFC2410C))),
+                            GlobalBhashiniText('Read Legal Rights & Actions', style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 13, color: const Color(0xFFC2410C))),
                             const SizedBox(width: 4),
                             const Icon(Icons.arrow_forward_ios, size: 12, color: Color(0xFFC2410C)),
                           ],

@@ -1,3 +1,4 @@
+import 'package:bhashini_core/bhashini_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../core/theme/gov_theme.dart';
@@ -41,7 +42,7 @@ class _DocVaultScreenState extends State<DocVaultScreen> {
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(
+          content: GlobalBhashiniText(
             newState ? '✅ Checked! Marked ${doc.docName} as ready in your vault.' : 'Unmarked ${doc.docName}',
             style: GoogleFonts.inter(fontWeight: FontWeight.w600),
           ),
@@ -80,14 +81,14 @@ class _DocVaultScreenState extends State<DocVaultScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
+                            GlobalBhashiniText(
                               'MY CITIZEN DOCUMENT VAULT',
                               style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 11, color: GovTheme.saffronGold),
                             ),
                             Container(
                               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                               decoration: BoxDecoration(color: GovTheme.emeraldGreen, borderRadius: BorderRadius.circular(12)),
-                              child: Text(
+                              child: GlobalBhashiniText(
                                 '$readyCount / $totalCount READY',
                                 style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 11, color: Colors.white),
                               ),
@@ -95,12 +96,12 @@ class _DocVaultScreenState extends State<DocVaultScreen> {
                           ],
                         ),
                         const SizedBox(height: 12),
-                        Text(
+                        GlobalBhashiniText(
                           'SchemeSaathi Eligibility Checklist',
                           style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white),
                         ),
                         const SizedBox(height: 6),
-                        Text(
+                        GlobalBhashiniText(
                           'Check off the documents you currently possess. When you view government schemes, SchemeSaathi automatically alerts you whether you have all required proofs ready!',
                           style: GoogleFonts.inter(fontSize: 13, color: Colors.white70, height: 1.4),
                         ),
@@ -109,9 +110,9 @@ class _DocVaultScreenState extends State<DocVaultScreen> {
                   ),
                   const SizedBox(height: 24),
 
-                  Text('Essential Documents Checklist', style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 18, color: GovTheme.textDark)),
+                  GlobalBhashiniText('Essential Documents Checklist', style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 18, color: GovTheme.textDark)),
                   const SizedBox(height: 4),
-                  Text('Tap any document card to toggle readiness status.', style: GoogleFonts.inter(fontSize: 13, color: GovTheme.textGrey)),
+                  GlobalBhashiniText('Tap any document card to toggle readiness status.', style: GoogleFonts.inter(fontSize: 13, color: GovTheme.textGrey)),
                   const SizedBox(height: 16),
 
                   ListView.separated(
@@ -157,19 +158,19 @@ class _DocVaultScreenState extends State<DocVaultScreen> {
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Expanded(
-                                          child: Text(
+                                          child: GlobalBhashiniText(
                                             doc.docName,
                                             style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 15, color: doc.isReady ? const Color(0xFF166534) : GovTheme.textDark),
                                           ),
                                         ),
                                         if (doc.isReady)
-                                          Text('READY', style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 11, color: GovTheme.emeraldGreen)),
+                                          GlobalBhashiniText('READY', style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 11, color: GovTheme.emeraldGreen)),
                                       ],
                                     ),
                                     const SizedBox(height: 2),
-                                    Text(doc.issuer, style: GoogleFonts.inter(fontSize: 11, fontWeight: FontWeight.w600, color: GovTheme.accentBlue)),
+                                    GlobalBhashiniText(doc.issuer, style: GoogleFonts.inter(fontSize: 11, fontWeight: FontWeight.w600, color: GovTheme.accentBlue)),
                                     const SizedBox(height: 6),
-                                    Text(doc.description, style: GoogleFonts.inter(fontSize: 13, color: GovTheme.textGrey, height: 1.4)),
+                                    GlobalBhashiniText(doc.description, style: GoogleFonts.inter(fontSize: 13, color: GovTheme.textGrey, height: 1.4)),
                                   ],
                                 ),
                               ),

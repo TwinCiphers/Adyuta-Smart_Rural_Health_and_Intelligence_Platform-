@@ -1,3 +1,4 @@
+import 'package:bhashini_core/bhashini_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -303,7 +304,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                               color: doc['color'] as Color,
                               borderRadius: BorderRadius.circular(12),
                             ),
-                            child: Text(
+                            child: GlobalBhashiniText(
                               doc['category'],
                               style: GoogleFonts.outfit(
                                 color: doc['iconColor'] as Color,
@@ -318,7 +319,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                               color: AgriTheme.lightGreen,
                               borderRadius: BorderRadius.circular(12),
                             ),
-                            child: Text(
+                            child: GlobalBhashiniText(
                               doc['fileType'].toString().toUpperCase(),
                               style: GoogleFonts.outfit(
                                 color: AgriTheme.primaryGreen,
@@ -327,7 +328,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                               ),
                             ),
                           ),
-                          Text(
+                          GlobalBhashiniText(
                             doc['readTime'],
                             style: GoogleFonts.outfit(fontSize: 13, color: AgriTheme.textMuted, fontWeight: FontWeight.w500),
                           ),
@@ -338,7 +339,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Expanded(
-                            child: Text(
+                            child: GlobalBhashiniText(
                               doc['title'],
                               style: GoogleFonts.outfit(
                                 fontWeight: FontWeight.bold,
@@ -372,11 +373,11 @@ class _CommunityScreenState extends State<CommunityScreen> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
+                                GlobalBhashiniText(
                                   doc['author'],
                                   style: GoogleFonts.outfit(fontSize: 13, color: AgriTheme.textDark, fontWeight: FontWeight.w600),
                                 ),
-                                Text(
+                                GlobalBhashiniText(
                                   'Kisan Knowledge Base Source',
                                   style: GoogleFonts.outfit(fontSize: 11, color: AgriTheme.textMuted),
                                 ),
@@ -387,11 +388,11 @@ class _CommunityScreenState extends State<CommunityScreen> {
                             children: [
                               const Icon(Icons.thumb_up_alt_outlined, size: 16, color: AgriTheme.textMuted),
                               const SizedBox(width: 4),
-                              Text(doc['likes'], style: GoogleFonts.outfit(fontSize: 13, color: AgriTheme.textMuted)),
+                              GlobalBhashiniText(doc['likes'], style: GoogleFonts.outfit(fontSize: 13, color: AgriTheme.textMuted)),
                               const SizedBox(width: 14),
                               const Icon(Icons.mode_comment_outlined, size: 16, color: AgriTheme.textMuted),
                               const SizedBox(width: 4),
-                              Text(doc['comments'], style: GoogleFonts.outfit(fontSize: 13, color: AgriTheme.textMuted)),
+                              GlobalBhashiniText(doc['comments'], style: GoogleFonts.outfit(fontSize: 13, color: AgriTheme.textMuted)),
                             ],
                           ),
                         ],
@@ -399,7 +400,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                       const SizedBox(height: 20),
                       Divider(color: AgriTheme.borderLight.withOpacity(0.8), height: 1),
                       const SizedBox(height: 20),
-                      Text(
+                      GlobalBhashiniText(
                         '📋 Executive Summary & Insights',
                         style: GoogleFonts.outfit(fontSize: 16, fontWeight: FontWeight.bold, color: AgriTheme.textDark),
                       ),
@@ -412,7 +413,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                           borderRadius: BorderRadius.circular(16),
                           border: Border.all(color: AgriTheme.borderLight),
                         ),
-                        child: Text(
+                        child: GlobalBhashiniText(
                           doc['description'],
                           style: GoogleFonts.outfit(fontSize: 14, color: const Color(0xFF334155), height: 1.5),
                         ),
@@ -433,11 +434,11 @@ class _CommunityScreenState extends State<CommunityScreen> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
+                                  GlobalBhashiniText(
                                     'Offline Asset Repository Path',
                                     style: GoogleFonts.outfit(fontSize: 11, color: AgriTheme.textMuted, fontWeight: FontWeight.w600),
                                   ),
-                                  Text(
+                                  GlobalBhashiniText(
                                     doc['filePath'],
                                     style: GoogleFonts.outfit(fontSize: 12, color: AgriTheme.primaryGreen, fontWeight: FontWeight.bold),
                                     maxLines: 1,
@@ -475,7 +476,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
-                                  content: Text('Opening ${doc['fileType'].toString().toUpperCase()} document from Kissan Knowledge Base...'),
+                                  content: GlobalBhashiniText('Opening ${doc['fileType'].toString().toUpperCase()} document from Kissan Knowledge Base...'),
                                   backgroundColor: AgriTheme.primaryGreen,
                                   behavior: SnackBarBehavior.floating,
                                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -490,7 +491,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                           ),
                           icon: const Icon(Icons.file_open_outlined, size: 20),
-                          label: Text(
+                          label: GlobalBhashiniText(
                             doc['fileType'] == 'xml'
                                 ? 'Open / Read Interactive XML Document'
                                 : 'Open / View Full ${doc['fileType'].toString().toUpperCase()} Document',
@@ -507,7 +508,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                             Navigator.pop(context);
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
-                                content: Text('Added "${doc['title']}" to your offline bookmarks.'),
+                                content: GlobalBhashiniText('Added "${doc['title']}" to your offline bookmarks.'),
                                 behavior: SnackBarBehavior.floating,
                                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                               ),
@@ -519,7 +520,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                           ),
                           icon: const Icon(Icons.bookmark_add_outlined, size: 20),
-                          label: Text(
+                          label: GlobalBhashiniText(
                             'Bookmark for Offline Reading',
                             style: GoogleFonts.outfit(fontSize: 15, fontWeight: FontWeight.bold),
                           ),
@@ -541,16 +542,16 @@ class _CommunityScreenState extends State<CommunityScreen> {
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: AppBar(
-        title: const Text('Kisan Knowledge Hub & Forum'),
+        title: const GlobalBhashiniText('Kisan Knowledge Hub & Forum'),
         actions: [
           TextButton.icon(
             onPressed: () {
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Opening Create Post / Question Dialog...')),
+                const SnackBar(content: GlobalBhashiniText('Opening Create Post / Question Dialog...')),
               );
             },
             icon: const Icon(Icons.add_circle_outline, color: AgriTheme.primaryGreen),
-            label: Text('Ask Community', style: GoogleFonts.outfit(color: AgriTheme.primaryGreen, fontWeight: FontWeight.bold)),
+            label: GlobalBhashiniText('Ask Community', style: GoogleFonts.outfit(color: AgriTheme.primaryGreen, fontWeight: FontWeight.bold)),
           ),
           const SizedBox(width: 8),
         ],
@@ -570,7 +571,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                 return Padding(
                   padding: const EdgeInsets.only(right: 8),
                   child: FilterChip(
-                    label: Text(cat),
+                    label: GlobalBhashiniText(cat),
                     labelStyle: GoogleFonts.outfit(
                       color: isSelected ? Colors.white : AgriTheme.textDark,
                       fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
@@ -626,7 +627,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                                   color: a['color'] as Color,
                                   borderRadius: BorderRadius.circular(12),
                                 ),
-                                child: Text(
+                                child: GlobalBhashiniText(
                                   a['category'],
                                   style: GoogleFonts.outfit(color: a['iconColor'] as Color, fontSize: 11, fontWeight: FontWeight.bold),
                                 ),
@@ -638,13 +639,13 @@ class _CommunityScreenState extends State<CommunityScreen> {
                                   color: AgriTheme.lightGreen,
                                   borderRadius: BorderRadius.circular(10),
                                 ),
-                                child: Text(
+                                child: GlobalBhashiniText(
                                   a['fileType'].toString().toUpperCase(),
                                   style: GoogleFonts.outfit(color: AgriTheme.primaryGreen, fontSize: 10, fontWeight: FontWeight.bold),
                                 ),
                               ),
                               const Spacer(),
-                              Text(
+                              GlobalBhashiniText(
                                 a['readTime'],
                                 style: GoogleFonts.outfit(fontSize: 12, color: AgriTheme.textMuted),
                               ),
@@ -655,7 +656,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Expanded(
-                                child: Text(
+                                child: GlobalBhashiniText(
                                   a['title'],
                                   style: GoogleFonts.outfit(fontWeight: FontWeight.bold, fontSize: 17, color: AgriTheme.textDark, height: 1.3),
                                 ),
@@ -683,7 +684,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                               ),
                               const SizedBox(width: 8),
                               Expanded(
-                                child: Text(
+                                child: GlobalBhashiniText(
                                   a['author'],
                                   style: GoogleFonts.outfit(fontSize: 12, color: AgriTheme.textMuted, fontWeight: FontWeight.w500),
                                 ),
@@ -692,11 +693,11 @@ class _CommunityScreenState extends State<CommunityScreen> {
                                 children: [
                                   const Icon(Icons.thumb_up_alt_outlined, size: 16, color: AgriTheme.textMuted),
                                   const SizedBox(width: 4),
-                                  Text(a['likes'], style: GoogleFonts.outfit(fontSize: 12, color: AgriTheme.textMuted)),
+                                  GlobalBhashiniText(a['likes'], style: GoogleFonts.outfit(fontSize: 12, color: AgriTheme.textMuted)),
                                   const SizedBox(width: 12),
                                   const Icon(Icons.mode_comment_outlined, size: 16, color: AgriTheme.textMuted),
                                   const SizedBox(width: 4),
-                                  Text(a['comments'], style: GoogleFonts.outfit(fontSize: 12, color: AgriTheme.textMuted)),
+                                  GlobalBhashiniText(a['comments'], style: GoogleFonts.outfit(fontSize: 12, color: AgriTheme.textMuted)),
                                 ],
                               ),
                             ],
@@ -738,7 +739,7 @@ class _XmlViewerWidget extends StatelessWidget {
             margin: const EdgeInsets.symmetric(vertical: 16),
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(color: const Color(0xFFFEE2E2), borderRadius: BorderRadius.circular(14)),
-            child: Text('Could not load XML preview: ${snapshot.error}', style: GoogleFonts.outfit(color: const Color(0xFF991B1B), fontSize: 13)),
+            child: GlobalBhashiniText('Could not load XML preview: ${snapshot.error}', style: GoogleFonts.outfit(color: const Color(0xFF991B1B), fontSize: 13)),
           );
         }
 
@@ -785,7 +786,7 @@ class _XmlViewerWidget extends StatelessWidget {
                     const Icon(Icons.code, size: 18, color: AgriTheme.primaryGreen),
                     const SizedBox(width: 8),
                     Expanded(
-                      child: Text(
+                      child: GlobalBhashiniText(
                         'Interactive XML Knowledge Base ($pageCount Pages Extracted)',
                         style: GoogleFonts.outfit(fontWeight: FontWeight.bold, fontSize: 13, color: AgriTheme.primaryGreen),
                       ),
@@ -793,7 +794,7 @@ class _XmlViewerWidget extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                       decoration: BoxDecoration(color: AgriTheme.primaryGreen, borderRadius: BorderRadius.circular(6)),
-                      child: Text('OFFLINE READY', style: GoogleFonts.outfit(fontSize: 10, fontWeight: FontWeight.bold, color: Colors.white)),
+                      child: GlobalBhashiniText('OFFLINE READY', style: GoogleFonts.outfit(fontSize: 10, fontWeight: FontWeight.bold, color: Colors.white)),
                     ),
                   ],
                 ),
@@ -803,12 +804,12 @@ class _XmlViewerWidget extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    GlobalBhashiniText(
                       'Page 1 Content Preview:',
                       style: GoogleFonts.outfit(fontSize: 12, fontWeight: FontWeight.bold, color: AgriTheme.textMuted),
                     ),
                     const SizedBox(height: 6),
-                    Text(
+                    GlobalBhashiniText(
                       '"$previewText..."',
                       style: GoogleFonts.outfit(fontSize: 13, color: AgriTheme.textDark, fontStyle: FontStyle.italic, height: 1.4),
                       maxLines: 4,
@@ -825,7 +826,7 @@ class _XmlViewerWidget extends StatelessWidget {
                           children: [
                             const Icon(Icons.search, size: 14, color: AgriTheme.primaryGreen),
                             const SizedBox(width: 4),
-                            Text('Full keyword indexing active', style: GoogleFonts.outfit(fontSize: 11, color: AgriTheme.primaryGreen, fontWeight: FontWeight.w600)),
+                            GlobalBhashiniText('Full keyword indexing active', style: GoogleFonts.outfit(fontSize: 11, color: AgriTheme.primaryGreen, fontWeight: FontWeight.w600)),
                           ],
                         ),
                         Row(
@@ -833,7 +834,7 @@ class _XmlViewerWidget extends StatelessWidget {
                           children: [
                             const Icon(Icons.volume_up_outlined, size: 14, color: AgriTheme.primaryGreen),
                             const SizedBox(width: 4),
-                            Text('AI Voice read-aloud ready', style: GoogleFonts.outfit(fontSize: 11, color: AgriTheme.primaryGreen, fontWeight: FontWeight.w600)),
+                            GlobalBhashiniText('AI Voice read-aloud ready', style: GoogleFonts.outfit(fontSize: 11, color: AgriTheme.primaryGreen, fontWeight: FontWeight.w600)),
                           ],
                         ),
                       ],
@@ -872,7 +873,7 @@ class _CsvViewerWidget extends StatelessWidget {
             margin: const EdgeInsets.symmetric(vertical: 16),
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(color: const Color(0xFFFEE2E2), borderRadius: BorderRadius.circular(14)),
-            child: Text('Could not load CSV data preview: ${snapshot.error}', style: GoogleFonts.outfit(color: const Color(0xFF991B1B), fontSize: 13)),
+            child: GlobalBhashiniText('Could not load CSV data preview: ${snapshot.error}', style: GoogleFonts.outfit(color: const Color(0xFF991B1B), fontSize: 13)),
           );
         }
 
@@ -903,7 +904,7 @@ class _CsvViewerWidget extends StatelessWidget {
                     const Icon(Icons.table_chart, size: 18, color: Color(0xFF334155)),
                     const SizedBox(width: 8),
                     Expanded(
-                      child: Text(
+                      child: GlobalBhashiniText(
                         'Live CSV Dataset Preview (${lines.length} Total Rows)',
                         style: GoogleFonts.outfit(fontWeight: FontWeight.bold, fontSize: 13, color: const Color(0xFF334155)),
                       ),
@@ -920,13 +921,13 @@ class _CsvViewerWidget extends StatelessWidget {
                   dataRowMaxHeight: 40,
                   horizontalMargin: 8,
                   columnSpacing: 20,
-                  columns: headers.map((h) => DataColumn(label: Text(h, style: GoogleFonts.outfit(fontWeight: FontWeight.bold, fontSize: 12, color: AgriTheme.textDark)))).toList(),
+                  columns: headers.map((h) => DataColumn(label: GlobalBhashiniText(h, style: GoogleFonts.outfit(fontWeight: FontWeight.bold, fontSize: 12, color: AgriTheme.textDark)))).toList(),
                   rows: sampleLines.skip(1).map((line) {
                     final rowData = _selectRelevantColumns(_parseCsvLine(line));
                     return DataRow(
                       cells: List.generate(headers.length, (index) {
                         final val = index < rowData.length ? rowData[index] : '';
-                        return DataCell(Text(val, style: GoogleFonts.outfit(fontSize: 12, color: AgriTheme.textMuted)));
+                        return DataCell(GlobalBhashiniText(val, style: GoogleFonts.outfit(fontSize: 12, color: AgriTheme.textMuted)));
                       }),
                     );
                   }).toList(),

@@ -1,3 +1,4 @@
+import 'package:bhashini_core/bhashini_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -82,7 +83,7 @@ class _AdyutaButtonState extends State<AdyutaButton> with SingleTickerProviderSt
             Icon(widget.icon, size: 20),
             const SizedBox(width: 8),
           ],
-          Text(widget.text),
+          GlobalBhashiniText(widget.text),
         ],
       ],
     );

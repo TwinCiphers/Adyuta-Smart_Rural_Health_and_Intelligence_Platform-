@@ -49,3 +49,5 @@ key.properties
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+.env

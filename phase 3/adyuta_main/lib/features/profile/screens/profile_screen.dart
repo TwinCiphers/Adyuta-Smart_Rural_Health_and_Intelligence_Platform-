@@ -1,3 +1,4 @@
+import 'package:bhashini_core/bhashini_core.dart';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -66,13 +67,13 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         await ref.read(profileProvider.notifier).uploadAvatar(File(pickedFile.path));
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Avatar updated successfully!')),
+            const SnackBar(content: GlobalBhashiniText('Avatar updated successfully!')),
           );
         }
       } catch (e) {
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Failed to upload avatar: $e')),
+            SnackBar(content: GlobalBhashiniText('Failed to upload avatar: $e')),
           );
         }
       } finally {
@@ -96,14 +97,14 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
       
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Profile saved successfully!')),
+          const SnackBar(content: GlobalBhashiniText('Profile saved successfully!')),
         );
         Navigator.pop(context); // Go back after save
       }
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to save profile: $e')),
+          SnackBar(content: GlobalBhashiniText('Failed to save profile: $e')),
         );
       }
     } finally {
@@ -118,7 +119,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     return Scaffold(
       backgroundColor: Colors.grey.shade50,
       appBar: AppBar(
-        title: Text('Edit Profile', style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
+        title: GlobalBhashiniText('Edit Profile', style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
         backgroundColor: Colors.white,
         foregroundColor: Colors.black87,
         elevation: 1,
@@ -128,15 +129,15 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               onPressed: _isSaving ? null : _saveProfile,
               child: _isSaving
                   ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2))
-                  : const Text('Save', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                  : const GlobalBhashiniText('Save', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
             ),
         ],
       ),
       body: profileAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
-        error: (err, stack) => Center(child: Text('Error: $err')),
+        error: (err, stack) => Center(child: GlobalBhashiniText('Error: $err')),
         data: (profile) {
-          if (profile == null) return const Center(child: Text('No profile found.'));
+          if (profile == null) return const Center(child: GlobalBhashiniText('No profile found.'));
           
           _initFields(profile);
 
@@ -186,7 +187,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   const SizedBox(height: 32),
                   
                   // Form Fields
-                  Text('Personal Information', style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black54)),
+                  GlobalBhashiniText('Personal Information', style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black54)),
                   const SizedBox(height: 16),
                   
                   _buildTextField(
@@ -212,7 +213,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   ),
                   const SizedBox(height: 32),
                   
-                  Text('About Me', style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black54)),
+                  GlobalBhashiniText('About Me', style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black54)),
                   const SizedBox(height: 16),
                   
                   _buildTextField(

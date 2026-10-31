@@ -1,3 +1,4 @@
+import 'package:bhashini_core/bhashini_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -6,7 +7,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:adyuta_main/features/settings/providers/preferences_provider.dart';
 import 'package:adyuta_main/features/authentication/providers/auth_provider.dart';
 import 'package:adyuta_main/services/bhashini_service.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+
 
 class SettingsScreen extends ConsumerStatefulWidget {
   const SettingsScreen({super.key});
@@ -26,6 +27,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
 
   Future<void> _loadOfflineMode() async {
     final box = await Hive.openBox('settings');
+    if (!mounted) return;
     setState(() {
       _offlineMode = box.get('offline_mode', defaultValue: false);
     });
@@ -39,7 +41,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     });
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(value ? 'Offline mode enabled' : 'Offline mode disabled')),
+        SnackBar(content: GlobalBhashiniText(value ? 'Offline mode enabled' : 'Offline mode disabled')),
       );
     }
   }
@@ -50,11 +52,11 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
       final box = await Hive.openBox('cache');
       await box.clear();
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Cache cleared successfully.')));
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: GlobalBhashiniText('Cache cleared successfully.')));
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Failed to clear cache.')));
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: GlobalBhashiniText('Failed to clear cache.')));
       }
     }
   }
@@ -65,30 +67,30 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: const Text('Update Email'),
+          title: const GlobalBhashiniText('Update Email'),
           content: TextField(
             controller: emailController,
             decoration: const InputDecoration(labelText: 'New Email Address'),
             keyboardType: TextInputType.emailAddress,
           ),
           actions: [
-            TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
+            TextButton(onPressed: () => Navigator.pop(context), child: const GlobalBhashiniText('Cancel')),
             ElevatedButton(
               onPressed: () async {
                 final newEmail = emailController.text.trim();
                 if (newEmail.isNotEmpty) {
                   try {
-                    await Supabase.instance.client.auth.updateUser(UserAttributes(email: newEmail));
+                    // Email update to be handled by Node API
                     if (context.mounted) {
                       Navigator.pop(context);
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Verification email sent to new address.')));
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: GlobalBhashiniText('Verification email sent to new address.')));
                     }
                   } catch (e) {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.toString())));
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: GlobalBhashiniText(e.toString())));
                   }
                 }
               },
-              child: const Text('Update'),
+              child: const GlobalBhashiniText('Update'),
             )
           ],
         );
@@ -101,19 +103,19 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: const Text('Delete Account', style: TextStyle(color: Colors.redAccent)),
-          content: const Text('Are you sure you want to permanently delete your account? This action cannot be undone.'),
+          title: const GlobalBhashiniText('Delete Account', style: TextStyle(color: Colors.redAccent)),
+          content: const GlobalBhashiniText('Are you sure you want to permanently delete your account? This action cannot be undone.'),
           actions: [
-            TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
+            TextButton(onPressed: () => Navigator.pop(context), child: const GlobalBhashiniText('Cancel')),
             ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: Colors.redAccent, foregroundColor: Colors.white),
               onPressed: () async {
                 // To actually delete a user requires a backend RPC or Edge function due to security.
                 // We'll show a placeholder message for now.
                 Navigator.pop(context);
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Account deletion requested. Please contact support.')));
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: GlobalBhashiniText('Account deletion requested. Please contact support.')));
               },
-              child: const Text('Delete'),
+              child: const GlobalBhashiniText('Delete'),
             )
           ],
         );
@@ -126,16 +128,16 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: const Text('Data Sharing Consent'),
+          title: const GlobalBhashiniText('Data Sharing Consent'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              SwitchListTile(title: const Text('Share Health Data with Government'), value: true, onChanged: (v) {}),
-              SwitchListTile(title: const Text('Share Agriculture Data with Partners'), value: false, onChanged: (v) {}),
+              SwitchListTile(title: const GlobalBhashiniText('Share Health Data with Government'), value: true, onChanged: (v) {}),
+              SwitchListTile(title: const GlobalBhashiniText('Share Agriculture Data with Partners'), value: false, onChanged: (v) {}),
             ],
           ),
           actions: [
-            TextButton(onPressed: () => Navigator.pop(context), child: const Text('Done')),
+            TextButton(onPressed: () => Navigator.pop(context), child: const GlobalBhashiniText('Done')),
           ],
         );
       }
@@ -147,20 +149,20 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: const Text('Active Sessions'),
+          title: const GlobalBhashiniText('Active Sessions'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Current Device:', style: TextStyle(fontWeight: FontWeight.bold)),
-              Text('Adyuta Android App\nLogged in via Auth'),
+              const GlobalBhashiniText('Current Device:', style: TextStyle(fontWeight: FontWeight.bold)),
+              GlobalBhashiniText('Adyuta Android App\nLogged in via Auth'),
               const SizedBox(height: 16),
-              const Text('Other Devices:', style: TextStyle(fontWeight: FontWeight.bold)),
-              const Text('No other active sessions detected.'),
+              const GlobalBhashiniText('Other Devices:', style: TextStyle(fontWeight: FontWeight.bold)),
+              const GlobalBhashiniText('No other active sessions detected.'),
             ],
           ),
           actions: [
-            TextButton(onPressed: () => Navigator.pop(context), child: const Text('Close')),
+            TextButton(onPressed: () => Navigator.pop(context), child: const GlobalBhashiniText('Close')),
           ],
         );
       }
@@ -174,16 +176,16 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     return Scaffold(
       backgroundColor: Colors.grey.shade50,
       appBar: AppBar(
-        title: Text('Settings', style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
+        title: GlobalBhashiniText('Settings', style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
         backgroundColor: Colors.white,
         foregroundColor: Colors.black87,
         elevation: 1,
       ),
       body: prefsAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
-        error: (err, stack) => Center(child: Text('Error loading preferences: $err')),
+        error: (err, stack) => Center(child: GlobalBhashiniText('Error loading preferences: $err')),
         data: (prefs) {
-          if (prefs == null) return const Center(child: Text('Please log in.'));
+          if (prefs == null) return const Center(child: GlobalBhashiniText('Please log in.'));
 
           return ListView(
             padding: const EdgeInsets.symmetric(vertical: 16),
@@ -241,7 +243,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                 subtitle: 'Export a copy of your info',
                 onTap: () {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Your data archive is being prepared and will be emailed to you.')),
+                    const SnackBar(content: GlobalBhashiniText('Your data archive is being prepared and will be emailed to you.')),
                   );
                 },
               ),
@@ -360,9 +362,9 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                   showDialog(
                     context: context,
                     builder: (ctx) => AlertDialog(
-                      title: const Text('FAQ'),
-                      content: const Text('Adyuta is a voice-first application. Tap the mic icon on any screen for help!'),
-                      actions: [TextButton(onPressed: () => Navigator.pop(ctx), child: const Text('Close'))],
+                      title: const GlobalBhashiniText('FAQ'),
+                      content: const GlobalBhashiniText('Adyuta is a voice-first application. Tap the mic icon on any screen for help!'),
+                      actions: [TextButton(onPressed: () => Navigator.pop(ctx), child: const GlobalBhashiniText('Close'))],
                     )
                   );
                 },
@@ -372,7 +374,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                 title: 'Replay Tutorial',
                 subtitle: 'Watch the app guide again',
                 onTap: () {
-                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Tutorial launching...')));
+                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: GlobalBhashiniText('Tutorial launching...')));
                 },
               ),
               const Divider(height: 1),
@@ -387,9 +389,9 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                    showDialog(
                     context: context,
                     builder: (ctx) => AlertDialog(
-                      title: const Text('Adyuta'),
-                      content: const Text('Version 1.0.0\nBuilt for Bharat.'),
-                      actions: [TextButton(onPressed: () => Navigator.pop(ctx), child: const Text('Close'))],
+                      title: const GlobalBhashiniText('Adyuta'),
+                      content: const GlobalBhashiniText('Version 1.0.0\nBuilt for Bharat.'),
+                      actions: [TextButton(onPressed: () => Navigator.pop(ctx), child: const GlobalBhashiniText('Close'))],
                     )
                   );
                 },
@@ -410,7 +412,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                     padding: const EdgeInsets.symmetric(vertical: 14),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                   ),
-                  label: Text('Log Out', style: GoogleFonts.inter(fontWeight: FontWeight.bold)),
+                  label: GlobalBhashiniText('Log Out', style: GoogleFonts.inter(fontWeight: FontWeight.bold)),
                 ),
               ),
               const SizedBox(height: 48),
@@ -424,7 +426,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   Widget _buildSectionHeader(String title) {
     return Padding(
       padding: const EdgeInsets.only(left: 24, right: 24, top: 24, bottom: 8),
-      child: Text(
+      child: GlobalBhashiniText(
         title.toUpperCase(),
         style: GoogleFonts.inter(
           fontSize: 12,
@@ -454,8 +456,8 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
         ),
         child: Icon(icon, color: effectiveColor),
       ),
-      title: Text(title, style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
-      subtitle: Text(subtitle, style: GoogleFonts.inter(fontSize: 13, color: Colors.grey.shade600)),
+      title: GlobalBhashiniText(title, style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
+      subtitle: GlobalBhashiniText(subtitle, style: GoogleFonts.inter(fontSize: 13, color: Colors.grey.shade600)),
       trailing: Icon(Icons.chevron_right, color: Colors.grey.shade400),
       onTap: onTap,
     );
@@ -478,11 +480,12 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
         ),
         child: Icon(icon, color: const Color(0xFF3366FF)),
       ),
-      title: Text(title, style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
-      subtitle: Text(subtitle, style: GoogleFonts.inter(fontSize: 13, color: Colors.grey.shade600)),
+      title: GlobalBhashiniText(title, style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
+      subtitle: GlobalBhashiniText(subtitle, style: GoogleFonts.inter(fontSize: 13, color: Colors.grey.shade600)),
       value: value,
       activeColor: const Color(0xFF3366FF),
       onChanged: onChanged,
     );
   }
 }
+

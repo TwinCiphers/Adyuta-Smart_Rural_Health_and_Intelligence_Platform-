@@ -1,3 +1,5 @@
+import 'package:bhashini_core/bhashini_core.dart';
+import '../../core/services/mandi_service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../core/theme/agri_theme.dart';
@@ -29,8 +31,8 @@ class AgriDashboardScreen extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Adyuta Agriculture', style: GoogleFonts.outfit(fontWeight: FontWeight.bold, fontSize: 18, color: AgriTheme.textDark)),
-                Text('Smart Solutions for Farmers', style: GoogleFonts.outfit(fontSize: 11, color: AgriTheme.textMuted)),
+                GlobalBhashiniText('Adyuta Agriculture', style: GoogleFonts.outfit(fontWeight: FontWeight.bold, fontSize: 18, color: AgriTheme.textDark)),
+                GlobalBhashiniText('Smart Solutions for Farmers', style: GoogleFonts.outfit(fontSize: 11, color: AgriTheme.textMuted)),
               ],
             ),
           ],
@@ -66,13 +68,13 @@ class AgriDashboardScreen extends StatelessWidget {
                       color: Colors.white.withOpacity(0.2),
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    child: Text(
+                    child: GlobalBhashiniText(
                       '👨‍🌾 Kisan Shakti Hub',
                       style: GoogleFonts.outfit(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w600),
                     ),
                   ),
                   const SizedBox(height: 14),
-                  Text(
+                  GlobalBhashiniText(
                     'Empowering Farmers with\nTechnology & Intelligence',
                     style: GoogleFonts.outfit(
                       color: Colors.white,
@@ -82,7 +84,7 @@ class AgriDashboardScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 8),
-                  Text(
+                  GlobalBhashiniText(
                     'Live APMC Mandi rates, weather advisories, government schemes, and organic marketplace.',
                     style: GoogleFonts.outfit(color: Colors.white.withOpacity(0.9), fontSize: 13, height: 1.4),
                   ),
@@ -99,7 +101,7 @@ class AgriDashboardScreen extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                     ),
                     icon: const Icon(Icons.trending_up, size: 18),
-                    label: Text('Check Today\'s Mandi Rates', style: GoogleFonts.outfit(fontWeight: FontWeight.bold, fontSize: 13)),
+                    label: GlobalBhashiniText('Check Today\'s Mandi Rates', style: GoogleFonts.outfit(fontWeight: FontWeight.bold, fontSize: 13)),
                   ),
                 ],
               ),
@@ -130,21 +132,39 @@ class AgriDashboardScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text('Wheat (Lok-1)', style: GoogleFonts.outfit(fontWeight: FontWeight.bold, fontSize: 15, color: AgriTheme.textDark)),
-                            Text('₹2,650 / Qtl', style: GoogleFonts.outfit(fontWeight: FontWeight.bold, fontSize: 15, color: AgriTheme.primaryGreen)),
-                          ],
-                        ),
-                        const SizedBox(height: 2),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text('Indore Mandi • Today', style: GoogleFonts.outfit(fontSize: 12, color: AgriTheme.textMuted)),
-                            Text('+₹45 Today', style: GoogleFonts.outfit(fontWeight: FontWeight.w600, fontSize: 12, color: AgriTheme.priceUp)),
-                          ],
-                        ),
+                        FutureBuilder<MandiServiceResult>(
+  future: MandiService.fetchMandiPrices(),
+  builder: (context, snapshot) {
+    if (snapshot.connectionState == ConnectionState.waiting) {
+      return Center(child: CircularProgressIndicator(color: AgriTheme.primaryGreen));
+    }
+    final mandiList = snapshot.data?.prices ?? [];
+    if (mandiList.isEmpty) {
+      return GlobalBhashiniText('No Mandi Data', style: GoogleFonts.outfit(color: AgriTheme.textDark));
+    }
+    final price = mandiList.first;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            GlobalBhashiniText(price.commodity, style: GoogleFonts.outfit(fontWeight: FontWeight.bold, fontSize: 15, color: AgriTheme.textDark)),
+            GlobalBhashiniText('₹${price.modalPrice} / Qtl', style: GoogleFonts.outfit(fontWeight: FontWeight.bold, fontSize: 15, color: AgriTheme.primaryGreen)),
+          ],
+        ),
+        const SizedBox(height: 2),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            GlobalBhashiniText(' � Today', style: GoogleFonts.outfit(fontSize: 12, color: AgriTheme.textMuted)),
+            GlobalBhashiniText('Live Synced', style: GoogleFonts.outfit(fontWeight: FontWeight.w600, fontSize: 12, color: AgriTheme.primaryGreen)),
+          ],
+        ),
+      ],
+    );
+  }
+),
                       ],
                     ),
                   ),
@@ -154,7 +174,7 @@ class AgriDashboardScreen extends StatelessWidget {
             const SizedBox(height: 24),
 
             // Services Grid
-            Text('Farmer Services & Tools', style: GoogleFonts.outfit(fontSize: 18, fontWeight: FontWeight.bold, color: AgriTheme.textDark)),
+            GlobalBhashiniText('Farmer Services & Tools', style: GoogleFonts.outfit(fontSize: 18, fontWeight: FontWeight.bold, color: AgriTheme.textDark)),
             const SizedBox(height: 14),
             GridView.count(
               crossAxisCount: 2,
@@ -227,9 +247,9 @@ class AgriDashboardScreen extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Kisan Knowledge Hub (XML Edition)', style: GoogleFonts.outfit(fontWeight: FontWeight.bold, fontSize: 16, color: AgriTheme.textDark)),
+                          GlobalBhashiniText('Kisan Knowledge Hub (XML Edition)', style: GoogleFonts.outfit(fontWeight: FontWeight.bold, fontSize: 16, color: AgriTheme.textDark)),
                           const SizedBox(height: 4),
-                          Text('Explore 16+ interactive XML knowledge base manuals, PM-KISAN studies, crop protocols & FAOSTAT datasets with offline keyword search.', style: GoogleFonts.outfit(fontSize: 12, color: AgriTheme.textMuted)),
+                          GlobalBhashiniText('Explore 16+ interactive XML knowledge base manuals, PM-KISAN studies, crop protocols & FAOSTAT datasets with offline keyword search.', style: GoogleFonts.outfit(fontSize: 12, color: AgriTheme.textMuted)),
                         ],
                       ),
                     ),
@@ -291,9 +311,9 @@ class _AgriServiceCard extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title, style: GoogleFonts.outfit(fontWeight: FontWeight.bold, fontSize: 14, color: AgriTheme.textDark)),
+                GlobalBhashiniText(title, style: GoogleFonts.outfit(fontWeight: FontWeight.bold, fontSize: 14, color: AgriTheme.textDark)),
                 const SizedBox(height: 2),
-                Text(subtitle, maxLines: 2, overflow: TextOverflow.ellipsis, style: GoogleFonts.outfit(fontSize: 11, color: AgriTheme.textMuted, height: 1.2)),
+                GlobalBhashiniText(subtitle, maxLines: 2, overflow: TextOverflow.ellipsis, style: GoogleFonts.outfit(fontSize: 11, color: AgriTheme.textMuted, height: 1.2)),
               ],
             ),
           ],
@@ -302,3 +322,4 @@ class _AgriServiceCard extends StatelessWidget {
     );
   }
 }
+
